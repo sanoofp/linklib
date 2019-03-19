@@ -15,4 +15,11 @@ export const GlobalStyles = createGlobalStyle`
       outline: none;
     }
   }
+  
+  a {
+    color: ${props => props.theme.white};
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `;

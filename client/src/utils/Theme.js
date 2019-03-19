@@ -5,8 +5,8 @@ export const main = {
   white: "#ffffff",
   black1: "rgba(0,0,0,1)",
   black2: "rgba(0,0,0,0.8)",
-  primaryFont: 'Raleway',
-  secondaryFont: 'Montserrat'
+  primaryFont: "Raleway",
+  secondaryFont: "Montserrat"
 };
 
 export const muiTheme = createMuiTheme({
