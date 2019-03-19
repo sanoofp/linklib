@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleDarkTheme } from '../../actions/settingsAction';
+import PropTypes from 'prop-types';
 import HomeRounded from '@material-ui/icons/HomeRounded';
 import AccountCircleRounded from '@material-ui/icons/AccountCircleRounded';
 import PermIdentityRounded from '@material-ui/icons/PermIdentityRounded';
@@ -37,15 +40,13 @@ const DrawerList = props => {
 }
 
 class DrawerContent extends Component {
-  state = {
-    darkTheme: false,
-  }
   
   handleToggle = () => {
-    this.setState({darkTheme: !this.state.darkTheme});
+    this.props.toggleDarkTheme()
   }
 
   render() {
+    const { darkTheme } = this.props.settings;
     return <React.Fragment>
 
       <List component="nav">
@@ -82,16 +83,16 @@ class DrawerContent extends Component {
       <Divider />
 
       <List subheader={<ListSubheader>Settings</ListSubheader>}>
-        <ListItem button onClick={() => this.handleToggle('darkTheme')}>
+        <ListItem button onClick={() => this.handleToggle()}>
           <ListItemIcon>
             <WbIncandescentRounded/>
           </ListItemIcon>
           <ListItemText primary="Dark Theme" />
           <ListItemSecondaryAction>
             <Switch
-              color="default"
-              onChange={() => this.handleToggle('darkTheme')}
-              checked={this.state.darkTheme}
+              color="primary"
+              onChange={() => this.handleToggle()}
+              checked={darkTheme}
             />
           </ListItemSecondaryAction>
         </ListItem>
@@ -101,5 +102,13 @@ class DrawerContent extends Component {
   }
 }
 
+DrawerContent.propTypes = {
+  toggleDarkTheme: PropTypes.func.isRequired,
+  settings: PropTypes.object.isRequired
+}
 
-export default DrawerContent;
+const mapStateToProps = state => ({
+  settings: state.settingsReducer
+});
+
+export default connect(mapStateToProps, { toggleDarkTheme })(DrawerContent);

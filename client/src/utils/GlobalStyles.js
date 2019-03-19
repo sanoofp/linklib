@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     font-family: ${props => props.theme.primaryFont}
     background-color: ${props => props.theme.white};
-    color: ${props => props.theme.black1};
+    color: ${props => props.theme.black};
   }
 
   button {
@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
       outline: none;
     }
   }
-  
+
   a {
     color: ${props => props.theme.white};
     &:hover {
