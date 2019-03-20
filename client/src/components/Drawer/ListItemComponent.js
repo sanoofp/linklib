@@ -1,8 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { toggleDrawer } from "../../actions/appStateAction";
-import { toggleDarkTheme } from "../../actions/settingsAction";
+import { toggleDarkTheme, toggleDrawer } from "../../actions/appStateAction";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -10,7 +9,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Switch from "@material-ui/core/Switch";
 
 const ListItemComponent = props => {
-  const { darkTheme } = props.settings;
+  const { darkTheme } = props.appState;
   return (
     <ListItem
       button
@@ -38,11 +37,10 @@ const ListItemComponent = props => {
 ListItemComponent.propTypes = {
   toggleDrawer: PropTypes.func.isRequired,
   toggleDarkTheme: PropTypes.func.isRequired,
-  settings: PropTypes.object.isRequired
+  appState: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  settings: state.settingsReducer,
   appState: state.appStateReducer
 });
 

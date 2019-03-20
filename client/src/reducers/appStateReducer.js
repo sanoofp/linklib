@@ -1,14 +1,21 @@
-import { HANDLE_DRAWER_STATE } from "../actions/types";
+import { HANDLE_DRAWER_STATE, TOGGLE_DARK_THEME } from "../actions/types";
 
 const initalState = {
-  drawerIsOpen: false
+  drawerIsOpen: false,
+  darkTheme: false  
 };
 
 export default function(state = initalState, action) {
   switch (action.type) {
     case HANDLE_DRAWER_STATE:
       return {
-        drawerIsOpen: action.payload.drawerState
+        ...state,
+        drawerIsOpen: action.payload.drawerState,
+      };
+    case TOGGLE_DARK_THEME:
+      return {
+        ...state,       
+        darkTheme: !state.darkTheme,
       };
     default:
       return state;

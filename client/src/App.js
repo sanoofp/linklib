@@ -16,8 +16,7 @@ class App extends Component {
   handleDrawerClick = open => this.props.toggleDrawer(open);
 
   render() {
-    const { darkTheme } = this.props.settings;
-    const { drawerIsOpen } = this.props.appState;
+    const { drawerIsOpen, darkTheme } = this.props.appState;
 
     return (
       <MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
@@ -46,13 +45,11 @@ class App extends Component {
 }
 
 App.propTypes = {
-  settings: PropTypes.object.isRequired,
   appState: PropTypes.object.isRequired,
   toggleDrawer: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  settings: state.settingsReducer,
   appState: state.appStateReducer
 });
 
