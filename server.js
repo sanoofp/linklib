@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
+const PORT = 5000 || process.env.PORT;
 
 app.use(express.json());
 
@@ -14,5 +15,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = 5000 || process.env.PORT;
 app.listen(PORT, () => console.log("Server Started."));
