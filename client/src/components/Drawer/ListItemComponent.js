@@ -24,7 +24,7 @@ const ListItemComponent = props => {
       {props.toggle ? (
         <ListItemSecondaryAction>
           <Switch
-            color="primary"
+            color="default"
             onChange={() => props.toggleDarkTheme()}
             checked={darkTheme}
           />
