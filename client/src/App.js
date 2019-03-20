@@ -1,28 +1,26 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { toggleDrawer } from './actions/appStateAction';
 import { Helmet } from "react-helmet";
 import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
 import DrawerComponent from "./components/Drawer";
+import Home from './components/Home';
 import { main, dark, muiTheme, darkMuiTheme } from "./utils/Theme";
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from "styled-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
 
 class App extends Component {
-  state = {
-    isOpen: false
-  };
 
-  handleDrawerClick = open => {
-    this.setState({ isOpen: open });
-  };
+  handleDrawerClick = open => this.props.toggleDrawer(open);
 
   render() {
     const { darkTheme } = this.props.settings;
-    const { isOpen } = this.state;
+    const { drawerIsOpen } = this.props.appState;
+
     return (<MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
       <ThemeProvider theme={darkTheme ? dark : main}>
         <BrowserRouter>
@@ -32,7 +30,10 @@ class App extends Component {
           </Helmet>
           <GlobalStyles darkTheme />
           <Header onBtnClick={() => this.handleDrawerClick(true)} />
-          <DrawerComponent isOpen={isOpen} onClose={this.handleDrawerClick} />
+          <DrawerComponent isOpen={drawerIsOpen} onCloseDrawer={this.handleDrawerClick} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+          </Switch>
 
        </BrowserRouter>
     </ThemeProvider>
@@ -42,11 +43,14 @@ class App extends Component {
 }
 
 App.propTypes = {
-  settings: PropTypes.object.isRequired
+  settings: PropTypes.object.isRequired,
+  appState: PropTypes.object.isRequired,
+  toggleDrawer: PropTypes.func.isRequired  
 }
 
 const mapStateToProps = state => ({
-  settings: state.settingsReducer
+  settings: state.settingsReducer,
+  appState: state.appStateReducer,
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { toggleDrawer })(App);

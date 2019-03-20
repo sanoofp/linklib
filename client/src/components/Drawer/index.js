@@ -14,15 +14,15 @@ const DrawerComponent = props => {
       anchor="right"
       elevation={10}
       open={props.isOpen}
-      onClose={() => props.onClose(false)}
+      onClose={() => props.onCloseDrawer(false)}
     >
       <div
         tabIndex={0}
         role="button"
-        onKeyDown={() => props.onClose(false)}
+        onKeyDown={() => props.onCloseDrawer(false)}
       >
         <DrawerDiv>
-          <DrawerContent handleOnClick={() => props.onClose(false)} />
+          <DrawerContent />
         </DrawerDiv>
       </div>
     </Drawer>

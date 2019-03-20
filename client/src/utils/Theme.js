@@ -1,20 +1,38 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-export const main = {
-  primary: "#2ECC71",
-  white: "#ffffff",
-  black: "rgba(0,0,0,1)",
+export const colors = {
+  primaryGreen: "#2ECC71", 
+  primaryDark: "#263238",
+  white: '#ffffff',
+  black: '#000000',
+  darkbg: '#212121'
+}
+
+const fonts = {
   primaryFont: "Raleway",
   secondaryFont: "Montserrat"
+}
+
+export const main = {
+  primary: colors.primaryGreen,
+  font: colors.black,
+  bodybg: colors.white,
+  ...fonts
 };
 
 export const dark = {
-  primary: "#263238",
-  white: "#ffffff",
-  black: "rgba(0,0,0,1)",
-  primaryFont: "Raleway",
-  secondaryFont: "Montserrat"
+  primary: colors.primaryDark,
+  font: colors.white,
+  bodybg: colors.darkbg,
+  ...fonts
 };
+
+const generalMuiTheme = {
+  typography: {
+    useNextVariants: true,
+    fontFamily: ["Montserrat", "sans-serif"].join(",")
+  }
+}
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -22,10 +40,7 @@ export const muiTheme = createMuiTheme({
       main: main.primary
     }
   },
-  typography: {
-    useNextVariants: true,
-    fontFamily: ["Raleway", "sans-serif"].join(",")
-  }
+  ...generalMuiTheme
 });
 
 export const darkMuiTheme = createMuiTheme({
@@ -34,8 +49,5 @@ export const darkMuiTheme = createMuiTheme({
       main: dark.primary
     }
   },
-  typography: {
-    useNextVariants: true,
-    fontFamily: ["Raleway", "sans-serif"].join(",")
-  }
+  ...generalMuiTheme
 });
