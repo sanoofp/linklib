@@ -10,7 +10,7 @@ const DrawerContent = () => (
   <React.Fragment>
     <ListItems />
     <Divider />
-    <List subheader={<ListSubheader>More</ListSubheader>}>
+    <List subheader={<ListSubheader>Theme</ListSubheader>}>
       <ListItemComponent
         toggle={true}
         text="Dark Theme"

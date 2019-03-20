@@ -7,9 +7,10 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${props => props.theme.primaryFont}
     background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};
+    transition: background-color 0.3s ease;
   }
 
-  button {
+  button, div[role="button"] {
     outline: none;
     &:active,&:hover,&:focus {
       outline: none;
@@ -22,4 +23,5 @@ export const GlobalStyles = createGlobalStyle`
       text-decoration: none;
     }
   }
+
 `;

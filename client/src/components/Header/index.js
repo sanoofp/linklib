@@ -12,7 +12,8 @@ const StyledHeader = styled.div`
 `;
 
 const Logo = styled.div`
-  font-size: 2em;
+  font-size: 1.8em;
+  font-family: ${props => props.theme.secondaryFont}
   color: ${props => props.color};
   h1 {
     margin: 0;

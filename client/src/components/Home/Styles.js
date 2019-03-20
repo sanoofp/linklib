@@ -1,5 +1,23 @@
 import styled from "styled-components";
 
+export const MuiButtonStyles = theme => ({
+  btn: {
+    borderRadius: 25,
+    padding: "14px 36px",
+    color: '#fff',
+  },
+  btnSignUp: {
+    padding: "14px 36px",
+    color: theme.palette.secondary.text,
+    border: `1px solid ${theme.palette.secondary.main}`,
+    borderRadius: 25,
+  },
+  icon: {
+    marginRight: 4,
+    fontSize: 22
+  }
+})
+
 const dflexCenter = `
   display: flex;
   align-items: center;
@@ -42,4 +60,19 @@ export const IntroText = styled.div`
   }
 `;
 
-console.log(IntroText);
+export const ButtonContainer = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  button:nth-of-type(2) {
+    margin-left: 12px;
+  }
+
+  @media (max-width: 480px) {
+    button {
+      margin-top: 12px
+      &:nth-of-type(2) {
+        margin-left: 0; 
+      }
+    }
+  }
+`;

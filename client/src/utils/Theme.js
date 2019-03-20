@@ -16,6 +16,7 @@ const fonts = {
 
 export const main = {
   primary: colors.primaryGreen,
+  secondary: colors.primaryDark,
   font: colors.black,
   bodybg: colors.white,
   ...fonts
@@ -23,6 +24,7 @@ export const main = {
 
 export const dark = {
   primary: colors.primaryDark,
+  secondary: colors.whiteAlpha,
   font: colors.whiteAlpha,
   bodybg: colors.darkbg,
   ...fonts
@@ -31,7 +33,7 @@ export const dark = {
 const commonMuiTheme = {
   typography: {
     useNextVariants: true,
-    fontFamily: ["Montserrat", "sans-serif"].join(",")
+    fontFamily: ["Raleway", "sans-serif"].join(",")
   }
 };
 
@@ -39,6 +41,10 @@ export const muiTheme = createMuiTheme({
   palette: {
     primary: {
       main: main.primary
+    },
+    secondary: {
+      main: main.secondary,
+      text: main.font
     }
   },
   ...commonMuiTheme
@@ -48,6 +54,37 @@ export const darkMuiTheme = createMuiTheme({
   palette: {
     primary: {
       main: dark.primary
+    },
+    secondary: {
+      main: dark.secondary,
+      text: dark.font
+    }
+  },
+  overrides: {
+    MuiDrawer: {
+      paper: {
+        backgroundColor: dark.primary,
+      }
+    },
+    MuiListItemText: {
+      primary: {
+        color: dark.font
+      }
+    },
+    MuiListItemIcon: {
+      root: {
+        color: dark.font
+      }
+    },
+    MuiDivider: {
+      root: {
+        backgroundColor: dark.bodybg
+      }
+    },
+    MuiListSubheader: {
+      root: {
+        color: dark.font
+      }
     }
   },
   ...commonMuiTheme
