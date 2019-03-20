@@ -9,7 +9,8 @@
     "client": "cd client && yarn start",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
     "lint": "eslint ./",
-    "format": "prettier ./**/*.js --write"
+    "format": "prettier ./**/*.js --write",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "express": "^4.16.4",
