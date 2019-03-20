@@ -1,17 +1,17 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 export const colors = {
-  primaryGreen: "#2ECC71", 
+  primaryGreen: "#2ECC71",
   primaryDark: "#263238",
-  white: '#ffffff',
-  black: '#000000',
-  darkbg: '#212121'
-}
+  white: "#ffffff",
+  black: "#000000",
+  darkbg: "#212121"
+};
 
 const fonts = {
   primaryFont: "Raleway",
   secondaryFont: "Montserrat"
-}
+};
 
 export const main = {
   primary: colors.primaryGreen,
@@ -32,7 +32,7 @@ const generalMuiTheme = {
     useNextVariants: true,
     fontFamily: ["Montserrat", "sans-serif"].join(",")
   }
-}
+};
 
 export const muiTheme = createMuiTheme({
   palette: {

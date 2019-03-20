@@ -1,4 +1,4 @@
-import { HANDLE_DRAWER_STATE } from './types';
+import { HANDLE_DRAWER_STATE } from "./types";
 
 export const toggleDrawer = drawerState => {
   return {
@@ -6,5 +6,5 @@ export const toggleDrawer = drawerState => {
     payload: {
       drawerState
     }
-  }
-}
+  };
+};

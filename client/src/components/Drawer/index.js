@@ -1,7 +1,7 @@
 import React from "react";
 import Drawer from "@material-ui/core/Drawer";
-import styled from 'styled-components';
-import DrawerContent from './DrawerContent';
+import styled from "styled-components";
+import DrawerContent from "./DrawerContent";
 
 const DrawerDiv = styled.div`
   width: 260px;

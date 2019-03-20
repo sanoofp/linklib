@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 import Menu from "@material-ui/icons/Menu";
 import styled from "styled-components";
@@ -26,7 +26,9 @@ const Header = props => {
         <div className="row">
           <div className="col-md-12 d-flex align-items-center justify-content-between">
             <Logo color={colors.white}>
-              <h1><Link to="/">Linklib</Link></h1>
+              <h1>
+                <Link to="/">Linklib</Link>
+              </h1>
             </Logo>
             <div className="header--floating-btn">
               <Fab color="primary" aria-label="Menu" onClick={props.onBtnClick}>
