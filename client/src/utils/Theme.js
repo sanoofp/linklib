@@ -2,10 +2,11 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 export const colors = {
   primaryGreen: "#2ECC71",
-  primaryDark: "#263238",
+  primaryDark: "#212121",
   white: "#ffffff",
+  whiteAlpha: "rgba(255,255,255,0.8)",
   black: "#000000",
-  darkbg: "#212121"
+  darkbg: "#111"
 };
 
 const fonts = {
@@ -22,12 +23,12 @@ export const main = {
 
 export const dark = {
   primary: colors.primaryDark,
-  font: colors.white,
+  font: colors.whiteAlpha,
   bodybg: colors.darkbg,
   ...fonts
 };
 
-const generalMuiTheme = {
+const commonMuiTheme = {
   typography: {
     useNextVariants: true,
     fontFamily: ["Montserrat", "sans-serif"].join(",")
@@ -40,7 +41,7 @@ export const muiTheme = createMuiTheme({
       main: main.primary
     }
   },
-  ...generalMuiTheme
+  ...commonMuiTheme
 });
 
 export const darkMuiTheme = createMuiTheme({
@@ -49,5 +50,5 @@ export const darkMuiTheme = createMuiTheme({
       main: dark.primary
     }
   },
-  ...generalMuiTheme
+  ...commonMuiTheme
 });

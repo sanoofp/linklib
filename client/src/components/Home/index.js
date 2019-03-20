@@ -1,6 +1,6 @@
 import React from "react";
 import { HomeCircle } from "./svg/svgLogo";
-import { HomeContainer } from "./Styles";
+import { HomeContainer, HomeIntro, IntroText } from "./Styles";
 // import { colors } from '../../utils/Theme';
 
 const Home = props => {
@@ -8,10 +8,16 @@ const Home = props => {
     <HomeContainer>
       <div className="container">
         <div className="row">
-          <div className="col-md-7">
-            <HomeCircle />
+          <div className="col-lg-7">
+            <HomeIntro>
+              <HomeCircle />
+              <IntroText>
+                <h1>Linklib</h1>
+                <p>Save. Share and Manage link</p>
+              </IntroText>
+            </HomeIntro>
           </div>
-          <div className="col-md-5 d-flex align-items-center justify-content-center">
+          <div className="col-lg-5 d-flex align-items-center justify-content-center">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
               corrupti nisi dolorem assumenda delectus eos in, minima, obcaecati
