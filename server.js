@@ -1,12 +1,13 @@
 const express = require("express");
 const path = require("path");
+const apiRoutes = require("./routes/api");
 
 const app = express();
-const PORT = 5000 || process.env.PORT;
 
 app.use(express.json());
+app.set("port", process.env.PORT || 5000);
 
-app.use("/api", require("./routes/api"));
+app.use("/api", apiRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -15,4 +16,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(PORT, () => console.log("Server Started."));
+app.listen(app.get("port"), () => console.log("Server Started."));
