@@ -22,6 +22,10 @@ export const GlobalStyles = createGlobalStyle`
       outline: none;
     }
   }
+  
+  div[tabindex="1"] {
+    outline: none;
+  }
 
   a {
     color: #fff;

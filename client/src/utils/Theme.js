@@ -1,5 +1,7 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-// import spacing from '@material-ui/core/styles/spacing';
+const fonts = {
+  primaryFont: "Raleway",
+  secondaryFont: "Montserrat"
+};
 
 export const colors = {
   primaryGreen: "#2ECC71",
@@ -9,11 +11,6 @@ export const colors = {
   whiteAlpha5: "rgba(255,255,255,0.5)",
   black: "#000000",
   darkbg: "#111",
-};
-
-const fonts = {
-  primaryFont: "Raleway",
-  secondaryFont: "Montserrat"
 };
 
 export const main = {
@@ -31,86 +28,3 @@ export const dark = {
   bodybg: colors.darkbg,
   ...fonts
 };
-
-const commonMuiTheme = {
-  typography: {
-    useNextVariants: true,
-    fontFamily: ["Montserrat", "sans-serif"].join(",")
-  },
-};
-
-const muiOverrides = {
-
-  buttonCommon: {
-    MuiButton: {
-      contained: {
-        borderRadius: 25,
-        padding: "14px 36px",
-        color: '#fff',
-        boxShadow: "none"
-      },
-      outlined: {
-        borderRadius: 25,        
-        padding: "14px 36px",        
-      }
-    }
-  }
-  
-}
-
-export const muiTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: main.primary
-    },
-    secondary: {
-      main: main.secondary,
-    }
-  },
-  overrides: {
-    ...muiOverrides.dialogCommon,
-    ...muiOverrides.buttonCommon,
-  },
-  ...commonMuiTheme
-});
-
-export const darkMuiTheme = createMuiTheme({
-  palette: {
-    primary: {
-      main: dark.primary
-    },
-    secondary: {
-      main: dark.secondary,
-    }
-  },
-  overrides: {
-    ...muiOverrides.dialogCommon,
-    ...muiOverrides.buttonCommon,
-    MuiDrawer: {
-      paper: {
-        backgroundColor: dark.primary,
-      }
-    },
-    MuiListItemText: {
-      primary: {
-        color: dark.font
-      }
-    },
-    MuiListItemIcon: {
-      root: {
-        color: dark.font
-      }
-    },
-    MuiDivider: {
-      root: {
-        backgroundColor: dark.bodybg
-      }
-    },
-    MuiListSubheader: {
-      root: {
-        color: dark.font
-      }
-    },
-  },
-  ...commonMuiTheme
-});

@@ -23,7 +23,7 @@ const ListItems = props => {
             to={item.to}
             icon={item.icon}
             text={item.text}
-            itemOnClick={() => props.toggleDrawer(false)}
+            // itemOnClick={() => props.toggleDrawer(false)}
           />
         );
       })}

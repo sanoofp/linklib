@@ -11,8 +11,9 @@ import {
   ButtonContainer,
   MuiButtonStyles
 } from './style';
-import SignIn from '../Dialogs/SignIn';
 import { SigninButtonComponent, SignupButtonComponent } from "../Button";
+import SigninModel from "../Dialogs/SignIn/SignIn";
+import SignupModel from "../Dialogs/Signup/Signup";
 
 const Home = props => {
   return (
@@ -37,12 +38,13 @@ const Home = props => {
             </p>
             <ButtonContainer>
               <SigninButtonComponent onClick={() => props.dialogAction("signInDialogOpen", true)} />
-              <SignupButtonComponent />
+              <SignupButtonComponent variant="outlined" onClick={() => props.dialogAction("signUpDialogOpen", true)} />
             </ButtonContainer>
           </div>
         </div>
-        <SignIn />
       </div>
+      <SigninModel />
+      <SignupModel />
     </HomeContainer>
   );
 };

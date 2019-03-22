@@ -21,7 +21,7 @@ export const SignupButtonComponent = props => {
     fullWidth={props.fullWidth ? true : false}
     onClick={props.onClick} 
     style={{ margin: props.margin }} 
-    variant="outlined" 
+    variant={props.variant} 
     color="secondary">
   <PersonAddRounded style={{ marginRight: 6 }} />
   Create account
