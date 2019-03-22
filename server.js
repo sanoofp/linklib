@@ -1,11 +1,14 @@
 const express = require("express");
+const compression = require('compression');
 const path = require("path");
 const apiRoutes = require("./routes/api");
 
 const app = express();
 
-app.use(express.json());
 app.set("port", process.env.PORT || 5000);
+
+app.use(express.json());
+app.use(compression());
 
 app.use("/api", apiRoutes);
 
