@@ -13,7 +13,7 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --prefix client && yarn build --prefix client"
   },
   "engines": {
-    "yarn": "1.5.1"
+    "node": "10.x"
   },
   "dependencies": {
     "express": "^4.16.4",
