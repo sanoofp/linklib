@@ -9,7 +9,7 @@ export const MuiButtonStyles = theme => ({
     marginRight: 4,
     fontSize: 22
   }
-})
+});
 
 const dflexCenter = `
   display: flex;

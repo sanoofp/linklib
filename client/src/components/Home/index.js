@@ -10,7 +10,7 @@ import {
   IntroText, 
   ButtonContainer,
   MuiButtonStyles
-} from "./styles";
+} from './homeStyles';
 import SignIn from '../Dialogs/SignIn';
 import { SigninButtonComponent, SignupButtonComponent } from "../Button";
 
