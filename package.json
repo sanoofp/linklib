@@ -10,12 +10,10 @@
     "dev": "concurrently \"yarn server\" \"yarn client\"",
     "lint": "eslint ./",
     "format": "prettier ./**/*.js --write",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn install --prefix client && yarn run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {
-    "node": "8.11.1",
-    "npm": "5.6.0",
-    "yarn": "1.5.1"
+    "node": "8.11.1"
   },
   "dependencies": {
     "express": "^4.16.4",

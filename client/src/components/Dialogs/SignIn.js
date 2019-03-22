@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import {
   DialogContainer,
   SignInFormContainer,
-} from './styles'
+} from './style';
 import { colors } from '../../utils/Theme';
 
 const SignIn = props => {
