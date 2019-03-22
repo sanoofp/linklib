@@ -12,6 +12,9 @@
     "format": "prettier ./**/*.js --write",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && yarn build --prefix client"
   },
+  "engines": {
+    "node": "8.11.1"    
+  },
   "dependencies": {
     "express": "^4.16.4",
     "mongoose": "^5.4.19"
