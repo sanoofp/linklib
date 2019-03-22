@@ -1,15 +1,8 @@
 import styled from "styled-components";
 
 export const MuiButtonStyles = theme => ({
-  btn: {
-    borderRadius: 25,
-    padding: "14px 36px",
-    color: '#fff',
-  },
   btnSignUp: {
     padding: "14px 36px",
-    color: theme.palette.secondary.text,
-    border: `1px solid ${theme.palette.secondary.main}`,
     borderRadius: 25,
   },
   icon: {
@@ -63,15 +56,21 @@ export const IntroText = styled.div`
 export const ButtonContainer = styled.div`
   margin-top: 20px;
   width: 100%;
-  button:nth-of-type(2) {
-    margin-left: 12px;
+  button {
+    margin: 8px 0px;
+    &:nth-of-type(1) {
+      margin-right: 14px;
+    }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 485px) {
+    text-align: center;
+    padding: 4px 10px;
     button {
-      margin-top: 12px
-      &:nth-of-type(2) {
-        margin-left: 0; 
+      width: 100%;
+      margin: 7px 0px;
+      &:nth-of-type(1) {
+        margin-right: 0; 
       }
     }
   }

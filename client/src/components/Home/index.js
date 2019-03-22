@@ -1,6 +1,8 @@
 import React from "react";
-import { HomeCircle } from "./svg/svgLogo";
-import classNames from 'classnames'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { dialogAction } from '../../actions/appStateAction';
+import { HomeCircle } from "../svg/svgLogo";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { 
@@ -9,12 +11,11 @@ import {
   IntroText, 
   ButtonContainer,
   MuiButtonStyles
-} from "./Styles";
-import ExitToAppRounded from "@material-ui/icons/ExitToAppRounded";
-import PersonAddRounded from "@material-ui/icons/PersonAddRounded";
+} from "./styles";
+import SignIn from '../Dialogs/SignIn';
+import { SigninButtonComponent, SignupButtonComponent } from "../Button";
 
 const Home = props => {
-  const { classes } = props;
   return (
     <HomeContainer>
       <div className="container">
@@ -36,22 +37,25 @@ const Home = props => {
               suscipit ducimus porro!
             </p>
             <ButtonContainer>
-              <Button variant="contained" color="primary" className={classes.btn}>
-                <ExitToAppRounded className={classes.icon} />
-                Login
-              </Button>
-              <Button varient="flat" color="secondary" className={classNames(classes.btnSignUp)}>
-                <PersonAddRounded className={classes.icon} />
-                Create an account
-              </Button>
-              
-              
+              <SigninButtonComponent onClick={() => props.dialogAction("signInDialogOpen", true)} />
+              <SignupButtonComponent />
             </ButtonContainer>
           </div>
         </div>
+        <SignIn />
       </div>
     </HomeContainer>
   );
 };
 
-export default withStyles(MuiButtonStyles)(Home);
+
+Home.propTypes = {
+  appState: PropTypes.object.isRequired,
+  dialogAction: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  appState: state.appStateReducer
+});
+
+export default connect(mapStateToProps, { dialogAction })(withStyles(MuiButtonStyles)(Home));

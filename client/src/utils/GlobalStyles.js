@@ -1,5 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
+const utils = `
+  .h-100{ 
+    height: 100% !important;
+  }
+`
+
 export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
@@ -19,9 +25,17 @@ export const GlobalStyles = createGlobalStyle`
 
   a {
     color: #fff;
-    &:hover {
+    &:hover, &:active {
+      color: #fff;
       text-decoration: none;
     }
   }
 
+  ${utils}
+
+  @media (max-width: 485px) {
+    .dialog-paper--fix {
+      margin: 12px !important;
+    }
+  }
 `;

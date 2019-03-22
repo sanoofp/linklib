@@ -1,12 +1,14 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+// import spacing from '@material-ui/core/styles/spacing';
 
 export const colors = {
   primaryGreen: "#2ECC71",
   primaryDark: "#212121",
   white: "#ffffff",
   whiteAlpha: "rgba(255,255,255,0.8)",
+  whiteAlpha5: "rgba(255,255,255,0.5)",
   black: "#000000",
-  darkbg: "#111"
+  darkbg: "#111",
 };
 
 const fonts = {
@@ -33,9 +35,28 @@ export const dark = {
 const commonMuiTheme = {
   typography: {
     useNextVariants: true,
-    fontFamily: ["Raleway", "sans-serif"].join(",")
-  }
+    fontFamily: ["Montserrat", "sans-serif"].join(",")
+  },
 };
+
+const muiOverrides = {
+
+  buttonCommon: {
+    MuiButton: {
+      contained: {
+        borderRadius: 25,
+        padding: "14px 36px",
+        color: '#fff',
+        boxShadow: "none"
+      },
+      outlined: {
+        borderRadius: 25,        
+        padding: "14px 36px",        
+      }
+    }
+  }
+  
+}
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -44,8 +65,11 @@ export const muiTheme = createMuiTheme({
     },
     secondary: {
       main: main.secondary,
-      text: main.font
     }
+  },
+  overrides: {
+    ...muiOverrides.dialogCommon,
+    ...muiOverrides.buttonCommon,
   },
   ...commonMuiTheme
 });
@@ -57,10 +81,11 @@ export const darkMuiTheme = createMuiTheme({
     },
     secondary: {
       main: dark.secondary,
-      text: dark.font
     }
   },
   overrides: {
+    ...muiOverrides.dialogCommon,
+    ...muiOverrides.buttonCommon,
     MuiDrawer: {
       paper: {
         backgroundColor: dark.primary,
@@ -85,7 +110,7 @@ export const darkMuiTheme = createMuiTheme({
       root: {
         color: dark.font
       }
-    }
+    },
   },
   ...commonMuiTheme
 });
