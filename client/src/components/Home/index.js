@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { dialogAction } from '../../actions/appStateAction';
 import { HomeCircle } from "../svg/svgLogo";
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { 
   HomeContainer, 
   HomeIntro, 

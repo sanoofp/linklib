@@ -1,1 +1,1 @@
-[] loadCSS - to load CSS asynchronously - https://github.com/filamentgroup/loadCSS
+[ ] loadCSS - to load CSS asynchronously - https://github.com/filamentgroup/loadCSS
