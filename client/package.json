@@ -5,7 +5,9 @@
   "dependencies": {
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
+    "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
+    "fg-loadcss": "^2.1.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",

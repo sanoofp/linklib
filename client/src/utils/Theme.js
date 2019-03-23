@@ -7,9 +7,9 @@ export const colors = {
   primaryGreen: "#2ECC71",
   primaryDark: "#212121",
   white: "#ffffff",
-  whiteAlpha: "rgba(255,255,255,0.8)",
+  whiteAlpha: "rgba(255,255,255,0.7)",
   whiteAlpha5: "rgba(255,255,255,0.5)",
-  black: "#000000",
+  black: "#111",
   darkbg: "#111",
 };
 

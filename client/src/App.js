@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { toggleDrawer } from "./actions/appStateAction";
 import { Helmet } from "react-helmet";
+import { loadCSS } from "fg-loadcss/src/loadCSS";
+import bootstrap from "bootstrap/dist/css/bootstrap.min.css";
 import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
 import DrawerComponent from "./components/Drawer";
@@ -14,6 +16,12 @@ import { ThemeProvider } from "styled-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
 class App extends Component {
+  componentDidMount() {
+    loadCSS("https://fonts.googleapis.com/css?family=Montserrat:700|Raleway:300",
+    document.querySelector("#insertion-point-jss"));
+    loadCSS(bootstrap);
+  }
+
   handleDrawerClick = open => this.props.toggleDrawer(open);
 
   render() {
@@ -23,13 +31,13 @@ class App extends Component {
       <MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
         <ThemeProvider theme={darkTheme ? dark : main}>
           <BrowserRouter>
+            <GlobalStyles darkTheme />
             <Helmet>
               <meta
                 name="theme-color"
                 content={darkTheme ? dark.primary : main.primary}
               />
             </Helmet>
-            <GlobalStyles darkTheme />
             <Header onBtnClick={() => this.handleDrawerClick(true)} />
             <DrawerComponent
               isOpen={drawerIsOpen}

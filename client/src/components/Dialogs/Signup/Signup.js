@@ -7,7 +7,7 @@ import ModelContainer from './ModelContainer';
 
 const SignupModel = props => {
   return (
-    <Modal open={props.appState.signUpDialogOpen} onClose={() => props.dialogAction("signUpDialogOpen", false)}>
+    <Modal BackdropProps={{transitionDuration: 500}} open={props.appState.signUpDialogOpen} onClose={() => props.dialogAction("signUpDialogOpen", false)}>
       <ModelContainer />
     </Modal>
   )

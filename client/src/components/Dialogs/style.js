@@ -3,6 +3,7 @@ import spacing from '@material-ui/core/styles/spacing';
 import shadows from '@material-ui/core/styles/shadows';
 import { colors } from '../../utils/Theme';
 
+
 export const ModelContainerStyled = styled.div`
   overflow: hidden;
   width: ${spacing.unit * 100}px;
@@ -47,6 +48,10 @@ export const SignInForm = styled.div`
     
   }
   input {
+    color: ${props => props.theme.font} !important;
+  }
+  
+  p {
     color: ${props => props.theme.font} !important;
   }
   
