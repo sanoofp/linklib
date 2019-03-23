@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { toggleDarkTheme, toggleDrawer, dialogAction } from "../../actions/appStateAction";
+import {
+  toggleDarkTheme,
+  toggleDrawer,
+  dialogAction
+} from "../../actions/appStateAction";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -11,7 +15,7 @@ import Switch from "@material-ui/core/Switch";
 const ListItemComponent = props => {
   const { darkTheme } = props.appState;
   let modelType;
-  if(props.text === "Sign in") {
+  if (props.text === "Sign in") {
     modelType = "signInDialogOpen";
   } else {
     modelType = "signUpDialogOpen";
@@ -19,13 +23,15 @@ const ListItemComponent = props => {
   const toggleDrawerWithDispatch = modelType => {
     props.toggleDrawer(false);
     props.dialogAction(modelType, true);
-  }
+  };
   return (
     <ListItem
       button
       component={props.component}
       onClick={() => {
-        props.toggle ? props.toggleDarkTheme() : toggleDrawerWithDispatch(modelType)
+        props.toggle
+          ? props.toggleDarkTheme()
+          : toggleDrawerWithDispatch(modelType);
       }}
       to={props.to}
     >

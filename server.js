@@ -9,7 +9,11 @@ app.set("port", process.env.PORT || 5000);
 app.use(compression());
 app.use(express.json());
 
-app.use("/api", require("./routes/api"));
+// mongoose
+//   .connect()
+//   .then(() => console.log("Connected to Database"))
+//   .catch(err => console.log("Database connection failed ", err));
+
 app.use("/api/user", require("./routes/api/user"));
 
 if (process.env.NODE_ENV === "production") {

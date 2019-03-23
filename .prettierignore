@@ -4,3 +4,4 @@ package.json
 client/package.json
 yarn.lock
 client/yarn.lock
+client/build

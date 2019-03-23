@@ -10,7 +10,7 @@ export const colors = {
   whiteAlpha: "rgba(255,255,255,0.7)",
   whiteAlpha5: "rgba(255,255,255,0.5)",
   black: "#111",
-  darkbg: "#111",
+  darkbg: "#111"
 };
 
 export const main = {

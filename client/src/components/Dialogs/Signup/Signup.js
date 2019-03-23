@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { dialogAction } from "../../../actions/appStateAction";
 import ModelContainer from './ModelContainer';
 
-const SignupModel = props => {
-  return (
-    <Modal BackdropProps={{transitionDuration: 500}} open={props.appState.signUpDialogOpen} onClose={() => props.dialogAction("signUpDialogOpen", false)}>
-      <ModelContainer />
-    </Modal>
-  )
+class SignupModel extends Component {
+  state = {
+    username: "",
+    email: "",
+    password: ""
+  }
+
+  handleOnChange = (name,value) => {
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+  }
+
+  render() {
+    const { appState, dialogAction } = this.props;
+    return (
+      <Modal BackdropProps={{transitionDuration: 300}} open={appState.signUpDialogOpen} onClose={() => dialogAction("signUpDialogOpen", false)}>
+        <ModelContainer handleSubmit={this.handleSubmit} onChange={(name, value) => this.handleOnChange(name, value)} />
+      </Modal>
+    )
+  }
 }
 
 SignupModel.propTypes = {

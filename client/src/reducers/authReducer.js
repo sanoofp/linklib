@@ -1,14 +1,11 @@
-
 const initialState = {
-  username: "",
-  password: "",
-  email: "",
-  loading: false
-}
+  loading: false,
+  user: null
+};
 
 export default function(state = initialState, action) {
-  switch(action.type) {
-    default: 
+  switch (action.type) {
+    default:
       return state;
   }
 }

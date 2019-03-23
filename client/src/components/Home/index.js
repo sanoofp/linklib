@@ -1,16 +1,16 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { dialogAction } from '../../actions/appStateAction';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { dialogAction } from "../../actions/appStateAction";
 import { HomeCircle } from "../svg/svgLogo";
-import { withStyles } from '@material-ui/core/styles';
-import { 
-  HomeContainer, 
-  HomeIntro, 
-  IntroText, 
+import { withStyles } from "@material-ui/core/styles";
+import {
+  HomeContainer,
+  HomeIntro,
+  IntroText,
   ButtonContainer,
   MuiButtonStyles
-} from './style';
+} from "./style";
 import { SigninButtonComponent, SignupButtonComponent } from "../Button";
 import SigninModel from "../Dialogs/SignIn/SignIn";
 import SignupModel from "../Dialogs/Signup/Signup";
@@ -37,8 +37,13 @@ const Home = props => {
               suscipit ducimus porro!
             </p>
             <ButtonContainer>
-              <SigninButtonComponent onClick={() => props.dialogAction("signInDialogOpen", true)} />
-              <SignupButtonComponent variant="outlined" onClick={() => props.dialogAction("signUpDialogOpen", true)} />
+              <SigninButtonComponent
+                onClick={() => props.dialogAction("signInDialogOpen", true)}
+              />
+              <SignupButtonComponent
+                variant="outlined"
+                onClick={() => props.dialogAction("signUpDialogOpen", true)}
+              />
             </ButtonContainer>
           </div>
         </div>
@@ -49,7 +54,6 @@ const Home = props => {
   );
 };
 
-
 Home.propTypes = {
   appState: PropTypes.object.isRequired,
   dialogAction: PropTypes.func.isRequired
@@ -59,4 +63,7 @@ const mapStateToProps = state => ({
   appState: state.appStateReducer
 });
 
-export default connect(mapStateToProps, { dialogAction })(withStyles(MuiButtonStyles)(Home));
+export default connect(
+  mapStateToProps,
+  { dialogAction }
+)(withStyles(MuiButtonStyles)(Home));

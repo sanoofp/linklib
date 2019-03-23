@@ -16,11 +16,13 @@
     "node": "8.11.1"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "express": "^4.16.4",
     "mongoose": "^5.4.19",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",

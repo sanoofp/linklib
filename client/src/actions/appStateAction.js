@@ -1,7 +1,7 @@
-import { 
-  HANDLE_DRAWER_STATE, 
-  TOGGLE_DARK_THEME, 
-  HANDLE_DIALOG_STATE 
+import {
+  HANDLE_DRAWER_STATE,
+  TOGGLE_DARK_THEME,
+  HANDLE_DIALOG_STATE
 } from "./types";
 
 export const toggleDrawer = drawerState => {
@@ -26,5 +26,5 @@ export const dialogAction = (dialogType, dialogState) => {
       dialogType: dialogType,
       dialogState: dialogState
     }
-  }
-}
+  };
+};

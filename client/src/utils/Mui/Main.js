@@ -1,11 +1,11 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { main, dark } from '../Theme';
+import { main, dark } from "../Theme";
 
 const commonMuiTheme = {
   typography: {
     useNextVariants: true,
     fontFamily: ["Montserrat", "sans-serif"].join(",")
-  },
+  }
 };
 
 const muiOverrides = {
@@ -14,12 +14,12 @@ const muiOverrides = {
       contained: {
         borderRadius: 25,
         padding: "14px 36px",
-        color: '#fff',
+        color: "#fff",
         boxShadow: "none"
       },
       outlined: {
-        borderRadius: 25,        
-        padding: "14px 36px",        
+        borderRadius: 25,
+        padding: "14px 36px"
       }
     }
   },
@@ -30,7 +30,7 @@ const muiOverrides = {
       }
     }
   }
-}
+};
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -38,11 +38,11 @@ export const muiTheme = createMuiTheme({
       main: main.primary
     },
     secondary: {
-      main: main.secondary,
+      main: main.secondary
     }
   },
   overrides: {
-    ...muiOverrides.buttonCommon,
+    ...muiOverrides.buttonCommon
   },
   ...commonMuiTheme
 });
@@ -54,14 +54,14 @@ export const darkMuiTheme = createMuiTheme({
       type: "dark"
     },
     secondary: {
-      main: dark.secondary,
+      main: dark.secondary
     }
   },
   overrides: {
     ...muiOverrides.buttonCommon,
     MuiDrawer: {
       paper: {
-        backgroundColor: dark.primary,
+        backgroundColor: dark.primary
       }
     },
     MuiListItemText: {
@@ -83,7 +83,7 @@ export const darkMuiTheme = createMuiTheme({
       root: {
         color: dark.font
       }
-    },
+    }
   },
   ...commonMuiTheme
 });

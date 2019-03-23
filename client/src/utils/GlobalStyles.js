@@ -4,7 +4,7 @@ const utils = `
   .h-100{ 
     height: 100% !important;
   }
-`
+`;
 
 export const GlobalStyles = createGlobalStyle`
   body {

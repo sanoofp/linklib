@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const MuiButtonStyles = theme => ({
   btnSignUp: {
     padding: "14px 36px",
-    borderRadius: 25,
+    borderRadius: 25
   },
   icon: {
     marginRight: 4,
@@ -22,7 +22,7 @@ export const HomeContainer = styled.div`
   padding: 70px 0px;
   ${dflexCenter}
 `;
-  
+
 export const HomeIntro = styled.div`
   position: relative;
   overflow: hidden;
@@ -70,7 +70,7 @@ export const ButtonContainer = styled.div`
       width: 100%;
       margin: 7px 0px;
       &:nth-of-type(1) {
-        margin-right: 0; 
+        margin-right: 0;
       }
     }
   }

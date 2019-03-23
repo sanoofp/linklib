@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const SignInSvg = styled.svg`
   background-color: ${props => props.theme.bodybg};
