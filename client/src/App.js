@@ -19,7 +19,7 @@ class App extends Component {
   componentDidMount() {
     loadCSS("https://fonts.googleapis.com/css?family=Montserrat:700|Raleway:300",
     document.querySelector("#insertion-point-jss"));
-    loadCSS(bootstrap);
+    loadCSS(bootstrap,null,null, { rel: "preload" });
   }
 
   handleDrawerClick = open => this.props.toggleDrawer(open);
@@ -33,6 +33,7 @@ class App extends Component {
           <BrowserRouter>
             <GlobalStyles darkTheme />
             <Helmet>
+              <link rel="preconnect" href="https://fonts.googleapis.com"/>
               <meta
                 name="theme-color"
                 content={darkTheme ? dark.primary : main.primary}
