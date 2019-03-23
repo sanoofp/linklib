@@ -8,6 +8,7 @@ import ModelContainer from "./ModelContainer";
 const SigninModel = props => {
   return (
     <Modal
+      closeAfterTransition={true}
       BackdropProps={{ transitionDuration: 300 }}
       open={props.appState.signInDialogOpen}
       onClose={() => props.dialogAction("signInDialogOpen", false)}

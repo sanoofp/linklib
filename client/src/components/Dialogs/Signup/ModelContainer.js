@@ -19,7 +19,9 @@ const ModelContainer = props => {
                   margin="normal"
                   fullWidth
                   variant="outlined"
-                  onChange={(event) => props.onChange("username", event.target.value)}
+                  onChange={event =>
+                    props.onChange("username", event.target.value)
+                  }
                 />
                 <TextField
                   name="email"
@@ -29,7 +31,9 @@ const ModelContainer = props => {
                   fullWidth
                   variant="outlined"
                   helperText="Used for verification of account"
-                  onChange={(event) => props.onChange("email", event.target.value)}                
+                  onChange={event =>
+                    props.onChange("email", event.target.value)
+                  }
                 />
                 <TextField
                   name="password"
@@ -40,7 +44,9 @@ const ModelContainer = props => {
                   fullWidth
                   variant="outlined"
                   helperText="Atleast 6 character"
-                  onChange={(event) => props.onChange("password", event.target.value)}
+                  onChange={event =>
+                    props.onChange("password", event.target.value)
+                  }
                 />
                 <SignupButtonComponent
                   color="primary"

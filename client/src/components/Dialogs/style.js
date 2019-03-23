@@ -5,7 +5,13 @@ import { colors } from "../../utils/Theme";
 
 export const ModelContainerStyled = styled.div`
   overflow: hidden;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
   width: ${spacing.unit * 100}px;
+  max-height: 90vh;
   position: fixed;
   top: 50%;
   left: 50%;
