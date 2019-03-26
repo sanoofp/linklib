@@ -16,6 +16,8 @@ const Logo = styled.div`
   font-family: ${props => props.theme.secondaryFont}
   color: ${props => props.color};
   h1 {
+    line-height: 48px;
+    font-size: 40px;
     margin: 0;
   }
 `;

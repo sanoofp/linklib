@@ -1,1 +1,3 @@
-[ ] loadCSS - to load CSS asynchronously - https://github.com/filamentgroup/loadCSS
+[X] loadCSS - to load CSS asynchronously - https://github.com/filamentgroup/loadCSS
+[ ] Server side render Reactjs
+[ ] Material-ui button - Hover styling

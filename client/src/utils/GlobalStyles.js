@@ -13,7 +13,8 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${props => props.theme.primaryFont};
     background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};
-    transition: background-color 0.3s ease;
+    line-height: 1.5;
+    transition: background-color 0.2s ease-in-out;
   }
 
   button, div[role="button"] {
@@ -27,8 +28,14 @@ export const GlobalStyles = createGlobalStyle`
     outline: none;
   }
 
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
   a {
     color: #fff;
+    text-decoration: none;
     &:hover, &:active {
       color: #fff;
       text-decoration: none;

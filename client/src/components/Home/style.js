@@ -18,9 +18,11 @@ const dflexCenter = `
 `;
 
 export const HomeContainer = styled.div`
-  // height: 90vh;
   padding: 70px 0px;
   ${dflexCenter}
+  @media (max-width: 580px) {
+    
+  }  
 `;
 
 export const HomeIntro = styled.div`
@@ -47,10 +49,19 @@ export const IntroText = styled.div`
     font-family: ${props => props.theme.secondaryFont}
     font-size: 5.1em;
     margin: 0;
+    line-height: 1;
   }
   p {
     font-size: 1.2em;
   }
+  @media (max-width: 580px) {
+    h1 {
+      font-size: 5em;      
+    }
+    p {
+      font-size: 1.15em;
+    }
+  }  
 `;
 
 export const ButtonContainer = styled.div`

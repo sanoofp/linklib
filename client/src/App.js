@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { toggleDrawer } from "./actions/appStateAction";
+import { loadUser } from "./actions/authActions";
 import { Helmet } from "react-helmet";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap-grid.min.css";
 import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
 import DrawerComponent from "./components/Drawer";
@@ -17,6 +18,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 
 class App extends Component {
   componentDidMount() {
+    this.props.loadUser();
     loadCSS(
       "https://fonts.googleapis.com/css?family=Montserrat:700|Raleway:300",
       document.querySelector("#insertion-point-jss")
@@ -58,7 +60,8 @@ class App extends Component {
 
 App.propTypes = {
   appState: PropTypes.object.isRequired,
-  toggleDrawer: PropTypes.func.isRequired
+  toggleDrawer: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -67,5 +70,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { toggleDrawer }
+  { toggleDrawer, loadUser }
 )(App);

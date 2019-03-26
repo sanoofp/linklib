@@ -4,14 +4,15 @@ import shadows from "@material-ui/core/styles/shadows";
 import { colors } from "../../utils/Theme";
 
 export const ModelContainerStyled = styled.div`
+  width: ${spacing.unit * 100}px;
+  max-height: 90vh;
   overflow: hidden;
   overflow-y: scroll;
+  scrollbar-width: none;
   ::-webkit-scrollbar {
     width: 0;
     display: none;
   }
-  width: ${spacing.unit * 100}px;
-  max-height: 90vh;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -47,7 +48,7 @@ export const SignupModel = styled.div`
 
 export const SignInForm = styled.div`
   background-color: ${props => props.theme.bodybg};
-  height: 100%;
+  height: inherit;
   padding: ${spacing.unit * 6}px ${spacing.unit * 4}px;
   label {
     font-family: ${props => props.theme.primaryFont};

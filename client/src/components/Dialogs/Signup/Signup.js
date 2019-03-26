@@ -3,6 +3,7 @@ import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { dialogAction } from "../../../actions/appStateAction";
+import { signupUser } from "../../../actions/authActions";
 import ModelContainer from "./ModelContainer";
 
 class SignupModel extends Component {
@@ -20,6 +21,14 @@ class SignupModel extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { username, email, password } = this.state;
+    if(!username || !email || !password) {
+      this.setState({
+        usernameEmpty: !username.length
+      })
+    }
+    console.log(this.state);
+    this.props.signupUser(this.state);
   };
 
   render() {
@@ -42,14 +51,19 @@ class SignupModel extends Component {
 
 SignupModel.propTypes = {
   appState: PropTypes.object.isRequired,
-  dialogAction: PropTypes.func.isRequired
+  dialogAction: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+  error: PropTypes.object.isRequired,
+  signupUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  appState: state.appStateReducer
+  appState: state.appStateReducer,
+  isAuthenticated: state.authReducer.isAuthenticated,
+  error: state.errorReducer
 });
 
 export default connect(
   mapStateToProps,
-  { dialogAction }
+  { dialogAction, signupUser }
 )(SignupModel);

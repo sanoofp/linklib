@@ -8,29 +8,6 @@ const commonMuiTheme = {
   }
 };
 
-const muiOverrides = {
-  buttonCommon: {
-    MuiButton: {
-      contained: {
-        borderRadius: 25,
-        padding: "14px 36px",
-        color: "#fff",
-        boxShadow: "none"
-      },
-      outlined: {
-        borderRadius: 25,
-        padding: "14px 36px"
-      }
-    }
-  },
-  textField: {
-    MuiTextField: {
-      marginNormal: {
-        borderRadius: 8
-      }
-    }
-  }
-};
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -38,11 +15,9 @@ export const muiTheme = createMuiTheme({
       main: main.primary
     },
     secondary: {
-      main: main.secondary
+      main: main.secondary,
+      font: main.font,
     }
-  },
-  overrides: {
-    ...muiOverrides.buttonCommon
   },
   ...commonMuiTheme
 });
@@ -54,11 +29,11 @@ export const darkMuiTheme = createMuiTheme({
       type: "dark"
     },
     secondary: {
-      main: dark.secondary
+      main: dark.secondary,
+      font: dark.font,      
     }
   },
   overrides: {
-    ...muiOverrides.buttonCommon,
     MuiDrawer: {
       paper: {
         backgroundColor: dark.primary
