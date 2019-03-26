@@ -1,14 +1,20 @@
 import {
   HANDLE_DRAWER_STATE,
   TOGGLE_DARK_THEME,
-  HANDLE_DIALOG_STATE
+  HANDLE_DIALOG_STATE,
+  SNACKBAR_TOGGLE
 } from "../actions/types";
 
 const initalState = {
   drawerIsOpen: false,
   darkTheme: false,
   signInDialogOpen: false,
-  signUpDialogOpen: false
+  signUpDialogOpen: false,
+  snackbar: {
+    open: false,
+    msg: "",
+    type: ""
+  }
 };
 
 export default function(state = initalState, action) {
@@ -29,6 +35,17 @@ export default function(state = initalState, action) {
         ...state,
         [action.payload.dialogType]: action.payload.dialogState
       };
+    }
+    case SNACKBAR_TOGGLE: {
+      return {
+        ...state,
+        snackbar: {
+          ...state.snackbar,
+          open: action.payload.open,
+          msg: action.payload.msg,
+          type: action.payload.type    
+        }
+      }
     }
     default:
       return state;

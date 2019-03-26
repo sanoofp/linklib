@@ -59,10 +59,6 @@ export const SignInForm = styled.div`
   }
   fieldset {
     border-radius: 10px;
-    border-color: ${props =>
-      props.theme.font === colors.whiteAlpha
-        ? props.theme.font
-        : undefined} !important;
   }
   input {
     color: ${props => props.theme.font} !important;
@@ -75,4 +71,12 @@ export const SignInForm = styled.div`
   @media (max-width: 485px) {
     padding: ${spacing.unit * 5}px ${spacing.unit * 3}px;
   }
+`;
+
+export const ErrorDiv = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 `;

@@ -2,15 +2,17 @@ import React, { Component } from "react";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { dialogAction } from "../../../actions/appStateAction";
+import { dialogAction, snackbarToggle } from "../../../actions/appStateAction";
 import { signupUser } from "../../../actions/authActions";
+import { clearErrors } from '../../../actions/errorAction'
 import ModelContainer from "./ModelContainer";
 
 class SignupModel extends Component {
   state = {
     username: "",
     email: "",
-    password: ""
+    password: "",
+    validate: false
   };
 
   handleOnChange = (name, value) => {
@@ -19,21 +21,46 @@ class SignupModel extends Component {
     });
   };
 
+  componentDidUpdate(prevProp) {
+    const { 
+      isAuthenticated, 
+      dialogAction, 
+      appState, 
+      clearErrors, 
+      snackbarToggle 
+    } = this.props;
+
+    if(appState.signUpDialogOpen) {
+      if(isAuthenticated) {
+        clearErrors();
+        snackbarToggle(true, `${this.state.username}, You are successfully registered to Linklib`, "success");
+        dialogAction("signUpDialogOpen", false)
+      }
+    }
+  }
+
   handleSubmit = event => {
     event.preventDefault();
+    this.setState({ validate: true })
     const { username, email, password } = this.state;
-    if(!username || !email || !password) {
-      this.setState({
-        usernameEmpty: !username.length
-      })
+
+    if(username && email && password) {
+      // Signup User action
+      this.props.signupUser(this.state);
+    } else {
+      this.props.snackbarToggle(true, "Please fill complete field's.", "error")
     }
-    console.log(this.state);
-    this.props.signupUser(this.state);
   };
 
   render() {
+    const { validate, username, password, email } = this.state;
     const { appState, dialogAction } = this.props;
-    return (
+    const validateEmpty = validate ? { 
+      email: email.length === 0,
+      username: username.length === 0,
+      password: password.length === 0
+     } : {};
+    return <React.Fragment>
       <Modal
         closeAfterTransition={true}
         BackdropProps={{ transitionDuration: 400 }}
@@ -41,11 +68,13 @@ class SignupModel extends Component {
         onClose={() => dialogAction("signUpDialogOpen", false)}
       >
         <ModelContainer
+          emptyField={validateEmpty}
           handleSubmit={this.handleSubmit}
           onChange={(name, value) => this.handleOnChange(name, value)}
         />
       </Modal>
-    );
+    </React.Fragment>
+      
   }
 }
 
@@ -53,8 +82,10 @@ SignupModel.propTypes = {
   appState: PropTypes.object.isRequired,
   dialogAction: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
-  error: PropTypes.object.isRequired,
-  signupUser: PropTypes.func.isRequired
+  signupUser: PropTypes.func.isRequired,
+  snackbarToggle: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  error: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -65,5 +96,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { dialogAction, signupUser }
+  { dialogAction, signupUser, snackbarToggle, clearErrors }
 )(SignupModel);

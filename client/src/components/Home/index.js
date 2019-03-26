@@ -14,8 +14,11 @@ import {
 import { SigninButtonComponent, SignupButtonComponent } from "../Button";
 import SigninModel from "../Dialogs/SignIn/SignIn";
 import SignupModel from "../Dialogs/Signup/Signup";
+import { snackbarToggle } from '../../actions/appStateAction';
+import { SnackbarComponent } from '../Snackbar';
 
 const Home = props => {
+  const { appState } = props;
   return (
     <HomeContainer>
       <div className="container">
@@ -50,20 +53,28 @@ const Home = props => {
       </div>
       <SigninModel />
       <SignupModel />
+      <SnackbarComponent 
+        handleSnackbarClose={() => props.snackbarToggle(false)} 
+        open={appState.snackbar.open}
+        msg={appState.snackbar.msg}
+        type={appState.snackbar.type}
+      />
     </HomeContainer>
   );
 };
 
 Home.propTypes = {
   appState: PropTypes.object.isRequired,
-  dialogAction: PropTypes.func.isRequired
+  dialogAction: PropTypes.func.isRequired,
+  snackbarToggle: PropTypes.func.isRequired  
 };
 
 const mapStateToProps = state => ({
-  appState: state.appStateReducer
+  appState: state.appStateReducer,
+  error: state.errorReducer,
 });
 
 export default connect(
   mapStateToProps,
-  { dialogAction }
+  { dialogAction, snackbarToggle }
 )(withStyles(MuiButtonStyles)(Home));

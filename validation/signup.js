@@ -8,10 +8,10 @@ module.exports = function signupValidation(data) {
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   if (!validator.isLength(data.username, { min: 3, max: 30 })) {
-    err.name = "Username must be between 2 to 30 characters";
+    err.username = "Username must be between 2 to 30 characters";
   }
   if (validator.isEmpty(data.username)) {
-    err.name = "Username requied";
+    err.username = "Username requied";
   }
   if (!validator.isEmail(data.email)) {
     err.email = "Email is invalid";

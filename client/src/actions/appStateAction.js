@@ -1,7 +1,8 @@
 import {
   HANDLE_DRAWER_STATE,
   TOGGLE_DARK_THEME,
-  HANDLE_DIALOG_STATE
+  HANDLE_DIALOG_STATE,
+  SNACKBAR_TOGGLE
 } from "./types";
 
 export const toggleDrawer = drawerState => {
@@ -28,3 +29,14 @@ export const dialogAction = (dialogType, dialogState) => {
     }
   };
 };
+
+export const snackbarToggle = (open, msg = "", type = "") => {
+  return {
+    type: SNACKBAR_TOGGLE,
+    payload: {
+      open,
+      msg,
+      type
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import axios from "axios";
+import { returnParaStringOnly } from "../functions/helper";
 import { getErrors } from "./errorAction";
+import { snackbarToggle } from "./appStateAction";
 import { 
   USER_LOADED, USER_LOADING, AUTH_ERROR,
   SIGNIN_SUCCESS, SIGNIN_FAIL,
@@ -53,7 +55,9 @@ export const signupUser = ({ username, email, password }) => dispatch => {
     })
   })
   .catch(err => {
+    console.log(err);    
     dispatch({ type: SIGNUP_FAIL })
-    dispatch(getErrors(err.response.data, err.response.status))
+    dispatch(getErrors(err.response.data, err.response.status, "SIGNUP_FAIL"))
+    dispatch(snackbarToggle(true, returnParaStringOnly(err.response.data), "error"))
   });
 }

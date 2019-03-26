@@ -17,5 +17,6 @@ export const SIGNOUT_SUCCESS = "SIGNOUT_SUCCESS";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
 // Errors
+export const SNACKBAR_TOGGLE = "SNACKBAR_TOGGLE"; 
 export const GET_ERROR = "GET_ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";

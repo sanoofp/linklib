@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { SignupButtonComponent } from "../../Button";
 
 const ModelContainer = props => {
+  const { email, username, password } = props.emptyField;
   return (
     <ModelContainerStyled tabIndex={1}>
       <SignupModel>
@@ -14,7 +15,7 @@ const ModelContainer = props => {
                 <h1 className="display-5">Create Account</h1>
                 <TextField
                   required
-                  error={props.usernameEmpty}
+                  error={username ? username : false}
                   name="username"
                   label="Username"
                   type="text"
@@ -27,7 +28,7 @@ const ModelContainer = props => {
                 />
                 <TextField
                   required
-                  error={props.emailEmpty}
+                  error={email ? email : false}                  
                   name="email"
                   label="Email"
                   type="email"
@@ -41,7 +42,7 @@ const ModelContainer = props => {
                 />
                 <TextField
                   required
-                  error={props.passwordEmpty}
+                  error={password ? password : false}                           
                   name="password"
                   label="Password"
                   type="password"
