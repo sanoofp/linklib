@@ -9,7 +9,7 @@ const { jwtSecret } = require("../../config/keys");
 
 const User = require("../../models/User");
 
-// @route GET api/user
+// @route GET api/user/auth
 // To verfiy auth
 router.get("/auth", auth, (req, res) => {
   User.findById(req.user.id)

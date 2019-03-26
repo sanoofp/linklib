@@ -54,7 +54,7 @@ const Home = props => {
       <SigninModel />
       <SignupModel />
       <SnackbarComponent 
-        handleSnackbarClose={() => props.snackbarToggle(false)} 
+        handleSnackbarClose={() => props.snackbarToggle(false, "", appState.snackbar.type)} 
         open={appState.snackbar.open}
         msg={appState.snackbar.msg}
         type={appState.snackbar.type}

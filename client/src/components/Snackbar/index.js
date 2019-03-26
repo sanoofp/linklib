@@ -11,7 +11,7 @@ import Fade from '@material-ui/core/Fade';
 
 export const SnackbarComponent = props => {
   const defaultIconStyle = { fontSize: 20, opacity: 0.9, marginRight: 12 };
-  const bgColor = props.type === "success" ? green.A400 : red.A400;
+  const bgColor = props.type === "error" ? red.A400 : green.A400;
   const icon = props.type === "error" ? <ErrorIcon style={defaultIconStyle} /> : <CheckCircleIcon style={defaultIconStyle} />
   return <Snackbar
     anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -32,7 +32,7 @@ export const SnackbarComponent = props => {
           key="close"
           aria-label="Close"
           color="inherit"
-          onClick={props.handleSnackbarClose}
+          onClick={() => props.handleSnackbarClose()}
         >
           <CloseIcon />
         </IconButton>

@@ -19,6 +19,7 @@ const axiosHeader = getState => {
   if(token) { 
     config.headers["x-auth-token"] = token;
   }
+  return config;
 }
 
 export const loadUser = () => (dispatch, getState) => {
@@ -55,7 +56,6 @@ export const signupUser = ({ username, email, password }) => dispatch => {
     })
   })
   .catch(err => {
-    console.log(err);    
     dispatch({ type: SIGNUP_FAIL })
     dispatch(getErrors(err.response.data, err.response.status, "SIGNUP_FAIL"))
     dispatch(snackbarToggle(true, returnParaStringOnly(err.response.data), "error"))

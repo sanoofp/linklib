@@ -32,9 +32,9 @@ class SignupModel extends Component {
 
     if(appState.signUpDialogOpen) {
       if(isAuthenticated) {
+        dialogAction("signUpDialogOpen", false);
         clearErrors();
         snackbarToggle(true, `${this.state.username}, You are successfully registered to Linklib`, "success");
-        dialogAction("signUpDialogOpen", false)
       }
     }
   }
