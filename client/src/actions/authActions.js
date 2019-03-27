@@ -1,7 +1,7 @@
 import axios from "axios";
 import { returnParaStringOnly } from "../functions/helper";
 import { getErrors, clearErrors } from "./errorAction";
-import { snackbarToggle, toggleLoading } from "./appStateAction";
+import { snackbarToggle, toggleLoading, dialogAction } from "./appStateAction";
 import { 
   USER_LOADED, USER_LOADING, AUTH_ERROR,
   SIGNIN_SUCCESS, SIGNIN_FAIL,
@@ -33,10 +33,10 @@ export const loadUser = () => (dispatch, getState) => {
       } 
     }))
     .catch(err => {
-      dispatch(getErrors(err.response.data, err.response.status));
       dispatch({
         type: AUTH_ERROR,
       });
+      dispatch(getErrors(err.response.data, err.response.status));
     })
 }
 
@@ -55,8 +55,9 @@ export const signinUser = ({ username, password }) => dispatch => {
         user: res.data.user
       }
     });
+    dispatch(dialogAction("signInDialogOpen", false))
     dispatch(toggleLoading(false));
-    dispatch(clearErrors())                  
+    dispatch(clearErrors());  
     dispatch(snackbarToggle(true, "Signed In", "success"));
   })
   .catch(err => {
@@ -84,6 +85,7 @@ export const signupUser = ({ username, email, password }) => dispatch => {
     });
     dispatch(toggleLoading(false));
     dispatch(clearErrors());
+    dispatch(dialogAction("signUpDialogOpen", false));
     dispatch(snackbarToggle(true, `Successfully registered to Linklib.`, "success"));
   })
   .catch(err => {

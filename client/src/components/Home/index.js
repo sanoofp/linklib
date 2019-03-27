@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { dialogAction } from "../../actions/appStateAction";
 import { HomeCircle } from "../svg/svgLogo";
 import { withStyles } from "@material-ui/core/styles";
@@ -14,11 +15,18 @@ import {
 import { SigninButtonComponent, SignupButtonComponent, DashboardButtonComponent } from "../Button";
 import SigninModel from "../Dialogs/SignIn/SignIn";
 import SignupModel from "../Dialogs/Signup/Signup";
-import { snackbarToggle } from '../../actions/appStateAction';
-import { SnackbarComponent } from '../Snackbar';
 
-const Home = props => {
-  const { appState, isAuthenticated } = props;
+class Home extends Component {
+  componentDidMount() {
+    const { isAuthenticated } = this.props;
+    if(isAuthenticated) {   
+      return <Redirect to="/dashboard" />
+    }
+  }
+  render() {
+
+  const { isAuthenticated, dialogAction } = this.props;
+
   return (
     <HomeContainer>
       <div className="container">
@@ -45,11 +53,11 @@ const Home = props => {
                 :
                 <React.Fragment>
                 <SigninButtonComponent
-                  onClick={() => props.dialogAction("signInDialogOpen", true)}
+                  onClick={() => dialogAction("signInDialogOpen", true)}
                 />
                 <SignupButtonComponent
                   variant="outlined"
-                  onClick={() => props.dialogAction("signUpDialogOpen", true)}
+                  onClick={() => dialogAction("signUpDialogOpen", true)}
                 />
                 </React.Fragment>                
               } 
@@ -59,30 +67,22 @@ const Home = props => {
       </div>
       <SigninModel />
       <SignupModel />
-      <SnackbarComponent 
-        handleSnackbarClose={() => props.snackbarToggle(false, "", appState.snackbar.type)} 
-        open={appState.snackbar.open}
-        msg={appState.snackbar.msg}
-        type={appState.snackbar.type}
-      />
+      
     </HomeContainer>
   );
+  }
 };
 
 Home.propTypes = {
-  appState: PropTypes.object.isRequired,
   dialogAction: PropTypes.func.isRequired,
-  snackbarToggle: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  appState: state.appStateReducer,
-  error: state.errorReducer,
   isAuthenticated: state.authReducer.isAuthenticated    
 });
 
 export default connect(
   mapStateToProps,
-  { dialogAction, snackbarToggle }
+  { dialogAction }
 )(withStyles(MuiButtonStyles)(Home));

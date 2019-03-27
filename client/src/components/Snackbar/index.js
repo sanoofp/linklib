@@ -17,7 +17,7 @@ export const SnackbarComponent = props => {
     anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
     open={props.open}
     onClose={() => props.handleSnackbarClose()}
-    autoHideDuration={5000}
+    autoHideDuration={6000}
     TransitionComponent={Fade}
   >
     <SnackbarContent

@@ -10,10 +10,11 @@ import AccountCircleRounded from "@material-ui/icons/AccountCircleRounded";
 import PermIdentityRounded from "@material-ui/icons/PermIdentityRounded";
 import DashboardRounded from "@material-ui/icons/DashboardRounded";
 import EventBusyRounded from "@material-ui/icons/EventBusyRounded";
+import Avatar from '@material-ui/core/Avatar';
 import ListItemComponent from "./ListItemComponent";
 
 const ListItems = props => {
-  const { isAuthenticated, dialogAction, toggleDrawer, signOut } = props;
+  const { isAuthenticated, dialogAction, toggleDrawer, signOut, user } = props;
   const menu = [{ 
     text: "Home", 
     to: "/",
@@ -22,7 +23,12 @@ const ListItems = props => {
     icon: <HomeRounded /> 
   }];
   isAuthenticated
+    // User links
     ? menu.push(
+        {
+          text: user.username,
+          icon: <Avatar src={user.avatar} />
+        },
         { 
           text: "Dashboard", 
           to: "/dashboard", 
@@ -38,7 +44,9 @@ const ListItems = props => {
           icon: <EventBusyRounded /> 
         }
       )
-    : menu.push(
+    : 
+      // Guest Links
+      menu.push(
         {
           text: "Sign in",
           onClick: () => {
@@ -80,10 +88,12 @@ ListItems.propTypes = {
   dialogAction: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.authReducer.isAuthenticated
+  isAuthenticated: state.authReducer.isAuthenticated,
+  user: state.authReducer.user
 });
 
 export default connect(

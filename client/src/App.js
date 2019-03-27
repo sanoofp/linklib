@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { toggleDrawer } from "./actions/appStateAction";
+import { toggleDrawer, snackbarToggle } from "./actions/appStateAction";
 import { loadUser } from "./actions/authActions";
 import { Helmet } from "react-helmet";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
@@ -10,13 +10,15 @@ import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
 import DrawerComponent from "./components/Drawer";
 import Home from "./components/Home";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
+import { SnackbarComponent } from './components/Snackbar';
 import { main, dark } from "./utils/Theme";
 import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Spinner from './components/Loader/Spinner'
+import LinearLoader from './components/Loader/LinearLoader'
 
 class App extends Component {
   componentDidMount() {
@@ -25,13 +27,13 @@ class App extends Component {
       "https://fonts.googleapis.com/css?family=Montserrat:700|Raleway:300",
       document.querySelector("#insertion-point-jss")
     );
-    // loadCSS(bootstrap);
   }
 
   handleDrawerClick = open => this.props.toggleDrawer(open);
 
   render() {
-    const { drawerIsOpen, darkTheme } = this.props.appState;
+    const { darkTheme } = this.props.appState;
+    const { appState, snackbarToggle } = this.props;
     return (
       <MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
         <ThemeProvider theme={darkTheme ? dark : main}>
@@ -46,14 +48,21 @@ class App extends Component {
             </Helmet>
             <Header onBtnClick={() => this.handleDrawerClick(true)} />
             <DrawerComponent
-              isOpen={drawerIsOpen}
+              isOpen={appState.drawerIsOpen}
               onCloseDrawer={this.handleDrawerClick}
             />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/dashboard" component={Dashboard} />
+              <Route path="/dashboard" component={Dashboard} />
             </Switch>
             <Spinner />
+            <LinearLoader />
+            <SnackbarComponent 
+              handleSnackbarClose={() => snackbarToggle(false, "", appState.snackbar.type)} 
+              open={appState.snackbar.open}
+              msg={appState.snackbar.msg}
+              type={appState.snackbar.type}
+            />
           </BrowserRouter>
         </ThemeProvider>
       </MuiThemeProvider>
@@ -62,16 +71,19 @@ class App extends Component {
 }
 
 App.propTypes = {
+  auth: PropTypes.object.isRequired,
   appState: PropTypes.object.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
+  snackbarToggle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   appState: state.appStateReducer,
+  auth: state.authReducer
 });
 
 export default connect(
   mapStateToProps,
-  { toggleDrawer, loadUser }
+  { toggleDrawer, loadUser, snackbarToggle }
 )(App);
