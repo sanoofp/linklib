@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { toggleDrawer, snackbarToggle } from "./actions/appStateAction";
-import { loadUser } from "./actions/authActions";
+import { loadUser } from "./actions/authAction";
 import { Helmet } from "react-helmet";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
 import "bootstrap/dist/css/bootstrap-grid.min.css";

@@ -8,7 +8,6 @@ module.exports = {
       .createHash("md5")
       .update(email)
       .digest("hex");
-    console.log(email, md5);
     return `https://www.gravatar.com/avatar/${md5}?s=100&d=identicon`;
   },
   auth: function(req, res, next) {

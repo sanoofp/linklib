@@ -11,32 +11,10 @@ const styles = theme => ({
   signInBtn: {
     padding: "14px 36px",
     borderRadius: 25,
-    // border: "1px solid transparent",
-    // color: colors.whiteAlpha,
-    // boxShadow: 'none',
-    // borderColor: "transparent !important",
-    // '&:hover': {
-    //   border: `1px solid ${theme.palette.primary.type === "dark" ? colors.whiteAlpha : colors.primaryGreen } !important`,      
-    //   color: `${theme.palette.primary.type === "dark" ? colors.white : colors.primaryGreen } !important`,
-    //   backgroundColor: "transparent",
-    //   boxShadow: 'none',
-    // },
-    // '&:active': {
-    //   border: `1px solid ${theme.palette.primary.type === "dark" ? colors.whiteAlpha : colors.primaryGreen } !important`,      
-    //   boxShadow: 'none',
-    //   backgroundColor: "transparent",
-    // },
-    // '&:focus': {
-    //   color: `${theme.palette.primary.type === "dark" ? colors.white : colors.primaryGreen } !important`,      
-    //   backgroundColor: "transparent",
-    //   border: `1px solid ${theme.palette.primary.type === "dark" ? colors.whiteAlpha : colors.primaryGreen } !important`,      
-    //   boxShadow: 'none',
-    // }
   },
   signUpBtn: {
     padding: "14px 36px",
     borderRadius: 25
-    // boxShadow: "none"
   }
 });
 

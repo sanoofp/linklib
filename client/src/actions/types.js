@@ -20,3 +20,6 @@ export const SIGNUP_FAIL = "SIGNUP_FAIL";
 export const SNACKBAR_TOGGLE = "SNACKBAR_TOGGLE"; 
 export const GET_ERROR = "GET_ERROR";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+// Links
+export const ADD_LINK = "ADD_LINK";
+export const GET_USER_LINKS = "GET_USER_LINKS";

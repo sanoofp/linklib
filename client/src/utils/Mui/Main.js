@@ -58,6 +58,23 @@ export const darkMuiTheme = createMuiTheme({
       root: {
         color: dark.font
       }
+    },
+    MuiInputLabel: {
+      root: {
+        color: dark.font,
+        borderColor: dark.font
+      }
+    },
+    MuiFormGroup: {
+      root: {
+        color: dark.font,
+        borderColor: dark.font
+      }
+    },
+    MuiFormControl: {
+      marginNormal: {
+        color: dark.font,
+      }
     }
   },
   ...commonMuiTheme

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { dialogAction, toggleDrawer } from "../../actions/appStateAction";
-import { signOut } from "../../actions/authActions";
+import { signOut } from "../../actions/authAction";
 import List from "@material-ui/core/List";
 import HomeRounded from "@material-ui/icons/HomeRounded";
 import AccountCircleRounded from "@material-ui/icons/AccountCircleRounded";

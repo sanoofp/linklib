@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { signinUser } from "../../../actions/authActions";
+import { signinUser } from "../../../actions/authAction";
 import { clearErrors } from "../../../actions/errorAction";
 import { dialogAction, snackbarToggle } from "../../../actions/appStateAction";
 import ModelContainer from "./ModelContainer";

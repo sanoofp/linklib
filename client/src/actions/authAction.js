@@ -8,19 +8,7 @@ import {
   SIGNUP_SUCCESS, SIGNUP_FAIL,
   SIGNOUT_SUCCESS
 } from "../actions/types";
-
-const axiosHeader = getState => {
-  const token = getState().authReducer.token;
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }
-  if(token) { 
-    config.headers["x-auth-token"] = token;
-  }
-  return config;
-}
+import { axiosHeader } from '../functions/helper'
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
