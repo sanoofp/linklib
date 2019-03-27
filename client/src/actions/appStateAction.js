@@ -2,7 +2,8 @@ import {
   HANDLE_DRAWER_STATE,
   TOGGLE_DARK_THEME,
   HANDLE_DIALOG_STATE,
-  SNACKBAR_TOGGLE
+  SNACKBAR_TOGGLE,
+  REQUEST_LOADING
 } from "./types";
 
 export const toggleDrawer = drawerState => {
@@ -37,6 +38,15 @@ export const snackbarToggle = (open, msg = "", type = "") => {
       open,
       msg,
       type
+    }
+  }
+}
+
+export const toggleLoading = loading => {
+  return {
+    type: REQUEST_LOADING,
+    payload: {
+      loading
     }
   }
 }

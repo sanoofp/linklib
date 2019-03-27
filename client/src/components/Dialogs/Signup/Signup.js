@@ -34,7 +34,7 @@ class SignupModel extends Component {
       if(isAuthenticated) {
         dialogAction("signUpDialogOpen", false);
         clearErrors();
-        snackbarToggle(true, `${this.state.username}, You are successfully registered to Linklib`, "success");
+        snackbarToggle(true, `Successfully registered to Linklib. Now you can Singnin.`, "success");
       }
     }
   }
@@ -44,7 +44,7 @@ class SignupModel extends Component {
     this.setState({ validate: true })
     const { username, email, password } = this.state;
 
-    if(username && email && password) {
+    if(username.length !== 0 && email.length !== 0 && password.length !== 0) {
       // Signup User action
       this.props.signupUser(this.state);
     } else {
@@ -54,27 +54,28 @@ class SignupModel extends Component {
 
   render() {
     const { validate, username, password, email } = this.state;
-    const { appState, dialogAction } = this.props;
+    const { appState, dialogAction, clearErrors } = this.props;
     const validateEmpty = validate ? { 
       email: email.length === 0,
       username: username.length === 0,
       password: password.length === 0
      } : {};
-    return <React.Fragment>
-      <Modal
+    return <Modal
         closeAfterTransition={true}
         BackdropProps={{ transitionDuration: 400 }}
         open={appState.signUpDialogOpen}
-        onClose={() => dialogAction("signUpDialogOpen", false)}
-      >
-        <ModelContainer
-          emptyField={validateEmpty}
-          handleSubmit={this.handleSubmit}
-          onChange={(name, value) => this.handleOnChange(name, value)}
-        />
-      </Modal>
-    </React.Fragment>
-      
+        onClose={() => {
+          clearErrors()
+          dialogAction("signUpDialogOpen", false)
+          this.setState({ username: "", password: "", email: "", validate: false })
+        }}
+    >
+      <ModelContainer
+        emptyField={validateEmpty}
+        handleSubmit={this.handleSubmit}
+        onChange={(name, value) => this.handleOnChange(name, value)}
+      />
+    </Modal>
   }
 }
 

@@ -21,7 +21,6 @@ router.get("/auth", auth, (req, res) => {
 // Signup a user
 router.post("/signup", (req, res) => {
   const { err, isValid } = signupValidation(req.body);
-
   if (!isValid) return res.status(400).json(err);
 
   User.findOne({ username: req.body.username }).then(user => {

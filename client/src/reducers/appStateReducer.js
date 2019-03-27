@@ -2,7 +2,8 @@ import {
   HANDLE_DRAWER_STATE,
   TOGGLE_DARK_THEME,
   HANDLE_DIALOG_STATE,
-  SNACKBAR_TOGGLE
+  SNACKBAR_TOGGLE,
+  REQUEST_LOADING
 } from "../actions/types";
 
 const initalState = {
@@ -14,7 +15,8 @@ const initalState = {
     open: false,
     msg: "",
     type: ""
-  }
+  },
+  reqLoading: false
 };
 
 export default function(state = initalState, action) {
@@ -45,6 +47,12 @@ export default function(state = initalState, action) {
           msg: action.payload.msg,
           type: action.payload.type    
         }
+      }
+    }
+    case REQUEST_LOADING: {
+      return {
+        ...state,
+        reqLoading: action.payload.loading
       }
     }
     default:

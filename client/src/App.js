@@ -15,6 +15,7 @@ import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import Spinner from './components/Loader/Spinner'
 
 class App extends Component {
   componentDidMount() {
@@ -29,7 +30,7 @@ class App extends Component {
   handleDrawerClick = open => this.props.toggleDrawer(open);
 
   render() {
-    const { drawerIsOpen, darkTheme } = this.props.appState;
+    const { drawerIsOpen, darkTheme, reqLoading } = this.props.appState;
 
     return (
       <MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
@@ -51,6 +52,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
             </Switch>
+            <Spinner />
           </BrowserRouter>
         </ThemeProvider>
       </MuiThemeProvider>
