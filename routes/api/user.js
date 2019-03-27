@@ -83,7 +83,14 @@ router.post("/signin", (req, res) => {
         { expiresIn: 3600 },
         (err, token) => {
           if (err) throw err;
-          res.json({ user: user, token: token });
+          res.json({
+            user: {
+              username: user.username,
+              email: user.email,
+              avatar: user.avatar
+            },
+            token: token
+          });
         }
       );
     });

@@ -5,7 +5,7 @@ import DrawerContent from "./DrawerContent";
 
 const DrawerDiv = styled.div`
   width: 260px;
-  padding: 20px 8px;
+  padding: 30px 8px;
 `;
 
 const DrawerComponent = props => {

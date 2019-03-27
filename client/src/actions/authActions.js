@@ -40,6 +40,32 @@ export const loadUser = () => (dispatch, getState) => {
     })
 }
 
+export const signinUser = ({ username, password }) => dispatch => {
+  dispatch(toggleLoading(true));
+
+  const config = { headers: { "Content-Type": "application/json" } };
+  const body =  JSON.stringify({ username, password });
+    
+  axios.post("/api/user/signin", body, config)
+  .then(res => {
+    dispatch({
+      type: SIGNIN_SUCCESS,
+      payload: {
+        token: res.data.token,
+        user: res.data.user
+      }
+    });
+    dispatch(toggleLoading(false));
+    dispatch(snackbarToggle(true, "Signed In", "success"));     
+  })
+  .catch(err => {
+    dispatch(toggleLoading(false));
+    dispatch({ type: SIGNIN_FAIL });
+    dispatch(getErrors(err.response.data, err.response.status));
+    dispatch(snackbarToggle(true, returnParaStringOnly(err.response.data), "error"))    
+  })
+}
+
 export const signupUser = ({ username, email, password }) => dispatch => {
   dispatch(toggleLoading(true))
 

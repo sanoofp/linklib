@@ -3,7 +3,9 @@ import ExitToAppRounded from "@material-ui/icons/ExitToAppRounded";
 import Button from "@material-ui/core/Button";
 import { colors } from "../../utils/Theme";
 import PersonAddRounded from "@material-ui/icons/PersonAddRounded";
+import DashboardRounded from "@material-ui/icons/DashboardRounded";
 import { withStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   signInBtn: {
@@ -44,10 +46,25 @@ export const SigninButtonComponent = withStyles(styles)(props => <Button
     style={{ margin: props.margin, color: colors.white }}
     variant="contained"
     color="primary"
+    type={props.type}
     className={props.classes.signInBtn}
   > 
     <ExitToAppRounded style={{ marginRight: 6 }} />
     Signin
+  </Button>
+);
+
+export const DashboardButtonComponent = withStyles(styles)(props => <Button
+    fullWidth={true}
+    component={Link}
+    to="/dashboard"
+    style={{ margin: props.margin, color: colors.white }}
+    variant="contained"
+    color="primary"
+    className={props.classes.signInBtn}
+  > 
+    <DashboardRounded style={{ marginRight: 6 }} />
+    Go to Dashboard
   </Button>
 );
 

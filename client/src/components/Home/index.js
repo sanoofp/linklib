@@ -11,14 +11,14 @@ import {
   ButtonContainer,
   MuiButtonStyles
 } from "./style";
-import { SigninButtonComponent, SignupButtonComponent } from "../Button";
+import { SigninButtonComponent, SignupButtonComponent, DashboardButtonComponent } from "../Button";
 import SigninModel from "../Dialogs/SignIn/SignIn";
 import SignupModel from "../Dialogs/Signup/Signup";
 import { snackbarToggle } from '../../actions/appStateAction';
 import { SnackbarComponent } from '../Snackbar';
 
 const Home = props => {
-  const { appState } = props;
+  const { appState, isAuthenticated } = props;
   return (
     <HomeContainer>
       <div className="container">
@@ -40,13 +40,19 @@ const Home = props => {
               suscipit ducimus porro!
             </p>
             <ButtonContainer>
-              <SigninButtonComponent
-                onClick={() => props.dialogAction("signInDialogOpen", true)}
-              />
-              <SignupButtonComponent
-                variant="outlined"
-                onClick={() => props.dialogAction("signUpDialogOpen", true)}
-              />
+              {isAuthenticated ? 
+                <DashboardButtonComponent />
+                :
+                <React.Fragment>
+                <SigninButtonComponent
+                  onClick={() => props.dialogAction("signInDialogOpen", true)}
+                />
+                <SignupButtonComponent
+                  variant="outlined"
+                  onClick={() => props.dialogAction("signUpDialogOpen", true)}
+                />
+                </React.Fragment>                
+              } 
             </ButtonContainer>
           </div>
         </div>
@@ -66,12 +72,14 @@ const Home = props => {
 Home.propTypes = {
   appState: PropTypes.object.isRequired,
   dialogAction: PropTypes.func.isRequired,
-  snackbarToggle: PropTypes.func.isRequired  
+  snackbarToggle: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
   appState: state.appStateReducer,
   error: state.errorReducer,
+  isAuthenticated: state.authReducer.isAuthenticated    
 });
 
 export default connect(
