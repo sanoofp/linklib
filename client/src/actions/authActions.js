@@ -1,6 +1,6 @@
 import axios from "axios";
 import { returnParaStringOnly } from "../functions/helper";
-import { getErrors } from "./errorAction";
+import { getErrors, clearErrors } from "./errorAction";
 import { snackbarToggle, toggleLoading } from "./appStateAction";
 import { 
   USER_LOADED, USER_LOADING, AUTH_ERROR,
@@ -56,7 +56,8 @@ export const signinUser = ({ username, password }) => dispatch => {
       }
     });
     dispatch(toggleLoading(false));
-    dispatch(snackbarToggle(true, "Signed In", "success"));     
+    dispatch(clearErrors())                  
+    dispatch(snackbarToggle(true, "Signed In", "success"));
   })
   .catch(err => {
     dispatch(toggleLoading(false));
@@ -81,12 +82,21 @@ export const signupUser = ({ username, email, password }) => dispatch => {
         token: res.data.token
       } 
     });
-    dispatch(toggleLoading(false))
+    dispatch(toggleLoading(false));
+    dispatch(clearErrors());
+    dispatch(snackbarToggle(true, `Successfully registered to Linklib.`, "success"));
   })
   .catch(err => {
     dispatch(toggleLoading(false))
     dispatch({ type: SIGNUP_FAIL })
     dispatch(getErrors(err.response.data, err.response.status, "SIGNUP_FAIL"))
     dispatch(snackbarToggle(true, returnParaStringOnly(err.response.data), "error"))
+  });
+}
+
+export const signOut = () => dispatch => {
+  dispatch(snackbarToggle(true, "Signed out of Linklib", "success"))
+  dispatch({
+    type: SIGNOUT_SUCCESS
   });
 }

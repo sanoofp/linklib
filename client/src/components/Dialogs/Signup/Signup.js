@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 import { dialogAction, snackbarToggle } from "../../../actions/appStateAction";
 import { signupUser } from "../../../actions/authActions";
 import { clearErrors } from '../../../actions/errorAction'
@@ -21,24 +22,6 @@ class SignupModel extends Component {
     });
   };
 
-  componentDidUpdate(prevProp) {
-    const { 
-      isAuthenticated, 
-      dialogAction, 
-      appState, 
-      clearErrors, 
-      snackbarToggle 
-    } = this.props;
-
-    if(appState.signUpDialogOpen) {
-      if(isAuthenticated) {
-        dialogAction("signUpDialogOpen", false);
-        clearErrors();
-        snackbarToggle(true, `Successfully registered to Linklib. Now you can Singnin.`, "success");
-      }
-    }
-  }
-
   handleSubmit = event => {
     event.preventDefault();
     this.setState({ validate: true })
@@ -54,12 +37,20 @@ class SignupModel extends Component {
 
   render() {
     const { validate, username, password, email } = this.state;
-    const { appState, dialogAction, clearErrors } = this.props;
+    const { appState, dialogAction, clearErrors, isAuthenticated, snackbarToggle } = this.props;
     const validateEmpty = validate ? { 
       email: email.length === 0,
       username: username.length === 0,
       password: password.length === 0
      } : {};
+
+     if(appState.signUpDialogOpen) {
+      if(isAuthenticated) {
+        dialogAction("signUpDialogOpen", false);
+        return <Redirect to="/dashboard" />
+      }
+    }
+
     return <Modal
         closeAfterTransition={true}
         BackdropProps={{ transitionDuration: 400 }}

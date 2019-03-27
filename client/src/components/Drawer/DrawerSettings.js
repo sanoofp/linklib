@@ -7,6 +7,7 @@ import ListItemComponent from "./ListItemComponent";
 const DrawerSettings = props => <List subheader={<ListSubheader>Theme</ListSubheader>}>
   <ListItemComponent
     toggle={true}
+    // onClick={() => }
     text="Dark Theme"
     icon={<WbIncandescentRounded />}
   />

@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Redirect } from "react-router-dom";
 import { signinUser } from "../../../actions/authActions";
 import { clearErrors } from "../../../actions/errorAction";
-import { dialogAction } from "../../../actions/appStateAction";
+import { dialogAction, snackbarToggle } from "../../../actions/appStateAction";
 import ModelContainer from "./ModelContainer";
 
 class SigninModel extends Component {
@@ -26,15 +27,23 @@ class SigninModel extends Component {
   }
 
   render() {
-    const { appState, dialogAction } = this.props;
+    const { appState, dialogAction, isAuthenticated, clearErrors, snackbarToggle } = this.props;
+
+    if(appState.signInDialogOpen) {
+      if(isAuthenticated) {
+        dialogAction("signInDialogOpen", false);
+        return <Redirect to="/dashboard" />
+      }
+    }
+
     return (
       <Modal
         closeAfterTransition={true}
         BackdropProps={{ transitionDuration: 300 }}
         open={appState.signInDialogOpen}
         onClose={() => {
+          clearErrors()
           dialogAction("signInDialogOpen", false)
-          clearErrors()          
         }}
       >
         <ModelContainer 
@@ -48,14 +57,18 @@ class SigninModel extends Component {
 
 SigninModel.propTypes = {
   appState: PropTypes.object.isRequired,
-  dialogAction: PropTypes.func.isRequired
+  dialogAction: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  snackbarToggle: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-  appState: state.appStateReducer
+  appState: state.appStateReducer,
+  isAuthenticated: state.authReducer.isAuthenticated
 });
 
 export default connect(
   mapStateToProps,
-  { dialogAction, signinUser, clearErrors }
+  { dialogAction, signinUser, clearErrors, snackbarToggle }
 )(SigninModel);
