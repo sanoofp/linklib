@@ -27,7 +27,7 @@ class SigninModel extends Component {
   }
 
   render() {
-    const { appState, dialogAction, isAuthenticated, clearErrors, snackbarToggle } = this.props;
+    const { appState, dialogAction, isAuthenticated, clearErrors } = this.props;
 
     if(appState.signInDialogOpen) {
       if(isAuthenticated) {

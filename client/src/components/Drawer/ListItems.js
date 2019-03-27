@@ -17,6 +17,7 @@ const ListItems = props => {
   const menu = [{ 
     text: "Home", 
     to: "/",
+    Link: Link,
     onClick: () => toggleDrawer(false), 
     icon: <HomeRounded /> 
   }];
@@ -25,6 +26,7 @@ const ListItems = props => {
         { 
           text: "Dashboard", 
           to: "/dashboard", 
+          Link: Link,          
           onClick: () => toggleDrawer(false), 
           icon: <DashboardRounded /> 
         },
@@ -39,12 +41,18 @@ const ListItems = props => {
     : menu.push(
         {
           text: "Sign in",
-          onClick: () => dialogAction("signInDialogOpen", true),
+          onClick: () => {
+            dialogAction("signInDialogOpen", true)
+            toggleDrawer(false)
+          },
           icon: <PermIdentityRounded />
         },
         {
           text: "Sign up",
-          onClick: () => dialogAction("signUpDialogOpen", true),
+          onClick: () => {
+            dialogAction("signUpDialogOpen", true)
+            toggleDrawer(false)
+          },
           icon: <AccountCircleRounded />
         }
       );
@@ -55,7 +63,7 @@ const ListItems = props => {
         return (
           <ListItemComponent
             key={index}
-            component={Link}
+            component={item.Link ? item.Link : null}
             to={item.to}
             icon={item.icon}
             text={item.text}

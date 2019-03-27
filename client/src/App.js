@@ -10,6 +10,7 @@ import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
 import DrawerComponent from "./components/Drawer";
 import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
 import { main, dark } from "./utils/Theme";
 import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -50,6 +51,7 @@ class App extends Component {
             />
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </Switch>
             <Spinner />
           </BrowserRouter>
