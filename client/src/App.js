@@ -5,12 +5,11 @@ import { toggleDrawer, snackbarToggle } from "./actions/appStateAction";
 import { loadUser } from "./actions/authAction";
 import { Helmet } from "react-helmet";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
-import "bootstrap/dist/css/bootstrap-grid.min.css";
 import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
 import DrawerComponent from "./components/Drawer";
 import Home from "./components/Home";
-import Dashboard from "./components/Dashboard/Dashboard";
+// import Dashboard from "./components/Dashboard/Dashboard";
 import { SnackbarComponent } from './components/Snackbar';
 import { main, dark } from "./utils/Theme";
 import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
@@ -18,8 +17,20 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Spinner from './components/Loader/Spinner'
+import LoadableLoader from './components/Loader/LoadableLoader'
 import LinearLoader from './components/Loader/LinearLoader'
-import SingleLink from "./components/SingleLink";
+// import SingleLink from "./components/SingleLink";
+import "bootstrap/dist/css/bootstrap-grid.min.css";
+import Loadable from "react-loadable";
+
+const Dashboard = Loadable({
+  loader: () => import("./components/Dashboard/Dashboard"),
+  loading: LoadableLoader
+});
+const SingleLink = Loadable({
+  loader: () => import("./components/SingleLink"),
+  loading: LoadableLoader
+});
 
 class App extends Component {
   componentDidMount() {

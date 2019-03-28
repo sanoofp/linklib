@@ -10,10 +10,12 @@ export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    height: 100%;
     font-family: ${props => props.theme.primaryFont};
     background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};
     line-height: 1.5;
+    // overflow-x: hidden;
     transition: background-color 0.2s ease-in-out;
   }
 

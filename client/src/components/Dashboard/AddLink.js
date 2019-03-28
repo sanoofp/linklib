@@ -9,7 +9,7 @@ import { addLink } from "../../actions/linkAction";
 class AddLink extends Component {
   state = {
     url: "",
-    linkTitle: ""
+    linkTitle: "",
   }
   handleChange = (name, event) => {
     this.setState({ [name]: event.target.value })
@@ -18,12 +18,13 @@ class AddLink extends Component {
     event.preventDefault();
     this.props.addLink(this.state);
   }
+
   render() {
     return <Card className="px-3">
       <form onSubmit={this.handleSubmit}>
         <TextField
           fullWidth
-          // variant="outlined"
+          variant="outlined"
           id="addlink"
           label="URL Title"
           placeholder="Title"
@@ -32,7 +33,7 @@ class AddLink extends Component {
         />
         <TextField
           fullWidth
-          // variant="outlined"
+          variant="outlined"
           id="addlink"
           label="URL"
           placeholder="URL"

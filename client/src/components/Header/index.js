@@ -8,6 +8,8 @@ import { colors } from "../../utils/Theme";
 const StyledHeader = styled.div`
   padding: 22px 0px;
   width: 100%;
+  z-index: 141;
+  position: relative;
   background-color: ${props => props.theme.primary};
 `;
 
@@ -24,7 +26,7 @@ const Logo = styled.div`
 
 const Header = props => {
   return (
-    <StyledHeader>
+    <StyledHeader id="header">
       <div className="container">
         <div className="row">
           <div className="col-md-12 d-flex align-items-center justify-content-between">

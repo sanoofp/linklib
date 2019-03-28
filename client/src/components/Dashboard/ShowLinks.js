@@ -8,7 +8,7 @@ import LinkBox from './Link'
 const ShowLinks = props => {
   const links = props.userLinks;
   return links ? <LinksContainer>
-    {links.map(item => <LinkBox link={item} />)}
+    {links.map((item, i) => <LinkBox key={i} link={item} />)}
   </LinksContainer> : <h1 style={{textAlign: "center"}}>Loading..</h1>
 }
 

@@ -36,3 +36,11 @@ export const modifyColor = (color, value) => {
 
   return modified;
 }
+
+export const truncateStringTo = (str, upto) => {
+  str = String(str);
+  if(str.length <= upto) {
+    return str;
+  }
+  return str.slice(0, upto) + "....";
+}

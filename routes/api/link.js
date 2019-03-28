@@ -33,6 +33,8 @@ router.post("/", auth, (req, res) => {
 // @route GET /api/link/single/:linkid
 router.get("/single/:linkid", (req, res) => {
   console.log(req.params.linkid);
+  if (!req.params.linkid)
+    return res.status(400).json({ msg: "Link ID Required." });
   Link.findOne({ _id: req.params.linkid })
     .then(link => res.json(link))
     .catch(err =>

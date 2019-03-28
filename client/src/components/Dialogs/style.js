@@ -49,7 +49,7 @@ export const SignupModel = styled.div`
 export const SignInForm = styled.div`
   background-color: ${props => props.theme.bodybg};
   height: inherit;
-  padding: ${spacing.unit * 6}px ${spacing.unit * 4}px;
+  padding: ${spacing.unit * 6}px ${spacing.unit * 3}px !important;
   label {
     font-family: ${props => props.theme.primaryFont};
     color: ${props =>

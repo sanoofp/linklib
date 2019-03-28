@@ -23,3 +23,6 @@ export const CLEAR_ERROR = "CLEAR_ERROR";
 // Links
 export const ADD_LINK = "ADD_LINK";
 export const GET_USER_LINKS = "GET_USER_LINKS";
+export const GET_SINGLE_LINKS = "GET_SINGLE_LINKS";
+export const CLEAR_SINGLE_LINKS = "CLEAR_SINGLE_LINKS";
+export const LOAD_LINK = "LOAD_LINK";
