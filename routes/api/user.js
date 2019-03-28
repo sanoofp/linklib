@@ -85,6 +85,7 @@ router.post("/signin", (req, res) => {
           if (err) throw err;
           res.json({
             user: {
+              _id: user._id,
               username: user.username,
               email: user.email,
               avatar: user.avatar

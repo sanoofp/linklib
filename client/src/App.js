@@ -19,6 +19,7 @@ import { ThemeProvider } from "styled-components";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import Spinner from './components/Loader/Spinner'
 import LinearLoader from './components/Loader/LinearLoader'
+import SingleLink from "./components/SingleLink";
 
 class App extends Component {
   componentDidMount() {
@@ -54,6 +55,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
+              <Route path="/link/:id" component={SingleLink} />
             </Switch>
             <Spinner />
             <LinearLoader />

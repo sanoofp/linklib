@@ -1,7 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { getUserLink } from "../../actions/linkAction";
+import { LinksContainer } from "./styles";
+import LinkBox from './Link'
 
 const ShowLinks = props => {
-  
+  const links = props.userLinks;
+  return links ? <LinksContainer>
+    {links.map(item => <LinkBox link={item} />)}
+  </LinksContainer> : <h1 style={{textAlign: "center"}}>Loading..</h1>
 }
 
-export default ShowLinks;
+ShowLinks.propTypes = {
+  userLinks: PropTypes.array.isRequired
+}
+
+const mapStateToProps = state => ({
+  userLinks: state.linkReducer.userLinks
+})
+
+export default connect(mapStateToProps, { getUserLink })(ShowLinks);
