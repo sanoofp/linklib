@@ -30,7 +30,7 @@ class LinkBox extends Component {
     const { sdHidden, sdOpen } = this.state;
     return <LinkBoxContainer>
       <h3>{link.linkTitle}</h3>
-      <p>{truncateStringTo(link.url, 55)}</p>
+      <input readOnly type="text" value={truncateStringTo(link.url, 55)} id={link._id} />
       <div className="dashboard--links-action">
         
         <div className="dashboard-btns">
@@ -49,6 +49,8 @@ class LinkBox extends Component {
           handleClose={this.handleClose}
           handleClick={this.handleClick}
           handleOpen={this.handleOpen}
+          link={link}
+          copiedMsg={() => console.log("co")}
         />
       </div>
         

@@ -35,6 +35,25 @@ export const LinkBoxContainer = styled.div`
     }
   }
 
+  input[type="text"] {
+    padding: 12px 0px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    // word-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+    width: inherit;
+    max-height: 110px;
+    background-color: ${props => props.theme.bodybg};
+    color: ${props => props.theme.font};
+    border: none;
+    font-family: ${props => props.theme.primaryFont};
+    &:active, &:focus, &:hover {
+      outline: none;
+      border: none;
+    }
+  }
+
   &:hover {
     box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15);
   }

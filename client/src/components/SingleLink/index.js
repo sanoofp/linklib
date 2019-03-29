@@ -6,7 +6,7 @@ import { SingleLinkContainer, ShareContainer } from "./styles";
 import Spinner2 from "../Loader/Spinner2";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
-import select from "../../functions/select";
+import copy from "../../functions/copy";
 
 class SingleLink extends Component {
   state = {
@@ -21,18 +21,11 @@ class SingleLink extends Component {
     this.props.clearSingleLink();
   }
 
-  copy = (url, e) => {
-    select(document.getElementById("copy-link"));
-    let _OK;
-    try {
-      _OK = document.execCommand("copy");
-    } catch (err) {
-      _OK = false;
-    }
-    if (_OK)
-      this.setState({ copied: true }, () =>
-        setTimeout(() => this.setState({ copied: false }), 5000)
-      );
+  copy = () => {
+    copy("copy-link", () => this.setState({ copied: true }, () =>
+    setTimeout(() => this.setState({ copied: false }), 5000)
+    ));
+          
   };
 
   render() {
@@ -61,7 +54,7 @@ class SingleLink extends Component {
                   <input
                     type="button"
                     value="Copy link"
-                    onClick={e => this.copy(singleLink.url, e)}
+                    onClick={() => this.copy()}
                   />
                 </div>
                 <ShareContainer>

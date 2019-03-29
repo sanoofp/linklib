@@ -5,16 +5,17 @@ import ShareIcon from "@material-ui/icons/Share";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SpeedDialIcon from "@material-ui/lab/SpeedDialIcon";
 import SpeedDialAction from "@material-ui/lab/SpeedDialAction";
-import A from "../../Button/A";
+import copy from "../../../functions/copy";
+import share from "../../../functions/share";
 
-const actions = [
-  { icon: <FileCopyIcon />, name: "Copy", onClick: () => console.log("copy") },
-  { icon: <ShareIcon />, name: "Share", onClick: () => console.log("share") },
-  { icon: <DeleteIcon />, name: "Delete", onClick: () => console.log("delete") }
-];
+const SpeedDialComponent = props => {
+  const actions = [
+    { icon: <DeleteIcon />, name: "Delete", onClick: () => console.log("delete") },
+    { icon: <FileCopyIcon />, name: "Copy", onClick: () => copy(props.link._id, props.copiedMsg) },
+    { icon: <ShareIcon />, name: "Share", onClick: () => share(props.link) },
+  ];
 
-const SpeedDialComponent = props => (
-  <SpeedDial
+  return <SpeedDial
     ariaLabel="SpeedDial tooltip"
     hidden={props.sdHidden}
     icon={<SpeedDialIcon style={{ color: "#fff" }} />}
@@ -38,6 +39,6 @@ const SpeedDialComponent = props => (
       />
     ))}
   </SpeedDial>
-);
+}
 
 export default SpeedDialComponent;
