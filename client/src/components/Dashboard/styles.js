@@ -2,22 +2,27 @@ import styled from "styled-components";
 import { modifyColor } from "../../functions/helper";
 
 export const LinkBoxContainer = styled.div`
+  position: relative;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  margin: 8px 0px;
+  margin: 16px 0px;
+  padding: 14px 12px;
   background-color: ${props => modifyColor(props.theme.bodybg, 9)};
-  padding: 8px 12px;
   color: ${props => props.theme.font};
-  transition: all 0.15s ease-in-out;
+  transition: all 0.12s ease-in-out;
   h3 {
-    margin: 1px 0;
+    margin: 0px 0;
   }
-  strong {
+  button[aria-label="SpeedDial"] {
+    margin: 15px 12px;
+
+  }
+  p {
     word-wrap: break-word;
-    font-size: 0.6em;
-    line-height: 0;
-    margin: 4px 0;
+    font-size: 0.7em;
+    margin: 0;
+    padding: 4px 0;
   }
   a {
     margin-top: 5px;
@@ -29,14 +34,18 @@ export const LinkBoxContainer = styled.div`
       text-decoration: none;
     }
   }
+
   &:hover {
     box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15);
   }
+
   .dashboard--links-action {
-    a {
-      margin-right: 8px;
+    padding: 5px 0px;
+    .dashboard-btns {
+      padding: 8px 0px;
     }
   }
+  
   @media (max-width: 485px) {
     h3 {
       strong {
@@ -51,7 +60,7 @@ export const LinksContainer = styled.div`
   background-color: ${props => props.theme.bodybgdark};
   margin: 12px 0px;
   border-radius: 12px;
-  padding: 12px 20px;
+  padding: 12px 0px;
   // box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15);
 `;
 

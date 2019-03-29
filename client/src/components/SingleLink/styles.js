@@ -25,10 +25,10 @@ export const Icons = styled.div`
   font-size: 0.74em !important;
   svg {
     margin: 0 6px;
-    border: 1px solid ${props => props.theme.font};
+    // border: 1px solid ${props => props.theme.font};
     padding: 14px;
     box-sizing: content-box;
-    border-radius: 50%;
+    // border-radius: 50%;
   }
 `;
 

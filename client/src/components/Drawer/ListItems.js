@@ -15,7 +15,7 @@ import ListItemComponent from "./ListItemComponent";
 
 const ListItems = props => {
   const { isAuthenticated, dialogAction, toggleDrawer, signOut, user } = props;
-  const menu = [{ 
+  let menu = [{ 
     text: "Home", 
     to: "/",
     Link: Link,
@@ -24,7 +24,7 @@ const ListItems = props => {
   }];
   isAuthenticated
     // User links
-    ? menu.push(
+    ? menu = [
         {
           text: user.username,
           icon: <Avatar src={user.avatar} />
@@ -43,7 +43,7 @@ const ListItems = props => {
           }, 
           icon: <EventBusyRounded /> 
         }
-      )
+      ]
     : 
       // Guest Links
       menu.push(

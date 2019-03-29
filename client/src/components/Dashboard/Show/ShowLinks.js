@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getUserLink } from "../../actions/linkAction";
-import { LinksContainer } from "./styles";
+import { getUserLink } from "../../../actions/linkAction";
+import { LinksContainer } from "../styles";
 import LinkBox from './Link'
 
 const ShowLinks = props => {

@@ -6,7 +6,7 @@ import { SingleLinkContainer, ShareContainer } from "./styles";
 import Spinner2 from "../Loader/Spinner2";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
-import select from "select";
+import select from "../../functions/select";
 
 class SingleLink extends Component {
   state = {
@@ -22,20 +22,17 @@ class SingleLink extends Component {
   }
 
   copy = (url, e) => {
-    // navigator.clipboard
-      // .writeText(url)
-      // .then(
-        // () => this.setState({ copied: true, anchorEl: e.currentTarget }),
-        // () => this.setState({ copied: false, anchorEl: null })
-      // );
     select(document.getElementById("copy-link"));
     let _OK;
     try {
       _OK = document.execCommand("copy");
-    } catch(err) {
+    } catch (err) {
       _OK = false;
     }
-    console.log(_OK);
+    if (_OK)
+      this.setState({ copied: true }, () =>
+        setTimeout(() => this.setState({ copied: false }), 5000)
+      );
   };
 
   render() {
@@ -49,7 +46,16 @@ class SingleLink extends Component {
             <div className="col-md-10 mx-auto">
               <SingleLinkContainer>
                 <h1>{singleLink.linkTitle}</h1>
-                <input type="text" id="copy-link" readOnly value={singleLink.url} />
+                <div className="copy-link-msg position-relative">
+                  <input
+                    type="text"
+                    id="copy-link"
+                    readOnly
+                    value={singleLink.url ? singleLink.url : ""}
+                  />
+                  {copied && <p>Copied</p>}
+                
+                </div>
                 <div>
                   <A href={singleLink.url}>Open Link</A>
                   <input

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'; 
 import PropTypes from "prop-types";
-import { Card } from "./styles";
+import { Card } from "../styles";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { addLink } from "../../actions/linkAction";
+import { addLink } from "../../../actions/linkAction";
 
 class AddLink extends Component {
   state = {

@@ -3,32 +3,39 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { Card, ScrollFixTarget } from "./styles";
-import AddLink from "./AddLink";
-import ShowLinks from "./ShowLinks";
+import AddLink from "./Add/AddLink";
+import ShowLinks from "./Show/ShowLinks";
 import { getUserLink } from "../../actions/linkAction";
 
 class Dashboard extends Component {
   state = {
     cardPositionFixed: false
   };
-
+  _isMounted = false;
   componentDidMount() {
+    this._isMounted = true;
     if (this.props.auth.isAuthenticated) {
       this.props.getUserLink();
     }
     const headerHeight = document.querySelector("#header").clientHeight;
     if(window.innerWidth > 768) {
       document.addEventListener("scroll", event => {
-        if (window.scrollY > headerHeight) {
-          this.setState({
-            cardPositionFixed: true,
-          });
-        } else {
-          this.setState({ cardPositionFixed: false });
+        if(this._isMounted  ) {
+          if (window.scrollY > headerHeight) {
+            this.setState({
+              cardPositionFixed: true,
+            });
+          } else {
+            this.setState({ cardPositionFixed: false });
+          }
         }
       });
 
     }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {
