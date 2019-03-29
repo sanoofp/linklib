@@ -9,7 +9,7 @@ export const LinkBoxContainer = styled.div`
   background-color: ${props => modifyColor(props.theme.bodybg, 9)};
   padding: 8px 12px;
   color: ${props => props.theme.font};
-  transition: all 0.25s ease-in-out;
+  transition: all 0.15s ease-in-out;
   h3 {
     margin: 1px 0;
   }

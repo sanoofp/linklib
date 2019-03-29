@@ -6,11 +6,10 @@ import { SingleLinkContainer, ShareContainer } from "./styles";
 import Spinner2 from "../Loader/Spinner2";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
-import Popover from "@material-ui/core/Popover";
+import select from "select";
 
 class SingleLink extends Component {
   state = {
-    anchorEl: null,
     copied: false
   };
 
@@ -23,18 +22,25 @@ class SingleLink extends Component {
   }
 
   copy = (url, e) => {
-    navigator.clipboard
-      .writeText(url)
-      .then(
-        () => this.setState({ copied: true, anchorEl: e.currentTarget }),
-        () => this.setState({ copied: false, anchorEl: null })
-      );
+    // navigator.clipboard
+      // .writeText(url)
+      // .then(
+        // () => this.setState({ copied: true, anchorEl: e.currentTarget }),
+        // () => this.setState({ copied: false, anchorEl: null })
+      // );
+    select(document.getElementById("copy-link"));
+    let _OK;
+    try {
+      _OK = document.execCommand("copy");
+    } catch(err) {
+      _OK = false;
+    }
+    console.log(_OK);
   };
 
   render() {
     const { singleLink } = this.props.linkReducer;
-    const { copied, anchorEl } = this.state;
-
+    const { copied } = this.state;
     return (
       <React.Fragment>
         <Spinner2 />
@@ -43,7 +49,7 @@ class SingleLink extends Component {
             <div className="col-md-10 mx-auto">
               <SingleLinkContainer>
                 <h1>{singleLink.linkTitle}</h1>
-                <p id="copy-link">{singleLink.url}</p>
+                <input type="text" id="copy-link" readOnly value={singleLink.url} />
                 <div>
                   <A href={singleLink.url}>Open Link</A>
                   <input
@@ -51,22 +57,6 @@ class SingleLink extends Component {
                     value="Copy link"
                     onClick={e => this.copy(singleLink.url, e)}
                   />
-                  <Popover 
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'center',
-                    }}
-                    onClose={() => this.setState({ copied: false, anchorEl: null })}
-                    open={copied} 
-                    anchorEl={anchorEl}>
-                    <h4 style={{ padding: "5px 13px" }}>
-                      Link Copied to clipboard
-                    </h4>
-                  </Popover>
                 </div>
                 <ShareContainer>
                   <h2>SHARE LINK</h2>

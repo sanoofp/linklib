@@ -33,6 +33,7 @@ export const Icons = styled.div`
 `;
 
 export const SingleLinkContainer = styled.div`
+  position: relative;
   width: 100%;
   padding: 18px 22px;
   box-shadow: 0px 4px 20px rgba(0,0,0,0.16);
@@ -47,18 +48,32 @@ export const SingleLinkContainer = styled.div`
     font-size: 2.5em;
     margin-bottom: 5px;
   }
-  p {
+
+  input[type="text"] {
     text-align: center;
-    margin-bottom: 30px;
-    width: 100%;
-    font-size: 0.7em;
+    margin-bottom: 25px;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    // word-wrap: break-word;
     word-wrap: break-word;
-  }
-  a, input {
-    font-size: 0.9em;
+    word-break: break-all;
+    width: inherit;
+    max-height: 110px;
+    background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};
+    border: none;
+    font-family: ${props => props.theme.primaryFont};
+    &:active, &:focus, &:hover {
+      outline: none;
+      border: none;
+    }
+  }
+  a, input[type="button"] {
+    font-size: 0.9em;
     padding: 9px 24px;
     margin: 0 8px;
+    color: ${props => props.theme.font};
     font-family: ${props => props.theme.primaryFont};
     border: 1px solid ${props => props.theme.font};
     border-radius: 8px;
