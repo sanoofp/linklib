@@ -7,6 +7,29 @@ const dFlexCenter = `
   justify-content: center;
 `
 
+export const CopiedMsg = styled.div`
+  width: 200px;
+  position: fixed;
+  top: 34%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 23px;
+  box-shadow: 0px 4px 18px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+  background-color: ${props => props.theme.bodybg};
+  p { margin : 0; }
+  ${props => props.copied ? `
+    opacity: 1;
+    z-index: 2;
+    
+  ` : `
+    opacity: 0;
+    z-index: -1;
+    
+  ` }
+`;
+
 export const ShareContainer = styled.div`
   width: 100%;
   margin: 18px auto;
@@ -21,12 +44,13 @@ export const Icons = styled.div`
   max-width: 400px;
   margin: 12px auto;
   ${dFlexCenter}
-  color: ${props => props.theme.font};
   font-size: 0.74em !important;
   svg {
+    color: ${props => props.theme.font};
     margin: 0 6px;
     padding: 14px;
     box-sizing: content-box;
+  
   }
 `;
 
@@ -66,7 +90,8 @@ export const SingleLinkContainer = styled.div`
       border: none;
     }
   }
-  a, input[type="button"] {
+  
+  .links-btn {
     font-size: 0.9em;
     padding: 9px 24px;
     margin: 0 8px;

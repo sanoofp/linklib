@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
+import { Helmet } from 'react-helmet';
 import LoadableLoader from "../Loader/LoadableLoader";
 import { getUserLink } from "../../actions/linkAction";
 import { DashboardContainer } from "./styles";
@@ -11,10 +12,10 @@ import ShowLinks from './Show/Show';
 class Dashboard extends Component {
 
   render() {
-    if(this.props.auth.isAuthenticated && this.props.link.userLinks.length === 0) {
+    const { auth, link } = this.props;
+    if(auth.isAuthenticated && link.userLinks.length === 0) {
       this.props.getUserLink();
     }
-    const { auth } = this.props;
     if (auth.isLoading) {
       return <LoadableLoader />;
     }
@@ -23,10 +24,15 @@ class Dashboard extends Component {
     }
 
     return (
-      <DashboardContainer>
-        <AddLink />
-        <ShowLinks />
-      </DashboardContainer>
+      <React.Fragment>
+        <Helmet>
+          <title>Linklib - {auth.user.username}</title>
+        </Helmet>
+        <DashboardContainer>
+          <AddLink />
+          <ShowLinks />
+        </DashboardContainer>
+      </React.Fragment>
     );
   }
 }

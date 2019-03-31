@@ -1,7 +1,8 @@
 export function returnParaStringOnly(obj) {
   return `${Object.keys(obj).map(item => {
+    if(typeof obj[item] === "object") return null;
     return `${obj[item]}`;
-  }).join(",")}`;
+  }).join(", ")}`;
 }
 
 export function axiosHeader (getState) {

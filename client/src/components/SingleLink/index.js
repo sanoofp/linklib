@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
-import { SingleLinkContainer, ShareContainer } from "./styles";
+import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
 import Spinner2 from "../Loader/Spinner2";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
@@ -23,9 +25,8 @@ class SingleLink extends Component {
 
   copy = () => {
     copy("copy-link", () => this.setState({ copied: true }, () =>
-    setTimeout(() => this.setState({ copied: false }), 5000)
-    ));
-          
+    setTimeout(() => this.setState({ copied: false }), 4000)
+    ));      
   };
 
   render() {
@@ -33,25 +34,28 @@ class SingleLink extends Component {
     const { copied } = this.state;
     return (
       <React.Fragment>
+        <Helmet>
+          <title>{`Linklib - ${singleLink.linkTitle ? singleLink.linkTitle : ""}`}</title>
+        </Helmet>
         <Spinner2 />
         <div className="container my-3">
           <div className="row">
             <div className="col-md-10 mx-auto">
               <SingleLinkContainer>
                 <h1>{singleLink.linkTitle}</h1>
-                <div className="copy-link-msg position-relative">
+                <div>
                   <input
                     type="text"
                     id="copy-link"
                     readOnly
                     value={singleLink.url ? singleLink.url : ""}
                   />
-                  {copied && <p>Copied</p>}
-                
+                  <CopiedMsg copied={copied}><p>Copied to clipboard</p></CopiedMsg>
                 </div>
                 <div>
-                  <A href={singleLink.url}>Open Link</A>
+                  <A className="links-btn" href={singleLink.url}>Open Link</A>
                   <input
+                    className="links-btn"
                     type="button"
                     value="Copy link"
                     onClick={() => this.copy()}
@@ -59,7 +63,7 @@ class SingleLink extends Component {
                 </div>
                 <ShareContainer>
                   <h2>SHARE LINK</h2>
-                  <FontAwesomeIconSet />
+                  <FontAwesomeIconSet title={singleLink.linkTitle} link={singleLink.url} />
                 </ShareContainer>
               </SingleLinkContainer>
             </div>
@@ -71,7 +75,8 @@ class SingleLink extends Component {
 }
 
 SingleLink.propTypes = {
-  getSingleLink: PropTypes.func.isRequired
+  getSingleLink: PropTypes.func.isRequired,
+  snackbarToggle: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -80,5 +85,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSingleLink, clearSingleLink }
+  { getSingleLink, clearSingleLink, snackbarToggle }
 )(SingleLink);

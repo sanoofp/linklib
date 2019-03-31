@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { dialogAction } from "../../actions/appStateAction";
 import { HomeCircle } from "../svg/svgLogo";
 import { withStyles } from "@material-ui/core/styles";
@@ -29,6 +30,9 @@ class Home extends Component {
 
   return (
     <HomeContainer>
+      <Helmet>
+        <title>{`Linklib - Home`}</title>
+      </Helmet>
       <div className="container">
         <div className="row">
           <div className="col-lg-7">

@@ -8,7 +8,7 @@ const ShowLinks = props => {
     <div className="container show-items-container">
       <div className="row">
         <div className="col-md-12">
-          {props.userLinks.map((item, idx) => <Items key={idx} linkTitle={item.linkTitle} url={item.url} />)}
+          {props.userLinks.map((item, idx) => <Items key={idx} linkTitle={item.linkTitle} url={item.url} _id={item._id} />)}
         </div>
       </div>
     </div>
