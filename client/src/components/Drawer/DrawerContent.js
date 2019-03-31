@@ -1,7 +1,7 @@
 import React from "react";
 import Divider from "@material-ui/core/Divider";
-import ListItems from "./ListItems";
-import DrawerSettings from "./DrawerSettings";
+import ListItems from "./ListItems/ListItems";
+import DrawerSettings from "./DrawerSettings/DrawerSettings";
 
 const DrawerContent = () => (
   <React.Fragment>

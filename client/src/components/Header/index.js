@@ -11,6 +11,10 @@ const StyledHeader = styled.div`
   z-index: 141;
   position: relative;
   background-color: ${props => props.theme.primary};
+  @media (max-width: 485px) {
+    padding: 18px 0;
+    
+  }
 `;
 
 const Logo = styled.div`
@@ -22,6 +26,7 @@ const Logo = styled.div`
     font-size: 40px;
     margin: 0;
   }
+  
 `;
 
 const Header = props => {

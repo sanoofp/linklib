@@ -15,8 +15,7 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};
     line-height: 1.5;
-    // overflow-x: hidden;
-    transition: background-color 0.2s ease-in-out;
+    overflow-x: hidden;
   }
 
   button, div[role="button"] {

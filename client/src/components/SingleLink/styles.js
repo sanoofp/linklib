@@ -25,10 +25,8 @@ export const Icons = styled.div`
   font-size: 0.74em !important;
   svg {
     margin: 0 6px;
-    // border: 1px solid ${props => props.theme.font};
     padding: 14px;
     box-sizing: content-box;
-    // border-radius: 50%;
   }
 `;
 
@@ -55,7 +53,6 @@ export const SingleLinkContainer = styled.div`
     padding: 6px 10px;
     box-sizing: border-box;
     font-size: 0.8em;
-    // word-wrap: break-word;
     word-wrap: break-word;
     word-break: break-all;
     width: inherit;

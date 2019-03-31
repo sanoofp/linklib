@@ -24,7 +24,7 @@ import "bootstrap/dist/css/bootstrap-grid.min.css";
 import Loadable from "react-loadable";
 
 const Dashboard = Loadable({
-  loader: () => import("./components/Dashboard/Dashboard"),
+  loader: () => import("./components/Dashboard"),
   loading: LoadableLoader
 });
 const SingleLink = Loadable({

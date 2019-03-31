@@ -7,7 +7,7 @@ import { returnParaStringOnly } from "../functions/helper";
 
 export const addLink = ({ linkTitle, url }) => (dispatch, getState) => {
   const body = JSON.stringify({ linkTitle, url });
-  
+  console.log(body);
   axios.post("/api/link", body, axiosHeader(getState))
   .then(res => {
     dispatch(getUserLink())
