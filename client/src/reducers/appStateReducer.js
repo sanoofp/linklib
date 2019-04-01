@@ -42,7 +42,6 @@ export default function(state = initalState, action) {
       return {
         ...state,
         snackbar: {
-          ...state.snackbar,
           open: action.payload.open,
           msg: action.payload.msg,
           type: action.payload.type    

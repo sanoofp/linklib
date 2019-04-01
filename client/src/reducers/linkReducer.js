@@ -1,4 +1,4 @@
-import { ADD_LINK, GET_USER_LINKS, GET_SINGLE_LINKS, LOAD_LINK, CLEAR_SINGLE_LINKS } from '../actions/types';
+import { ADD_LINK, GET_USER_LINKS, SET_SINGLE_LINKS, LOAD_LINK, CLEAR_SINGLE_LINKS } from '../actions/types';
 
 const initialState = {
   linkLoading: false,
@@ -22,21 +22,22 @@ export default function(state = initialState, action) {
     case GET_USER_LINKS: {
       return {
         ...state,
-        linkLoading: false,        
+        linkLoading: false,
         userLinks: action.payload
       }
     }
-    case GET_SINGLE_LINKS: {
+    case SET_SINGLE_LINKS: {
       return {
         ...state,
-        linkLoading: false,        
+        linkLoading: false,
         singleLink: action.payload
       }
     }
     case CLEAR_SINGLE_LINKS: {
       return {
         ...state,
-        singleLink: {}
+        linkLoading: false,        
+        singleLink: []
       }
     }
     default:

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { toggleDrawer, snackbarToggle } from "./actions/appStateAction";
+import { toggleDrawer } from "./actions/appStateAction";
 import { loadUser } from "./actions/authAction";
 import { Helmet } from "react-helmet";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
@@ -10,7 +10,7 @@ import Header from "./components/Header";
 import DrawerComponent from "./components/Drawer";
 import Home from "./components/Home";
 // import Dashboard from "./components/Dashboard/Dashboard";
-import { SnackbarComponent } from './components/Snackbar';
+import SnackbarComponent from './components/Snackbar';
 import { main, dark } from "./utils/Theme";
 import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -45,7 +45,7 @@ class App extends Component {
 
   render() {
     const { darkTheme } = this.props.appState;
-    const { appState, snackbarToggle } = this.props;
+    const { appState } = this.props;
     return (
       <MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
         <ThemeProvider theme={darkTheme ? dark : main}>
@@ -70,12 +70,7 @@ class App extends Component {
             </Switch>
             <Spinner />
             <LinearLoader />
-            <SnackbarComponent 
-              handleSnackbarClose={() => snackbarToggle(false, "", appState.snackbar.type)} 
-              open={appState.snackbar.open}
-              msg={appState.snackbar.msg}
-              type={appState.snackbar.type}
-            />
+            <SnackbarComponent />
           </BrowserRouter>
         </ThemeProvider>
       </MuiThemeProvider>
@@ -88,7 +83,6 @@ App.propTypes = {
   appState: PropTypes.object.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
-  snackbarToggle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -98,5 +92,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { toggleDrawer, loadUser, snackbarToggle }
+  { toggleDrawer, loadUser }
 )(App);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
+import { Redirect } from "react-router-dom";
 import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
 import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
@@ -30,7 +31,6 @@ class SingleLink extends Component {
   };
 
   androidShare = () => {
-    console.log("AND");
     const { singleLink } = this.props.linkReducer;    
     if (navigator.share) {
       navigator.share({
@@ -40,6 +40,8 @@ class SingleLink extends Component {
       })
         .then(() => console.log('Successful share'))
         .catch((error) => console.log('Error sharing', error));
+    } else {
+      this.props.snackbarToggle(true, "Web Share API not Supported", "error")
     }
   }
 

@@ -1,4 +1,4 @@
-import { GET_SINGLE_LINKS, GET_USER_LINKS, LOAD_LINK, CLEAR_SINGLE_LINKS } from '../actions/types';
+import { SET_SINGLE_LINKS, GET_USER_LINKS, LOAD_LINK, CLEAR_SINGLE_LINKS } from '../actions/types';
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
 import { snackbarToggle } from "../actions/appStateAction";
@@ -38,11 +38,12 @@ export const getSingleLink = (id) => (dispatch, getState) => {
   axios.get(`/api/link/single/${id}`)
     .then(res => {
       dispatch({
-        type: GET_SINGLE_LINKS,
+        type: SET_SINGLE_LINKS,
         payload: res.data
       })
     })
     .catch(err => {
+      dispatch({ type: CLEAR_SINGLE_LINKS })      
       dispatch(getErrors(err.response.data, err.response.status));
       dispatch(snackbarToggle(true, returnParaStringOnly(err.response.data), "error"))
     });
