@@ -63,7 +63,7 @@ class SingleLink extends Component {
                 </div>
                 <ShareContainer>
                   <h2>SHARE LINK</h2>
-                  <FontAwesomeIconSet title={singleLink.linkTitle} link={singleLink.url} />
+                  <FontAwesomeIconSet title={singleLink.linkTitle} link={singleLink.url} ll={this.props.match.params.id} />
                 </ShareContainer>
               </SingleLinkContainer>
             </div>

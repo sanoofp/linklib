@@ -42,15 +42,10 @@ router.post("/signup", (req, res) => {
           newUser
             .save()
             .then(user => {
-              jwt.sign(
-                { id: user.id },
-                jwtSecret,
-                { expiresIn: 3600 },
-                (err, token) => {
-                  if (err) throw err;
-                  res.json({ user: user, token: token });
-                }
-              );
+              jwt.sign({ id: user.id }, jwtSecret, (err, token) => {
+                if (err) throw err;
+                res.json({ user: user, token: token });
+              });
             })
             .catch(err => console.log(err));
         });
@@ -77,23 +72,18 @@ router.post("/signin", (req, res) => {
         err.password = "Password incorrect";
         return res.status(400).json(err);
       }
-      jwt.sign(
-        { id: user.id },
-        jwtSecret,
-        { expiresIn: 3600 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({
-            user: {
-              _id: user._id,
-              username: user.username,
-              email: user.email,
-              avatar: user.avatar
-            },
-            token: token
-          });
-        }
-      );
+      jwt.sign({ id: user.id }, jwtSecret, (err, token) => {
+        if (err) throw err;
+        res.json({
+          user: {
+            _id: user._id,
+            username: user.username,
+            email: user.email,
+            avatar: user.avatar
+          },
+          token: token
+        });
+      });
     });
   });
 });
