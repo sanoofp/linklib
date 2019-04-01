@@ -13,13 +13,12 @@ export default function FontAwesomeIconSet(props) {
     fb: `https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(props.link)}`,
     wa: `whatsapp://send?text=${encodeURIComponent(props.link)}`,
     tt: `https://twitter.com/intent/tweet/?text=${encodeURIComponent(props.title)}: ${encodeURIComponent(props.link)}`,
-    ll: `http://linklibio.herokuapp.com/link/${props.ll}`
   }
   return <Icons>
     <A href={links.wa}><FontAwesomeIcon icon={faWhatsapp} size="2x" /></A> 
     <A href={links.fb}><FontAwesomeIcon icon={faFacebook} size="2x" /></A>
     <A href={links.tt}><FontAwesomeIcon icon={faTwitter} size="2x" /></A> 
-    <A href={links.ll}><CodeRounded /></A> 
+    <A onClick={props.ll}><CodeRounded /></A> 
   </Icons>
 }
 

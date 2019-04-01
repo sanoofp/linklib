@@ -29,6 +29,20 @@ class SingleLink extends Component {
     ));      
   };
 
+  androidShare = () => {
+    console.log("AND");
+    const { singleLink } = this.props.linkReducer;    
+    if (navigator.share) {
+      navigator.share({
+          title: singleLink.linkTitle,
+          text: "Linklib - share",
+          url: singleLink.url,
+      })
+        .then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error));
+    }
+  }
+
   render() {
     const { singleLink } = this.props.linkReducer;
     const { copied } = this.state;
@@ -63,7 +77,7 @@ class SingleLink extends Component {
                 </div>
                 <ShareContainer>
                   <h2>SHARE LINK</h2>
-                  <FontAwesomeIconSet title={singleLink.linkTitle} link={singleLink.url} ll={this.props.match.params.id} />
+                  <FontAwesomeIconSet title={singleLink.linkTitle} link={singleLink.url} ll={this.androidShare} />
                 </ShareContainer>
               </SingleLinkContainer>
             </div>
