@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import { modifyColor } from "../../functions/helper";
+import { modifyColor } from "../../functions/helper";
 
 export const DashboardContainer = styled.div`
   width: 100%;
@@ -25,7 +25,7 @@ export const AddLinkContainerForm = styled.div`
   left: 0;
   width: 100%;
   z-index: 2;
-  background-color: ${props => props.theme.bodybg};
+  background-color: ${props => modifyColor(props.theme.bodybg, 16)};
   padding: 8px 0;
   margin-top: ${props => props.cardPositionFixed ? "0px" : "6px"};
   border-radius: 12px;
@@ -62,16 +62,19 @@ export const AddLinkContainerForm = styled.div`
 
 export const ShowLinkItem = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: ${props => modifyColor(props.theme.bodybg, 16)};
   border-radius: 12px;
-  margin: 24px 0;
-  padding: 25px 18px;
+  margin: 30px 0;
+  padding: 28px 18px;
+  position: relative;
 
   h4 {
     font-size: 1.4em;
-    margin: 0 0 8px 0;
+    margin: 0;
   }
   p {
     font-size: 0.8em;
+    margin: 8px 0 6px 0 !important;
     word-wrap: break-word;
     margin: 0;
   }
@@ -79,5 +82,10 @@ export const ShowLinkItem = styled.div`
     button {
       margin: 8px 0 0 0;
     }
+  }
+  .more-show-link-item {
+    position: absolute;
+    top: 14px;
+    right: 9px;
   }
 `;

@@ -10,12 +10,18 @@ import AddLink from "./Add/Add";
 import ShowLinks from './Show/Show';
 
 class Dashboard extends Component {
+  componentDidMount() {
+    const { auth, link } = this.props;
+    if(auth.isAuthenticated) {
+      if(link.userLinks.length === 0) {
+        this.props.getUserLink();
+      }
+    }
+  }
 
   render() {
-    const { auth, link } = this.props;
-    if(auth.isAuthenticated && link.userLinks.length === 0) {
-      this.props.getUserLink();
-    }
+    const { auth } = this.props;
+    
     if (auth.isLoading) {
       return <LoadableLoader />;
     }

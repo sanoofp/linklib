@@ -5,7 +5,7 @@ const { auth } = require("../../helper/auth");
 
 // @route GET /api/link/:userid
 // @desc Get all links from a specific user
-router.get("/:userid", (req, res) => {
+router.get("/:userid", auth, (req, res) => {
   Link.find({ userID: req.params.userid })
     .sort({ date: -1 })
     .then(data => res.json(data))

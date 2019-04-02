@@ -1,5 +1,6 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import { main, dark } from "../Theme";
+import { modifyColor } from "../../functions/helper";
 
 const commonMuiTheme = {
   typography: {
@@ -8,6 +9,15 @@ const commonMuiTheme = {
   }
 };
 
+const commonOverrides = {
+  menu: {
+    MuiMenu: {
+      paper: {
+        boxShadow: "0px 4px 16px rgba(0,0,0,0.15)"
+      }
+    }
+  }
+}
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -18,6 +28,9 @@ export const muiTheme = createMuiTheme({
       main: main.secondary,
       font: main.font,
     }
+  },
+  overrides: {
+    ...commonOverrides.menu
   },
   ...commonMuiTheme
 });
@@ -34,6 +47,7 @@ export const darkMuiTheme = createMuiTheme({
     }
   },
   overrides: {
+    ...commonOverrides.menu,    
     MuiDrawer: {
       paper: {
         backgroundColor: dark.primary
@@ -74,6 +88,21 @@ export const darkMuiTheme = createMuiTheme({
     MuiFormControl: {
       marginNormal: {
         color: dark.font,
+      }
+    },
+    MuiIconButton: {
+      root: {
+        color: dark.font
+      }
+    },
+    MuiPaper: {
+      root: {
+        backgroundColor: dark.bodybg,
+      }
+    },
+    MuiMenuItem: {
+      root: {
+        color: dark.font        
       }
     }
   },

@@ -20,7 +20,8 @@ export const addLink = ({ linkTitle, url }) => (dispatch, getState) => {
 
 export const getUserLink = () => (dispatch, getState) => {
   const userID = getState().authReducer.user._id;
-  axios.get(`/api/link/${userID}`)
+  dispatch({ type: LOAD_LINK })
+  axios.get(`/api/link/${userID}`, axiosHeader(getState))
     .then(res => {
       dispatch({
         type: GET_USER_LINKS,
@@ -44,7 +45,7 @@ export const getSingleLink = (id) => (dispatch, getState) => {
     })
     .catch(err => {
       dispatch({ type: CLEAR_SINGLE_LINKS })      
-      dispatch(getErrors(err.response.data, err.response.status));
+      dispatch(getErrors(err.response.data, err.response.status, "SINGLE_LINK_ERR"));
       dispatch(snackbarToggle(true, returnParaStringOnly(err.response.data), "error"))
     });
 }
@@ -53,4 +54,16 @@ export const clearSingleLink = () => {
   return {
     type: CLEAR_SINGLE_LINKS
   }
+}
+
+export const deleteSingleLink = id => (dispatch, getState) => {
+  axios.delete(`/api/link/${id}`, axiosHeader(getState))
+    .then(data => {
+      dispatch(getUserLink())
+      dispatch(snackbarToggle(true, "Link Deleted", "success"))
+    })
+    .catch(err => {
+      dispatch(snackbarToggle(true, "Failed to Delete link. Try again", "error"))
+    });
+
 }

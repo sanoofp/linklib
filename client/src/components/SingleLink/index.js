@@ -5,8 +5,9 @@ import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
+import { clearErrors } from "../../actions/errorAction";
 import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
-import Spinner2 from "../Loader/Spinner2";
+import Spinner from "../Loader/Spinner";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
 import copy from "../../functions/copy";
@@ -17,7 +18,7 @@ class SingleLink extends Component {
   };
 
   componentDidMount() {
-    this.props.getSingleLink(this.props.match.params.id);
+    this.props.getSingleLink(this.props.match.params.id)
   }
 
   componentWillUnmount() {
@@ -25,35 +26,45 @@ class SingleLink extends Component {
   }
 
   copy = () => {
-    copy("copy-link", () => this.setState({ copied: true }, () =>
-    setTimeout(() => this.setState({ copied: false }), 4000)
-    ));      
+    copy("copy-link", () =>
+      this.setState({ copied: true }, () =>
+        setTimeout(() => this.setState({ copied: false }), 4000)
+      )
+    );
   };
 
   androidShare = () => {
-    const { singleLink } = this.props.linkReducer;    
+    const { singleLink } = this.props.linkReducer;
     if (navigator.share) {
-      navigator.share({
+      navigator
+        .share({
           title: singleLink.linkTitle,
           text: "Linklib - share",
-          url: singleLink.url,
-      })
-        .then(() => console.log('Successful share'))
-        .catch((error) => console.log('Error sharing', error));
+          url: singleLink.url
+        })
+        .then(() => console.log("Successful share"))
+        .catch(error => console.log("Error sharing", error));
     } else {
-      this.props.snackbarToggle(true, "Web Share API not Supported", "error")
+      this.props.snackbarToggle(true, "Web Share API not Supported", "error");
     }
-  }
+  };
 
   render() {
     const { singleLink } = this.props.linkReducer;
     const { copied } = this.state;
+    const { id } = this.props.errorReducer;
+    if(id === "SINGLE_LINK_ERR") {
+      this.props.clearErrors();
+      return <Redirect to="/dashboard" />
+    } 
     return (
       <React.Fragment>
         <Helmet>
-          <title>{`Linklib - ${singleLink.linkTitle ? singleLink.linkTitle : ""}`}</title>
+          <title>{`Linklib - ${
+            singleLink.linkTitle ? singleLink.linkTitle : ""
+          }`}</title>
         </Helmet>
-        <Spinner2 />
+        <Spinner />
         <div className="container my-3">
           <div className="row">
             <div className="col-md-10 mx-auto">
@@ -66,10 +77,14 @@ class SingleLink extends Component {
                     readOnly
                     value={singleLink.url ? singleLink.url : ""}
                   />
-                  <CopiedMsg copied={copied}><p>Copied to clipboard</p></CopiedMsg>
+                  <CopiedMsg copied={copied}>
+                    <p>Copied to clipboard</p>
+                  </CopiedMsg>
                 </div>
                 <div>
-                  <A className="links-btn" href={singleLink.url}>Open Link</A>
+                  <A className="links-btn" href={singleLink.url}>
+                    Open Link
+                  </A>
                   <input
                     className="links-btn"
                     type="button"
@@ -79,7 +94,11 @@ class SingleLink extends Component {
                 </div>
                 <ShareContainer>
                   <h2>SHARE LINK</h2>
-                  <FontAwesomeIconSet title={singleLink.linkTitle} link={singleLink.url} ll={this.androidShare} />
+                  <FontAwesomeIconSet
+                    title={singleLink.linkTitle}
+                    link={singleLink.url}
+                    ll={this.androidShare}
+                  />
                 </ShareContainer>
               </SingleLinkContainer>
             </div>
@@ -92,14 +111,17 @@ class SingleLink extends Component {
 
 SingleLink.propTypes = {
   getSingleLink: PropTypes.func.isRequired,
-  snackbarToggle: PropTypes.func.isRequired
+  snackbarToggle: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
+  errorReducer: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  linkReducer: state.linkReducer
+  linkReducer: state.linkReducer,
+  errorReducer: state.errorReducer
 });
 
 export default connect(
   mapStateToProps,
-  { getSingleLink, clearSingleLink, snackbarToggle }
+  { getSingleLink, clearSingleLink, snackbarToggle, clearErrors }
 )(SingleLink);

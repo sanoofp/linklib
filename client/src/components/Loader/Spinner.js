@@ -5,13 +5,15 @@ import { SpinnerContainer } from "./styles";
 
 const Spinner = props => {
   const { reqLoading } = props.appState;
-  return (reqLoading) && <SpinnerContainer>
+  const { linkLoading } = props.linkReducer;  
+  return (reqLoading || linkLoading) && <SpinnerContainer>
     <CircularProgress size={60} thickness={8} color="primary" variant="indeterminate" />
   </SpinnerContainer>
 }
 
 const mapStateToProps = state => ({
   appState: state.appStateReducer,
+  linkReducer: state.linkReducer
 })
 
 export default connect(mapStateToProps)(Spinner) 
