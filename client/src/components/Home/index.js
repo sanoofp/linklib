@@ -14,8 +14,19 @@ import {
   MuiButtonStyles
 } from "./style";
 import { SigninButtonComponent, SignupButtonComponent, DashboardButtonComponent } from "../Button";
-import SigninModel from "../Dialogs/SignIn/SignIn";
-import SignupModel from "../Dialogs/Signup/Signup";
+// import SignupModel from "../Dialogs/Signup/Signup";
+// import SigninModel from "../Dialogs/SignIn/SignIn";
+import Loadable from "react-loadable";
+import LoadableLoader from "../Loader/LoadableLoader";
+
+const SignupModel = Loadable({
+  loader: () => import("../Dialogs/Signup/Signup"),
+  loading: LoadableLoader
+});
+const SigninModel = Loadable({
+  loader: () => import("../Dialogs/SignIn/SignIn"),
+  loading: LoadableLoader
+});
 
 class Home extends Component {
   componentDidMount() {

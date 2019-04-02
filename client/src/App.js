@@ -39,6 +39,10 @@ const SnackbarComponent = Loadable({
   loader: () => import("./components/Snackbar"),
   loading: LoadableLoader
 });
+const PageNotFound = Loadable({
+  loader: () => import("./components/PageNotFound"),
+  loading: LoadableLoader
+});
 
 class App extends Component {
   componentDidMount() {
@@ -76,6 +80,7 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
               <Route path="/link/:id" component={SingleLink} />
+              <Route path="*" exact component={PageNotFound} />
             </Switch>
             <Spinner />
             <LinearLoader />
