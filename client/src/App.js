@@ -1,34 +1,43 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { toggleDrawer } from "./actions/appStateAction";
-import { loadUser } from "./actions/authAction";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { loadCSS } from "fg-loadcss/src/loadCSS";
+
+import { toggleDrawer } from "./actions/appStateAction";
+import { loadUser } from "./actions/authAction";
 import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
-import DrawerComponent from "./components/Drawer";
-import Home from "./components/Home";
-// import Dashboard from "./components/Dashboard/Dashboard";
 import SnackbarComponent from './components/Snackbar';
 import { main, dark } from "./utils/Theme";
 import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import { MuiThemeProvider } from "@material-ui/core/styles";
-import Spinner from './components/Loader/Spinner'
+import Spinner from './components/Loader/Spinner';
 import LoadableLoader from './components/Loader/LoadableLoader'
 import LinearLoader from './components/Loader/LinearLoader'
-// import SingleLink from "./components/SingleLink";
-import "bootstrap/dist/css/bootstrap-grid.min.css";
 import Loadable from "react-loadable";
+import "bootstrap/dist/css/bootstrap-grid.min.css";
+// import Home from "./components/Home";
+// import DrawerComponent from "./components/Drawer";
+// import SingleLink from "./components/SingleLink";
+// import Dashboard from "./components/Dashboard/Dashboard";
 
+const Home = Loadable({
+  loader: () => import("./components/Home"),
+  loading: LoadableLoader
+});
 const Dashboard = Loadable({
   loader: () => import("./components/Dashboard"),
   loading: LoadableLoader
 });
 const SingleLink = Loadable({
   loader: () => import("./components/SingleLink"),
+  loading: LoadableLoader
+});
+const DrawerComponent = Loadable({
+  loader: () => import("./components/Drawer"),
   loading: LoadableLoader
 });
 

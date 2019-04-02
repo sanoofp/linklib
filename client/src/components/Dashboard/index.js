@@ -13,7 +13,9 @@ class Dashboard extends Component {
   componentDidMount() {
     const { auth, link } = this.props;
     if(auth.isAuthenticated) {
+      console.log("asdas");
       if(link.userLinks.length === 0) {
+        console.log("asdas2323");
         this.props.getUserLink();
       }
     }
