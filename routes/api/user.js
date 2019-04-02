@@ -14,7 +14,8 @@ const User = require("../../models/User");
 router.get("/auth", auth, (req, res) => {
   User.findById(req.user.id)
     .select("-password")
-    .then(user => res.json(user));
+    .then(user => res.json(user))
+    .catch(err => res.status(401).json(err));
 });
 
 // @route POST api/user/signup

@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js prettier
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js client
 
 PATH: 
-  C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Brackets\command;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\PuTTY\;C:\Users\sanoofp\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\sanoofp\AppData\Local\Programs\Python\Python37\;C:\Program Files\Microsoft VS Code\bin;C:\Users\sanoofp\AppData\Local\Yarn\bin;C:\Users\sanoofp\AppData\Roaming\npm;C:\Users\sanoofp\AppData\Local\Android\Sdk\platform-tools;C:\Users\sanoofp\AppData\Local\Android\Sdk\platforms;C:\Program Files\Heroku\bin;C:\ProgramData\sanoofp\hyper\app-2.0.0\resources\bin;C:\Users\sanoofp\AppData\Local\hyper\app-2.1.2\resources\bin
+  C:\Node-Project\linklib-react\node_modules\.bin;C:\Users\sanoofp\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Node-Project\linklib-react\node_modules\.bin;C:\Users\sanoofp\AppData\Local\Yarn\Data\link\node_modules\.bin;C:\Program Files\libexec\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\lib\node_modules\npm\bin\node-gyp-bin;C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Brackets\command;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\PuTTY\;C:\Users\sanoofp\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\sanoofp\AppData\Local\Programs\Python\Python37\;C:\Program Files\Microsoft VS Code\bin;C:\Users\sanoofp\AppData\Local\Yarn\bin;C:\Users\sanoofp\AppData\Roaming\npm;C:\Users\sanoofp\AppData\Local\Android\Sdk\platform-tools;C:\Users\sanoofp\AppData\Local\Android\Sdk\platforms;C:\Program Files\Heroku\bin;C:\ProgramData\sanoofp\hyper\app-2.0.0\resources\bin;C:\Users\sanoofp\AppData\Local\hyper\app-2.1.2\resources\bin
 
 Yarn version: 
   1.5.1
@@ -32,11 +32,17 @@ npm manifest:
       "node": "8.11.1"
     },
     "dependencies": {
+      "bcryptjs": "^2.4.3",
       "compression": "^1.7.4",
+      "config": "^3.0.1",
       "express": "^4.16.4",
+      "express-sslify": "^1.2.0",
+      "jsonwebtoken": "^8.5.1",
       "mongoose": "^5.4.19",
+      "morgan": "^1.9.1",
       "passport": "^0.4.0",
-      "passport-local": "^1.0.0"
+      "passport-local": "^1.0.0",
+      "validator": "^10.11.0"
     },
     "devDependencies": {
       "concurrently": "^4.1.0",
@@ -207,6 +213,16 @@ Lockfile:
       mixin-deep "^1.2.0"
       pascalcase "^0.1.1"
   
+  basic-auth@~2.0.0:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
+    dependencies:
+      safe-buffer "5.1.2"
+  
+  bcryptjs@^2.4.3:
+    version "2.4.3"
+    resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
+  
   binary-extensions@^1.0.0:
     version "1.13.0"
     resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.13.0.tgz#9523e001306a32444b907423f1de2164222f6ab1"
@@ -267,6 +283,10 @@ Lockfile:
   bson@^1.1.0, bson@~1.1.0:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.1.tgz#4330f5e99104c4e751e7351859e2d408279f2f13"
+  
+  buffer-equal-constant-time@1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
   
   bytes@3.0.0:
     version "3.0.0"
@@ -436,6 +456,12 @@ Lockfile:
       tree-kill "^1.1.0"
       yargs "^12.0.1"
   
+  config@^3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/config/-/config-3.0.1.tgz#c3118e2eb45fdfd135277339f87e2492559cb147"
+    dependencies:
+      json5 "^1.0.1"
+  
   configstore@^3.0.0:
     version "3.1.2"
     resolved "https://registry.yarnpkg.com/configstore/-/configstore-3.1.2.tgz#c6f25defaeef26df12dd33414b001fe81a543f8f"
@@ -597,6 +623,12 @@ Lockfile:
   duplexer3@^0.1.4:
     version "0.1.4"
     resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
+  
+  ecdsa-sig-formatter@1.0.11:
+    version "1.0.11"
+    resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
+    dependencies:
+      safe-buffer "^5.0.1"
   
   ee-first@1.1.1:
     version "1.1.1"
@@ -764,6 +796,10 @@ Lockfile:
       regex-not "^1.0.0"
       snapdragon "^0.8.1"
       to-regex "^3.0.1"
+  
+  express-sslify@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/express-sslify/-/express-sslify-1.2.0.tgz#30e84bceed1557eb187672bbe1430a0a2a100d9c"
   
   express@^4.16.4:
     version "4.16.4"
@@ -1341,6 +1377,42 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   
+  json5@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.1.tgz#779fb0018604fa854eacbf6252180d83543e3dbe"
+    dependencies:
+      minimist "^1.2.0"
+  
+  jsonwebtoken@^8.5.1:
+    version "8.5.1"
+    resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.5.1.tgz#00e71e0b8df54c2121a1f26137df2280673bcc0d"
+    dependencies:
+      jws "^3.2.2"
+      lodash.includes "^4.3.0"
+      lodash.isboolean "^3.0.3"
+      lodash.isinteger "^4.0.4"
+      lodash.isnumber "^3.0.3"
+      lodash.isplainobject "^4.0.6"
+      lodash.isstring "^4.0.1"
+      lodash.once "^4.0.0"
+      ms "^2.1.1"
+      semver "^5.6.0"
+  
+  jwa@^1.4.1:
+    version "1.4.1"
+    resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
+    dependencies:
+      buffer-equal-constant-time "1.0.1"
+      ecdsa-sig-formatter "1.0.11"
+      safe-buffer "^5.0.1"
+  
+  jws@^3.2.2:
+    version "3.2.2"
+    resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
+    dependencies:
+      jwa "^1.4.1"
+      safe-buffer "^5.0.1"
+  
   kareem@2.3.0:
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.3.0.tgz#ef33c42e9024dce511eeaf440cd684f3af1fc769"
@@ -1390,6 +1462,34 @@ Lockfile:
     dependencies:
       p-locate "^3.0.0"
       path-exists "^3.0.0"
+  
+  lodash.includes@^4.3.0:
+    version "4.3.0"
+    resolved "https://registry.yarnpkg.com/lodash.includes/-/lodash.includes-4.3.0.tgz#60bb98a87cb923c68ca1e51325483314849f553f"
+  
+  lodash.isboolean@^3.0.3:
+    version "3.0.3"
+    resolved "https://registry.yarnpkg.com/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz#6c2e171db2a257cd96802fd43b01b20d5f5870f6"
+  
+  lodash.isinteger@^4.0.4:
+    version "4.0.4"
+    resolved "https://registry.yarnpkg.com/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz#619c0af3d03f8b04c31f5882840b77b11cd68343"
+  
+  lodash.isnumber@^3.0.3:
+    version "3.0.3"
+    resolved "https://registry.yarnpkg.com/lodash.isnumber/-/lodash.isnumber-3.0.3.tgz#3ce76810c5928d03352301ac287317f11c0b1ffc"
+  
+  lodash.isplainobject@^4.0.6:
+    version "4.0.6"
+    resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
+  
+  lodash.isstring@^4.0.1:
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/lodash.isstring/-/lodash.isstring-4.0.1.tgz#d527dfb5456eca7cc9bb95d5daeaf88ba54a5451"
+  
+  lodash.once@^4.0.0:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   
   lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5:
     version "4.17.11"
@@ -1569,6 +1669,16 @@ Lockfile:
       regexp-clone "0.0.1"
       safe-buffer "5.1.2"
       sliced "1.0.1"
+  
+  morgan@^1.9.1:
+    version "1.9.1"
+    resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.1.tgz#0a8d16734a1d9afbc824b99df87e738e58e2da59"
+    dependencies:
+      basic-auth "~2.0.0"
+      debug "2.6.9"
+      depd "~1.1.2"
+      on-finished "~2.3.0"
+      on-headers "~1.0.1"
   
   mpath@0.5.1:
     version "0.5.1"
@@ -1758,7 +1868,7 @@ Lockfile:
     dependencies:
       ee-first "1.1.1"
   
-  on-headers@~1.0.2:
+  on-headers@~1.0.1, on-headers@~1.0.2:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/on-headers/-/on-headers-1.0.2.tgz#772b0ae6aaa525c399e489adfad90c403eb3c28f"
   
@@ -2165,7 +2275,7 @@ Lockfile:
     dependencies:
       semver "^5.0.3"
   
-  "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.5.0, semver@^5.5.1:
+  "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
     version "5.6.0"
     resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   
@@ -2601,6 +2711,10 @@ Lockfile:
       spdx-correct "^3.0.0"
       spdx-expression-parse "^3.0.0"
   
+  validator@^10.11.0:
+    version "10.11.0"
+    resolved "https://registry.yarnpkg.com/validator/-/validator-10.11.0.tgz#003108ea6e9a9874d31ccc9e5006856ccd76b228"
+  
   vary@~1.1.2:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
@@ -2700,7 +2814,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c C:\Node-Project\linklib-react\node_modules\.bin\prettier
+  Arguments: /d /s /c cd client && yarn start
   Directory: C:\Node-Project\linklib-react
   Output:
   

@@ -9,13 +9,6 @@ export const DashboardContainer = styled.div`
     margin-top: 80px;
   }
   
-  
-  @media (max-width: 768px) {
-    .show-items-container {
-      margin-top: 100px;
-    }
-  }
-  
   @media (max-width: 485px) {
     .show-items-container {
       margin-top: 80px;

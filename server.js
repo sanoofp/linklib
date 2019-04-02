@@ -3,14 +3,12 @@ const compression = require("compression");
 const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const enforce = require("express-sslify");
 const { mongoURI } = require("./config/keys");
 
 const app = express();
 
 app.set("port", process.env.PORT || 5000);
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(compression());
 app.use(morgan("dev"));
 app.use(express.json());
