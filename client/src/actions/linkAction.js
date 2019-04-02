@@ -1,7 +1,7 @@
 import { SET_SINGLE_LINKS, GET_USER_LINKS, LOAD_LINK, CLEAR_SINGLE_LINKS } from '../actions/types';
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
-import { snackbarToggle } from "../actions/appStateAction";
+import { snackbarToggle, dialogAction } from "../actions/appStateAction";
 import { getErrors } from "../actions/errorAction";
 import { returnParaStringOnly } from "../functions/helper";
 
@@ -9,8 +9,9 @@ export const addLink = ({ linkTitle, url }) => (dispatch, getState) => {
   const body = JSON.stringify({ linkTitle, url });
   axios.post("/api/link", body, axiosHeader(getState))
   .then(res => {
-    dispatch(snackbarToggle(true, `${res.data.linkTitle} - Link added`, "success"));
     dispatch(getUserLink());
+    dispatch(dialogAction("addLinkDialogOpen", false))
+    dispatch(snackbarToggle(true, `${res.data.linkTitle} - Link added`, "success"));
   })
   .catch(err => {
     dispatch(getErrors(err.response.data, err.response.status));

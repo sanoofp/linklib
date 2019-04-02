@@ -1,33 +1,55 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
-import { Helmet } from 'react-helmet';
+import { Helmet } from "react-helmet";
+import Fab from "@material-ui/core/Fab";
+import AddIcon from "@material-ui/icons/Add";
+
 import LoadableLoader from "../Loader/LoadableLoader";
 import { getUserLink } from "../../actions/linkAction";
+import { dialogAction } from "../../actions/appStateAction";
 import { DashboardContainer } from "./styles";
-import AddLink from "./Add/Add";
-import ShowLinks from './Show/Show';
+import Search from "./Search/Search";
+import ShowLinks from "./Show/Show";
+import AddLinkModal from "../Dialogs/AddLink/AddLinkModal";
+import { validateURL } from "../../functions/helper";
 
 class Dashboard extends Component {
   
+  getClipboard = () => {
+    if(navigator.clipboard) {
+      navigator.clipboard.readText()
+      .then(url => {
+        const isURL = validateURL(url)
+        if(isURL) {
+          this.setState({ foundUrlInClipboard: true })
+        }
+      })
+      .catch(err => console.log(err))
+    }
+  }
+
   componentDidMount() {
     const { auth, link } = this.props;
-    if(auth.isAuthenticated) {
-      if(link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
+    
+    this.getClipboard();
+
+    if (auth.isAuthenticated) {
+      if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
         this.props.getUserLink();
       }
     }
   }
 
   render() {
-    const { auth } = this.props;
-    
+    const { auth, dialogAction } = this.props;
+
     if (auth.isLoading) {
       return <LoadableLoader />;
     }
-    if(!auth.isAuthenticated) {
-      return <Redirect to="/"/>
+    if (!auth.isAuthenticated) {
+      return <Redirect to="/" />;
     }
 
     return (
@@ -36,8 +58,18 @@ class Dashboard extends Component {
           <title>Linklib - {auth.user.username}</title>
         </Helmet>
         <DashboardContainer>
-          <AddLink />
+          <Search />
           <ShowLinks />
+
+          <Fab
+            color="secondary"
+            aria-label="Add"
+            onClick={() => dialogAction("addLinkDialogOpen", true)}
+            style={{ position: "fixed", right: 24, bottom: 20 }}
+          >
+            <AddIcon />
+          </Fab>
+          <AddLinkModal />
         </DashboardContainer>
       </React.Fragment>
     );
@@ -46,6 +78,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   getUserLink: PropTypes.func.isRequired,
+  dialogAction: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -56,5 +89,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUserLink }
+  { getUserLink, dialogAction }
 )(Dashboard);

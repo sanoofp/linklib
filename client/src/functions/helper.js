@@ -45,3 +45,9 @@ export const truncateStringTo = (str, upto) => {
   }
   return str.slice(0, upto) + "....";
 }
+
+export const validateURL = url => {
+  const regexQuery = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$";
+  const regex = new RegExp(regexQuery, "i")
+  return regex.test(url);
+}

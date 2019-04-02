@@ -3,22 +3,26 @@ import { modifyColor } from "../../functions/helper";
 
 export const DashboardContainer = styled.div`
   width: 100%;
+  position: relative;
   .show-items-container {
     margin-top: 80px;
   }
-  @media (max-width: 996px) {
+  
+  
+  @media (max-width: 768px) {
     .show-items-container {
       margin-top: 100px;
     }
   }
-  @media (max-width: 768px) {
+  
+  @media (max-width: 485px) {
     .show-items-container {
-      margin-top: 130px;
+      margin-top: 80px;
     }
-  }
+  }  
 `;
   
-export const AddLinkContainerForm = styled.div`
+export const SearchContainerForm = styled.div`
   box-shadow: 0px 3px 16px rgba(0,0,0,0.1);
   position: ${props => props.cardPositionFixed ? "fixed" : "absolute"};
   top: ${props => props.cardPositionFixed ? 0 : props.headerHeight};
@@ -36,7 +40,7 @@ export const AddLinkContainerForm = styled.div`
     flex-wrap: wrap;
   }
   input {
-    width: 270px;
+    width: 340px;
   }
   label {
     font-family: ${props => props.theme.primaryFont} !important;
@@ -51,10 +55,10 @@ export const AddLinkContainerForm = styled.div`
     
     input {
       margin: 0 8px;
-      width: 120px;
+      width: 160px;
     }
     button {
-      margin: 8px 0;
+      margin: 0;
     }
   }
 `;

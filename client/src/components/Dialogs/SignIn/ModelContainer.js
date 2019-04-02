@@ -1,5 +1,5 @@
 import React from "react";
-import { ModelContainerStyled, SigninModel, SignInForm } from "../style";
+import { ModelContainerStyled, SigninModel, Form } from "../style";
 import TextField from "@material-ui/core/TextField";
 import { SigninButtonComponent } from "../../Button";
 
@@ -9,7 +9,7 @@ const ModelContainer = props => {
       <SigninModel>
         <div className="container h-100">
           <div className="row h-100">
-            <SignInForm className="col-md-6 ml-auto">
+            <Form className="col-md-6 ml-auto">
               <form onSubmit={props.handleSubmit} noValidate autoComplete="off">
                 <h1 className="display-5">Signin</h1>
                 <TextField
@@ -33,7 +33,7 @@ const ModelContainer = props => {
                 />
                 <SigninButtonComponent type="submit" fullWidth margin="30px 0 0 0" />
               </form>
-            </SignInForm>
+            </Form>
           </div>
         </div>
       </SigninModel>
