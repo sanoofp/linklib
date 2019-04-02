@@ -31,20 +31,23 @@ class AddLink extends Component {
   componentDidMount() {
     this._isMounted = true;
     const headerHeight = document.querySelector("#header").clientHeight;
-    // if(window.innerWidth > 768) {
-      document.addEventListener("scroll", event => {
-        if(this._isMounted) {
-          if (window.scrollY > headerHeight) {
-            this.setState({
-              cardPositionFixed: true,
-              headerHeight
-            });
-          } else {
-            this.setState({ cardPositionFixed: false, headerHeight });
-          }
+    if(navigator.clipboard) {
+      navigator.clipboard.readText()
+        .then(text => console.log(text))
+        .catch(err => console.log(err))
+    }
+    document.addEventListener("scroll", event => {
+      if(this._isMounted) {
+        if (window.scrollY > headerHeight) {
+          this.setState({
+            cardPositionFixed: true,
+            headerHeight
+          });
+        } else {
+          this.setState({ cardPositionFixed: false, headerHeight });
         }
-      });
-    // }
+      }
+    });
   }
 
   componentWillUnmount() {

@@ -93,7 +93,6 @@ App.propTypes = {
   appState: PropTypes.object.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
-  getUserLink: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
 import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
-import { clearErrors } from "../../actions/errorAction";
 import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
 import Spinner from "../Loader/Spinner";
 import A from "../Button/A";
@@ -21,15 +20,16 @@ class SingleLink extends Component {
     this.props.getSingleLink(this.props.match.params.id)
   }
 
+  _timeout = () => this.setState({ copied: false })
+
   componentWillUnmount() {
     this.props.clearSingleLink();
+    clearTimeout(this._timeout);
   }
 
   copy = () => {
     copy("copy-link", () =>
-      this.setState({ copied: true }, () =>
-        setTimeout(() => this.setState({ copied: false }), 4000)
-      )
+      this.setState({ copied: true }, () => setTimeout(this._timeout, 1000))
     );
   };
 
@@ -54,7 +54,6 @@ class SingleLink extends Component {
     const { copied } = this.state;
     const { id } = this.props.errorReducer;
     if(id === "SINGLE_LINK_ERR") {
-      this.props.clearErrors();
       return <Redirect to="/dashboard" />
     } 
     return (
@@ -112,7 +111,6 @@ class SingleLink extends Component {
 SingleLink.propTypes = {
   getSingleLink: PropTypes.func.isRequired,
   snackbarToggle: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
   errorReducer: PropTypes.object.isRequired
 };
 
@@ -123,5 +121,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSingleLink, clearSingleLink, snackbarToggle, clearErrors }
+  { getSingleLink, clearSingleLink, snackbarToggle }
 )(SingleLink);

@@ -9,7 +9,6 @@ import ErrorIcon from "@material-ui/icons/Error";
 import red from "@material-ui/core/colors/red";
 import green from "@material-ui/core/colors/green";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-// import Fade from "@material-ui/core/Fade";
 import { snackbarToggle } from "../../actions/appStateAction";
 
 const SnackbarComponent = props => {

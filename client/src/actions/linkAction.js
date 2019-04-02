@@ -44,7 +44,7 @@ export const getSingleLink = (id) => (dispatch, getState) => {
       })
     })
     .catch(err => {
-      dispatch({ type: CLEAR_SINGLE_LINKS })      
+      dispatch({ type: CLEAR_SINGLE_LINKS });
       dispatch(getErrors(err.response.data, err.response.status, "SINGLE_LINK_ERR"));
       dispatch(snackbarToggle(true, returnParaStringOnly(err.response.data), "error"))
     });
