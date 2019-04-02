@@ -3,7 +3,8 @@ import {
   TOGGLE_DARK_THEME,
   HANDLE_DIALOG_STATE,
   SNACKBAR_TOGGLE,
-  REQUEST_LOADING
+  REQUEST_LOADING,
+  CLIPBOARD_STATE
 } from "../actions/types";
 
 const initalState = {
@@ -17,7 +18,11 @@ const initalState = {
     msg: "",
     type: ""
   },
-  reqLoading: false
+  reqLoading: false,
+  clipboard: {
+    foundUrl: false,
+    urlFromClipboard: ""
+  }
 };
 
 export default function(state = initalState, action) {
@@ -53,6 +58,15 @@ export default function(state = initalState, action) {
       return {
         ...state,
         reqLoading: action.payload.loading
+      }
+    }
+    case CLIPBOARD_STATE: {
+      return {
+        ...state,
+        clipboard: {
+          foundUrl: action.payload.foundUrl,
+          urlFromClipboard: action.payload.urlFromClipboard
+        }
       }
     }
     default:

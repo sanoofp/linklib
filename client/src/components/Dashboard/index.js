@@ -3,36 +3,42 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
-
+import Loadable from "react-loadable";
 import LoadableLoader from "../Loader/LoadableLoader";
 import { getUserLink } from "../../actions/linkAction";
-import { dialogAction } from "../../actions/appStateAction";
+import { clipboardState } from "../../actions/appStateAction";
 import { DashboardContainer } from "./styles";
 import Search from "./Search/Search";
 import ShowLinks from "./Show/Show";
-import AddLinkModal from "../Dialogs/AddLink/AddLinkModal";
 import { validateURL } from "../../functions/helper";
 
+const AddLink = Loadable({
+  loader: () => import("./Add/Add"),
+  loading: LoadableLoader
+});
+
+const AddLinkMessage = Loadable({
+  loader: () => import("./Add/AddLinkMessage"),
+  loading: LoadableLoader
+});
+
 class Dashboard extends Component {
-  
   getClipboard = () => {
-    if(navigator.clipboard) {
-      navigator.clipboard.readText()
-      .then(url => {
-        const isURL = validateURL(url)
-        if(isURL) {
-          this.setState({ foundUrlInClipboard: true })
+    if (navigator.clipboard) {
+      navigator.clipboard.readText().then(url => {
+        const isURL = validateURL(url);
+        if (isURL) {
+          console.log(url);
+          this.props.clipboardState(true, url);
+          return true;
         }
-      })
-      .catch(err => console.log(err))
+      });
     }
-  }
+  };
 
   componentDidMount() {
     const { auth, link } = this.props;
-    
+
     this.getClipboard();
 
     if (auth.isAuthenticated) {
@@ -43,7 +49,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { auth, dialogAction } = this.props;
+    const { auth } = this.props;
 
     if (auth.isLoading) {
       return <LoadableLoader />;
@@ -60,16 +66,8 @@ class Dashboard extends Component {
         <DashboardContainer>
           <Search />
           <ShowLinks />
-
-          <Fab
-            color="secondary"
-            aria-label="Add"
-            onClick={() => dialogAction("addLinkDialogOpen", true)}
-            style={{ position: "fixed", right: 24, bottom: 20 }}
-          >
-            <AddIcon />
-          </Fab>
-          <AddLinkModal />
+          <AddLink />
+          <AddLinkMessage />
         </DashboardContainer>
       </React.Fragment>
     );
@@ -78,7 +76,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   getUserLink: PropTypes.func.isRequired,
-  dialogAction: PropTypes.func.isRequired,
+  clipboardState: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
@@ -89,5 +87,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUserLink, dialogAction }
+  { getUserLink, clipboardState }
 )(Dashboard);

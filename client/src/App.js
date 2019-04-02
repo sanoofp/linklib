@@ -11,18 +11,13 @@ import { toggleDrawer } from "./actions/appStateAction";
 import { loadUser } from "./actions/authAction";
 import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
-import SnackbarComponent from './components/Snackbar';
 import { main, dark } from "./utils/Theme";
 import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
 import Spinner from './components/Loader/Spinner';
-import LoadableLoader from './components/Loader/LoadableLoader'
-import LinearLoader from './components/Loader/LinearLoader'
+import LoadableLoader from './components/Loader/LoadableLoader';
 import Loadable from "react-loadable";
+import LinearLoader from './components/Loader/LinearLoader'
 import "bootstrap/dist/css/bootstrap-grid.min.css";
-// import Home from "./components/Home";
-// import DrawerComponent from "./components/Drawer";
-// import SingleLink from "./components/SingleLink";
-// import Dashboard from "./components/Dashboard/Dashboard";
 
 const Home = Loadable({
   loader: () => import("./components/Home"),
@@ -38,6 +33,10 @@ const SingleLink = Loadable({
 });
 const DrawerComponent = Loadable({
   loader: () => import("./components/Drawer"),
+  loading: LoadableLoader
+});
+const SnackbarComponent = Loadable({
+  loader: () => import("./components/Snackbar"),
   loading: LoadableLoader
 });
 

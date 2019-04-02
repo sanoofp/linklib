@@ -3,7 +3,7 @@ import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ModelContainer from "./ModelContainer";
-import { dialogAction, snackbarToggle } from "../../../actions/appStateAction";
+import { dialogAction, snackbarToggle, clipboardState } from "../../../actions/appStateAction";
 import { clearErrors } from "../../../actions/errorAction";
 import { addLink } from "../../../actions/linkAction";
 
@@ -27,12 +27,17 @@ class AddLinkModal extends Component {
       this.props.snackbarToggle(true, "Please Enter complete data", "error");
     } else {
       this.props.addLink(this.state);
+      this.props.clipboardState(false, "", true)
     }
+  }
+
+  componentWillReceiveProps() {
+    const { clipboard } = this.props.appState;
+    this.setState({ url: clipboard.urlFromClipboard });
   }
 
   render() {
     const { appState, dialogAction, clearErrors } = this.props;
-
     return (
       <Modal
         closeAfterTransition={true}
@@ -44,6 +49,7 @@ class AddLinkModal extends Component {
         }}
       >
         <ModelContainer
+          url={this.state.url}
           handleSubmit={this.handleSubmit}
           onChange={(name, value) => this.handleOnChange(name, value)}        
         />
@@ -57,6 +63,7 @@ AddLinkModal.propTypes = {
   dialogAction: PropTypes.func.isRequired,
   addLink: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
+  clipboardState: PropTypes.func.isRequired,
   snackbarToggle: PropTypes.func.isRequired,
 };
 
@@ -66,5 +73,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { dialogAction, snackbarToggle, clearErrors, addLink }
+  { dialogAction, snackbarToggle, clearErrors, addLink, clipboardState }
 )(AddLinkModal);

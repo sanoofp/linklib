@@ -16,7 +16,6 @@ router.get("/:userid", auth, (req, res) => {
 // @desc Create a link
 router.post("/", auth, (req, res) => {
   const { err, isValid } = urlpost(req.body);
-  console.log(err);
   if (!isValid) return res.status(400).json(err);
 
   const newLink = {

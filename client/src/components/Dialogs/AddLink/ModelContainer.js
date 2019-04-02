@@ -28,6 +28,7 @@ const ModelContainer = props => {
                   type="url"
                   margin="normal"
                   fullWidth
+                  value={props.url}
                   variant="outlined"
                   onChange={event => props.onChange("url", event.target.value)}
                 />

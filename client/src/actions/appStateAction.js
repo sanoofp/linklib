@@ -3,7 +3,8 @@ import {
   TOGGLE_DARK_THEME,
   HANDLE_DIALOG_STATE,
   SNACKBAR_TOGGLE,
-  REQUEST_LOADING
+  REQUEST_LOADING,
+  CLIPBOARD_STATE
 } from "./types";
 
 export const toggleDrawer = drawerState => {
@@ -50,3 +51,17 @@ export const toggleLoading = loading => {
     }
   }
 };
+
+export const clipboardState = (foundUrl, urlFromClipboard, clearClipboard = false) => {
+  if(clearClipboard) {
+    navigator.clipboard.writeText("");
+  } 
+
+  return {
+    type: CLIPBOARD_STATE,
+    payload: {
+      foundUrl: foundUrl,
+      urlFromClipboard: urlFromClipboard
+    }
+  }
+}

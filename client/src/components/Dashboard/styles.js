@@ -4,6 +4,7 @@ import { modifyColor } from "../../functions/helper";
 export const DashboardContainer = styled.div`
   width: 100%;
   position: relative;
+  padding-bottom: 40px;
   .show-items-container {
     margin-top: 80px;
   }
@@ -91,5 +92,39 @@ export const ShowLinkItem = styled.div`
     position: absolute;
     top: 14px;
     right: 9px;
+  }
+`;
+
+export const AddLinkMessageContainer = styled.div`
+  max-width: 500px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 4px 5px 24px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  background-color: ${props => props.theme.bodybg};
+  text-align: center;
+  padding: 30px 18px;
+  h4 {
+    font-size: 1.8em;
+    margin: 0;
+    font-family: ${props => props.theme.primaryFont};
+  }
+  h6 {
+    margin: 4px 0;
+    word-wrap: break-word;
+  }
+  p {
+    font-size: 1.2em;
+    margin: 8px 0;
+  }
+
+  div {
+    margin-top: 12px;
+  }
+
+  @media (max-width: 820px) {
+    width: 94%;
   }
 `;

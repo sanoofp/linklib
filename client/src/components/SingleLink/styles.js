@@ -65,6 +65,7 @@ export const SingleLinkContainer = styled.div`
   background-color: ${props => modifyColor(props.theme.bodybg, 20)};
   color: ${props => props.theme.font};
   text-align: center;
+  overflow: hidden;
   h1 {
     font-family: ${props => props.theme.secondaryFont};
     font-size: 2.5em;
@@ -106,9 +107,10 @@ export const SingleLinkContainer = styled.div`
       background-color: ${props => props.theme.font};
     }
   }
-  @media (max-width: 580px) {
+  @media (max-width: 768px) {
     h1 {
-      font-size: 1.7em;
+      font-size: 1.6em;
     }
   }
+  
 `;
