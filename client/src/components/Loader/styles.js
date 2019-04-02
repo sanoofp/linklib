@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SpinnerContainer = styled.div`
-z-index: 140;
+z-index: ${props => props.reqLoading ? "1400" : "140"};
 position: fixed;
 top: 0;
 left: 0;
@@ -10,6 +10,5 @@ height: 100vh;
 display: flex;
 align-items: center;
 justify-content: center;
-// background-color: rgba(0,0,0,0.5);
-background-color: ${props => props.theme.bodybg};
+background-color: ${props => props.reqLoading ? "rgba(0,0,0,0.5)" : props.theme.bodybg};
 `;

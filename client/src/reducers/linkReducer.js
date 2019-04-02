@@ -3,6 +3,7 @@ import { ADD_LINK, GET_USER_LINKS, SET_SINGLE_LINKS, LOAD_LINK, CLEAR_SINGLE_LIN
 const initialState = {
   linkLoading: false,
   userLinks: [],
+  userLinksLoaded: false,
   singleLink: []
 }
 
@@ -23,6 +24,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         linkLoading: false,
+        userLinksLoaded: true,
         userLinks: action.payload
       }
     }

@@ -1,6 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 import { main, dark } from "../Theme";
-import { modifyColor } from "../../functions/helper";
 
 const commonMuiTheme = {
   typography: {

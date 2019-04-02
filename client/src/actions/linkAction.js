@@ -9,8 +9,8 @@ export const addLink = ({ linkTitle, url }) => (dispatch, getState) => {
   const body = JSON.stringify({ linkTitle, url });
   axios.post("/api/link", body, axiosHeader(getState))
   .then(res => {
-    dispatch(getUserLink())
     dispatch(snackbarToggle(true, `${res.data.linkTitle} - Link added`, "success"));
+    dispatch(getUserLink());
   })
   .catch(err => {
     dispatch(getErrors(err.response.data, err.response.status));

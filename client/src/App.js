@@ -54,7 +54,8 @@ class App extends Component {
 
   render() {
     const { darkTheme } = this.props.appState;
-    const { appState } = this.props;
+    const { appState, link } = this.props;
+    
     return (
       <MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
         <ThemeProvider theme={darkTheme ? dark : main}>
@@ -92,11 +93,12 @@ App.propTypes = {
   appState: PropTypes.object.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
+  getUserLink: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   appState: state.appStateReducer,
-  auth: state.authReducer
+  auth: state.authReducer,
 });
 
 export default connect(
