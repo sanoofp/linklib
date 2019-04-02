@@ -10,7 +10,7 @@ const app = express();
 
 app.set("port", process.env.PORT || 5000);
 
-app.use(enforce.HTTPS({ trustedProtoHeader: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 app.use(compression());
 app.use(morgan("dev"));
 app.use(express.json());
