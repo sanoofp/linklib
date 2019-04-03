@@ -40,8 +40,8 @@ class Dashboard extends Component {
 
     this.getClipboard();
 
-    if (auth.isAuthenticated) {
-      if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
+    if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
+      if (auth.isAuthenticated) {
         this.props.getUserLink();
       }
     }

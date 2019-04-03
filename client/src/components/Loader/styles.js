@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const SpinnerContainer = styled.div`
-z-index: ${props => props.reqLoading ? "1401" : "140"};
+z-index: ${props => props.reqLoading ? "1301" : "1099"};
 position: fixed;
 top: 0;
 left: 0;

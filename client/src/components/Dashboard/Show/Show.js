@@ -30,7 +30,13 @@ const ShowLinks = props => {
     <div className="container show-items-container">
       <div className="row">
         <div className="col-md-12">
-          {searchKeyword === ""
+          
+          { searchKeyword !== "" && <div className="is-searching">
+            <p>Showing Result for <strong>{searchKeyword}</strong></p>
+            {(searchData.length !== 0 && Array.isArray(searchData)) && <small>Found {searchData.length} results</small>}
+          </div>
+          }
+          { searchKeyword === ""
             ? userLinks.map((item, idx) => (
                 <Items
                   key={idx}

@@ -35,6 +35,7 @@ class Search extends Component {
 
   componentWillUnmount() {
     this._isMounted = false;
+    this.props.searchLink("")
   }
 
   render() {

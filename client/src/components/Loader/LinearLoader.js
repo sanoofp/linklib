@@ -10,7 +10,7 @@ const LinearLoader = props => {
       <LinearProgress
         style={{
           backgroundColor: green["800"],
-          zIndex: 1000,
+          zIndex: 1101,
           position: "fixed",
           top: 0,
           left: 0,

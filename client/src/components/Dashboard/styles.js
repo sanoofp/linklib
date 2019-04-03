@@ -11,6 +11,21 @@ export const DashboardContainer = styled.div`
       padding: 20px 0;
       text-align: center;
     }
+    .is-searching {
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 12px;
+      margin-top: 30px;
+      padding: 8px 12px;
+      p {
+        strong {
+          font-family: ${props => props.theme.secondaryFont};
+        }
+        margin: 0;
+      }
+      small {
+        font-size: 0.6em;
+      }
+    }
   }
   
   @media (max-width: 485px) {
