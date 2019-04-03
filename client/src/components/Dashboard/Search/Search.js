@@ -1,20 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import SearchRounded from "@material-ui/icons/SearchRounded";
+import InputAdornment from '@material-ui/core/InputAdornment';
 import { SearchContainerForm } from "../styles";
+import { searchLink } from "../../../actions/linkAction";
 
 class Search extends Component {
   state = {
-    linkTitle: "",
     cardPositionFixed: false,
     headerHeight: 100
   };
   _isMounted = false;
-
-  handleChange = (name, event) => {
-    this.setState({ [name]: event.target.value });
-  };
 
   componentDidMount() {
     this._isMounted = true;
@@ -33,10 +31,7 @@ class Search extends Component {
     });
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(event);
-  };
+  handleChange = event => this.props.searchLink(event.target.value);
 
   componentWillUnmount() {
     this._isMounted = false;
@@ -51,25 +46,20 @@ class Search extends Component {
               cardPositionFixed={this.state.cardPositionFixed}
               headerHeight={this.state.headerHeight}
             >
-              <form onSubmit={this.handleSubmit}>
-                <TextField
-                  variant="outlined"
-                  label="Search by Title"
-                  placeholder="Title"
-                  margin="dense"
-                  onChange={e => this.handleChange("linkTitle", e)}
-                />
-                <Button
-                  style={{ color: "#fff", padding: "10px 12px" }}
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                  size="medium"
-                >
-                  <SearchRounded />
-                  Search
-                </Button>
-              </form>
+              <TextField
+                variant="outlined"
+                label="Search by Title"
+                placeholder="Title"
+                margin="dense"
+                onChange={e => this.handleChange(e)}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SearchRounded />
+                    </InputAdornment>
+                  ),
+                }}
+              />
             </SearchContainerForm>
           </div>
         </div>
@@ -78,4 +68,11 @@ class Search extends Component {
   }
 }
 
-export default Search;
+Search.propTypes = {
+  searchLink: PropTypes.func.isRequired
+};
+
+export default connect(
+  null,
+  { searchLink }
+)(Search);

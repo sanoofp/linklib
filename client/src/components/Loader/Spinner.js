@@ -6,7 +6,7 @@ import { SpinnerContainer } from "./styles";
 const Spinner = props => {
   const { reqLoading } = props.appState;
   const { linkLoading } = props.linkReducer;  
-  return (reqLoading || linkLoading) && <SpinnerContainer reqLoading={reqLoading}>
+  return (reqLoading || linkLoading) && <SpinnerContainer reqLoading={reqLoading || linkLoading}>
     <CircularProgress size={60} thickness={8} color="primary" variant="indeterminate" />
   </SpinnerContainer>
 }

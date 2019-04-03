@@ -22,7 +22,7 @@ const initalState = {
   clipboard: {
     foundUrl: false,
     urlFromClipboard: ""
-  }
+  },
 };
 
 export default function(state = initalState, action) {

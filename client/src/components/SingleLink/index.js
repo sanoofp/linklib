@@ -6,7 +6,6 @@ import { Redirect } from "react-router-dom";
 import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
 import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
-import Spinner from "../Loader/Spinner";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
 import copy from "../../functions/copy";
@@ -63,7 +62,6 @@ class SingleLink extends Component {
             singleLink.linkTitle ? singleLink.linkTitle : ""
           }`}</title>
         </Helmet>
-        <Spinner />
         <div className="container my-3">
           <div className="row">
             <div className="col-md-10 mx-auto">

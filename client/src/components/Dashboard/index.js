@@ -28,7 +28,6 @@ class Dashboard extends Component {
       navigator.clipboard.readText().then(url => {
         const isURL = validateURL(url);
         if (isURL) {
-          console.log(url);
           this.props.clipboardState(true, url);
           return true;
         }

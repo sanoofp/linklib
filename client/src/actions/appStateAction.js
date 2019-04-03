@@ -54,7 +54,9 @@ export const toggleLoading = loading => {
 
 export const clipboardState = (foundUrl, urlFromClipboard, clearClipboard = false) => {
   if(clearClipboard) {
-    navigator.clipboard.writeText("");
+    if(navigator.clipboard) {
+      navigator.clipboard.writeText("");
+    }
   } 
 
   return {

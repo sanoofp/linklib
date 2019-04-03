@@ -7,6 +7,10 @@ export const DashboardContainer = styled.div`
   padding-bottom: 40px;
   .show-items-container {
     margin-top: 80px;
+    .no-result {
+      padding: 20px 0;
+      text-align: center;
+    }
   }
   
   @media (max-width: 485px) {
@@ -24,17 +28,15 @@ export const SearchContainerForm = styled.div`
   width: 100%;
   z-index: 2;
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
-  padding: 8px 0;
+  padding: 9px 0;
   margin-top: ${props => props.cardPositionFixed ? "0px" : "6px"};
   border-radius: 12px;
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   input {
-    width: 340px;
+    width: 400px;
   }
   label {
     font-family: ${props => props.theme.primaryFont} !important;
@@ -48,11 +50,7 @@ export const SearchContainerForm = styled.div`
     justify-content: center;
     
     input {
-      margin: 0 8px;
-      width: 160px;
-    }
-    button {
-      margin: 0;
+      width: 240px;
     }
   }
 `;
@@ -105,7 +103,7 @@ export const AddLinkMessageContainer = styled.div`
     font-family: ${props => props.theme.primaryFont};
   }
   h6 {
-    margin: 4px 0;
+    margin: 8px 0;
     word-wrap: break-word;
   }
   p {

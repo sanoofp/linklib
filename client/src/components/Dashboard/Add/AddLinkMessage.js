@@ -21,14 +21,14 @@ const AddLinkMessage = props => {
             props.dialogAction("addLinkDialogOpen", true);
             props.clipboardState(false, clipboard.urlFromClipboard);
           }}>
-            <DoneRounded style={{ marginRight: 6 }} /> Yes
+            <DoneRounded style={{ marginRight: 6 }} /> Yep
           </Button>
           <Button
             style={{ marginLeft: 6 }}
             color="secondary"
             onClick={() => props.clipboardState(false, "", true)}
           >
-            <ClearRounded style={{ marginRight: 6 }} /> No
+            <ClearRounded style={{ marginRight: 6 }} /> Nope
           </Button>
         </div>
       </AddLinkMessageContainer>

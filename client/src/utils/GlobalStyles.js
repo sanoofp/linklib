@@ -18,7 +18,7 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
   }
 
-  button, div[role="button"] {
+  button, div[role="button"], div[role="document"] {
     outline: none;
     &:active,&:hover,&:focus {
       outline: none;

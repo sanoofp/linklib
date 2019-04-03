@@ -4,11 +4,42 @@ import PropTypes from "prop-types";
 import Items from "./Items";
 
 const ShowLinks = props => {
+  const { userLinks, searchKeyword } = props.link;
+  let searchData = null;
+  if(searchKeyword) {
+    const searchedLinks = userLinks.filter(item => {
+      // return (item.linkTitle.toLowerCase().search(searchKeyword.toLowerCase())) !== -1
+      return item.linkTitle.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1;
+    });
+    
+    searchData = searchedLinks.map((item, idx) => (
+      <Items
+        key={idx}
+        linkTitle={item.linkTitle}
+        url={item.url}
+        _id={item._id}
+      />
+    ));
+
+    if(searchedLinks.length === 0) {
+      searchData = <p className="no-result">No result found</p>
+    }
+  }
+  // console.log(searchData, searchKeyword, Boolean(searchKeyword));
   return (
     <div className="container show-items-container">
       <div className="row">
         <div className="col-md-12">
-          {props.userLinks.map((item, idx) => <Items key={idx} linkTitle={item.linkTitle} url={item.url} _id={item._id} />)}
+          {searchKeyword === ""
+            ? userLinks.map((item, idx) => (
+                <Items
+                  key={idx}
+                  linkTitle={item.linkTitle}
+                  url={item.url}
+                  _id={item._id}
+                />
+              ))
+            : searchData}
         </div>
       </div>
     </div>
@@ -16,11 +47,11 @@ const ShowLinks = props => {
 };
 
 ShowLinks.propTypes = {
-  userLinks: PropTypes.array.isRequired
+  link: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  userLinks: state.linkReducer.userLinks
+  link: state.linkReducer
 });
 
 export default connect(mapStateToProps)(ShowLinks);
