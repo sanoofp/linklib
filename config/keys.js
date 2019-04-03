@@ -5,6 +5,8 @@ if (process.env.NODE_ENV === "production") {
 } else {
   module.exports = {
     mongoURI: config.get("mongoURI"),
-    jwtSecret: config.get("jwtSecret")
+    jwtSecret: config.get("jwtSecret"),
+    vapidPublic: config.get("publicKey"),
+    vapidPrivate: config.get("privateKey")
   };
 }
