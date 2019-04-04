@@ -11,7 +11,7 @@ import { dialogAction, clipboardState } from "../../../actions/appStateAction";
 const AddLinkMessage = props => {
   const { clipboard } = props.appState;
   return (
-    <Modal open={clipboard.foundUrl} onClose={() => props.clipboardState(false, "")}>
+    <Modal open={clipboard.foundUrl} onClose={() => props.clipboardState(false, "", true)}>
       <AddLinkMessageContainer>
         <h4>Found a url in your clipboard</h4>
         <h6>{clipboard.urlFromClipboard}</h6>

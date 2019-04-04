@@ -33,7 +33,8 @@ class AddLinkModal extends Component {
 
   componentWillReceiveProps() {
     const { clipboard } = this.props.appState;
-    this.setState({ url: this.state.url ? this.state.url : clipboard.urlFromClipboard });
+    console.log(clipboard);
+    this.setState({ url: clipboard.urlFromClipboard });
   }
 
   render() {
