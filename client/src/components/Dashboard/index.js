@@ -31,7 +31,7 @@ class Dashboard extends Component {
           this.props.clipboardState(true, url);
           return true;
         }
-      });
+      }).catch(err => console.log(err));
     }
   };
 

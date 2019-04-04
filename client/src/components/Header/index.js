@@ -8,7 +8,7 @@ import { colors } from "../../utils/Theme";
 const StyledHeader = styled.div`
   padding: 22px 0px;
   width: 100%;
-  z-index: 1100;
+  z-index: 1098;
   position: relative;
   background-color: ${props => props.theme.primary};
   @media (max-width: 485px) {

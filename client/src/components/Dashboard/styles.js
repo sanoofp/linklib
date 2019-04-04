@@ -52,6 +52,7 @@ export const SearchContainerForm = styled.div`
   
   input {
     width: 400px;
+    color: ${props => props.theme.font};
   }
   label {
     font-family: ${props => props.theme.primaryFont} !important;
@@ -124,6 +125,9 @@ export const AddLinkMessageContainer = styled.div`
   p {
     font-size: 1.2em;
     margin: 8px 0;
+  }
+  button {
+    ${props => props.theme.primary === "#212121" ? `color: ${props.theme.font}` : null}
   }
 
   div {

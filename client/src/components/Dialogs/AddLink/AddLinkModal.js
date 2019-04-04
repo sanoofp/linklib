@@ -42,6 +42,7 @@ class AddLinkModal extends Component {
     return (
       <Modal
         closeAfterTransition={true}
+        style={{zIndex: 1096}}
         BackdropProps={{ transitionDuration: 300 }}
         open={appState.addLinkDialogOpen}
         onClose={() => {
