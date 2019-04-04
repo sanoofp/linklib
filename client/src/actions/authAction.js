@@ -1,6 +1,7 @@
 import axios from "axios";
 import { returnParaStringOnly } from "../functions/helper";
 import { getErrors, clearErrors } from "./errorAction";
+import { clearUserLinks } from "./linkAction";
 import { snackbarToggle, toggleLoading, dialogAction } from "./appStateAction";
 import { 
   USER_LOADED, USER_LOADING, AUTH_ERROR,
@@ -87,6 +88,7 @@ export const signupUser = ({ username, email, password }) => dispatch => {
 }
 
 export const signOut = () => dispatch => {
+  dispatch(clearUserLinks())
   dispatch(snackbarToggle(true, "Signed out of Linklib", "success"))
   dispatch({
     type: SIGNOUT_SUCCESS

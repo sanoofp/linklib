@@ -4,7 +4,8 @@ import {
   LOAD_LINK,
   LOAD_LINK_FAIL,
   CLEAR_SINGLE_LINKS,
-  SET_SEARCH_KEYWORD
+  SET_SEARCH_KEYWORD,
+  CLEAR_USER_LINKS
 } from "../actions/types";
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
@@ -82,6 +83,12 @@ export const clearSingleLink = () => {
     type: CLEAR_SINGLE_LINKS
   };
 };
+
+export const clearUserLinks = () => {
+  return {
+    type: CLEAR_USER_LINKS
+  }
+}
 
 export const deleteSingleLink = id => (dispatch, getState) => {
   dispatch({ type: LOAD_LINK });

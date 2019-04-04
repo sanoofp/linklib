@@ -25,6 +25,7 @@ export const ADD_LINK = "ADD_LINK";
 export const GET_USER_LINKS = "GET_USER_LINKS";
 export const SET_SINGLE_LINKS = "SET_SINGLE_LINKS";
 export const CLEAR_SINGLE_LINKS = "CLEAR_SINGLE_LINKS";
+export const CLEAR_USER_LINKS = "CLEAR_USER_LINKS";
 export const LOAD_LINK = "LOAD_LINK";
 export const LOAD_LINK_FAIL = "LOAD_LINK_FAIL";
 // Clipboard

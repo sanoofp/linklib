@@ -5,6 +5,7 @@ import {
   LOAD_LINK,
   LOAD_LINK_FAIL,
   CLEAR_SINGLE_LINKS,
+  CLEAR_USER_LINKS,
   SET_SEARCH_KEYWORD
 } from "../actions/types";
 
@@ -54,8 +55,16 @@ export default function(state = initialState, action) {
       return {
         ...state,
         linkLoading: false,
-        singleLink: []
+        singleLink: [],        
       };
+    }
+    case CLEAR_USER_LINKS: {
+      return {
+        ...state,
+        linkLoading: false,
+        userLinks: [],
+        userLinksLoaded: false,        
+      }
     }
     case SET_SEARCH_KEYWORD: {
       return {
