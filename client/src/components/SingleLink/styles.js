@@ -80,7 +80,7 @@ export const SingleLinkContainer = styled.div`
     font-size: 0.8em;
     word-wrap: break-word;
     word-break: break-all;
-    width: inherit;
+    width: 340px;
     max-height: 110px;
     background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};

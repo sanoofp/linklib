@@ -8,23 +8,26 @@ import {
 } from "../actions/types";
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
-import { snackbarToggle, dialogAction } from "../actions/appStateAction";
+import { snackbarToggle, dialogAction, toggleLoading } from "../actions/appStateAction";
 import { getErrors } from "../actions/errorAction";
 import { returnParaStringOnly } from "../functions/helper";
 
 export const addLink = ({ linkTitle, url }) => (dispatch, getState) => {
   const body = JSON.stringify({ linkTitle, url });
-  dispatch({ type: LOAD_LINK });
+  // dispatch({ type: LOAD_LINK });
+  dispatch(toggleLoading(true));
   axios
     .post("/api/link", body, axiosHeader(getState))
     .then(res => {
       dispatch(getUserLink());
+      dispatch(toggleLoading(false));      
       dispatch(dialogAction("addLinkDialogOpen", false));
       dispatch(
         snackbarToggle(true, `${res.data.linkTitle} - Link added`, "success")
       );
     })
     .catch(err => {
+      dispatch(toggleLoading(false));            
       dispatch({ type: LOAD_LINK_FAIL })
       dispatch(getErrors(err.response.data, err.response.status));
       dispatch(

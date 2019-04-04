@@ -33,7 +33,6 @@ class AddLinkModal extends Component {
 
   componentWillReceiveProps() {
     const { clipboard } = this.props.appState;
-    console.log(clipboard);
     this.setState({ url: clipboard.urlFromClipboard });
   }
 
@@ -42,7 +41,6 @@ class AddLinkModal extends Component {
     return (
       <Modal
         closeAfterTransition={true}
-        style={{zIndex: 1096}}
         BackdropProps={{ transitionDuration: 300 }}
         open={appState.addLinkDialogOpen}
         onClose={() => {
