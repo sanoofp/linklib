@@ -24,7 +24,7 @@ class Items extends Component {
   };
 
   render() {
-    const { linkTitle, url, _id } = this.props;
+    const { linkTitle, url, _id, date } = this.props;
     const { anchorEl } = this.state;
     return <ShowLinkItem>
       <h4>{linkTitle}</h4>
@@ -52,7 +52,7 @@ class Items extends Component {
         <IconButton onClick={this.handleClick}>
           <MoreVertRounded />
         </IconButton>
-        <MenuComponent anchorEl={anchorEl} handleClose={this.handleClose} _id={_id} />
+        <MenuComponent anchorEl={anchorEl} handleClose={this.handleClose} date={date} _id={_id} />
       </div>
     </ShowLinkItem>
   }

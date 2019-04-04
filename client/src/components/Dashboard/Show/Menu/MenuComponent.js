@@ -18,6 +18,10 @@ const MenuComponent = props => {
         <ListItemIcon><DeleteRounded /></ListItemIcon>
         Delete
       </MenuItem>
+      <MenuItem style={{fontSize: "0.8em"}}>
+        {/* <ListItemIcon><DeleteRounded /></ListItemIcon> */}
+        Create at {new Date(props.date).toDateString()}
+      </MenuItem>
     </Menu>
   );
 };

@@ -8,7 +8,6 @@ const ShowLinks = props => {
   let searchData = null;
   if(searchKeyword) {
     const searchedLinks = userLinks.filter(item => {
-      // return (item.linkTitle.toLowerCase().search(searchKeyword.toLowerCase())) !== -1
       return item.linkTitle.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1;
     });
     
@@ -40,6 +39,7 @@ const ShowLinks = props => {
             ? userLinks.map((item, idx) => (
                 <Items
                   key={idx}
+                  date={item.date}
                   linkTitle={item.linkTitle}
                   url={item.url}
                   _id={item._id}
