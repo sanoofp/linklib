@@ -73,14 +73,11 @@ export const SingleLinkContainer = styled.div`
   }
 
   input[type="text"] {
-    text-align: center;
+    position: relative;
     margin-bottom: 25px;
     padding: 6px 10px;
-    box-sizing: border-box;
     font-size: 0.8em;
-    word-wrap: break-word;
-    word-break: break-all;
-    width: 340px;
+    width: 280px;
     max-height: 110px;
     background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};
@@ -109,7 +106,7 @@ export const SingleLinkContainer = styled.div`
   }
   @media (max-width: 768px) {
     h1 {
-      font-size: 1.6em;
+      font-size: 1.4em;
     }
   }
   

@@ -93,7 +93,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-  auth: PropTypes.object.isRequired,
   appState: PropTypes.object.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
@@ -101,7 +100,6 @@ App.propTypes = {
 
 const mapStateToProps = state => ({
   appState: state.appStateReducer,
-  auth: state.authReducer,
 });
 
 export default connect(

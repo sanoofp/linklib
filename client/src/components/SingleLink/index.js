@@ -28,7 +28,7 @@ class SingleLink extends Component {
 
   copy = () => {
     copy("copy-link", () =>
-      this.setState({ copied: true }, () => setTimeout(this._timeout, 1000))
+      this.setState({ copied: true }, () => setTimeout(this._timeout, 800))
     );
   };
 
@@ -38,7 +38,7 @@ class SingleLink extends Component {
       navigator
         .share({
           title: singleLink.linkTitle,
-          text: "Linklib - share",
+          text: "Linklib",
           url: singleLink.url
         })
         .then(() => console.log("Successful share"))

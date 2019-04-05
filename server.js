@@ -10,9 +10,9 @@ const app = express();
 
 app.set("port", process.env.PORT || 5000);
 
-app.use(compression());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(compression());
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true })

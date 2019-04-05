@@ -14,8 +14,6 @@ import {
   MuiButtonStyles
 } from "./style";
 import { SigninButtonComponent, SignupButtonComponent, DashboardButtonComponent } from "../Button";
-// import SignupModel from "../Dialogs/Signup/Signup";
-// import SigninModel from "../Dialogs/SignIn/SignIn";
 import Loadable from "react-loadable";
 import LoadableLoader from "../Loader/LoadableLoader";
 

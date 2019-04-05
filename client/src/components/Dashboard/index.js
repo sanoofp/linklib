@@ -9,8 +9,13 @@ import { getUserLink } from "../../actions/linkAction";
 import { clipboardState } from "../../actions/appStateAction";
 import { DashboardContainer } from "./styles";
 import Search from "./Search/Search";
-import ShowLinks from "./Show/Show";
+// import ShowLinks from "./Show/Show";
 import { validateURL } from "../../functions/helper";
+
+const ShowLinks = Loadable({
+  loader: () => import("./Show/Show"),
+  loading: LoadableLoader
+});
 
 const AddLink = Loadable({
   loader: () => import("./Add/Add"),
