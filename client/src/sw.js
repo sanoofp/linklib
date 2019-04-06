@@ -1,4 +1,4 @@
-const cacheName = "linklib-v1";
+const cacheName = "linklib-v3";
 
 self.addEventListener("install", e => {
   console.log("SW INSTALLED");
@@ -11,11 +11,11 @@ self.addEventListener("activate", e => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cache => {
-          if(cache !== cacheName) {
+          if (cache !== cacheName) {
             return caches.delete(cache);
           }
         })
-      )
+      );
     })
   );
 });
@@ -26,13 +26,11 @@ self.addEventListener("fetch", e => {
     fetch(e.request)
       .then(res => {
         const resClone = res.clone();
-        caches
-          .open(cacheName)
-          .then(cache => {
-            cache.put(e.request, resClone)
-          });
+        caches.open(cacheName).then(cache => {
+          cache.put(e.request, resClone);
+        });
         return res;
       })
       .catch(err => caches.match(e.request).then(res => res))
   );
-})
+});
