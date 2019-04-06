@@ -13,7 +13,9 @@ import { axiosHeader } from '../functions/helper'
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
-  
+  const token = getState().authReducer.token;
+  if(!token) return dispatch({ type: AUTH_ERROR });
+
   axios.get("/api/user/auth", axiosHeader(getState))
     .then(res => dispatch({ 
       type: USER_LOADED,
