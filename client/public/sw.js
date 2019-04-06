@@ -1,6 +1,5 @@
 const cacheName = "linklib-v1";
 
-
 self.addEventListener("install", e => {
   console.log("SW INSTALLED");
 });
