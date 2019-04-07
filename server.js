@@ -3,8 +3,9 @@ const compression = require("compression");
 const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const webpush = require("web-push");
 
-const { mongoURI } = require("./config/keys");
+const { mongoURI, vapidPublic, vapidPrivate } = require("./config/keys");
 
 const app = express();
 
@@ -18,6 +19,25 @@ mongoose
   .connect(mongoURI, { useNewUrlParser: true })
   .then(() => console.log("Connected to Database"))
   .catch(err => console.log("Database connection failed ", err));
+
+webpush.setVapidDetails(
+  "mailto:sanoofpb24@gmail.com",
+  vapidPublic,
+  vapidPrivate
+);
+
+app.post("/notify", (req, res) => {
+  const subscriptions = req.body;
+  console.log(subscriptions);
+  res.status(201).json({});
+  const payload = JSON.stringify({
+    title: "PUSH NOTIFICATION",
+    body: "Welcome to Linklib\n You can manage, share and save link with ease."
+  });
+  webpush
+    .sendNotification(subscriptions, payload)
+    .catch(err => console.log(err));
+});
 
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/link", require("./routes/api/link"));

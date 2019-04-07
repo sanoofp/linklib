@@ -22,6 +22,9 @@ const MenuComponent = props => {
         {/* <ListItemIcon><DeleteRounded /></ListItemIcon> */}
         Create at {new Date(props.date).toDateString()}
       </MenuItem>
+      <MenuItem onClick={props.sendNotification}>
+        Push to devices
+      </MenuItem>
     </Menu>
   );
 };

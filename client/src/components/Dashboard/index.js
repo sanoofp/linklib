@@ -29,7 +29,7 @@ const AddLinkMessage = Loadable({
 
 class Dashboard extends Component {
   getClipboard = () => {
-    if (navigator.clipboard) {
+    if (navigator.clipboard && navigator.clipboard.readText) {
       navigator.clipboard.readText().then(url => {
         const isURL = validateURL(url);
         if (isURL) {
