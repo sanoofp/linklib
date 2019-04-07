@@ -6,6 +6,8 @@ import {
   REQUEST_LOADING,
   CLIPBOARD_STATE
 } from "./types";
+import { axiosHeader } from "../functions/helper";
+import axios from "axios";
 
 export const toggleDrawer = drawerState => {
   return {
@@ -66,4 +68,10 @@ export const clipboardState = (foundUrl, urlFromClipboard, clearClipboard = fals
       urlFromClipboard: urlFromClipboard
     }
   }
+}
+
+export const scoketEmit = () => (dispatch, getState) => {
+  axios.get("/notify", axiosHeader(getState))
+    .then(d => console.log(d))
+    .catch(err => console.log(err));
 }

@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import DeleteRounded from "@material-ui/icons/DeleteRounded";
 import { deleteSingleLink } from "../../../../actions/linkAction";
+import { scoketEmit } from "../../../../actions/appStateAction";
 
 const MenuComponent = props => {
   return (
@@ -22,11 +23,11 @@ const MenuComponent = props => {
         {/* <ListItemIcon><DeleteRounded /></ListItemIcon> */}
         Create at {new Date(props.date).toDateString()}
       </MenuItem>
-      <MenuItem onClick={props.sendNotification}>
+      <MenuItem onClick={() => props.scoketEmit()}>
         Push to devices
       </MenuItem>
     </Menu>
   );
 };
 
-export default connect(null, { deleteSingleLink })(MenuComponent);
+export default connect(null, { deleteSingleLink, scoketEmit })(MenuComponent);

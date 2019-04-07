@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import io from "socket.io-client";
 import { Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Loadable from "react-loadable";
@@ -28,22 +29,49 @@ const AddLinkMessage = Loadable({
 });
 
 class Dashboard extends Component {
+  state = { data: [] }
   getClipboard = () => {
     if (navigator.clipboard && navigator.clipboard.readText) {
-      navigator.clipboard.readText().then(url => {
-        const isURL = validateURL(url);
-        if (isURL) {
-          this.props.clipboardState(true, url);
-          return true;
-        }
-      }).catch(err => console.log(err));
+      navigator.clipboard
+        .readText()
+        .then(url => {
+          const isURL = validateURL(url);
+          if (isURL) {
+            this.props.clipboardState(true, url);
+            return true;
+          }
+        })
+        .catch(err => console.log(err));
     }
+  };
+
+  listenSocket = () => {
+    const socket = io("/");
+    socket.on("notify", data => {
+      this.setState({ data })
+      console.log("EMITING FROM SOCKET", data);
+      if (Notification.permission === "granted") {
+        navigator.serviceWorker.getRegistration().then(function(reg) {
+          var options = {
+            body: "Here is a notification body!",
+            icon: "https://www.gravatar.com/avatar/asdasdasdasd?d=robohash",
+            vibrate: [100, 50, 100],
+            data: {
+              dateOfArrival: Date.now(),
+              primaryKey: 1
+            }
+          };
+          reg.showNotification("Hello world!", options);
+        });
+      }
+    });
   };
 
   componentDidMount() {
     const { auth, link } = this.props;
 
     this.getClipboard();
+    this.listenSocket();
 
     if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
       if (auth.isAuthenticated) {
@@ -54,7 +82,7 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props;
-
+    console.log(this.state.data);
     if (auth.isLoading) {
       return <LoadableLoader />;
     }

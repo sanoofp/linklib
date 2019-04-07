@@ -19,9 +19,6 @@ const userSchema = new Scheme({
     type: String,
     required: true
   },
-  notification: {
-    type: Object
-  },
   registered_date: {
     type: Date,
     default: Date.now

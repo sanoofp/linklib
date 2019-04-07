@@ -23,23 +23,6 @@ class Items extends Component {
     this.setState({ anchorEl: null });
   };
 
-  sendNotification = () => {
-      if (Notification.permission === 'granted') {
-        navigator.serviceWorker.getRegistration().then(function(reg) {
-          var options = {
-            body: 'Here is a notification body!',
-            icon: 'https://www.gravatar.com/avatar/asdasdasdasd?d=robohash',
-            vibrate: [100, 50, 100],
-            data: {
-              dateOfArrival: Date.now(),
-              primaryKey: 1
-            }
-          };
-          reg.showNotification('Hello world!', options);
-        });
-      }
-  };
-
   render() {
     const { linkTitle, url, _id, date } = this.props;
     const { anchorEl } = this.state;
@@ -73,7 +56,6 @@ class Items extends Component {
             <MoreVertRounded />
           </IconButton>
           <MenuComponent
-            sendNotification={this.sendNotification}
             anchorEl={anchorEl}
             handleClose={this.handleClose}
             date={date}
