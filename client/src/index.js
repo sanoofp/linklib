@@ -2,8 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./Store";
-import App from "./App";
-// import * as serviceWorker from './serviceWorker';
+import Loadable from "react-loadable";
+import LoadableLoader from './components/Loader/LoadableLoader';
+
+const App = Loadable({
+  loader: () => import("./App"),
+  loading: LoadableLoader
+});
 
 ReactDOM.render(
   <Provider store={store}>

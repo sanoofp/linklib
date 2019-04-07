@@ -1,43 +1,46 @@
-const publickVapidKey = "BIgY6Sy6EogQK984Oxqy9mSi8qwa2KoojiDi1WaqY0j1qY_RcPqxH-fh2oWtcqj15_iO-mm0jhTNA2nSEHt5ZL4";
+const cacheName = "linklib-v2";
 
-if('serviceWorker' in navigator) {
-  window.addEventListener("load", () => {
-    send().catch(err => console.log(err))
-  });
-}
+const self = this;
 
-async function send() {
-  const register = await navigator.serviceWorker.register("/worker.js", { scope: "/" });
-  console.log("PUSH REGISTERING");
-  
-  const subscription = await register.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: urlBase64ToUint8Array(publickVapidKey)
-  });
-  console.log("PUSH REGISTERED");
+self.addEventListener("install", e => console.log("SW INSTALLED"));
 
-  await fetch("/notify", {
-    method: "POST",
-    body: JSON.stringify(subscription),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
-  console.log("PUSH SENT");
+self.addEventListener("activate", e => {
+  console.log("SW ACTIVATED");
 
-}
+  e.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cache => {
+          if (cache !== cacheName) {
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+});
 
-function urlBase64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/-/g, '+')
-    .replace(/_/g, '/');
+self.addEventListener("fetch", e => {
+  console.log("SW FETCHING");
+  e.respondWith(
+    fetch(e.request)
+      .then(res => {
+        const resClone = res.clone();
+        caches.open(cacheName).then(cache => {
+          cache.put(e.request, resClone);
+        });
+        return res;
+      })
+      .catch(err => caches.match(e.request).then(res => res))
+  );
+});
 
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
 
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
+// self.addEventListener("push", e => {
+//   const data = e.data.json();
+//   console.log("PUSH RECIEVED");
+//   self.registration.showNotification(data.title, {
+//     body: data.body,
+//     icon: ""
+//   })
+// })

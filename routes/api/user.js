@@ -1,13 +1,14 @@
 const router = require("express").Router();
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { auth } = require("../../helper/auth");
 const signupValidation = require("../../validation/signup");
 const signinValidation = require("../../validation/signin");
 const { generateUserAvatar } = require("../../helper/auth");
+// const { getSystemInfo } = require("../../helper/user");
 const { jwtSecret } = require("../../config/keys");
 
 const User = require("../../models/User");
+// const Session = require("../../models/LoggedInSession");
 
 // @route GET api/user/auth
 // To verfiy auth
@@ -36,21 +37,16 @@ router.post("/signup", (req, res) => {
         avatar: avatar,
         password: req.body.password
       });
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save()
-            .then(user => {
-              jwt.sign({ id: user.id }, jwtSecret, (err, token) => {
-                if (err) throw err;
-                res.json({ user: user, token: token });
-              });
-            })
-            .catch(err => console.log(err));
-        });
-      });
+      // Mongoose middleware(pre-save) will hash the password
+      newUser
+        .save()
+        .then(user => {
+          jwt.sign({ id: user.id }, jwtSecret, (err, token) => {
+            if (err) throw err;
+            res.json({ user: user, token: token });
+          });
+        })
+        .catch(err => console.log(err));
     }
   });
 });
@@ -68,11 +64,13 @@ router.post("/signin", (req, res) => {
       err.username = "User not found";
       return res.status(400).json(err);
     }
-    bcrypt.compare(password, user.password).then(isMatch => {
+
+    user.comparePassword(password, isMatch => {
       if (!isMatch) {
-        err.password = "Password incorrect";
+        err.password = "Password is incorrect";
         return res.status(400).json(err);
       }
+
       jwt.sign({ id: user.id }, jwtSecret, (err, token) => {
         if (err) throw err;
         res.json({

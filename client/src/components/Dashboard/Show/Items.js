@@ -24,7 +24,20 @@ class Items extends Component {
   };
 
   sendNotification = () => {
-    console.log("Notify");
+      if (Notification.permission === 'granted') {
+        navigator.serviceWorker.getRegistration().then(function(reg) {
+          var options = {
+            body: 'Here is a notification body!',
+            icon: 'https://www.gravatar.com/avatar/asdasdasdasd?d=robohash',
+            vibrate: [100, 50, 100],
+            data: {
+              dateOfArrival: Date.now(),
+              primaryKey: 1
+            }
+          };
+          reg.showNotification('Hello world!', options);
+        });
+      }
   };
 
   render() {
