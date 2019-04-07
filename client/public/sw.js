@@ -5,7 +5,7 @@ const self = this;
 self.addEventListener("install", e => console.log("SW INSTALLED"));
 
 self.addEventListener("activate", e => {
-  console.log("SW ACTIVATED");
+  // console.log("SW ACTIVATED");
 
   e.waitUntil(
     caches.keys().then(cacheNames => {
@@ -21,7 +21,7 @@ self.addEventListener("activate", e => {
 });
 
 self.addEventListener("fetch", e => {
-  console.log("SW FETCHING");
+  // console.log("SW FETCHING");
   e.respondWith(
     fetch(e.request)
       .then(res => {

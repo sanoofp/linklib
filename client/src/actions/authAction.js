@@ -89,10 +89,17 @@ export const signupUser = ({ username, email, password }) => dispatch => {
   });
 }
 
-export const signOut = () => dispatch => {
-  dispatch(clearUserLinks())
-  dispatch(snackbarToggle(true, "Signed out of Linklib", "success"))
-  dispatch({
-    type: SIGNOUT_SUCCESS
-  });
+export const signOut = () => (dispatch, getState) => {
+  dispatch(toggleLoading(true))
+
+  axios.get("/api/user/logout", axiosHeader(getState))
+  .then(() => {
+    dispatch(toggleLoading(false));    
+    dispatch(clearUserLinks())
+    dispatch(snackbarToggle(true, "Signed out of Linklib", "success"))
+    dispatch({
+      type: SIGNOUT_SUCCESS
+    });
+  })
+  .catch(err => console.log("err"));
 }

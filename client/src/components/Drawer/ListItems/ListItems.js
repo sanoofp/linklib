@@ -39,7 +39,7 @@ const ListItems = props => {
         { text: "Logout", 
           onClick: () => {
             signOut();
-            toggleDrawer(false)
+            toggleDrawer(false);
           }, 
           icon: <EventBusyRounded /> 
         }

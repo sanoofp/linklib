@@ -4,11 +4,11 @@ const { auth } = require("../../helper/auth");
 const signupValidation = require("../../validation/signup");
 const signinValidation = require("../../validation/signin");
 const { generateUserAvatar } = require("../../helper/auth");
-// const { getSystemInfo } = require("../../helper/user");
+const { getSystemInfo } = require("../../helper/user");
 const { jwtSecret } = require("../../config/keys");
 
 const User = require("../../models/User");
-// const Session = require("../../models/LoggedInSession");
+const Session = require("../../models/LoggedInSession");
 
 // @route GET api/user/auth
 // To verfiy auth
@@ -71,6 +71,23 @@ router.post("/signin", (req, res) => {
         return res.status(400).json(err);
       }
 
+      const newSession = new Session({
+        userID: user.id,
+        devices: [{ deviceName: getSystemInfo(req) }]
+      });
+      Session.findOne({ userID: user.id })
+        .then(session => {
+          if (session) {
+            console.log("SESSION ALREADY EXIST>>> PUSH", session);
+            session.devices.push({ deviceName: getSystemInfo(req) });
+            session.save().then(s => console.log(s));
+          } else {
+            console.log("NEW SESSION");
+            newSession.save().then(s => console.log(s));
+          }
+        })
+        .catch(err => console.log(err));
+
       jwt.sign({ id: user.id }, jwtSecret, (err, token) => {
         if (err) throw err;
         res.json({
@@ -83,6 +100,26 @@ router.post("/signin", (req, res) => {
           token: token
         });
       });
+    });
+  });
+});
+
+// @route POST api/user/logout
+// To signin a user
+router.get("/logout", auth, (req, res) => {
+  const currentDevice = getSystemInfo(req);
+  Session.findOne({ userID: req.user.id }).then(session => {
+    session.devices = session.devices.filter(
+      item => item.deviceName !== currentDevice
+    );
+    console.log(session.devices);
+    session.save().then(() => {
+      if (!session.devices.length) {
+        return Session.deleteOne({ userID: req.user.id })
+          .then(data => res.send(data))
+          .catch(err => res.status(400).json(err));
+      }
+      res.status(200).json({});
     });
   });
 });
