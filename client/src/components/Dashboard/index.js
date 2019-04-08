@@ -46,17 +46,16 @@ class Dashboard extends Component {
                 icon: data.icon,
                 badge: data.icon,
                 requireInteraction: true,
-                // actions: [{action: "open", title: "Open Link"}]
+                actions: [{action: "open", title: "Open Link"}]
               };
               
-              const notification = new Notification(data.link.linkTitle, options)
-              
-              notification.onclick = () => {
-                notification.close();
-                window.open(data.link.url, "_blank");
-              }
-              // reg.showNotification(data.link.linkTitle, options);
+              reg.showNotification(data.link.linkTitle, options);
             });
+            console.log(navigator.serviceWorker);
+            navigator.serviceWorker.addEventListener("notificationclick", e => {
+              console.log(e);
+              window.open(data.link.url, "_blank")
+            })
           }
         });
 
