@@ -71,7 +71,7 @@ export const clipboardState = (foundUrl, urlFromClipboard, clearClipboard = fals
 }
 
 export const scoketEmit = () => (dispatch, getState) => {
-  axios.get("/notify", axiosHeader(getState))
+  axios.get(`/notify`, axiosHeader(getState))
     .then(d => console.log(d))
     .catch(err => console.log(err));
 }

@@ -31,11 +31,11 @@ io.on("connection", socket => {
 });
 
 app.get("/notify", auth, (req, res) => {
-  console.log(req.user.id);
-  Session.findOne({ userID: req.user.id })
+  const userID = req.user.id;
+  Session.findOne({ userID: userID })
     .then(session => {
-      S.emit("notify", session.devices);
-      res.send(session);
+      S.emit(`notify-${userID}`, session.devices);
+      res.status(200).send(session);
     })
     .catch(err => res.status(400).json(err));
 });

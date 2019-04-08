@@ -29,7 +29,6 @@ const AddLinkMessage = Loadable({
 });
 
 class Dashboard extends Component {
-  state = { data: [] }
   getClipboard = () => {
     if (navigator.clipboard && navigator.clipboard.readText) {
       navigator.clipboard
@@ -45,10 +44,9 @@ class Dashboard extends Component {
     }
   };
 
-  listenSocket = () => {
+  listenSocket = id => {
     const socket = io("/");
-    socket.on("notify", data => {
-      this.setState({ data })
+    socket.on(`notify-${id}`, data => {
       console.log("EMITING FROM SOCKET", data);
       if (Notification.permission === "granted") {
         navigator.serviceWorker.getRegistration().then(function(reg) {
@@ -71,7 +69,7 @@ class Dashboard extends Component {
     const { auth, link } = this.props;
 
     this.getClipboard();
-    this.listenSocket();
+    this.listenSocket(auth.user._id);
 
     if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
       if (auth.isAuthenticated) {
@@ -82,7 +80,6 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props;
-    console.log(this.state.data);
     if (auth.isLoading) {
       return <LoadableLoader />;
     }
