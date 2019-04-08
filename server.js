@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const { auth } = require("./helper/auth");
 const User = require("./models/User");
+const Link = require("./models/Link");
 
 const app = express();
 const http = require("http").Server(app);
@@ -23,27 +24,34 @@ mongoose
   .then(() => console.log("Connected to Database"))
   .catch(err => console.log("Database connection failed ", err));
 
-let S;
 io.on("connection", socket => {
   console.log("New client connected");
-  S = socket;
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
-app.get("/notify", auth, (req, res) => {
+app.get("/notify/:linkid", auth, (req, res) => {
   const userID = req.user.id;
+  const linkID = req.params.linkid;
+
   User.findById(userID)
     .then(user => {
       console.log(`EMITTING >>> notify-${userID}`);
-      S.emit(`notify-${userID}`, user);
-      res.status(200).send(user);
+      Link.findById(linkID)
+        .then(link => {
+          console.log(link);
+          io.sockets.emit(`notify-${userID}`, {
+            link: link,
+            icon: user.avatar
+          });
+          res.status(200).send(user);
+        })
+        .catch(err => res.status(400).json(err));
     })
     .catch(err => res.status(400).json(err));
 });
 
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/link", require("./routes/api/link"));
-app.use("/api/notify", require("./routes/api/notify"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

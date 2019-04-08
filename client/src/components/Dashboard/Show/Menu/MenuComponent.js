@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import DeleteRounded from "@material-ui/icons/DeleteRounded";
-import { deleteSingleLink } from "../../../../actions/linkAction";
-import { scoketEmit } from "../../../../actions/appStateAction";
+import MobileScreenShareRounded from "@material-ui/icons/MobileScreenShareRounded";
+import { deleteSingleLink, socketEmit } from "../../../../actions/linkAction";
 
 const MenuComponent = props => {
   return (
@@ -19,15 +19,15 @@ const MenuComponent = props => {
         <ListItemIcon><DeleteRounded /></ListItemIcon>
         Delete
       </MenuItem>
-      <MenuItem style={{fontSize: "0.8em"}}>
-        {/* <ListItemIcon><DeleteRounded /></ListItemIcon> */}
-        Create at {new Date(props.date).toDateString()}
-      </MenuItem>
-      <MenuItem onClick={() => props.scoketEmit()}>
+      <MenuItem onClick={() => props.socketEmit(props._id)}>
+        <ListItemIcon><MobileScreenShareRounded /></ListItemIcon>
         Push to devices
+      </MenuItem>
+      <MenuItem style={{fontSize: "0.8em"}}>
+        Create at {new Date(props.date).toDateString()}
       </MenuItem>
     </Menu>
   );
 };
 
-export default connect(null, { deleteSingleLink, scoketEmit })(MenuComponent);
+export default connect(null, { deleteSingleLink, socketEmit })(MenuComponent);

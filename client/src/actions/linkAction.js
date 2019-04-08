@@ -12,6 +12,7 @@ import { axiosHeader } from "../functions/helper";
 import { snackbarToggle, dialogAction, toggleLoading } from "../actions/appStateAction";
 import { getErrors } from "../actions/errorAction";
 import { returnParaStringOnly } from "../functions/helper";
+import io from "socket.io-client";
 
 export const addLink = ({ linkTitle, url }) => (dispatch, getState) => {
   const body = JSON.stringify({ linkTitle, url });
@@ -113,4 +114,11 @@ export const searchLink = keyword => {
       searchKeyword: keyword
     }
   }
+}
+
+
+export const socketEmit = linkID => (dispatch, getState) => {
+  axios.get(`/notify/${linkID}`, axiosHeader(getState))
+    .then(done => done)
+    .catch(err => console.log(err));
 }

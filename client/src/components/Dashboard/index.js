@@ -35,23 +35,31 @@ class Dashboard extends Component {
     socket.on(`notify-${id}`, data => {
       console.log("EMITTED >>> notify-"+id, data);
       if(Notification.permission !== "denied") {        
+        
+        
         Notification.requestPermission().then(function (permission) {
           // If the user accepts, let's create a notification
           if (permission === "granted") {
             navigator.serviceWorker.getRegistration().then(function(reg) {
               var options = {
-                body: "Here is a notification body!",
-                icon: "https://www.gravatar.com/avatar/asdasdasdasd?d=robohash",
-                vibrate: [100, 50, 100],
-                data: {
-                  dateOfArrival: Date.now(),
-                  primaryKey: 1
-                }
+                body: data.link.url,
+                icon: data.icon,
+                badge: data.icon,
+                requireInteraction: true,
+                // actions: [{action: "open", title: "Open Link"}]
               };
-              reg.showNotification("Hello world!", options);
+              
+              const notification = new Notification(data.link.linkTitle, options)
+              
+              notification.onclick = () => {
+                notification.close();
+                window.open(data.link.url, "_blank");
+              }
+              // reg.showNotification(data.link.linkTitle, options);
             });
           }
         });
+
 
       }
       
@@ -76,7 +84,9 @@ class Dashboard extends Component {
     const { auth, link } = this.props;
 
     this.getClipboard();
-    this.listenSocket(auth.user._id);
+    if(auth.user) {
+      this.listenSocket(auth.user._id);
+    }
 
     if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
       if (auth.isAuthenticated) {
