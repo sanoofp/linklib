@@ -34,11 +34,9 @@ class Dashboard extends Component {
     const socket = io("/");
     socket.on(`notify-${id}`, data => {
       console.log("EMITTED >>> notify-"+id, data);
-      alert("EMITTED >>> notify-"+id)
       if(Notification.permission !== "denied") {        
         Notification.requestPermission().then(function (permission) {
           // If the user accepts, let's create a notification
-          alert(permission);
           if (permission === "granted") {
             navigator.serviceWorker.getRegistration().then(function(reg) {
               var options = {
@@ -55,8 +53,6 @@ class Dashboard extends Component {
           }
         });
 
-      } else {
-        alert(Notification.permission)
       }
       
     });
