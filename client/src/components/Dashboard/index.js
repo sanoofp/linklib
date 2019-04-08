@@ -29,6 +29,39 @@ const AddLinkMessage = Loadable({
 });
 
 class Dashboard extends Component {
+
+  listenSocket = id => {
+    const socket = io("/");
+    socket.on(`notify-${id}`, data => {
+      console.log("EMITTED >>> notify-"+id, data);
+      alert("EMITTED >>> notify-"+id)
+      if(Notification.permission !== "denied") {        
+        Notification.requestPermission().then(function (permission) {
+          // If the user accepts, let's create a notification
+          alert(permission);
+          if (permission === "granted") {
+            navigator.serviceWorker.getRegistration().then(function(reg) {
+              var options = {
+                body: "Here is a notification body!",
+                icon: "https://www.gravatar.com/avatar/asdasdasdasd?d=robohash",
+                vibrate: [100, 50, 100],
+                data: {
+                  dateOfArrival: Date.now(),
+                  primaryKey: 1
+                }
+              };
+              reg.showNotification("Hello world!", options);
+            });
+          }
+        });
+
+      } else {
+        alert(Notification.permission)
+      }
+      
+    });
+  };
+
   getClipboard = () => {
     if (navigator.clipboard && navigator.clipboard.readText) {
       navigator.clipboard
@@ -40,29 +73,7 @@ class Dashboard extends Component {
             return true;
           }
         })
-        .catch(err => console.log(err));
     }
-  };
-
-  listenSocket = id => {
-    const socket = io("/");
-    socket.on(`notify-${id}`, data => {
-      console.log("EMITING FROM SOCKET", data);
-      if (Notification.permission === "granted") {
-        navigator.serviceWorker.getRegistration().then(function(reg) {
-          var options = {
-            body: "Here is a notification body!",
-            icon: "https://www.gravatar.com/avatar/asdasdasdasd?d=robohash",
-            vibrate: [100, 50, 100],
-            data: {
-              dateOfArrival: Date.now(),
-              primaryKey: 1
-            }
-          };
-          reg.showNotification("Hello world!", options);
-        });
-      }
-    });
   };
 
   componentDidMount() {
@@ -80,6 +91,7 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props;
+
     if (auth.isLoading) {
       return <LoadableLoader />;
     }

@@ -45,6 +45,7 @@ const PageNotFound = Loadable({
 });
 
 class App extends Component {
+
   componentDidMount() {
     this.props.loadUser();
     loadCSS(

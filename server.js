@@ -4,10 +4,10 @@ const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const { auth } = require("./helper/auth");
-const Session = require("./models/LoggedInSession");
+const User = require("./models/User");
 
 const app = express();
-const http = require("http").createServer(app);
+const http = require("http").Server(app);
 const io = require("socket.io")(http);
 
 const { mongoURI } = require("./config/keys");
@@ -32,10 +32,11 @@ io.on("connection", socket => {
 
 app.get("/notify", auth, (req, res) => {
   const userID = req.user.id;
-  Session.findOne({ userID: userID })
-    .then(session => {
-      S.emit(`notify-${userID}`, session.devices);
-      res.status(200).send(session);
+  User.findById(userID)
+    .then(user => {
+      console.log(`EMITTING >>> notify-${userID}`);
+      S.emit(`notify-${userID}`, user);
+      res.status(200).send(user);
     })
     .catch(err => res.status(400).json(err));
 });
