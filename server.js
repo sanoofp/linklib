@@ -3,9 +3,6 @@ const compression = require("compression");
 const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const { auth } = require("./helper/auth");
-const User = require("./models/User");
-const Link = require("./models/Link");
 
 const app = express();
 const http = require("http").Server(app);
@@ -14,6 +11,7 @@ const io = require("socket.io")(http);
 const { mongoURI } = require("./config/keys");
 
 app.set("port", process.env.PORT || 5000);
+app.set("socketio", io);
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -29,29 +27,9 @@ io.on("connection", socket => {
   socket.on("disconnect", () => console.log("Client disconnected"));
 });
 
-app.get("/notify/:linkid", auth, (req, res) => {
-  const userID = req.user.id;
-  const linkID = req.params.linkid;
-
-  User.findById(userID)
-    .then(user => {
-      console.log(`EMITTING >>> notify-${userID}`);
-      Link.findById(linkID)
-        .then(link => {
-          console.log(link);
-          io.sockets.emit(`notify-${userID}`, {
-            link: link,
-            icon: user.avatar
-          });
-          res.status(200).send(user);
-        })
-        .catch(err => res.status(400).json(err));
-    })
-    .catch(err => res.status(400).json(err));
-});
-
 app.use("/api/user", require("./routes/api/user"));
 app.use("/api/link", require("./routes/api/link"));
+app.use("/api/notify", require("./routes/api/notify"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -61,4 +39,3 @@ if (process.env.NODE_ENV === "production") {
 }
 
 http.listen(process.env.PORT || 5000, () => console.log("Server Started"));
-// app.listen(app.get("port"), () => console.log("Server Started."));
