@@ -19,7 +19,7 @@ const MenuComponent = props => {
         <ListItemIcon><DeleteRounded /></ListItemIcon>
         Delete
       </MenuItem>
-      <MenuItem onClick={() => props.socketEmit(props._id)}>
+      <MenuItem onClick={() => {props.socketEmit(props._id); props.handleClose();}}>
         <ListItemIcon><MobileScreenShareRounded /></ListItemIcon>
         Push to devices
       </MenuItem>
