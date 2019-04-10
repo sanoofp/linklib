@@ -33,17 +33,21 @@ self.addEventListener("activate", e => {
 //   );
 // });
 
-
-self.addEventListener("notificationclick", (e) => {
-  const eventArr = e.action.split("-");
-  if(eventArr[0] === "open") {
-    e.notification.close();
-    clients.openWindow(eventArr[1]);
-  } else if(eventArr[0] === "linklib") {
-    e.notification.close();
-    clients.openWindow(`/link/${eventArr[1]}`);
-  }
-  
+self.addEventListener("notificationclick", event => {
+  const eventArr = event.action.split("-");
+  event.preventDefault();
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: "window" }).then(windowClients => {
+      if (clients.openWindow) {
+        if (eventArr[0] === "open") {
+          return clients.openWindow(eventArr[1]);
+        } else if (eventArr[0] === "linklib") {
+          return clients.openWindow(`/link/${eventArr[1]}`);
+        }
+      }
+    })
+  );
 });
 
 // self.addEventListener("push", e => {
