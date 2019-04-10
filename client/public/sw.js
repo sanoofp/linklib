@@ -36,37 +36,38 @@ self.addEventListener("activate", e => {
 self.addEventListener("notificationclick", event => {
   const eventArr = event.action.split("-");
   event.preventDefault();
-  event.notification.close();
   if (eventArr[0] === "open") {
+    event.notification.close();
     return clients.openWindow(eventArr[1]);
   } else if (eventArr[0] === "linklib") {
+    event.notification.close();
     return clients.openWindow(`/link/${eventArr[1]}`);
   }
 });
 
-self.addEventListener("push", event => {
-  const data = event.data.json();
-  console.log("PUSH RECIEVED");
+// self.addEventListener("push", event => {
+//   const data = event.data.json();
+//   console.log("PUSH RECIEVED");
 
-  const options = {
-    body: data.link.url,
-    icon: data.icon,
-    // badge: data.icon,
-    requireInteraction: true,
-    actions: [
-      {
-        action: `open-${data.link.url}`,
-        title: "Open Link",
-        icon: "./assets/img/launch.png",
-      },
-      {
-        action: `linklib-${data.link._id}`,
-        title: "Open in Linklib",
-        icon: "./assets/img/launch.png",
-      },
-    ]
-  };
-  event.waitUntil(
-    self.registration.showNotification(data.title, options)
-  )
-})
+//   const options = {
+//     body: data.link.url,
+//     icon: data.icon,
+//     // badge: data.icon,
+//     requireInteraction: true,
+//     actions: [
+//       {
+//         action: `open-${data.link.url}`,
+//         title: "Open Link",
+//         icon: "./assets/img/launch.png",
+//       },
+//       {
+//         action: `linklib-${data.link._id}`,
+//         title: "Open in Linklib",
+//         icon: "./assets/img/launch.png",
+//       },
+//     ]
+//   };
+//   event.waitUntil(
+//     self.registration.showNotification(data.title, options)
+//   )
+// });
