@@ -12,19 +12,19 @@ export function listenSocket(userID) {
         // If the user accepts, let's create a notification
         if (permission === "granted") {
           navigator.serviceWorker.getRegistration().then(function(reg) {
-            var options = {
+            const options = {
               body: data.link.url,
               icon: data.icon,
               // badge: data.icon,
               requireInteraction: true,
               actions: [
                 {
-                  action: `open-${data.link.url}`,
+                  action: `open--|--${data.link.url}`,
                   title: "Open Link",
                   icon: launch,
                 },
                 {
-                  action: `linklib-${data.link._id}`,
+                  action: `linklib--|--${data.link._id}`,
                   title: "Open in Linklib",
                   icon: help,
                 },

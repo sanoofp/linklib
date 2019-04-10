@@ -104,7 +104,7 @@ export const ShowLinkItem = styled.div`
 `;
 
 export const AddLinkMessageContainer = styled.div`
-  max-width: 500px;
+  width: 600px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -113,7 +113,7 @@ export const AddLinkMessageContainer = styled.div`
   border-radius: 10px;
   background-color: ${props => props.theme.bodybg};
   text-align: center;
-  padding: 30px 18px;
+  padding: 50px 26px;
   h4 {
     font-size: 1.8em;
     margin: 0;

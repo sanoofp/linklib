@@ -9,9 +9,8 @@ import { getUserLink } from "../../actions/linkAction";
 import { clipboardState } from "../../actions/appStateAction";
 import { DashboardContainer } from "./styles";
 import Search from "./Search/Search";
-// import ShowLinks from "./Show/Show";
-import { validateURL } from "../../functions/helper";
 import { listenSocket } from "../../functions/notification";
+import getClipboard from "../../functions/clipboard";
 
 const ShowLinks = Loadable({
   loader: () => import("./Show/Show"),
@@ -30,28 +29,12 @@ const AddLinkMessage = Loadable({
 
 class Dashboard extends Component {
 
-  getClipboard = () => {
-    if (navigator.clipboard && navigator.clipboard.readText) {
-      navigator.clipboard
-        .readText()
-        .then(url => {
-          const isURL = validateURL(url);
-          if (isURL) {
-            this.props.clipboardState(true, url);
-            return true;
-          }
-        })
-    }
-  };
-
   componentDidMount() {
     const { auth, link } = this.props;
 
-    this.getClipboard();
-    if(auth.user) {
-      console.log("Listening on socket");
-      listenSocket(auth.user._id);
-    }
+    getClipboard(url => this.props.clipboardState(true, url));
+
+    if(auth.user) { listenSocket(auth.user._id) }
 
     if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
       if (auth.isAuthenticated) {
@@ -62,6 +45,8 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props;
+
+    window.onfocus = e => getClipboard(url => this.props.clipboardState(true, url));
 
     if (auth.isLoading) {
       return <LoadableLoader />;
@@ -76,10 +61,13 @@ class Dashboard extends Component {
           <title>Linklib - {auth.user.username}</title>
         </Helmet>
         <DashboardContainer>
+          
           <Search />
           <ShowLinks />
           <AddLink />
+
           <AddLinkMessage />
+
         </DashboardContainer>
       </React.Fragment>
     );

@@ -83,9 +83,11 @@ class App extends Component {
               <Route path="/link/:id" component={SingleLink} />
               <Route path="*" exact component={PageNotFound} />
             </Switch>
+
             <Spinner />
             <LinearLoader />
             <SnackbarComponent />
+          
           </BrowserRouter>
         </ThemeProvider>
       </MuiThemeProvider>

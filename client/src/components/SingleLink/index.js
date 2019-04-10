@@ -26,7 +26,7 @@ class SingleLink extends Component {
     clearTimeout(this._timeout);
   }
 
-  copy = () => {
+  copyLink = () => {
     copy("copy-link", () =>
       this.setState({ copied: true }, () => setTimeout(this._timeout, 800))
     );
@@ -86,7 +86,7 @@ class SingleLink extends Component {
                     className="links-btn"
                     type="button"
                     value="Copy link"
-                    onClick={() => this.copy()}
+                    onClick={() => this.copyLink()}
                   />
                 </div>
                 <ShareContainer>

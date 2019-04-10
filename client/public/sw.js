@@ -34,7 +34,7 @@ self.addEventListener("activate", e => {
 // });
 
 self.addEventListener("notificationclick", event => {
-  const eventArr = event.action.split("-");
+  const eventArr = event.action.split("--|--");
   event.preventDefault();
   if (eventArr[0] === "open") {
     event.notification.close();

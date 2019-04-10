@@ -13,6 +13,15 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <script src="main.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then(swReg => console.log("SW REG", swReg))
+            .catch(err => console.log("SW NOT REG"));
+        });
+      }
+    </script>
   </body>
 </html>
