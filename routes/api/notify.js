@@ -11,10 +11,9 @@ router.get("/:linkid", auth, (req, res) => {
 
   User.findById(userID)
     .then(user => {
-      console.log(`EMITTING >>> notify-${userID}`);
+      console.log(`EMITTING - notify-${userID}`);
       Link.findById(linkID)
         .then(link => {
-          console.log(link);
           io.sockets.emit(`notify-${userID}`, {
             link: link,
             icon: user.avatar
