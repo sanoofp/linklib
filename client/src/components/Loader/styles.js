@@ -6,8 +6,8 @@ background-color: ${props => props.reqLoading ? "rgba(0,0,0,0.5)" : props.theme.
 position: fixed;
 top: 0;
 left: 0;
-width: 100vw;
-height: 100vh;
+right: 0;
+bottom: 0;
 display: flex;
 align-items: center;
 justify-content: center;

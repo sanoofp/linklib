@@ -83,6 +83,7 @@ export const ShowLinkItem = styled.div`
   h4 {
     font-size: 1.4em;
     margin: 0;
+    width: 90%;
   }
   p {
     font-size: 0.8em;
@@ -97,8 +98,8 @@ export const ShowLinkItem = styled.div`
   }
   .more-show-link-item {
     position: absolute;
-    top: 14px;
-    right: 9px;
+    top: 15px;
+    right: 0px;
   }
 `;
 

@@ -37,24 +37,36 @@ self.addEventListener("notificationclick", event => {
   const eventArr = event.action.split("-");
   event.preventDefault();
   event.notification.close();
-  event.waitUntil(
-    clients.matchAll({ type: "window" }).then(windowClients => {
-      if (clients.openWindow) {
-        if (eventArr[0] === "open") {
-          return clients.openWindow(eventArr[1]);
-        } else if (eventArr[0] === "linklib") {
-          return clients.openWindow(`/link/${eventArr[1]}`);
-        }
-      }
-    })
-  );
+  if (eventArr[0] === "open") {
+    return clients.openWindow(eventArr[1]);
+  } else if (eventArr[0] === "linklib") {
+    return clients.openWindow(`/link/${eventArr[1]}`);
+  }
 });
 
-// self.addEventListener("push", e => {
-//   const data = e.data.json();
-//   console.log("PUSH RECIEVED");
-//   self.registration.showNotification(data.title, {
-//     body: data.body,
-//     icon: ""
-//   })
-// })
+self.addEventListener("push", event => {
+  const data = event.data.json();
+  console.log("PUSH RECIEVED");
+
+  const options = {
+    body: data.link.url,
+    icon: data.icon,
+    // badge: data.icon,
+    requireInteraction: true,
+    actions: [
+      {
+        action: `open-${data.link.url}`,
+        title: "Open Link",
+        icon: "./assets/img/launch.png",
+      },
+      {
+        action: `linklib-${data.link._id}`,
+        title: "Open in Linklib",
+        icon: "./assets/img/launch.png",
+      },
+    ]
+  };
+  event.waitUntil(
+    self.registration.showNotification(data.title, options)
+  )
+})
