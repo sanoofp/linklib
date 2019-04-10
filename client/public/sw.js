@@ -6,7 +6,6 @@ self.addEventListener("install", e => console.log("SW INSTALLED"));
 
 self.addEventListener("activate", e => {
   // console.log("SW ACTIVATED");
-
   e.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
@@ -21,7 +20,6 @@ self.addEventListener("activate", e => {
 });
 
 // self.addEventListener("fetch", e => {
-//   // console.log("SW FETCHING");
 //   e.respondWith(
 //     fetch(e.request)
 //       .then(res => {
@@ -35,6 +33,18 @@ self.addEventListener("activate", e => {
 //   );
 // });
 
+
+self.addEventListener("notificationclick", (e) => {
+  const eventArr = e.action.split("-");
+  if(eventArr[0] === "open") {
+    e.notification.close();
+    clients.openWindow(eventArr[1]);
+  } else if(eventArr[0] === "linklib") {
+    e.notification.close();
+    clients.openWindow(`/link/${eventArr[1]}`);
+  }
+  
+});
 
 // self.addEventListener("push", e => {
 //   const data = e.data.json();

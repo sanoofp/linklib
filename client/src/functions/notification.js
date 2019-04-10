@@ -1,7 +1,10 @@
 import io from "socket.io-client";
+import launch from "./launch.png";
+import help from "./help.png";
+
 export function listenSocket(userID) {
   const socket = io("/");
-  console.log("WAITING FOR ACTION EMITTING >>> notify-",userID);
+  console.log("WAITING FOR ACTION EMITTING >>> notify-", userID);
   socket.on(`notify-${userID}`, data => {
     console.log("EMITTED >>> notify-" + userID, data);
     if (Notification.permission !== "denied") {
@@ -12,9 +15,20 @@ export function listenSocket(userID) {
             var options = {
               body: data.link.url,
               icon: data.icon,
-              badge: data.icon,
+              // badge: data.icon,
               requireInteraction: true,
-              actions: [{ action: "open", title: "Open Link" }]
+              actions: [
+                {
+                  action: `open-${data.link.url}`,
+                  title: "Open Link",
+                  icon: launch,
+                },
+                {
+                  action: `linklib-${data.link._id}`,
+                  title: "Open in Linklib",
+                  icon: help,
+                },
+              ]
             };
 
             reg.showNotification(data.link.linkTitle, options);
