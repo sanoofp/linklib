@@ -2,7 +2,7 @@ import io from "socket.io-client";
 import launch from "./launch.png";
 import help from "./help.png";
 
-const socket = io("/", { autoConnect: false });
+const socket = io("/", { autoConnect: false, forceNew: false });
 
 export function listenSocket(userID) {
   socket.open();

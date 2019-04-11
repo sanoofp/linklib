@@ -24,9 +24,10 @@ class Items extends Component {
   };
 
   render() {
-    const { linkTitle, url, _id, date } = this.props;
+    const { linkTitle, url, _id, date } = this.props.link;
     const { anchorEl } = this.state;
     return (
+      <div className="col-md-6 p-2">
       <ShowLinkItem>
         <h4>{linkTitle}</h4>
         <p>{truncateStringTo(url, 100)}</p>
@@ -63,6 +64,7 @@ class Items extends Component {
           />
         </div>
       </ShowLinkItem>
+      </div>      
     );
   }
 }

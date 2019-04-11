@@ -76,9 +76,16 @@ export const ShowLinkItem = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
   border-radius: 12px;
-  margin: 30px 0;
-  padding: 28px 18px;
+  margin: 20px 7px !important;
+  padding: 30px 18px !important;
+  height: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
 
   h4 {
     font-size: 1.4em;
@@ -87,7 +94,7 @@ export const ShowLinkItem = styled.div`
   }
   p {
     font-size: 0.8em;
-    margin: 8px 0 6px 0 !important;
+    margin: 10px 0 9px 0 !important;
     word-wrap: break-word;
     margin: 0;
   }
@@ -98,8 +105,19 @@ export const ShowLinkItem = styled.div`
   }
   .more-show-link-item {
     position: absolute;
-    top: 15px;
-    right: 0px;
+    top: 36px;
+    right: 12px;
+  }
+  @media (max-width: 485px) {
+    padding: 20px 10px;
+    margin: 20px 2px !important;    
+    p {
+      font-size: 0.67em;
+    }
+    .more-show-link-item {
+      right: 0px;
+      top: 10px;
+    }
   }
 `;
 

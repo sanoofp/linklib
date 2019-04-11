@@ -6,22 +6,22 @@ import Items from "./Items";
 const ShowLinks = props => {
   const { userLinks, searchKeyword } = props.link;
   let searchData = null;
-  if(searchKeyword) {
+  if (searchKeyword) {
     const searchedLinks = userLinks.filter(item => {
-      return item.linkTitle.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1;
+      return (
+        item.linkTitle.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1
+      );
     });
-    
+
     searchData = searchedLinks.map((item, idx) => (
       <Items
         key={idx}
-        linkTitle={item.linkTitle}
-        url={item.url}
-        _id={item._id}
+        link={item}
       />
     ));
 
-    if(searchedLinks.length === 0) {
-      searchData = <p className="no-result">No result found</p>
+    if (searchedLinks.length === 0) {
+      searchData = <p className="no-result">No result found</p>;
     }
   }
   // console.log(searchData, searchKeyword, Boolean(searchKeyword));
@@ -29,24 +29,27 @@ const ShowLinks = props => {
     <div className="container show-items-container">
       <div className="row">
         <div className="col-md-12">
-          
-          { searchKeyword !== "" && <div className="is-searching">
-            <p>Showing Result for <strong>{searchKeyword}</strong></p>
-            {(searchData.length !== 0 && Array.isArray(searchData)) && <small>Found {searchData.length} results</small>}
-          </div>
-          }
-          { searchKeyword === ""
-            ? userLinks.map((item, idx) => (
-                <Items
-                  key={idx}
-                  date={item.date}
-                  linkTitle={item.linkTitle}
-                  url={item.url}
-                  _id={item._id}
-                />
-              ))
-            : searchData}
+          {searchKeyword !== "" && (
+            <div className="is-searching">
+              <p>
+                Showing Result for <strong>{searchKeyword}</strong>
+              </p>
+              {searchData.length !== 0 && Array.isArray(searchData) && (
+                <small>Found {searchData.length} results</small>
+              )}
+            </div>
+          )}
         </div>
+      </div>
+      <div className="row">
+        {searchKeyword === ""
+          ? userLinks.map((item, idx) => (
+              <Items
+                key={idx}
+                link={item}
+              />
+            ))
+          : searchData}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const commonOverrides = {
   menu: {
     MuiMenu: {
       paper: {
-        boxShadow: "0px 4px 16px rgba(0,0,0,0.15)",
+        boxShadow: "0px 5px 19px rgba(0,0,0,0.2)",
         borderRadius: 12
       }
     }
