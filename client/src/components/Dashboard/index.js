@@ -9,7 +9,6 @@ import { getUserLink } from "../../actions/linkAction";
 import { clipboardState } from "../../actions/appStateAction";
 import { DashboardContainer } from "./styles";
 import Search from "./Search/Search";
-import { listenSocket } from "../../functions/notification";
 import getClipboard from "../../functions/clipboard";
 
 const ShowLinks = Loadable({
@@ -33,8 +32,6 @@ class Dashboard extends Component {
     const { auth, link } = this.props;
 
     getClipboard(url => this.props.clipboardState(true, url));
-
-    if(auth.user) { listenSocket(auth.user._id) }
 
     if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
       if (auth.isAuthenticated) {

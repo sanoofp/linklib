@@ -59,7 +59,6 @@ class App extends Component {
   render() {
     const { darkTheme } = this.props.appState;
     const { appState, link } = this.props;
-    
     return (
       <MuiThemeProvider theme={darkTheme ? darkMuiTheme : muiTheme}>
         <ThemeProvider theme={darkTheme ? dark : main}>

@@ -19,6 +19,7 @@ const ModelContainer = props => {
                   type="text"
                   margin="normal"
                   fullWidth
+                  value={props.state.linkTitle}
                   variant="outlined"
                   onChange={event => props.onChange("linkTitle", event.target.value)}
                 />
@@ -28,7 +29,7 @@ const ModelContainer = props => {
                   type="url"
                   margin="normal"
                   fullWidth
-                  value={props.url}
+                  value={props.state.url}
                   variant="outlined"
                   onChange={event => props.onChange("url", event.target.value)}
                 />

@@ -10,6 +10,7 @@ import {
   SIGNOUT_SUCCESS
 } from "../actions/types";
 import { axiosHeader } from '../functions/helper'
+import { listenSocket, disconnect } from "../functions/notification"
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
@@ -17,12 +18,15 @@ export const loadUser = () => (dispatch, getState) => {
   if(!token) return dispatch({ type: AUTH_ERROR });
 
   axios.get("/api/user/auth", axiosHeader(getState))
-    .then(res => dispatch({ 
-      type: USER_LOADED,
-      payload: {
-        user: res.data
-      } 
-    }))
+    .then(res => {
+      dispatch({ 
+        type: USER_LOADED,
+        payload: {
+          user: res.data
+        }
+      })
+      listenSocket(res.data._id);      
+    })
     .catch(err => {
       dispatch({
         type: AUTH_ERROR,
@@ -48,6 +52,7 @@ export const signinUser = ({ username, password }) => dispatch => {
         user: res.data.user
       }
     });
+    listenSocket(res.data.user._id)         
     dispatch(dialogAction("signInDialogOpen", false))
     dispatch(toggleLoading(false));
     dispatch(clearErrors());  
@@ -76,6 +81,7 @@ export const signupUser = ({ username, email, password }) => dispatch => {
         token: res.data.token
       } 
     });
+    listenSocket(res.data.user._id);     
     dispatch(toggleLoading(false));
     dispatch(clearErrors());
     dispatch(dialogAction("signUpDialogOpen", false));
@@ -94,6 +100,7 @@ export const signOut = () => (dispatch, getState) => {
 
   axios.get("/api/user/logout", axiosHeader(getState))
   .then(() => {
+    disconnect();
     dispatch(toggleLoading(false));    
     dispatch(clearUserLinks())
     dispatch(snackbarToggle(true, "Signed out of Linklib", "success"))

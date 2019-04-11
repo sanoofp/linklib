@@ -2,8 +2,10 @@ import io from "socket.io-client";
 import launch from "./launch.png";
 import help from "./help.png";
 
+const socket = io("/");
+
 export function listenSocket(userID) {
-  const socket = io("/");
+  socket.connect();
   console.log("WAITING FOR ACTION EMITTING >>> notify-", userID);
   socket.on(`notify-${userID}`, data => {
     console.log("EMITTED >>> notify-" + userID, data);
@@ -42,4 +44,8 @@ export function listenSocket(userID) {
       });
     }
   });
+}
+
+export function disconnect() {
+  socket.disconnect();
 }

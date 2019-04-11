@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import TrackVisibility from "react-on-screen";
+// import io from "socket.io-client";
 import { dialogAction } from "../../actions/appStateAction";
 import { HomeCircle } from "../svg/svgLogo";
 import { withStyles } from "@material-ui/core/styles";
@@ -33,7 +33,6 @@ class Home extends Component {
   const { isAuthenticated, dialogAction } = this.props;
 
   return (
-    <TrackVisibility>
       <HomeContainer>
         <Helmet>
           <title>{`Linklib - Home`}</title>
@@ -78,7 +77,6 @@ class Home extends Component {
         <SignupModel />
         
       </HomeContainer>
-    </TrackVisibility>
   );
   }
 };

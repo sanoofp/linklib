@@ -15,17 +15,19 @@ const MenuComponent = props => {
       open={Boolean(props.anchorEl)}
       onClose={props.handleClose}
     >
-      <MenuItem onClick={() => {props.deleteSingleLink(props._id); props.handleClose()}}>
-        <ListItemIcon><DeleteRounded /></ListItemIcon>
-        Delete
-      </MenuItem>
+      
       <MenuItem onClick={() => {props.socketEmit(props._id); props.handleClose();}}>
         <ListItemIcon><MobileScreenShareRounded /></ListItemIcon>
         Push to devices
       </MenuItem>
+      <MenuItem onClick={() => {props.deleteSingleLink(props._id); props.handleClose()}}>
+        <ListItemIcon><DeleteRounded /></ListItemIcon>
+        Delete
+      </MenuItem>
       <MenuItem style={{fontSize: "0.8em"}}>
         Create at {new Date(props.date).toDateString()}
       </MenuItem>
+      
     </Menu>
   );
 };

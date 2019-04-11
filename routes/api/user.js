@@ -87,21 +87,6 @@ router.post("/signin", (req, res) => {
 // @route POST api/user/logout
 // To signin a user
 router.get("/logout", auth, (req, res) => {
-  // const currentDevice = getSystemInfo(req);
-  // Session.findOne({ userID: req.user.id }).then(session => {
-  //   session.devices = session.devices.filter(
-  //     item => item.deviceName !== currentDevice
-  //   );
-  //   console.log(session.devices);
-  //   session.save().then(() => {
-  //     if (!session.devices.length) {
-  //       return Session.deleteOne({ userID: req.user.id })
-  //         .then(data => res.send(data))
-  //         .catch(err => res.status(400).json(err));
-  //     }
-  //     res.status(200).json({});
-  //   });
-  // });
   res.status(200).json({});
 });
 

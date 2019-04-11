@@ -33,7 +33,11 @@ class AddLinkModal extends Component {
 
   componentWillReceiveProps() {
     const { clipboard } = this.props.appState;
-    this.setState({ url: clipboard.urlFromClipboard });
+    if(clipboard.urlFromClipboard !== "") {
+      this.setState({ url: clipboard.urlFromClipboard });
+    } else {
+      this.setState({ url: this.state.url });
+    }
   }
 
   render() {
@@ -49,7 +53,7 @@ class AddLinkModal extends Component {
         }}
       >
         <ModelContainer
-          url={this.state.url}
+          state={this.state}
           handleSubmit={this.handleSubmit}
           onChange={(name, value) => this.handleOnChange(name, value)}        
         />
