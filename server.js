@@ -3,6 +3,7 @@ const compression = require("compression");
 const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cors = require("cors");
 
 const app = express();
 const http = require("http").Server(app);
@@ -16,6 +17,7 @@ app.set("socketio", io);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(compression());
+app.use(cors());
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true })

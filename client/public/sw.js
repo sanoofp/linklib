@@ -34,15 +34,14 @@ self.addEventListener("activate", e => {
 // });
 
 self.addEventListener("notificationclick", event => {
-  const eventArr = event.action.split("--|--");
-  console.log(eventArr[1]);
+  const action = event.action;
   event.preventDefault();
-  if (eventArr[0] === "open") {
+  if (action === "open") {
     event.notification.close();
-    clients.openWindow(eventArr[1]);
-  } else if (eventArr[0] === "linklib") {
+    clients.openWindow(event.notification.data.url.main);
+  } else if (action === "linklib") {
     event.notification.close();
-    clients.openWindow(`/link/${eventArr[1]}`);
+    clients.openWindow(event.notification.data.url.linklib);
   }
 });
 

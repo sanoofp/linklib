@@ -17,16 +17,22 @@ export function listenSocket(userID) {
             const options = {
               body: data.link.url,
               icon: data.icon,
-              // badge: data.icon,
+              badge: data.icon,
               requireInteraction: true,
+              data: {
+                url: {
+                  main: data.link.url,
+                  linklib: `/link/${data.link._id}`
+                }
+              },
               actions: [
                 {
-                  action: `open--|--${data.link.url}`,
+                  action: `open`,
                   title: "Open Link",
                   icon: launch,
                 },
                 {
-                  action: `linklib--|--${data.link._id}`,
+                  action: `linklib`,
                   title: "Open in Linklib",
                   icon: help,
                 },

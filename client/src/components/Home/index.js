@@ -31,7 +31,7 @@ class Home extends Component {
   render() {
 
   const { isAuthenticated, dialogAction } = this.props;
-
+    
   return (
       <HomeContainer>
         <Helmet>
