@@ -73,7 +73,7 @@ export const SearchContainerForm = styled.div`
 
 
 export const ShowLinkItem = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
   border-radius: 12px;
   margin: 20px 7px !important;
@@ -115,7 +115,7 @@ export const ShowLinkItem = styled.div`
       font-size: 0.67em;
     }
     .more-show-link-item {
-      right: 0px;
+      right: 4px;
       top: 10px;
     }
   }
