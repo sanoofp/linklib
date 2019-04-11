@@ -35,11 +35,7 @@ export function listenSocket(userID) {
 
             reg.showNotification(data.link.linkTitle, options);
           });
-          console.log(navigator.serviceWorker);
-          navigator.serviceWorker.addEventListener("notificationclick", e => {
-            console.log(e);
-            window.open(data.link.url, "_blank");
-          });
+          
         }
       });
     }

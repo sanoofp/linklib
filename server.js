@@ -24,7 +24,10 @@ mongoose
 
 io.on("connection", socket => {
   console.log("New client connected");
-  socket.on("disconnect", () => console.log("Client disconnected"));
+  socket.on("disconnect", () => {
+    socket.disconnect(true);
+    console.log("Client disconnected.");
+  });
 });
 
 app.use("/api/user", require("./routes/api/user"));
