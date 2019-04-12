@@ -53,8 +53,9 @@ export const Icons = styled.div`
 export const SingleLinkContainer = styled.div`
   position: relative;
   width: 100%;
+  margin-top: 16px;
   &:nth-of-type(2) {
-    margin-top: 26px;
+    margin: 34px 0;
   }
   padding: 18px 22px;
   box-shadow: 0px 4px 20px rgba(0,0,0,0.16);

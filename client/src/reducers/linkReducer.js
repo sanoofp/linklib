@@ -6,8 +6,7 @@ import {
   LOAD_LINK_FAIL,
   CLEAR_SINGLE_LINKS,
   CLEAR_USER_LINKS,
-  SET_SEARCH_KEYWORD,
-  SET_LINK_UPVOTE
+  SET_SEARCH_KEYWORD
 } from "../actions/types";
 
 const initialState = {
@@ -51,15 +50,6 @@ export default function(state = initialState, action) {
         linkLoading: false,
         singleLink: action.payload,
       };
-    }
-    case SET_LINK_UPVOTE: {
-      return {
-        ...state,
-        singleLink: {
-          ...state.singleLink,
-          vote: action.payload
-        }
-      }
     }
     case CLEAR_SINGLE_LINKS: {
       return {

@@ -44,36 +44,6 @@ router.get("/single/:linkid", (req, res) => {
     .catch(err => res.status(400).json({ msg: "Invalid Link", err: err }));
 });
 
-// @route POST /api/link/up/:linkid
-// @desc up vote a link
-router.post("/up/:linkid", auth, (req, res) => {
-  Link.findById(req.params.linkid)
-    .then(link => {
-      let alreadyVotedUser = false;
-      link.vote.users.find(user => {
-        if (String(user.userID) === String(req.user.id)) {
-          alreadyVotedUser = true;
-          return true;
-        }
-      });
-      console.log("VOTED: ", alreadyVotedUser);
-      if (!alreadyVotedUser) {
-        link.vote.up = ++link.vote.up;
-        link.vote.users.push({ userID: req.user.id });
-      } else {
-        link.vote.up = --link.vote.up;
-        link.vote.users = link.vote.users.filter(
-          user => user.userID === req.user.id
-        );
-      }
-      link.save().then(updated => {
-        console.log(updated.vote.users);
-        res.status(200).json(updated);
-      });
-    })
-    .catch(err => res.status(400).json(err));
-});
-
 // @route DELETE /api/link/:linkid
 // @desc Delete a link with ID
 router.delete("/:linkid", auth, (req, res) => {

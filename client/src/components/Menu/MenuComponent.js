@@ -7,12 +7,9 @@ import DeleteRounded from "@material-ui/icons/DeleteRounded";
 import MobileScreenShareRounded from "@material-ui/icons/MobileScreenShareRounded";
 import MoreVertRounded from "@material-ui/icons/MoreVertRounded";
 import IconButton from "@material-ui/core/IconButton";
-import ThumbUpRounded from "@material-ui/icons/ThumbUpRounded";
-import ThumbUpOutlined from "@material-ui/icons/ThumbUpOutlined";
 import ShareRounded from "@material-ui/icons/ShareRounded";
 import styled from "styled-components";
-import Badge from '@material-ui/core/Badge';
-import { deleteSingleLink, socketEmit, upvote } from "../../actions/linkAction";
+import { deleteSingleLink, socketEmit } from "../../actions/linkAction";
 import { snackbarToggle } from "../../actions/appStateAction";
 import androidShare from "../../functions/androidShare";
 
@@ -55,15 +52,7 @@ class MenuComponent extends Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { link, socketEmit, deleteSingleLink, upvote } = this.props;
-    
-    let userUpvoted = false;
-    this.props.link.vote.users.find(user => {
-      if(this.props.auth.user._id === user.userID) {
-        userUpvoted = true;
-        return true
-      }
-    })
+    const { link, socketEmit, deleteSingleLink } = this.props;
 
     return (
       <ShowLinkMenuItems>
@@ -84,14 +73,6 @@ class MenuComponent extends Component {
             <ListItemIcon><ShareRounded /></ListItemIcon>
             Share
           </MenuItem>
-          <MenuItem onClick={() => {this.handleClose();upvote(link._id)}}>
-            <ListItemIcon>
-              <Badge badgeContent={link.vote.up} color="secondary">
-                {userUpvoted ?<ThumbUpRounded /> : <ThumbUpOutlined />}  
-              </Badge>
-            </ListItemIcon>
-            Up Vote
-          </MenuItem>
           <MenuItem onClick={() => {deleteSingleLink(link._id);this.handleClose();}}>
             <ListItemIcon><DeleteRounded /></ListItemIcon>
             Delete
@@ -111,5 +92,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteSingleLink, socketEmit, snackbarToggle, upvote }
+  { deleteSingleLink, socketEmit, snackbarToggle }
 )(MenuComponent);
