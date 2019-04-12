@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
 import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
 import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
@@ -10,7 +12,10 @@ import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
 import copy from "../../functions/copy";
 import androidShare from "../../functions/androidShare";
-// import MenuComponent from "../Menu/MenuComponent";
+import MenuComponent from "../Menu/MenuComponent";
+import IconButton from '@material-ui/core/IconButton';
+import ThumbUpOutlined from "@material-ui/icons/ThumbUpOutlined";
+
 
 class SingleLink extends Component {
   state = {
@@ -34,15 +39,26 @@ class SingleLink extends Component {
     );
   };
 
-  androidShare = () => {
+  share = () => {
     const { singleLink } = this.props.linkReducer;
     androidShare(singleLink, () => this.props.snackbarToggle(true, "Web Share API not Supported", "error"));
   };
 
   render() {
     const { singleLink } = this.props.linkReducer;
+    const { user } = this.props.authReducer;
     const { copied } = this.state;
     const { id } = this.props.errorReducer;
+    let userOfLink = false;
+    let avatar = "", username = "";
+
+    if(user && singleLink._id) {
+      avatar = singleLink.userID.avatar;
+      username = singleLink.userID.username;
+      if(user._id === singleLink.userID._id) {
+        userOfLink = true;
+      }
+    }
 
     if(id === "SINGLE_LINK_ERR" || id === "SINGLE_LINK_DELETED") {
       return <Redirect to="/dashboard" />
@@ -86,17 +102,35 @@ class SingleLink extends Component {
                   <FontAwesomeIconSet
                     title={singleLink.linkTitle}
                     link={singleLink.url}
-                    ll={this.androidShare}
+                    ll={this.share}
                   />
                 </ShareContainer>
-                {/* { user ?
-                  <MenuComponent
-                    date={singleLink.date}
-                    _id={singleLink._id}
-                  />
-                  : null
-                } */}
 
+                { userOfLink ?
+                  <MenuComponent link={singleLink} />
+                  : null
+                }
+
+              </SingleLinkContainer>
+
+              <SingleLinkContainer>
+                <h2>Details of link</h2>
+                {/* <div className="actions">
+                  <IconButton>
+                    <ThumbUpOutlined />
+                  </IconButton>
+                  <p>Upvote this link</p>
+                  <h2>{}</h2>
+                </div> */}
+                <div className="details">
+                  <span>Uploaded by <Chip
+                      avatar={<Avatar src={avatar} />}
+                      label={username}
+                      color="default"
+                      variant="outlined"
+                    />
+                  </span>
+                </div>
               </SingleLinkContainer>
             </div>
           </div>
@@ -110,7 +144,7 @@ SingleLink.propTypes = {
   getSingleLink: PropTypes.func.isRequired,
   snackbarToggle: PropTypes.func.isRequired,
   errorReducer: PropTypes.object.isRequired,
-  authReducer: PropTypes.object,
+  authReducer: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

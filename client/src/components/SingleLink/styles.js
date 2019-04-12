@@ -32,17 +32,13 @@ export const CopiedMsg = styled.div`
 
 export const ShareContainer = styled.div`
   width: 100%;
-  margin: 18px auto;
+  margin: 12px auto;
   text-align: center;
-  h2 {
-    font-size: 0.7em;
-    font-family: ${props => props.theme.secondaryFont};    
-  }
 `;
 
 export const Icons = styled.div`
   max-width: 400px;
-  margin: 12px auto;
+  margin: 6px auto;
   ${dFlexCenter}
   font-size: 0.74em !important;
   svg {
@@ -57,6 +53,9 @@ export const Icons = styled.div`
 export const SingleLinkContainer = styled.div`
   position: relative;
   width: 100%;
+  &:nth-of-type(2) {
+    margin-top: 26px;
+  }
   padding: 18px 22px;
   box-shadow: 0px 4px 20px rgba(0,0,0,0.16);
   ${dFlexCenter}
@@ -71,7 +70,11 @@ export const SingleLinkContainer = styled.div`
     font-size: 2.5em;
     margin-bottom: 5px;
   }
-
+  h2 {
+    font-size: 0.7em;
+    font-family: ${props => props.theme.secondaryFont};    
+    text-transform: uppercase;   
+  }
   input[type="text"] {
     position: relative;
     margin-bottom: 25px;
@@ -102,6 +105,17 @@ export const SingleLinkContainer = styled.div`
     &:hover {
       color: ${props => props.theme.bodybg};
       background-color: ${props => props.theme.font};
+    }
+  }
+  .details {
+    padding: 14px 0px;
+    span {
+      font-size: 0.87em;
+    }
+  }
+  .actions {
+    p {
+      font-size: 0.7em;
     }
   }
   @media (max-width: 768px) {

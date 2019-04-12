@@ -25,7 +25,7 @@ const SnackbarComponent = props => {
     );
   return (
     <Snackbar
-      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       open={snackbar.open}
       onClose={() => props.snackbarToggle(false, snackbar.msg, snackbar.type)}
       autoHideDuration={5000}

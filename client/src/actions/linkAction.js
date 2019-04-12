@@ -134,12 +134,10 @@ export const socketEmit = linkID => (dispatch, getState) => {
 
 
 export const upvote = linkID => (dispatch, getState) => {
-  console.log(linkID);
   axios.post(`/api/link/up/${linkID}`, {}, axiosHeader(getState))
-    .then(done => {
-      dispatch(getUserLink());      
-      dispatch(snackbarToggle(true, "Liked", "success"))      
-      console.log(done);
-    })
-    .catch(err => console.log(err))
+  .then(done => {
+    dispatch(getUserLink());      
+    dispatch(snackbarToggle(true, "Up vote status success", "success"))      
+  })
+  .catch(err => console.log(err))
 }

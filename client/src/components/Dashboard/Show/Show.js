@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Items from "./Items";
-import { upvote } from "../../../actions/linkAction";
 
 const ShowLinks = props => {
   const { userLinks, searchKeyword } = props.link;
@@ -49,7 +48,6 @@ const ShowLinks = props => {
                 key={idx}
                 link={item}
                 userID={props.userID}
-                upvote={() => props.upvote(item._id)}
               />
             ))
           : searchData}
@@ -61,7 +59,6 @@ const ShowLinks = props => {
 ShowLinks.propTypes = {
   link: PropTypes.object.isRequired,
   userID: PropTypes.string.isRequired,
-  upvote: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -69,4 +66,4 @@ const mapStateToProps = state => ({
   userID: state.authReducer.user._id
 });
 
-export default connect(mapStateToProps, { upvote })(ShowLinks);
+export default connect(mapStateToProps)(ShowLinks);
