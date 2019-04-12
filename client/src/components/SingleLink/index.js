@@ -9,7 +9,8 @@ import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
 import copy from "../../functions/copy";
-import MenuComponent from "../Menu/MenuComponent";
+import androidShare from "../../functions/androidShare";
+// import MenuComponent from "../Menu/MenuComponent";
 
 class SingleLink extends Component {
   state = {
@@ -35,25 +36,13 @@ class SingleLink extends Component {
 
   androidShare = () => {
     const { singleLink } = this.props.linkReducer;
-    if (navigator.share) {
-      navigator
-        .share({
-          title: singleLink.linkTitle,
-          text: "Linklib",
-          url: singleLink.url
-        })
-        .then(() => console.log("Successful share"))
-        .catch(error => console.log("Error sharing", error));
-    } else {
-      this.props.snackbarToggle(true, "Web Share API not Supported", "error");
-    }
+    androidShare(singleLink, () => this.props.snackbarToggle(true, "Web Share API not Supported", "error"));
   };
 
   render() {
     const { singleLink } = this.props.linkReducer;
     const { copied } = this.state;
     const { id } = this.props.errorReducer;
-    const { isAuthenticated } = this.props.authReducer;
 
     if(id === "SINGLE_LINK_ERR" || id === "SINGLE_LINK_DELETED") {
       return <Redirect to="/dashboard" />
@@ -100,13 +89,13 @@ class SingleLink extends Component {
                     ll={this.androidShare}
                   />
                 </ShareContainer>
-                { isAuthenticated ?
+                {/* { user ?
                   <MenuComponent
                     date={singleLink.date}
                     _id={singleLink._id}
                   />
                   : null
-                }
+                } */}
 
               </SingleLinkContainer>
             </div>

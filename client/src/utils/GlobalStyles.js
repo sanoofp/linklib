@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { modifyColor } from "../functions/helper";
 
 const utils = `
   .h-100{ 

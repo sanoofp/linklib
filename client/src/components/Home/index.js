@@ -12,7 +12,7 @@ import {
   IntroText,
   ButtonContainer,
   MuiButtonStyles,
-  HomeSearchContainer
+  // HomeSearchContainer
 } from "./style";
 import { SigninButtonComponent, SignupButtonComponent, DashboardButtonComponent } from "../Button";
 import Loadable from "react-loadable";

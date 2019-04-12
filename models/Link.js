@@ -14,6 +14,20 @@ const LinkSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
+  vote: {
+    up: {
+      type: Number,
+      default: 0
+    },
+    users: [
+      {
+        userID: {
+          type: Schema.Types.ObjectId,
+          ref: "User"
+        }
+      }
+    ]
+  },
   date: {
     type: Date,
     default: Date.now

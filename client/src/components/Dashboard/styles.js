@@ -103,6 +103,13 @@ export const ShowLinkItem = styled.div`
       margin: 8px 0 0 0;
     }
   }
+  .actions {
+    margin-top: 10px;
+    p {
+      fonct-size: 0.7em;
+      margin-left: 6px;
+    }
+  }
   
   @media (max-width: 485px) {
     padding: 20px 10px;
