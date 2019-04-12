@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { modifyColor } from "../functions/helper";
 
 const utils = `
   .h-100{ 
@@ -41,6 +42,11 @@ export const GlobalStyles = createGlobalStyle`
       color: #fff;
       text-decoration: none;
     }
+  }
+
+  ::selection {
+    background-color: ${props => props.theme.primary};
+    color: ${props => props.theme.font};
   }
 
   ${utils}

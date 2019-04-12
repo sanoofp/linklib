@@ -7,9 +7,11 @@ import Loadable from "react-loadable";
 import LoadableLoader from "../Loader/LoadableLoader";
 import { getUserLink } from "../../actions/linkAction";
 import { clipboardState } from "../../actions/appStateAction";
+import { clearErrors } from "../../actions/errorAction";
 import { DashboardContainer } from "./styles";
 import Search from "./Search/Search";
 import getClipboard from "../../functions/clipboard";
+import ScrollToTop from "./ScrollToTop";
 
 const ShowLinks = Loadable({
   loader: () => import("./Show/Show"),
@@ -29,8 +31,11 @@ const AddLinkMessage = Loadable({
 class Dashboard extends Component {
 
   componentDidMount() {
-    const { auth, link } = this.props;
+    const { auth, link, clearErrors, error } = this.props;
 
+    if(error.id !== null) {
+      clearErrors();
+    }
     getClipboard(url => this.props.clipboardState(true, url));
 
     if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
@@ -58,6 +63,8 @@ class Dashboard extends Component {
           <title>Linklib - {auth.user.username}</title>
         </Helmet>
         <DashboardContainer>
+
+          <ScrollToTop />
           
           <Search />
           <ShowLinks />
@@ -74,15 +81,17 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   getUserLink: PropTypes.func.isRequired,
   clipboardState: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  error: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   auth: state.authReducer,
-  link: state.linkReducer
+  link: state.linkReducer,
+  error: state.errorReducer
 });
 
 export default connect(
   mapStateToProps,
-  { getUserLink, clipboardState }
+  { getUserLink, clipboardState, clearErrors }
 )(Dashboard);

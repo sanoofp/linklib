@@ -4,7 +4,7 @@ import { modifyColor } from "../../functions/helper";
 export const DashboardContainer = styled.div`
   width: 100%;
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 100px;
   .show-items-container {
     margin-top: 80px;
     .no-result {
@@ -103,20 +103,12 @@ export const ShowLinkItem = styled.div`
       margin: 8px 0 0 0;
     }
   }
-  .more-show-link-item {
-    position: absolute;
-    top: 36px;
-    right: 12px;
-  }
+  
   @media (max-width: 485px) {
     padding: 20px 10px;
     margin: 20px 2px !important;    
     p {
       font-size: 0.67em;
-    }
-    .more-show-link-item {
-      right: 4px;
-      top: 10px;
     }
   }
 `;

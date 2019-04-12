@@ -11,7 +11,8 @@ import {
   HomeIntro,
   IntroText,
   ButtonContainer,
-  MuiButtonStyles
+  MuiButtonStyles,
+  HomeSearchContainer
 } from "./style";
 import { SigninButtonComponent, SignupButtonComponent, DashboardButtonComponent } from "../Button";
 import Loadable from "react-loadable";
@@ -72,6 +73,15 @@ class Home extends Component {
               </ButtonContainer>
             </div>
           </div>
+
+          {/* <div className="row">
+            <div className="col-md-12">
+                <HomeSearchContainer>
+                  <h2>Search for links</h2>
+                  <input type="text"/>
+                </HomeSearchContainer>
+            </div>
+          </div> */}
         </div>
         <SigninModel />
         <SignupModel />

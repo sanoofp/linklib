@@ -101,6 +101,8 @@ export const deleteSingleLink = id => (dispatch, getState) => {
     .then(data => {
       dispatch(getUserLink());
       dispatch(snackbarToggle(true, "Link Deleted", "success"));
+      dispatch(clearSingleLink());
+      dispatch(getErrors("Deleted - Redirect", 404, "SINGLE_LINK_DELETED"));
     })
     .catch(err => {
       dispatch({ type: LOAD_LINK_FAIL });

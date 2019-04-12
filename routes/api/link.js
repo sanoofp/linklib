@@ -33,10 +33,10 @@ router.post("/", auth, (req, res) => {
 // @route GET /api/link/single/:linkid
 // @desc Get a single link from ID
 router.get("/single/:linkid", (req, res) => {
-  console.log(req.params.linkid);
   if (!req.params.linkid)
     return res.status(400).json({ msg: "Link ID Required." });
   Link.findOne({ _id: req.params.linkid })
+    .populate("userID", "avatar id")
     .then(link => {
       if (link) return res.status(200).json(link);
       return res.status(400).json({ msg: "Invalid Link ID" });

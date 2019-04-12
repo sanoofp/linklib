@@ -86,3 +86,11 @@ export const ButtonContainer = styled.div`
     }
   }
 `;
+
+export const HomeSearchContainer = styled.div`
+  padding: 30px 0px;
+  h2 {
+    font-size: 2em;
+    
+  }
+`;

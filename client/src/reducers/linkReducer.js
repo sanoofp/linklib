@@ -48,14 +48,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         linkLoading: false,
-        singleLink: action.payload
+        singleLink: action.payload,
       };
     }
     case CLEAR_SINGLE_LINKS: {
       return {
         ...state,
         linkLoading: false,
-        singleLink: [],        
+        singleLink: [],
       };
     }
     case CLEAR_USER_LINKS: {

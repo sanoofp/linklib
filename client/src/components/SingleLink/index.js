@@ -9,17 +9,18 @@ import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
 import copy from "../../functions/copy";
+import MenuComponent from "../Menu/MenuComponent";
 
 class SingleLink extends Component {
   state = {
     copied: false
   };
+  
+  _timeout = () => this.setState({ copied: false })
 
   componentDidMount() {
     this.props.getSingleLink(this.props.match.params.id)
   }
-
-  _timeout = () => this.setState({ copied: false })
 
   componentWillUnmount() {
     this.props.clearSingleLink();
@@ -52,14 +53,16 @@ class SingleLink extends Component {
     const { singleLink } = this.props.linkReducer;
     const { copied } = this.state;
     const { id } = this.props.errorReducer;
-    if(id === "SINGLE_LINK_ERR") {
+    const { isAuthenticated } = this.props.authReducer;
+
+    if(id === "SINGLE_LINK_ERR" || id === "SINGLE_LINK_DELETED") {
       return <Redirect to="/dashboard" />
     } 
     return (
       <React.Fragment>
         <Helmet>
-          <title>{`Linklib - ${
-            singleLink.linkTitle ? singleLink.linkTitle : ""
+          <title>{`Linklib ${
+            singleLink.linkTitle ? `- ${singleLink.linkTitle}` : ""
           }`}</title>
         </Helmet>
         <div className="container my-3">
@@ -97,6 +100,14 @@ class SingleLink extends Component {
                     ll={this.androidShare}
                   />
                 </ShareContainer>
+                { isAuthenticated ?
+                  <MenuComponent
+                    date={singleLink.date}
+                    _id={singleLink._id}
+                  />
+                  : null
+                }
+
               </SingleLinkContainer>
             </div>
           </div>
@@ -109,12 +120,14 @@ class SingleLink extends Component {
 SingleLink.propTypes = {
   getSingleLink: PropTypes.func.isRequired,
   snackbarToggle: PropTypes.func.isRequired,
-  errorReducer: PropTypes.object.isRequired
+  errorReducer: PropTypes.object.isRequired,
+  authReducer: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   linkReducer: state.linkReducer,
-  errorReducer: state.errorReducer
+  errorReducer: state.errorReducer,
+  authReducer: state.authReducer,
 });
 
 export default connect(
