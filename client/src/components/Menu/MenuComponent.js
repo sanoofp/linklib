@@ -48,7 +48,7 @@ class MenuComponent extends Component {
   };
 
   share = () => {
-    androidShare(this.props._id, () =>
+    androidShare(this.props.link, () =>
       this.props.snackbarToggle(true, "Web Share API not Supported", "error")
     );
   };
