@@ -6,7 +6,7 @@ import { Redirect } from "react-router-dom";
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import { snackbarToggle } from "../../actions/appStateAction";
-import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
+import { getSingleLink, clearSingleLink, upvote } from "../../actions/linkAction";
 import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
 import A from "../Button/A";
 import FontAwesomeIconSet from "./icons/social";
@@ -50,9 +50,10 @@ class SingleLink extends Component {
     const { copied } = this.state;
     const { id } = this.props.errorReducer;
     let userOfLink = false;
-    let avatar = "", username = "";
+    let avatar = "", username = "", ups = 0;
 
     if(user && singleLink._id) {
+      ups = singleLink.vote.up;
       avatar = singleLink.userID.avatar;
       username = singleLink.userID.username;
       if(user._id === singleLink.userID._id) {
@@ -115,13 +116,13 @@ class SingleLink extends Component {
 
               <SingleLinkContainer>
                 <h2>Details of link</h2>
-                {/* <div className="actions">
-                  <IconButton>
+                <div className="actions">
+                  <IconButton onClick={() => this.props.upvote(singleLink._id)}>
                     <ThumbUpOutlined />
                   </IconButton>
                   <p>Upvote this link</p>
-                  <h2>{}</h2>
-                </div> */}
+                  <h2>Total {ups} upvotes</h2>
+                </div>
                 <div className="details">
                   <span>Uploaded by <Chip
                       avatar={<Avatar src={avatar} />}
@@ -155,5 +156,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getSingleLink, clearSingleLink, snackbarToggle }
+  { getSingleLink, clearSingleLink, snackbarToggle, upvote }
 )(SingleLink);

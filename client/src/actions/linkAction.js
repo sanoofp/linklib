@@ -5,7 +5,8 @@ import {
   LOAD_LINK_FAIL,
   CLEAR_SINGLE_LINKS,
   SET_SEARCH_KEYWORD,
-  CLEAR_USER_LINKS
+  CLEAR_USER_LINKS,
+  SET_LINK_UPVOTE
 } from "../actions/types";
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
@@ -136,7 +137,12 @@ export const socketEmit = linkID => (dispatch, getState) => {
 export const upvote = linkID => (dispatch, getState) => {
   axios.post(`/api/link/up/${linkID}`, {}, axiosHeader(getState))
   .then(done => {
-    dispatch(getUserLink());      
+    dispatch(getUserLink());
+    console.log(done);
+    dispatch({
+      type: SET_LINK_UPVOTE,
+      payload: done.data.vote
+    });
     dispatch(snackbarToggle(true, "Up vote status success", "success"))      
   })
   .catch(err => console.log(err))
