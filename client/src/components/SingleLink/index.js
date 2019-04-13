@@ -52,11 +52,13 @@ class SingleLink extends Component {
     let userOfLink = false;
     let avatar = "", username = "";
 
-    if(user && singleLink._id) {
+    if(singleLink._id) {
       avatar = singleLink.userID.avatar;
       username = singleLink.userID.username;
-      if(user._id === singleLink.userID._id) {
-        userOfLink = true;
+      if(user) {
+        if(user._id === singleLink.userID._id) {
+          userOfLink = true;
+        }
       }
     }
 

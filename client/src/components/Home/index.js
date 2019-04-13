@@ -15,17 +15,6 @@ import {
   // HomeSearchContainer
 } from "./style";
 import { SigninButtonComponent, SignupButtonComponent, DashboardButtonComponent } from "../Button";
-import Loadable from "react-loadable";
-import LoadableLoader from "../Loader/LoadableLoader";
-
-const SignupModel = Loadable({
-  loader: () => import("../Dialogs/Signup/Signup"),
-  loading: LoadableLoader
-});
-const SigninModel = Loadable({
-  loader: () => import("../Dialogs/SignIn/SignIn"),
-  loading: LoadableLoader
-});
 
 class Home extends Component {
 
@@ -83,8 +72,6 @@ class Home extends Component {
             </div>
           </div> */}
         </div>
-        <SigninModel />
-        <SignupModel />
         
       </HomeContainer>
   );

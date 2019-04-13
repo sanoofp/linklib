@@ -44,6 +44,15 @@ const PageNotFound = Loadable({
   loading: LoadableLoader
 });
 
+const SignupModel = Loadable({
+  loader: () => import("./components/Dialogs/Signup/Signup"),
+  loading: LoadableLoader
+});
+const SigninModel = Loadable({
+  loader: () => import("./components/Dialogs/SignIn/SignIn"),
+  loading: LoadableLoader
+});
+
 class App extends Component {
 
   componentDidMount() {
@@ -86,6 +95,9 @@ class App extends Component {
             <Spinner />
             <LinearLoader />
             <SnackbarComponent />
+                
+            <SigninModel />
+            <SignupModel />
           
           </BrowserRouter>
         </ThemeProvider>
