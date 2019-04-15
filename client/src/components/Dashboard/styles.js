@@ -93,6 +93,7 @@ export const ShowLinkItem = styled.div`
     width: 90%;
   }
   p {
+    max-width: 80%;
     font-size: 0.8em;
     margin: 10px 0 9px 0 !important;
     word-wrap: break-word;
