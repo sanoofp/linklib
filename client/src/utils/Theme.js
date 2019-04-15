@@ -1,6 +1,6 @@
 const fonts = {
   primaryFont: "Raleway",
-  secondaryFont: "Montserrat"
+  secondaryFont: "Montserrat",
 };
 
 export const colors = {

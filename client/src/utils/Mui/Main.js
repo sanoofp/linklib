@@ -4,7 +4,7 @@ import { main, dark } from "../Theme";
 const commonMuiTheme = {
   typography: {
     useNextVariants: true,
-    fontFamily: ["Montserrat", "sans-serif"].join(",")
+    fontFamily: ["Montserrat", "sans-serif"].join(","),
   }
 };
 

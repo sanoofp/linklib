@@ -3,18 +3,22 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { Redirect } from "react-router-dom";
-import Chip from '@material-ui/core/Chip';
-import Avatar from '@material-ui/core/Avatar';
 import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
-import { SingleLinkContainer, ShareContainer, CopiedMsg } from "./styles";
-import A from "../Button/A";
-import FontAwesomeIconSet from "./icons/social";
 import copy from "../../functions/copy";
 import androidShare from "../../functions/androidShare";
-import MenuComponent from "../Menu/MenuComponent";
-import IconButton from '@material-ui/core/IconButton';
-import ThumbUpOutlined from "@material-ui/icons/ThumbUpOutlined";
+import LoadableLoader from '../Loader/LoadableLoader';
+import Loadable from "react-loadable";
+
+const SingleLinkMain = Loadable({
+  loader: () => import("./SingleLinkMain"),
+  loading: LoadableLoader
+});
+
+const Details = Loadable({
+  loader: () => import("./Details"),
+  loading: LoadableLoader
+});
 
 
 class SingleLink extends Component {
@@ -75,60 +79,11 @@ class SingleLink extends Component {
         <div className="container my-3">
           <div className="row">
             <div className="col-md-10 mx-auto">
-              <SingleLinkContainer>
-                <h1>{singleLink.linkTitle}</h1>
-                <div>
-                  <input
-                    type="text"
-                    id="copy-link"
-                    readOnly
-                    value={singleLink.url ? singleLink.url : ""}
-                  />
-                  <CopiedMsg copied={copied}>
-                    <p>Copied to clipboard</p>
-                  </CopiedMsg>
-                </div>
-                <div>
-                  <A className="links-btn" href={singleLink.url}>
-                    Open Link
-                  </A>
-                  <input
-                    className="links-btn"
-                    type="button"
-                    value="Copy link"
-                    onClick={() => this.copyLink()}
-                  />
-                </div>
-                <ShareContainer>
-                  <h2>SHARE LINK</h2>
-                  <FontAwesomeIconSet
-                    title={singleLink.linkTitle}
-                    link={singleLink.url}
-                    ll={this.share}
-                  />
-                </ShareContainer>
+              
+              <SingleLinkMain singleLink={singleLink} copied={copied} userOfLink={userOfLink} copyLink={() => this.copyLink()} share={() => this.share()} />
+              <Details singleLink={singleLink} avatar={avatar} username={username} />
 
-                { userOfLink ?
-                  <MenuComponent link={singleLink} />
-                  : null
-                }
-
-              </SingleLinkContainer>
-
-              <SingleLinkContainer>
-                <h2>Details of link</h2>
-  
-                <div className="details">
-                  <span>Uploaded by <Chip
-                      avatar={<Avatar src={avatar} />}
-                      label={username}
-                      color="default"
-                      variant="outlined"
-                    />
-                  </span>
-                </div>
-              </SingleLinkContainer>
-            </div>
+             </div>
           </div>
         </div>
       </React.Fragment>

@@ -19,6 +19,7 @@ export function listenSocket(userID) {
               icon: data.icon,
               badge: data.icon,
               requireInteraction: true,
+              vibration: [100,200,100],
               data: {
                 url: {
                   main: data.link.url,
