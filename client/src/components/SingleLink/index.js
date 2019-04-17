@@ -51,8 +51,9 @@ class SingleLink extends Component {
   render() {
     const { singleLink } = this.props.linkReducer;
     const { user } = this.props.authReducer;
-    const { copied } = this.state;
     const { id } = this.props.errorReducer;
+    const { copied } = this.state;
+
     let userOfLink = false;
     let avatar = "", username = "";
 
@@ -66,7 +67,7 @@ class SingleLink extends Component {
       }
     }
 
-    if(id === "SINGLE_LINK_ERR" || id === "SINGLE_LINK_DELETED") {
+    if(id === "SINGLE_LINK_ERR") {
       return <Redirect to="/dashboard" />
     } 
     return (

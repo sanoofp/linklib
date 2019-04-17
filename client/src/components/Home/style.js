@@ -18,11 +18,11 @@ const dflexCenter = `
 `;
 
 export const HomeContainer = styled.div`
-  padding: 70px 0px;
-  ${dflexCenter}
-  @media (max-width: 580px) {
-    
-  }  
+  width: 100%;
+`;
+
+export const Intro = styled.div`
+  padding: 70px 0 160px 0;
 `;
 
 export const HomeIntro = styled.div`
@@ -87,10 +87,98 @@ export const ButtonContainer = styled.div`
   }
 `;
 
-export const HomeSearchContainer = styled.div`
-  padding: 30px 0px;
+export const GobalSearchContainer = styled.div`
+  width: 100%;
+  padding: 60px 0;
+  background-color: ${props => props.theme.primary};
+  position: relative;
+  &:after {
+    position: absolute;
+    content: "";
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: ${props => props.theme.primary};
+    border-radius: 150% 150% 0 0;
+  }
+  h2, p {
+    margin: 0;
+  }
   h2 {
-    font-size: 2em;
-    
+    margin-bottom: 8px;
+    font-size: 1.7em;
+    font-family: ${props => props.theme.secondaryFont};
+  }
+  
+  img {
+    padding: 0 40px;
+    width: 100%;
+  }
+  input {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 12px;
+    background: ${props => props.theme.bodybg};
+    outline: none;
+    border: none;
+    box-shadow: 2px 4px 18px rgba(0,0,0,0.25);
+    border-radius: 12px;
+    padding: 24px 14px;
+    font-size: 1.1em;
+    color: ${props => props.theme.font};
+    font-family: ${props => props.theme.primaryFont};
+  }
+  @media (max-width: 580px) {
+    input {
+      margin: 32px 0;
+    }
+  }
+`;
+
+export const ResultContainer = styled.div`
+  width: 100%;
+  max-height: 210px;
+  overflow-y: scroll;
+  box-shadow: 2px 4px 18px rgba(0,0,0,0.25);
+  border-radius: 12px;
+  background: ${props => props.theme.bodybg};  
+  margin: 8px 12px 0 12px;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+  .result-item {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    h2 {
+      font-size: 0.9em;
+    }
+    p {
+      font-size: 0.7em;
+    }
+  }
+  .search-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    h1 {
+      font-size: 1.1em;
+      margin: 0;
+    }
+  }
+  .search-loader {
+    text-align: center;
+    padding: 16px 0;
+  }
+
+  @media (max-width: 580px) {
+    margin: 0;
   }
 `;

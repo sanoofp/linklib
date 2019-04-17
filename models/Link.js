@@ -14,6 +14,10 @@ const LinkSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User"
   },
+  public_link: {
+    type: Boolean,
+    default: true
+  },
   date: {
     type: Date,
     default: Date.now

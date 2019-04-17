@@ -16,7 +16,7 @@ const Items = props => {
       <div className="col-md-6 p-2">
       <ShowLinkItem>
         <h4>{linkTitle}</h4>
-        <p>{truncateStringTo(url, 100)}</p>
+        <p>{truncateStringTo(url, 100)} </p>
         <div className="show-link-item-btn">
           <A href={url}>
             <Button color="secondary" variant="outlined" size="medium">

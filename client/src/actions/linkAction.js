@@ -5,7 +5,9 @@ import {
   LOAD_LINK_FAIL,
   CLEAR_SINGLE_LINKS,
   SET_SEARCH_KEYWORD,
-  CLEAR_USER_LINKS
+  CLEAR_USER_LINKS,
+  SET_GLOBAL_SEARCH_RESULT,
+  SEARCH_LINK_LOAD
 } from "../actions/types";
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
@@ -99,10 +101,9 @@ export const deleteSingleLink = id => (dispatch, getState) => {
   axios
     .delete(`/api/link/${id}`, axiosHeader(getState))
     .then(data => {
+      dispatch(clearSingleLink());
       dispatch(getUserLink());
       dispatch(snackbarToggle(true, "Link Deleted", "success"));
-      dispatch(clearSingleLink());
-      dispatch(getErrors("Deleted - Redirect", 404, "SINGLE_LINK_DELETED"));
     })
     .catch(err => {
       dispatch({ type: LOAD_LINK_FAIL });
@@ -112,6 +113,7 @@ export const deleteSingleLink = id => (dispatch, getState) => {
     });
 };
 
+// Dashboard Search component - user link search
 export const searchLink = keyword => {
   return {
     type: SET_SEARCH_KEYWORD,
@@ -120,6 +122,24 @@ export const searchLink = keyword => {
     }
   };
 };
+
+export const searchGlobal = (keyword, maxLength = 5) => dispatch => {
+  dispatch({ type: SEARCH_LINK_LOAD });
+  axios.get(`/api/search?q=${keyword}&max=${maxLength}`)
+  .then(searchResult => {
+    dispatch({
+      type: SET_GLOBAL_SEARCH_RESULT,
+      payload: {
+        globalSearchResult: searchResult.data
+      }
+    });
+  });
+}
+
+export const clearGlobalSearch = () => dispatch => {
+  dispatch({ type: SET_GLOBAL_SEARCH_RESULT, payload: { globalSearchResult: [] } })
+}
+
 
 export const socketEmit = linkID => (dispatch, getState) => {
   dispatch(toggleLoading(true));  
@@ -131,3 +151,4 @@ export const socketEmit = linkID => (dispatch, getState) => {
     })
     .catch(err => console.log(err));
 };
+

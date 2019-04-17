@@ -6,7 +6,9 @@ import {
   LOAD_LINK_FAIL,
   CLEAR_SINGLE_LINKS,
   CLEAR_USER_LINKS,
-  SET_SEARCH_KEYWORD
+  SET_SEARCH_KEYWORD,
+  SET_GLOBAL_SEARCH_RESULT,
+  SEARCH_LINK_LOAD
 } from "../actions/types";
 
 const initialState = {
@@ -14,7 +16,9 @@ const initialState = {
   userLinks: [],
   userLinksLoaded: false,
   singleLink: [],
-  searchKeyword: ""
+  searchKeyword: "",
+  globalSearchResult: [],
+  searchLinkLoading: false
 };
 
 export default function(state = initialState, action) {
@@ -70,6 +74,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         searchKeyword: action.payload.searchKeyword
+      }
+    }
+    case SEARCH_LINK_LOAD: {
+      return {
+        ...state,
+        searchLinkLoading: true
+      }
+    }
+    case SET_GLOBAL_SEARCH_RESULT: {
+      return {
+        ...state,
+        searchLinkLoading: false,
+        globalSearchResult: action.payload.globalSearchResult
       }
     }
     default:
