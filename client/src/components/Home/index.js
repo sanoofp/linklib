@@ -2,11 +2,21 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
-import GlobalSearch from "./Search/GlobalSearch";
 import { dialogAction } from "../../actions/appStateAction";
 import { withStyles } from "@material-ui/core/styles";
 import { HomeContainer, MuiButtonStyles } from "./style";
-import Intro from "./Intro";
+import LoadableLoader from "../Loader/LoadableLoader";
+import Loadable from "react-loadable";
+
+const Intro = Loadable({
+  loader: () => import("./Intro"),
+  loading: LoadableLoader
+});
+
+const GlobalSearch = Loadable({
+  loader: () => import("./Search/GlobalSearch"),
+  loading: LoadableLoader
+});
 
 class Home extends Component {
 

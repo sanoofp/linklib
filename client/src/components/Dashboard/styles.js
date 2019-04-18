@@ -85,7 +85,7 @@ export const ShowLinkItem = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  overflow: hidden;
+  // overflow: hidden;
 
   h4 {
     font-size: 1.4em;
@@ -98,6 +98,21 @@ export const ShowLinkItem = styled.div`
     margin: 10px 0 9px 0 !important;
     word-wrap: break-word;
     margin: 0;
+  }
+  .private {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 14px 0 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+    color: ${props => props.theme.font};
+    background-color: ${props => props.theme.primary};
+    p {
+      display: inline-block;
+      margin-top: -25px;
+    }
   }
   .show-link-item-btn {
     button {

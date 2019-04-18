@@ -31,22 +31,24 @@ const AddLinkMessage = Loadable({
 class Dashboard extends Component {
 
   componentDidMount() {
-    const { auth, link, clearErrors, error } = this.props;
+    const { clearErrors, error } = this.props;
 
     if(error.id !== null) {
       clearErrors();
     }
     getClipboard(url => this.props.clipboardState(true, url));
 
-    if (link.userLinks.length === 0 && !link.userLinks.userLinksLoaded) {
-      if (auth.isAuthenticated) {
-        this.props.getUserLink();
-      }
-    }
+    // if (link.userLinks.length === 0 && !link.userLinksLoaded) {
+      // if (auth.isAuthenticated) {
+      //   if(!link.userLinksLoaded && link.userLinks.length === 0){ 
+      //     this.props.getUserLink();
+      //   }
+      // }
+    // }
   }
 
   render() {
-    const { auth } = this.props;
+    const { auth, link, getUserLink } = this.props;
 
     window.onfocus = e => getClipboard(url => this.props.clipboardState(true, url));
 
@@ -55,6 +57,11 @@ class Dashboard extends Component {
     }
     if (!auth.isAuthenticated) {
       return <Redirect to="/" />;
+    }
+
+    // Throws Warning - "render" should be pure function of props and state
+    if(link.userLinks.length === 0 && link.linkLoading === false && link.userLinksLoaded === false) {
+      getUserLink();
     }
 
     return (

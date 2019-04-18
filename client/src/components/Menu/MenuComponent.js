@@ -7,7 +7,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded, LockRounded, LockOpenRounded } from "./Icons"; 
 import { ShowLinkMenuItems } from "./styles";
-import { deleteSingleLink, socketEmit } from "../../actions/linkAction";
+import { deleteSingleLink, socketEmit, updateLink } from "../../actions/linkAction";
 import { snackbarToggle } from "../../actions/appStateAction";
 import androidShare from "../../functions/androidShare";
 
@@ -35,7 +35,7 @@ class MenuComponent extends Component {
 
   render() {
     const { anchorEl, redirect } = this.state;
-    const { link, socketEmit } = this.props;
+    const { link, socketEmit, updateLink } = this.props;
 
     const menuItems = [
       {
@@ -49,7 +49,7 @@ class MenuComponent extends Component {
         text: "Share"
       },
       {
-        onClick: () => {this.handleClose();},
+        onClick: () => {updateLink(link._id);this.handleClose();},
         icon: link.public_link ? <LockOpenRounded /> : <LockRounded />,
         text: link.public_link ? "Link is Public" : "Link is Private"
       },
@@ -95,5 +95,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteSingleLink, socketEmit, snackbarToggle }
+  { deleteSingleLink, socketEmit, snackbarToggle, updateLink }
 )(MenuComponent);

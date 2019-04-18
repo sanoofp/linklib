@@ -8,15 +8,18 @@ import A from "../../Button/A";
 import { truncateStringTo } from "../../../functions/helper";
 // import androidShare from "../../../functions/androidShare";
 import MenuComponent from "../../Menu/MenuComponent";
-// import IconButton from "@material-ui/core/IconButton";
+import LockRounded from "@material-ui/icons/LockRounded";
+import IconButton from "@material-ui/core/IconButton";
+
 
 const Items = props => {
-    const { linkTitle, url, _id } = props.link;
+    const { linkTitle, url, _id, public_link } = props.link;
     return (
       <div className="col-md-6 p-2">
       <ShowLinkItem>
         <h4>{linkTitle}</h4>
         <p>{truncateStringTo(url, 100)} </p>
+        {!public_link && <div className="private"><IconButton><LockRounded /></IconButton> <p>Private Link</p></div>}
         <div className="show-link-item-btn">
           <A href={url}>
             <Button color="secondary" variant="outlined" size="medium">

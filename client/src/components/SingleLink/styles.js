@@ -109,8 +109,12 @@ export const SingleLinkContainer = styled.div`
     }
   }
   .details {
-    padding: 14px 0px;
+    padding: 4px 0 14px 0;
     span {
+      display: block;
+      font-size: 0.87em;
+    }
+    blockquote {
       font-size: 0.87em;
     }
   }

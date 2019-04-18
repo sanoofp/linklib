@@ -52,4 +52,16 @@ router.delete("/:linkid", auth, (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+// @route POST /api/link/update/:linkid
+// @desc Update link
+router.put("/update/:linkid", (req, res) => {
+  Link.findById(req.params.linkid)
+    .then(link => {
+      link.public_link = !link.public_link;
+      link.save(newLink => {
+        res.status(200).json(newLink)
+      });
+    });
+});
+
 module.exports = router;

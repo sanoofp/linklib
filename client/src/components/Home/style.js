@@ -115,6 +115,11 @@ export const GobalSearchContainer = styled.div`
     position: relative;
   }
 
+  img {
+    width: 100%;
+    padding: 0 50px;
+  }
+
   input {
     box-sizing: border-box;
     width: 100%;
@@ -152,12 +157,13 @@ export const ResultContainer = styled.div`
     display: none;
   }
   .result-item {
-    padding: 18px 24px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  
+    padding: 34px 20px;
+    width: 100%;
+    // display: flex;
+    // align-items: center;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    // flex-direction: column;
     h2 {
       font-size: 1.05em;
       word-break: break-all;
@@ -169,6 +175,9 @@ export const ResultContainer = styled.div`
     small {
       font-size: 0.7em;
     }
+  }
+  button {
+    margin-top: 14px;
   }
   .search-info {
     width: 100%;
@@ -196,22 +205,8 @@ export const ResultContainer = styled.div`
     justify-content: center;
     background-color: rgba(0,0,0,0.3);
   }
-  img {
-    width: 200px;
-  }
 
   @media (max-width: 580px) {
     margin: 0;
-    button {
-      margin-top: 14px;
-    }
-    .result-item {
-      width: 100%;
-      padding: 30px 12px;
-      background-color: rgba(233,233,233,0.3);
-      // text-align: center;
-      // flex-direction: column;
-      // justify-content: center;
-    }
   }
 `;

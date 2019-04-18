@@ -113,6 +113,20 @@ export const deleteSingleLink = id => (dispatch, getState) => {
     });
 };
 
+export const updateLink = id => (dispatch, getState) => {
+  const isSingleLinkView = !(getState().linkReducer.singleLink.length === 0);
+  dispatch(toggleLoading(true));  
+  axios.put(`/api/link/update/${id}`)
+  .then(() => {
+      dispatch(toggleLoading(false));
+      dispatch(getUserLink());
+      if(isSingleLinkView) {
+        dispatch(getSingleLink(id))
+      }
+      dispatch(snackbarToggle(true, "Link Updated", "success"));      
+    })
+}
+
 // Dashboard Search component - user link search
 export const searchLink = keyword => {
   return {

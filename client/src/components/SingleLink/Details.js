@@ -7,6 +7,8 @@ const Details = props => {
   return <SingleLinkContainer>
     <h2>Details of link</h2>
     <div className="details">
+      <blockquote>{props.singleLink.public_link ? <p>This is a public link</p> : <p>This is a private link, only {props.username} can view this direct link.</p>}
+      </blockquote>
       <span>Uploaded by <Chip
           avatar={<Avatar src={props.avatar} />}
           label={props.username}

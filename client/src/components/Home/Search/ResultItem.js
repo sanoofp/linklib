@@ -14,19 +14,20 @@ const ResultItem = props => {
   }
   return (
   <div className="result-item">
-    <span>
+    <div>
       <h2>{props.result.linkTitle}</h2>
       <p>{truncateStringTo(props.result.url, 40)}</p>
       <small>
         Uploaded by <Chip avatar={<Avatar src={avatar} />} label={username} color="default" variant="outlined" />
       </small>
-    </span>
+    </div>
     <div>
       <Link to={`/link/${props.result._id}`}>
         <Button
           color="secondary"
           variant="outlined"
           size="small"
+          fullWidth
         >
           <LinkRounded style={{ marginRight: 5, fontSize: 16 }} />
           Details

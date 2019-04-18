@@ -7,6 +7,7 @@ import { searchGlobal, clearGlobalSearch } from "../../../actions/linkAction";
 import ResultItem from "./ResultItem";
 import SearchInfo from "./SearchInfo";
 import IconButton from '@material-ui/core/IconButton';
+import art from "./art1.png";
 
 class GlobalSearch extends Component {
   state = {
@@ -39,6 +40,7 @@ class GlobalSearch extends Component {
           <div className="col-md-6">
             <h2>SEARCH FOR LINKS</h2>
             <p>Search for links from the linklib database which are flaged as public by the owner</p>
+            <img src={art} alt="Search linklib"/>            
           </div>
           <div className="col-md-6">
             <div className="search-box">
