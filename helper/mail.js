@@ -29,11 +29,7 @@ exports.sendConfirmationEmail = user => {
           background-color: #2ECC71;
           color: rgba(255, 255, 255, 0.9);
           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-          display: flex;
-          align-items: center;
-          flex-wrap: wrap;
-          justify-content: center;
-          flex-direction: column;
+          text-align: center;
         }
         p {
           width: 100% !important;
