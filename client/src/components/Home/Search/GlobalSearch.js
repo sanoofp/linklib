@@ -1,24 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import LinkRounded from "@material-ui/icons/LinkRounded";
 import SearchRounded from "@material-ui/icons/SearchRounded";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { GobalSearchContainer, ResultContainer } from "../style";
 import { searchGlobal, clearGlobalSearch } from "../../../actions/linkAction";
-import { truncateStringTo } from "../../../functions/helper";
-import art from "./art1.png"
+import ResultItem from "./ResultItem";
+import SearchInfo from "./SearchInfo";
+import IconButton from '@material-ui/core/IconButton';
 
 class GlobalSearch extends Component {
   state = {
     search: ""
   }
   
-  onChange = event => {
-    const val = event.target.value;
+  onChange = event => this.setState({ search: event.target.value });
+
+  keyPress = event => {
+    if(event.keyCode === 13) {
+      this.onSubmit();
+    }
+  }
+
+  onSubmit = () => {
+    const val = this.state.search;
     this.props.searchGlobal(val);
-    this.setState({ search: event.target.value })
   }
 
   componentWillUnmount() {
@@ -34,37 +39,26 @@ class GlobalSearch extends Component {
           <div className="col-md-6">
             <h2>SEARCH FOR LINKS</h2>
             <p>Search for links from the linklib database which are flaged as public by the owner</p>
-            <img src={art} alt="Search linklib"/>
           </div>
           <div className="col-md-6">
-            <input type="text" name="search" onChange={this.onChange} placeholder="Search for link's"/>
+            <div className="search-box">
+              <input type="text" name="search" onKeyDown={this.keyPress} onChange={this.onChange} placeholder="Search for link's"/>
+              <IconButton onClick={this.onSubmit} style={{ position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)" }}>
+                <SearchRounded />
+              </IconButton>
+            </div>
             
             <ResultContainer>
-            {searchLinkLoading && <div className="search-loader"><CircularProgress color="secondary" /></div>
-            }
-            {globalSearchResult && globalSearchResult.map(result => <div className="result-item">
-                <span>
-                  <h2>{result.linkTitle}</h2>
-                  <p>{truncateStringTo(result.url, 40)}</p>
-                </span>
-                <div>
-
-                  <Link to={`/link/${result._id}`}>
-                    <Button
-                      style={{ marginLeft: 8 }}
-                      color="secondary"
-                      variant="outlined"
-                      size="small"
-                    >
-                      <LinkRounded style={{ marginRight: 5, fontSize: 16 }} />
-                      Details
-                    </Button>
-                  </Link>
-
-                </div>
-                
-              </div>
-            )}
+              {
+                searchLinkLoading && <div className="search-loader"><CircularProgress color="secondary" /></div>
+              }
+              {
+                globalSearchResult.length > 0 ?
+                globalSearchResult.map((result, i) => <ResultItem result={result} key={i} />)                
+                :
+                <SearchInfo />
+              }
+              
             </ResultContainer>
           </div>
         </div>

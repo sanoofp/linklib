@@ -111,10 +111,10 @@ export const GobalSearchContainer = styled.div`
     font-family: ${props => props.theme.secondaryFont};
   }
   
-  img {
-    padding: 0 40px;
-    width: 100%;
+  .search-box {
+    position: relative;
   }
+
   input {
     box-sizing: border-box;
     width: 100%;
@@ -124,21 +124,23 @@ export const GobalSearchContainer = styled.div`
     border: none;
     box-shadow: 2px 4px 18px rgba(0,0,0,0.25);
     border-radius: 12px;
-    padding: 24px 14px;
+    padding: 24px 18px;
     font-size: 1.1em;
     color: ${props => props.theme.font};
     font-family: ${props => props.theme.primaryFont};
   }
   @media (max-width: 580px) {
     input {
-      margin: 32px 0;
+      margin: 20px 0;
     }
   }
 `;
 
 export const ResultContainer = styled.div`
+  overflow: hidden;
   width: 100%;
-  max-height: 210px;
+  height: 340px;
+  position: relative;
   overflow-y: scroll;
   box-shadow: 2px 4px 18px rgba(0,0,0,0.25);
   border-radius: 12px;
@@ -150,14 +152,21 @@ export const ResultContainer = styled.div`
     display: none;
   }
   .result-item {
-    padding: 12px 24px;
+    padding: 18px 24px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
+  
     h2 {
-      font-size: 0.9em;
+      font-size: 1.05em;
+      word-break: break-all;
     }
     p {
+      font-size: 0.7em;
+      margin: 10px 0 4px 0;
+    }
+    small {
       font-size: 0.7em;
     }
   }
@@ -172,13 +181,37 @@ export const ResultContainer = styled.div`
       font-size: 1.1em;
       margin: 0;
     }
+    p {
+      margin: 10px 0;
+    }
   }
   .search-loader {
-    text-align: center;
-    padding: 16px 0;
+    position: absolute;    
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+  }
+  img {
+    width: 200px;
   }
 
   @media (max-width: 580px) {
     margin: 0;
+    button {
+      margin-top: 14px;
+    }
+    .result-item {
+      width: 100%;
+      padding: 30px 12px;
+      background-color: rgba(233,233,233,0.3);
+      // text-align: center;
+      // flex-direction: column;
+      // justify-content: center;
+    }
   }
 `;

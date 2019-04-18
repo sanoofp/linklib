@@ -4,7 +4,8 @@ const { auth } = require("../../helper/auth");
 const signupValidation = require("../../validation/signup");
 const signinValidation = require("../../validation/signin");
 const { generateUserAvatar } = require("../../helper/auth");
-const { jwtSecret } = require("../../config/keys");
+const { jwtSecret, sendGridPass, sendGridUser } = require("../../config/keys");
+const { sendConfirmationEmail } = require("../../helper/mail");
 
 const User = require("../../models/User");
 
@@ -41,7 +42,12 @@ router.post("/signup", (req, res) => {
         .then(user => {
           jwt.sign({ id: user.id }, jwtSecret, (err, token) => {
             if (err) throw err;
+            sendConfirmationEmail(user);
             res.json({ user: user, token: token });
+            // transporter.sendMail(email).then(info => {
+              // console.log(info);
+            // });
+            
           });
         })
         .catch(err => console.log(err));

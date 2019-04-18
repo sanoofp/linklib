@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
   const regex = new RegExp(q, "gi");
   if (q !== "") {
     return Link.find({ linkTitle: regex })
+      .populate("userID", "avatar id username")      
       .limit(max)
       .then(searchResult => res.status(200).json(searchResult));
   }

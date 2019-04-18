@@ -7,6 +7,8 @@ if (process.env.NODE_ENV === "production") {
     mongoURI: config.get("mongoURI"),
     jwtSecret: config.get("jwtSecret"),
     vapidPublic: config.get("publicKey"),
-    vapidPrivate: config.get("privateKey")
+    vapidPrivate: config.get("privateKey"),
+    sendGridUser: config.get("sgUser"),
+    sendGridPass: config.get("sgPass")
   };
 }
