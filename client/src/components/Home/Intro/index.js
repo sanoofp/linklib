@@ -27,6 +27,7 @@ const Intro = props => <IntroContainer><div className="container">
         excepturi veritatis vel deserunt a labore? Quam harum voluptatum
         suscipit ducimus porro!
       </p>
+      <p>Linklib helps to manage your link with more ease. You can save your link to the dashboard and can be access from all your devices. The URL's can be shared through multiple social media platforms. Linklib is the efficient way for saving, shareing and management of Link and URL's</p>
       <ButtonContainer>
         {props.isAuthenticated ? 
           <DashboardButtonComponent />
