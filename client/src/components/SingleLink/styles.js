@@ -76,6 +76,9 @@ export const SingleLinkContainer = styled.div`
     font-family: ${props => props.theme.secondaryFont};    
     text-transform: uppercase;   
   }
+  a {
+    color: ${props => props.theme.font};
+  }
   input[type="text"] {
     position: relative;
     margin-bottom: 25px;

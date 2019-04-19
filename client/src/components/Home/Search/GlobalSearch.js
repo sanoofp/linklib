@@ -7,7 +7,8 @@ import { searchGlobal, clearGlobalSearch } from "../../../actions/linkAction";
 import ResultItem from "./ResultItem";
 import SearchInfo from "./SearchInfo";
 import IconButton from '@material-ui/core/IconButton';
-import art from "./art1.png";
+import art from "./art.svg";
+import { ArtUp, ArtDown } from "../../svg/SearchArt"
 
 class GlobalSearch extends Component {
   state = {
@@ -35,12 +36,13 @@ class GlobalSearch extends Component {
     const { globalSearchResult, searchLinkLoading } = this.props;
     return (
     <GobalSearchContainer>
+      <ArtUp />
       <div className="container">
         <div className="row">
           <div className="col-md-6">
             <h2>SEARCH FOR LINKS</h2>
             <p>Search for links from the linklib database which are flaged as public by the owner</p>
-            <img src={art} alt="Search linklib"/>            
+            <img src={art} className="search-home-art" alt="Search linklib"/>
           </div>
           <div className="col-md-6">
             
@@ -52,7 +54,7 @@ class GlobalSearch extends Component {
             </div>
             
             <ResultContainer>
-            {
+              {
                 searchLinkLoading ? <div className="search-loader"><CircularProgress color="secondary" /></div> : null
               }
               {
@@ -66,6 +68,7 @@ class GlobalSearch extends Component {
           </div>
         </div>
       </div>
+      <ArtDown /> 
     </GobalSearchContainer>
     );
   }

@@ -89,19 +89,23 @@ export const ButtonContainer = styled.div`
 
 export const GobalSearchContainer = styled.div`
   width: 100%;
-  padding: 60px 0;
+  padding: 80px 0;
   position: relative;
   background-color: ${props => props.theme.primary};
-  &:after {
-    position: absolute;
-    content: "";
-    top: -70px;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background-color: ${props => props.theme.primary};
-    border-radius: 150% 150% 0 0;
+  
+  #curveUpColor path,#curveDownColor path {
+    fill: ${props => props.theme.primary};
+    stroke: ${props => props.theme.primary};
   }
+  #curveUpColor {
+    position: absolute;
+    top: -80px;
+  }
+  #curveDownColor {
+    position: absolute;
+    bottom: -80px;
+  }
+ 
   h2, p {
     margin: 0;
   }
@@ -115,9 +119,9 @@ export const GobalSearchContainer = styled.div`
     position: relative;
   }
 
-  img {
+  img.search-home-art {
     width: 100%;
-    padding: 0 50px;
+    padding: 16px 40px;
   }
 
   input {
@@ -127,7 +131,7 @@ export const GobalSearchContainer = styled.div`
     background: ${props => props.theme.bodybg};
     outline: none;
     border: none;
-    box-shadow: 2px 4px 18px rgba(0,0,0,0.25);
+    box-shadow: 3px 4px 22px rgba(0,0,0,0.3);
     border-radius: 12px;
     padding: 24px 18px;
     font-size: 1.1em;
@@ -139,6 +143,10 @@ export const GobalSearchContainer = styled.div`
     input {
       margin: 20px 0;
     }
+    img.search-home-art {
+      padding: 0 0;
+      margin: 20px 0;
+    }
   }
 `;
 
@@ -148,7 +156,7 @@ export const ResultContainer = styled.div`
   height: 340px;
   overflow: hidden;
   overflow-y: auto;
-  box-shadow: 2px 4px 18px rgba(0,0,0,0.25);
+  box-shadow: 3px 4px 22px rgba(0,0,0,0.3);  
   border-radius: 12px;
   background: ${props => props.theme.bodybg};  
   margin: 8px 12px 0 12px;

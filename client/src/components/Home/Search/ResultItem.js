@@ -7,18 +7,18 @@ import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 
 const ResultItem = props => {
-  let username = "", avatar = "";
-  if (props.result.userID) {
-    username = props.result.userID.username
-    avatar = props.result.userID.avatar
-  }
   return (
   <div className="result-item">
     <div>
       <h2>{props.result.linkTitle}</h2>
       <p>{truncateStringTo(props.result.url, 40)}</p>
       <small>
-        Uploaded by <Chip avatar={<Avatar src={avatar} />} label={username} color="default" variant="outlined" />
+        Uploaded by <Chip 
+          avatar={<Avatar src={props.result.userID.avatar} />} 
+          label={props.result.userID.username} 
+          color="default" 
+          variant="outlined" 
+        />
       </small>
     </div>
     <div>

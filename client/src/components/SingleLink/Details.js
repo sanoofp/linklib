@@ -7,7 +7,7 @@ const Details = props => {
   return <SingleLinkContainer>
     <h2>Details of link</h2>
     <div className="details">
-      <blockquote>{props.singleLink.public_link ? <p>This is a public link</p> : <p>This is a private link, only {props.username} can view this direct link.</p>}
+      <blockquote>{props.singleLink.public_link ? <p>This is a public link</p> : <p>This is a private link, this linklib ID is only availble to {props.username} and when shared by the direct <a href={`/link/${props.singleLink._id}`}>linklib url</a></p>}
       </blockquote>
       <span>Uploaded by <Chip
           avatar={<Avatar src={props.avatar} />}
