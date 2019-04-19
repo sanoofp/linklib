@@ -21,13 +21,7 @@ const Intro = props => <IntroContainer><div className="container">
       </HomeIntro>
     </div>
     <div className="col-lg-5 d-flex flex-column align-items-start justify-content-center">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed
-        corrupti nisi dolorem assumenda delectus eos in, minima, obcaecati
-        excepturi veritatis vel deserunt a labore? Quam harum voluptatum
-        suscipit ducimus porro!
-      </p>
-      <p>Linklib helps to manage your link with more ease. You can save your link to the dashboard and can be access from all your devices. The URL's can be shared through multiple social media platforms. Linklib is the efficient way for saving, shareing and management of Link and URL's</p>
+      <p>Linklib helps to manage your link with more ease. You can save your link to the dashboard and can be accessed from all your devices. The URL's can be shared through multiple social media platforms. Linklib is an efficient way of saving, sharing, and management of Link and URLs.</p>
       <ButtonContainer>
         {props.isAuthenticated ? 
           <DashboardButtonComponent />
