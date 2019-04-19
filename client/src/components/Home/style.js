@@ -90,15 +90,15 @@ export const ButtonContainer = styled.div`
 export const GobalSearchContainer = styled.div`
   width: 100%;
   padding: 60px 0;
-  background-color: ${props => props.theme.primary};
   position: relative;
+  background-color: ${props => props.theme.primary};
   &:after {
     position: absolute;
     content: "";
-    top: -50px;
+    top: -70px;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: 70px;
     background-color: ${props => props.theme.primary};
     border-radius: 150% 150% 0 0;
   }
@@ -134,6 +134,7 @@ export const GobalSearchContainer = styled.div`
     color: ${props => props.theme.font};
     font-family: ${props => props.theme.primaryFont};
   }
+
   @media (max-width: 580px) {
     input {
       margin: 20px 0;
@@ -142,11 +143,11 @@ export const GobalSearchContainer = styled.div`
 `;
 
 export const ResultContainer = styled.div`
-  overflow: hidden;
+  position: relative;
   width: 100%;
   height: 340px;
-  position: relative;
-  overflow-y: scroll;
+  overflow: hidden;
+  overflow-y: auto;
   box-shadow: 2px 4px 18px rgba(0,0,0,0.25);
   border-radius: 12px;
   background: ${props => props.theme.bodybg};  
@@ -157,13 +158,9 @@ export const ResultContainer = styled.div`
     display: none;
   }
   .result-item {
-    padding: 34px 20px;
+    padding: 36px 20px;
     width: 100%;
-    // display: flex;
-    // align-items: center;
-    // flex-wrap: wrap;
-    // justify-content: space-between;
-    // flex-direction: column;
+    position: relative;
     h2 {
       font-size: 1.05em;
       word-break: break-all;
@@ -176,9 +173,7 @@ export const ResultContainer = styled.div`
       font-size: 0.7em;
     }
   }
-  button {
-    margin-top: 14px;
-  }
+  
   .search-info {
     width: 100%;
     height: 100%;
@@ -194,16 +189,20 @@ export const ResultContainer = styled.div`
       margin: 10px 0;
     }
   }
+
   .search-loader {
-    position: absolute;    
+    position: absolute;
     top: 0;
     left: 0;
-    right: 0;
     bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0,0,0,0.3);
+    border-radius: 12px;
   }
 
   @media (max-width: 580px) {

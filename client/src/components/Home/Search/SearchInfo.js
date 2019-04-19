@@ -8,7 +8,9 @@ const SearchInfo = props => {
     <div className="search-info">
       <SearchRounded style={{ fontSize: 50 }} />
       <p>Search for Link's.</p>
-      <Button component={Link} to={`/search`} color="secondary" variant="outlined">Search for More from Linklib</Button> 
+      <Link to={`/search`}>
+      <Button color="secondary" variant="outlined">Search for More from Linklib</Button> 
+      </Link>
     </div>
   )
 }

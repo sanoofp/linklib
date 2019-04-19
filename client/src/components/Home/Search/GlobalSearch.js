@@ -43,6 +43,7 @@ class GlobalSearch extends Component {
             <img src={art} alt="Search linklib"/>            
           </div>
           <div className="col-md-6">
+            
             <div className="search-box">
               <input type="text" name="search" onKeyDown={this.keyPress} onChange={this.onChange} placeholder="Search for link's"/>
               <IconButton onClick={this.onSubmit} style={{ position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)" }}>
@@ -51,8 +52,8 @@ class GlobalSearch extends Component {
             </div>
             
             <ResultContainer>
-              {
-                searchLinkLoading && <div className="search-loader"><CircularProgress color="secondary" /></div>
+            {
+                searchLinkLoading ? <div className="search-loader"><CircularProgress color="secondary" /></div> : null
               }
               {
                 globalSearchResult.length > 0 ?
@@ -60,7 +61,7 @@ class GlobalSearch extends Component {
                 :
                 <SearchInfo />
               }
-              
+
             </ResultContainer>
           </div>
         </div>

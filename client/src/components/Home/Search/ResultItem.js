@@ -28,6 +28,7 @@ const ResultItem = props => {
           variant="outlined"
           size="small"
           fullWidth
+          style={{marginTop: 16}}
         >
           <LinkRounded style={{ marginRight: 5, fontSize: 16 }} />
           Details
