@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import LinkRounded from "@material-ui/icons/LinkRounded";
-import { truncateStringTo } from "../../../functions/helper";
+import { truncateStringTo } from "../../../../functions/helper";
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 

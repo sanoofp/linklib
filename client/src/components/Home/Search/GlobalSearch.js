@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SearchRounded from "@material-ui/icons/SearchRounded";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { GobalSearchContainer, ResultContainer } from "../style";
 import { searchGlobal, clearGlobalSearch } from "../../../actions/linkAction";
-import ResultItem from "./ResultItem";
-import SearchInfo from "./SearchInfo";
-import IconButton from '@material-ui/core/IconButton';
-import art from "./art.svg";
+import ResultItem from "./sub-component/ResultItem";
+import SearchInfo from "./sub-component/SearchInfo";
+import SearchArts from "./sub-component/SearchArts";
+import SearchBox from "./sub-component/SearchBox";
 import { ArtUp, ArtDown } from "../../svg/SearchArt"
 
 class GlobalSearch extends Component {
@@ -33,25 +32,19 @@ class GlobalSearch extends Component {
   }
   
   render() {
-    const { globalSearchResult, searchLinkLoading } = this.props;
+    const { globalSearchResult, searchLinkLoading, darkTheme } = this.props;
     return (
     <GobalSearchContainer>
       <ArtUp />
       <div className="container">
         <div className="row">
-          <div className="col-md-6">
-            <h2>SEARCH FOR LINKS</h2>
-            <p>Search for links from the linklib database which are flaged as public by the owner</p>
-            <img src={art} className="search-home-art" alt="Search linklib"/>
-          </div>
+          
+          <SearchArts darkTheme={darkTheme} />
+
           <div className="col-md-6">
             
-            <div className="search-box">
-              <input type="text" name="search" onKeyDown={this.keyPress} onChange={this.onChange} placeholder="Search for link's"/>
-              <IconButton onClick={this.onSubmit} style={{ position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)" }}>
-                <SearchRounded />
-              </IconButton>
-            </div>
+            <SearchBox onKeyDown={this.keyPress} onChange={this.onChange} onClick={this.onSubmit} />
+            
             
             <ResultContainer>
               {
@@ -76,7 +69,8 @@ class GlobalSearch extends Component {
 
 const mapStateToProps = state => ({
   globalSearchResult: state.linkReducer.globalSearchResult,
-  searchLinkLoading: state.linkReducer.searchLinkLoading
+  searchLinkLoading: state.linkReducer.searchLinkLoading,
+  darkTheme: state.appStateReducer.darkTheme
 })
 
 export default connect(mapStateToProps, { searchGlobal, clearGlobalSearch })(GlobalSearch);
