@@ -6,8 +6,8 @@ import { dialogAction, toggleDrawer } from "../../../actions/appStateAction";
 import { signOut } from "../../../actions/authAction";
 import List from "@material-ui/core/List";
 import HomeRounded from "@material-ui/icons/HomeRounded";
-import AccountCircleRounded from "@material-ui/icons/AccountCircleRounded";
-import PermIdentityRounded from "@material-ui/icons/PermIdentityRounded";
+import PersonAddRounded from "@material-ui/icons/PersonAddRounded";
+import ExitToAppRounded from "@material-ui/icons/ExitToAppRounded";
 import DashboardRounded from "@material-ui/icons/DashboardRounded";
 import EventBusyRounded from "@material-ui/icons/EventBusyRounded";
 import Avatar from '@material-ui/core/Avatar';
@@ -53,7 +53,7 @@ const ListItems = props => {
             dialogAction("signInDialogOpen", true)
             toggleDrawer(false)
           },
-          icon: <PermIdentityRounded />
+          icon: <ExitToAppRounded />
         },
         {
           text: "Sign up",
@@ -61,7 +61,7 @@ const ListItems = props => {
             dialogAction("signUpDialogOpen", true)
             toggleDrawer(false)
           },
-          icon: <AccountCircleRounded />
+          icon: <PersonAddRounded />
         }
       );
 
