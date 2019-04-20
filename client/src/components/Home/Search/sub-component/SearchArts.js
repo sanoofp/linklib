@@ -2,6 +2,7 @@ import React from "react";
 import artPrimary from "./art_light.svg";
 import artSecondary from "./art_dark.svg";
 
+// @credits - https://undraw.co/
 // dark = #585858
 // light = #30b669
 

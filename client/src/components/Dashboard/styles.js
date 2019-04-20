@@ -76,7 +76,7 @@ export const ShowLinkItem = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
   border-radius: 12px;
-  margin: 20px 7px !important;
+  margin: 30px 0px !important;
   padding: 30px 18px !important;
   height: 100%;
   position: relative;
@@ -85,7 +85,6 @@ export const ShowLinkItem = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  // overflow: hidden;
 
   h4 {
     font-size: 1.4em;

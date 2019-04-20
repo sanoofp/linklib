@@ -121,7 +121,7 @@ export const GobalSearchContainer = styled.div`
 
   img.search-home-art {
     width: 100%;
-    padding: 16px 40px;
+    padding: 26px 22px 0 22px;
   }
 
   input {

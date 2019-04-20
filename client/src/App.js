@@ -5,7 +5,6 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import { ThemeProvider } from "styled-components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { loadCSS } from "fg-loadcss/src/loadCSS";
 
 import { toggleDrawer } from "./actions/appStateAction";
 import { loadUser } from "./actions/authAction";
@@ -57,10 +56,6 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadUser();
-    loadCSS(
-      "https://fonts.googleapis.com/css?family=Montserrat:700|Raleway:300",
-      document.querySelector("#insertion-point-jss")
-    );
   }
 
   handleDrawerClick = open => this.props.toggleDrawer(open);

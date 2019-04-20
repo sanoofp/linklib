@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { GobalSearchContainer, ResultContainer } from "../style";
+import { GobalSearchContainer } from "../style";
 import { searchGlobal, clearGlobalSearch } from "../../../actions/linkAction";
-import ResultItem from "./sub-component/ResultItem";
-import SearchInfo from "./sub-component/SearchInfo";
-import SearchArts from "./sub-component/SearchArts";
-import SearchBox from "./sub-component/SearchBox";
 import { ArtUp, ArtDown } from "../../svg/SearchArt"
+import LoadableLoader from "../../Loader/LoadableLoader";
+import Loadable from "react-loadable";
+
+const SearchResult = Loadable({
+  loader: () => import("./sub-component/SearchResult"),
+  loading: LoadableLoader
+});
+const SearchArts = Loadable({
+  loader: () => import("./sub-component/SearchArts"),
+  loading: LoadableLoader
+});
+const SearchBox = Loadable({
+  loader: () => import("./sub-component/SearchBox"),
+  loading: LoadableLoader
+});
 
 class GlobalSearch extends Component {
   state = {
@@ -38,26 +48,11 @@ class GlobalSearch extends Component {
       <ArtUp />
       <div className="container">
         <div className="row">
-          
           <SearchArts darkTheme={darkTheme} />
-
           <div className="col-md-6">
-            
             <SearchBox onKeyDown={this.keyPress} onChange={this.onChange} onClick={this.onSubmit} />
-            
-            
-            <ResultContainer>
-              {
-                searchLinkLoading ? <div className="search-loader"><CircularProgress color="secondary" /></div> : null
-              }
-              {
-                globalSearchResult.length > 0 ?
-                globalSearchResult.map((result, i) => <ResultItem result={result} key={i} />)                
-                :
-                <SearchInfo />
-              }
 
-            </ResultContainer>
+            <SearchResult searchLinkLoading={searchLinkLoading} globalSearchResult={globalSearchResult} />
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ import IconButton from "@material-ui/core/IconButton";
 const Items = props => {
     const { linkTitle, url, _id, public_link } = props.link;
     return (
-      <div className="col-md-6 p-2">
+      <div className="col-md-6 p--2">
       <ShowLinkItem>
         <h4>{linkTitle}</h4>
         <p>{truncateStringTo(url, 100)} </p>
