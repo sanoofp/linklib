@@ -110,3 +110,12 @@ export const signOut = () => (dispatch, getState) => {
   })
   .catch(err => console.log("err"));
 }
+
+export const sub = sub => (dispatch, getState) => {
+  const body = JSON.stringify(sub)
+  axios.post("/api/user/sub", body, axiosHeader(getState))
+  .then(data => {
+    console.log("DATA,", data);
+  })
+  .catch(err => console.log("err"));
+}

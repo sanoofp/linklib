@@ -19,6 +19,7 @@ const userSchema = new Scheme({
     type: String,
     required: true
   },
+  subscriptions: [],
   registered_date: {
     type: Date,
     default: Date.now

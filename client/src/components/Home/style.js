@@ -114,35 +114,13 @@ export const GobalSearchContainer = styled.div`
     font-size: 1.7em;
     font-family: ${props => props.theme.secondaryFont};
   }
-  
-  .search-box {
-    position: relative;
-  }
 
   img.search-home-art {
     width: 100%;
-    padding: 26px 22px 0 22px;
-  }
-
-  input {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0 12px;
-    background: ${props => props.theme.bodybg};
-    outline: none;
-    border: none;
-    box-shadow: 3px 4px 22px rgba(0,0,0,0.3);
-    border-radius: 12px;
-    padding: 24px 18px;
-    font-size: 1.1em;
-    color: ${props => props.theme.font};
-    font-family: ${props => props.theme.primaryFont};
+    padding: 30px 22px 0 22px;
   }
 
   @media (max-width: 580px) {
-    input {
-      margin: 20px 0;
-    }
     img.search-home-art {
       padding: 0 0;
       margin: 20px 0;
@@ -211,6 +189,10 @@ export const ResultContainer = styled.div`
     justify-content: center;
     background-color: rgba(0,0,0,0.3);
     border-radius: 12px;
+  }
+
+  .show-more--btn {
+    margin: 0 20px 40px 20px;
   }
 
   @media (max-width: 580px) {

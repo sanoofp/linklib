@@ -90,6 +90,19 @@ router.post("/signin", (req, res) => {
   });
 });
 
+// @route POST /api/user/subscribe
+router.post("/sub", auth, (req, res) => {
+  console.log(req.body);
+  User.findById(req.user.id)
+    .then(user => {
+      user.subscriptions = user.subscriptions.push(req.body);
+      user.save().then(subed => {
+        console.log(subed);
+        res.status(200).json(subed);
+      })
+    })
+})
+
 // @route POST api/user/logout
 // To signin a user
 router.get("/logout", auth, (req, res) => {

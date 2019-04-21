@@ -38,6 +38,10 @@ const SnackbarComponent = Loadable({
   loader: () => import("./components/Snackbar"),
   loading: LoadableLoader
 });
+const SearchMain = Loadable({
+  loader: () => import("./components/SearchMain"),
+  loading: LoadableLoader
+});
 const PageNotFound = Loadable({
   loader: () => import("./components/PageNotFound"),
   loading: LoadableLoader
@@ -83,6 +87,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/dashboard" component={Dashboard} />
+              <Route path="/search" component={SearchMain} />
               <Route path="/link/:id" component={SingleLink} />
               <Route path="*" exact component={PageNotFound} />
             </Switch>

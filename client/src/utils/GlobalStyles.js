@@ -7,6 +7,9 @@ const utils = `
   .p--2 {
     padding: 10px !important;
   }
+  .position-relative {
+    position: relative;
+  }
 `;
 
 export const GlobalStyles = createGlobalStyle`

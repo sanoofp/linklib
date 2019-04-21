@@ -8,7 +8,6 @@ export const StyledHeader = styled.div`
   background-color: ${props => props.theme.primary};
   @media (max-width: 485px) {
     padding: 18px 0;
-    
   }
 `;
 
@@ -24,7 +23,7 @@ export const Logo = styled.div`
   }
   small {
     position: absolute;
-    top: -26px;
+    top: -22px;
     right: -38px;
     font-size: 0.4em;
   }
