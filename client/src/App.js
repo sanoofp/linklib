@@ -12,10 +12,8 @@ import { GlobalStyles } from "./utils/GlobalStyles";
 import Header from "./components/Header";
 import { main, dark } from "./utils/Theme";
 import { muiTheme, darkMuiTheme } from "./utils/Mui/Main";
-import Spinner from './components/Loader/Spinner';
 import LoadableLoader from './components/Loader/LoadableLoader';
 import Loadable from "react-loadable";
-import LinearLoader from './components/Loader/LinearLoader'
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 
 const Home = Loadable({
@@ -34,10 +32,6 @@ const DrawerComponent = Loadable({
   loader: () => import("./components/Drawer"),
   loading: LoadableLoader
 });
-const SnackbarComponent = Loadable({
-  loader: () => import("./components/Snackbar"),
-  loading: LoadableLoader
-});
 const SearchMain = Loadable({
   loader: () => import("./components/SearchMain"),
   loading: LoadableLoader
@@ -47,12 +41,8 @@ const PageNotFound = Loadable({
   loading: LoadableLoader
 });
 
-const SignupModel = Loadable({
-  loader: () => import("./components/Dialogs/Signup/Signup"),
-  loading: LoadableLoader
-});
-const SigninModel = Loadable({
-  loader: () => import("./components/Dialogs/SignIn/SignIn"),
+const Utility = Loadable({
+  loader: () => import("./components/HelperComponent/utility"),
   loading: LoadableLoader
 });
 
@@ -92,12 +82,7 @@ class App extends Component {
               <Route path="*" exact component={PageNotFound} />
             </Switch>
 
-            <Spinner />
-            <LinearLoader />
-            <SnackbarComponent />
-                
-            <SigninModel />
-            <SignupModel />
+            <Utility />
           
           </BrowserRouter>
         </ThemeProvider>

@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom"
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded, LockRounded, LockOpenRounded } from "./Icons"; 
+import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, LockRounded, LockOpenRounded } from "./Icons"; 
 import { ShowLinkMenuItems } from "./styles";
 import { deleteSingleLink, socketEmit, updateLink } from "../../actions/linkAction";
 import { snackbarToggle } from "../../actions/appStateAction";
