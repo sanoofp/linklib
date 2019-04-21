@@ -121,13 +121,13 @@ export const ShowLinkItem = styled.div`
   .actions {
     margin-top: 10px;
     p {
-      fonct-size: 0.7em;
+      font-size: 0.7em;
       margin-left: 6px;
     }
   }
   
   @media (max-width: 485px) {
-    padding: 20px 10px;
+    padding: 44px 10px !important;
     margin: 20px 2px !important;    
     p {
       font-size: 0.67em;
