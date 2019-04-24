@@ -113,19 +113,35 @@ export const deleteSingleLink = id => (dispatch, getState) => {
     });
 };
 
-export const updateLink = id => (dispatch, getState) => {
-  const isSingleLinkView = !(getState().linkReducer.singleLink.length === 0);
-  dispatch(toggleLoading(true));  
-  axios.put(`/api/link/update/${id}`)
-  .then(() => {
+export const updateLink = (id, newLink) => (dispatch, getState) => {
+  dispatch(toggleLoading(true));
+
+  const body = JSON.stringify(newLink);
+
+  axios.put(`/api/link/${id}`, body, axiosHeader(getState))
+    .then(link => {
       dispatch(toggleLoading(false));
       dispatch(getUserLink());
-      if(isSingleLinkView) {
-        dispatch(getSingleLink(id))
-      }
-      dispatch(snackbarToggle(true, "Link Updated", "success"));      
+      dispatch(snackbarToggle(true, "Link Updated", "success"));            
     })
+    .catch(err => {
+      console.log(err);
+    });
 }
+
+// export const updateLink = id => (dispatch, getState) => {
+//   const isSingleLinkView = !(getState().linkReducer.singleLink.length === 0);
+//   dispatch(toggleLoading(true));  
+//   axios.put(`/api/link/update/${id}`)
+//   .then(() => {
+//       dispatch(toggleLoading(false));
+//       dispatch(getUserLink());
+//       if(isSingleLinkView) {
+//         dispatch(getSingleLink(id))
+//       }
+//       dispatch(snackbarToggle(true, "Link Updated", "success"));      
+//     })
+// }
 
 // Dashboard Search component - user link search
 export const searchLink = keyword => {

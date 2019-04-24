@@ -4,12 +4,18 @@ const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
-
-const app = express();
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
+const fs = require("fs")
 
 const { mongoURI } = require("./config/keys");
+const httpsOptions = {
+  key: fs.readFileSync("./config/file.pem"),
+  cert: fs.readFileSync("./config/file.crt")
+}
+
+const app = express();
+const https = require("https").Server(httpsOptions, app);
+const io = require("socket.io")(https);
+
 
 app.set("port", process.env.PORT || 5000);
 app.set("socketio", io);
@@ -45,4 +51,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-http.listen(process.env.PORT || 5000, () => console.log("Server Started"));
+https.listen(process.env.PORT || 5000, () => console.log("Server Started"));

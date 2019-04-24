@@ -9,6 +9,6 @@ if (process.env.NODE_ENV === "production") {
     vapidPublic: config.get("publicKey"),
     vapidPrivate: config.get("privateKey"),
     sendGridUser: config.get("sgUser"),
-    sendGridPass: config.get("sgPass")
+    sendGridPass: config.get("sgPass"),
   };
 }

@@ -30,6 +30,28 @@ router.post("/", auth, (req, res) => {
     .catch(err => console.log(err));
 });
 
+// @route PUT /api/link/:linkid
+// @desc Update a link
+router.put("/:linkid", auth, (req, res) => {
+
+  const { linkTitle, url, tags, public_link } = req.body;
+  
+  Link.findById(req.params.linkid)
+    .then(link => {
+      console.log("OLD", link);
+      link.linkTitle = linkTitle ? linkTitle : link.linkTitle;
+      link.url = url ? url : link.url;
+      link.public_link = public_link ? !link.public_link : link.public_link;
+      link.tags = tags ? link.tags.push(tags) : link.tags;
+
+      link.save().then(link => {
+        console.log("NEW", link);
+        res.status(200).json(link)
+      })
+      .catch(err => console.log(err));
+    });
+});
+
 // @route GET /api/link/single/:linkid
 // @desc Get a single link from ID
 router.get("/single/:linkid", (req, res) => {

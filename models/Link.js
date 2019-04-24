@@ -18,6 +18,7 @@ const LinkSchema = new Schema({
     type: Boolean,
     default: true
   },
+  tags: [],
   date: {
     type: Date,
     default: Date.now

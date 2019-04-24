@@ -5,9 +5,9 @@ import { Redirect } from "react-router-dom"
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, LockRounded, LockOpenRounded } from "./Icons"; 
+import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded } from "./Icons"; 
 import { ShowLinkMenuItems } from "./styles";
-import { deleteSingleLink, socketEmit, updateLink } from "../../actions/linkAction";
+import { deleteSingleLink, socketEmit } from "../../actions/linkAction";
 import { snackbarToggle } from "../../actions/appStateAction";
 import androidShare from "../../functions/androidShare";
 
@@ -35,7 +35,7 @@ class MenuComponent extends Component {
 
   render() {
     const { anchorEl, redirect } = this.state;
-    const { link, socketEmit, updateLink } = this.props;
+    const { link, socketEmit } = this.props;
 
     const menuItems = [
       {
@@ -49,9 +49,9 @@ class MenuComponent extends Component {
         text: "Share"
       },
       {
-        onClick: () => {updateLink(link._id);this.handleClose();},
-        icon: link.public_link ? <LockOpenRounded /> : <LockRounded />,
-        text: link.public_link ? "Link is Public" : "Link is Private"
+        onClick: () => {this.handleClose();},
+        icon: <EditRounded />,
+        text: "Edit"
       },
       {
         onClick: () => {this.deleteLink(link._id);this.handleClose();},
@@ -95,5 +95,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteSingleLink, socketEmit, snackbarToggle, updateLink }
+  { deleteSingleLink, socketEmit, snackbarToggle }
 )(MenuComponent);
