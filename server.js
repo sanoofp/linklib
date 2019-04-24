@@ -7,14 +7,14 @@ const cors = require("cors");
 const fs = require("fs")
 
 const { mongoURI } = require("./config/keys");
-const httpsOptions = {
-  key: fs.readFileSync("./config/file.pem"),
-  cert: fs.readFileSync("./config/file.crt")
-}
+// const httpsOptions = {
+//   key: fs.readFileSync("./config/file.pem"),
+//   cert: fs.readFileSync("./config/file.crt")
+// }
 
 const app = express();
-const https = require("https").createServer(httpsOptions, app);
-const io = require("socket.io")(https);
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
 
 
 app.set("port", process.env.PORT || 5000);
@@ -51,4 +51,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-https.listen(process.env.PORT || 5000, () => console.log("Server Started"));
+http.listen(process.env.PORT || 5000, () => console.log("Server Started"));
