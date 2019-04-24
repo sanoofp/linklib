@@ -13,7 +13,7 @@ const httpsOptions = {
 }
 
 const app = express();
-const https = require("https").Server(httpsOptions, app);
+const https = require("https").createServer(httpsOptions, app);
 const io = require("socket.io")(https);
 
 
