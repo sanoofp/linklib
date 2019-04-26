@@ -128,7 +128,7 @@ export const editLink = newLink => (dispatch, getState) => {
       dispatch(dialogAction("editLinkDialogOpen", false));
     })
     .catch(err => {
-      console.log(err);
+      dispatch(toggleLoading(false));      
       dispatch(
         getErrors(err.response.data, err.response.status)
       );

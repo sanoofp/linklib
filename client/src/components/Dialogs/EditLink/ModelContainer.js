@@ -16,7 +16,7 @@ const ModelContainer = props => {
             <Form className="col-md-8 mx-auto text-center">
               <form onSubmit={props.handleSubmit} autoComplete="off">
                 <h1 className="display-5">Edit Link</h1>
-                <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center justify-content-between flex-wrap">
                   <TextField
                     disabled
                     margin="normal"

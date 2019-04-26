@@ -4,13 +4,9 @@ const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
-const fs = require("fs")
+const sslRedirect = require('heroku-ssl-redirect');
 
 const { mongoURI } = require("./config/keys");
-// const httpsOptions = {
-//   key: fs.readFileSync("./config/file.pem"),
-//   cert: fs.readFileSync("./config/file.crt")
-// }
 
 const app = express();
 const http = require("http").Server(app);
@@ -20,6 +16,7 @@ const io = require("socket.io")(http);
 app.set("port", process.env.PORT || 5000);
 app.set("socketio", io);
 
+app.use(sslRedirect());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(compression());
