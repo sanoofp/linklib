@@ -42,7 +42,7 @@ const Items = props => {
           </Link>
         </div>
 
-        <MenuComponent link={props.link}/>
+        <MenuComponent link={props.link} />
       </ShowLinkItem>
       </div>      
     );

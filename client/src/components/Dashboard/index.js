@@ -23,6 +23,11 @@ const AddLink = Loadable({
   loading: LoadableLoader
 });
 
+const EditLinkModel = Loadable({
+  loader: () => import("../Dialogs/EditLink/EditLink"),
+  loading: LoadableLoader
+});
+
 const AddLinkMessage = Loadable({
   loader: () => import("./Add/AddLinkMessage"),
   loading: LoadableLoader
@@ -31,20 +36,18 @@ const AddLinkMessage = Loadable({
 class Dashboard extends Component {
 
   componentDidMount() {
-    const { clearErrors, error } = this.props;
+    const { clearErrors, error, link, auth, getUserLink } = this.props;
 
     if(error.id !== null) {
       clearErrors();
     }
-    getClipboard(url => this.props.clipboardState(true, url));
 
-    // if (link.userLinks.length === 0 && !link.userLinksLoaded) {
-      // if (auth.isAuthenticated) {
-      //   if(!link.userLinksLoaded && link.userLinks.length === 0){ 
-      //     this.props.getUserLink();
-      //   }
-      // }
-    // }
+    // Throws Warning - "render" should be pure function of props and state
+    if(link.userLinks.length === 0 && link.linkLoading === false && link.userLinksLoaded === false && auth.user !== null) {
+      getUserLink();
+    }
+
+    getClipboard(url => this.props.clipboardState(true, url));
   }
 
   render() {
@@ -59,10 +62,7 @@ class Dashboard extends Component {
       return <Redirect to="/" />;
     }
 
-    // Throws Warning - "render" should be pure function of props and state
-    if(link.userLinks.length === 0 && link.linkLoading === false && link.userLinksLoaded === false) {
-      getUserLink();
-    }
+    
 
     return (
       <React.Fragment>
@@ -76,6 +76,7 @@ class Dashboard extends Component {
           <Search />
           <ShowLinks />
           <AddLink />
+          {Object.keys(link.editLink).length > 0 && <EditLinkModel /> }
 
           <AddLinkMessage />
 

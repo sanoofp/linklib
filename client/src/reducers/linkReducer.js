@@ -8,7 +8,9 @@ import {
   CLEAR_USER_LINKS,
   SET_SEARCH_KEYWORD,
   SET_GLOBAL_SEARCH_RESULT,
-  SEARCH_LINK_LOAD
+  SEARCH_LINK_LOAD,
+  SET_EDIT_LINK,
+  CLEAR_EDIT_LINK
 } from "../actions/types";
 
 const initialState = {
@@ -18,7 +20,8 @@ const initialState = {
   singleLink: [],
   searchKeyword: "",
   globalSearchResult: [],
-  searchLinkLoading: false
+  searchLinkLoading: false,
+  editLink: {},
 };
 
 export default function(state = initialState, action) {
@@ -66,8 +69,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         linkLoading: false,
-        userLinks: [],
         userLinksLoaded: false,        
+        userLinks: [],
       }
     }
     case SET_SEARCH_KEYWORD: {
@@ -87,6 +90,18 @@ export default function(state = initialState, action) {
         ...state,
         searchLinkLoading: false,
         globalSearchResult: action.payload.globalSearchResult
+      }
+    }
+    case SET_EDIT_LINK: {
+      return {
+        ...state,
+        editLink: action.payload
+      }
+    }
+    case CLEAR_EDIT_LINK: {
+      return {
+        ...state,
+        editLink: {}
       }
     }
     default:

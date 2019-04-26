@@ -7,7 +7,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded } from "./Icons"; 
 import { ShowLinkMenuItems } from "./styles";
-import { deleteSingleLink, socketEmit } from "../../actions/linkAction";
+import { deleteSingleLink, socketEmit, setEditLink } from "../../actions/linkAction";
 import { snackbarToggle } from "../../actions/appStateAction";
 import androidShare from "../../functions/androidShare";
 
@@ -35,7 +35,7 @@ class MenuComponent extends Component {
 
   render() {
     const { anchorEl, redirect } = this.state;
-    const { link, socketEmit } = this.props;
+    const { link, socketEmit, setEditLink } = this.props;
 
     const menuItems = [
       {
@@ -49,11 +49,6 @@ class MenuComponent extends Component {
         text: "Share"
       },
       {
-        onClick: () => {this.handleClose();},
-        icon: <EditRounded />,
-        text: "Edit"
-      },
-      {
         onClick: () => {this.deleteLink(link._id);this.handleClose();},
         icon: <DeleteRounded />,
         text: "Delete"
@@ -62,7 +57,15 @@ class MenuComponent extends Component {
         style: { fontSize: "0.7em" },
         text: `Create at ${new Date(link.date).toDateString()}`
       },
-    ]
+    ];
+
+    if(window.location.pathname === "/dashboard") {
+      menuItems.splice(2, 0, {
+        onClick: () => { setEditLink(link); this.handleClose();},
+        icon: <EditRounded />,
+        text: "Edit"
+      })
+    }
 
     if(redirect) {
       return <Redirect to="/dashboard" />
@@ -95,5 +98,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteSingleLink, socketEmit, snackbarToggle }
+  { deleteSingleLink, socketEmit, snackbarToggle, setEditLink }
 )(MenuComponent);

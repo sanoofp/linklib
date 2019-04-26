@@ -16,6 +16,10 @@ const SigninModel = Loadable({
   loader: () => import("../../Dialogs/SignIn/SignIn"),
   loading: LoadableLoader
 });
+// const EditLinkModel = Loadable({
+//   loader: () => import("../../Dialogs/EditLink/EditLink"),
+//   loading: LoadableLoader
+// });
 
 const Utility = props => <div>
   <Spinner />
@@ -24,6 +28,7 @@ const Utility = props => <div>
       
   <SigninModel />
   <SignupModel />
+  {/* <EditLinkModel /> */}
 </div>
 
 export default Utility;

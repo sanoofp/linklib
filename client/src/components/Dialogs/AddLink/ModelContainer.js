@@ -1,5 +1,5 @@
 import React from "react";
-import { ModelContainerStyled, AddLinkForm, Form } from "../style";
+import { ModelContainerStyled, LinkFormMini, Form } from "../style";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
@@ -7,7 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 const ModelContainer = props => {
   return (
     <ModelContainerStyled tabIndex={1}>
-      <AddLinkForm>
+      <LinkFormMini>
         <div className="container h-100">
           <div className="row h-100">
             <Form className="col-md-8 mx-auto">
@@ -38,7 +38,7 @@ const ModelContainer = props => {
             </Form>
           </div>
         </div>
-      </AddLinkForm>
+      </LinkFormMini>
     </ModelContainerStyled>
   );
 };

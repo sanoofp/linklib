@@ -28,6 +28,8 @@ export const CLEAR_SINGLE_LINKS = "CLEAR_SINGLE_LINKS";
 export const CLEAR_USER_LINKS = "CLEAR_USER_LINKS";
 export const LOAD_LINK = "LOAD_LINK";
 export const LOAD_LINK_FAIL = "LOAD_LINK_FAIL";
+export const SET_EDIT_LINK = "SET_EDIT_LINK";
+export const CLEAR_EDIT_LINK = "CLEAR_EDIT_LINK";
 // Clipboard
 export const CLIPBOARD_STATE = "CLIPBOARD_STATE";
 // Search

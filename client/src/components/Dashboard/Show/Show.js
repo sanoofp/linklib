@@ -42,13 +42,12 @@ const ShowLinks = props => {
         </div>
       </div>
       <div className="row">
-      {userLinks.length === 0 && <h3 className="py-5 mx-auto">No links found.</h3>}
+        {userLinks.length === 0 && <h3 className="py-5 mx-auto">No links found.</h3>}
         {searchKeyword === ""
           ? userLinks.map((item, idx) => (
               <Items
                 key={idx}
                 link={item}
-                userID={props.userID}
               />
             ))
           : searchData}

@@ -54,7 +54,7 @@ export const Form = styled.div`
 `;
 
 
-export const AddLinkForm = styled.div`
+export const LinkFormMini = styled.div`
   width: 100%;
   padding: 30px auto;
   h1 {

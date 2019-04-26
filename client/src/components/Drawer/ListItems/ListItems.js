@@ -87,7 +87,6 @@ ListItems.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   dialogAction: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
-  signOut: PropTypes.func.isRequired,
   user: PropTypes.object,
 };
 

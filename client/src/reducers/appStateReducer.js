@@ -13,6 +13,7 @@ const initalState = {
   signInDialogOpen: false,
   signUpDialogOpen: false,
   addLinkDialogOpen: false,
+  editLinkDialogOpen: false,
   snackbar: {
     open: false,
     msg: "",

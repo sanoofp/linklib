@@ -33,15 +33,17 @@ router.post("/", auth, (req, res) => {
 // @route PUT /api/link/:linkid
 // @desc Update a link
 router.put("/:linkid", auth, (req, res) => {
+  const { err, isValid } = urlpost(req.body);
+  if(!isValid) return res.status(400).json(err);
 
   const { linkTitle, url, tags, public_link } = req.body;
   
   Link.findById(req.params.linkid)
     .then(link => {
       console.log("OLD", link);
-      link.linkTitle = linkTitle ? linkTitle : link.linkTitle;
-      link.url = url ? url : link.url;
-      link.public_link = public_link ? !link.public_link : link.public_link;
+      link.linkTitle = linkTitle;
+      link.url = url;
+      link.public_link = public_link;
       link.tags = tags ? link.tags.push(tags) : link.tags;
 
       link.save().then(link => {
@@ -66,6 +68,7 @@ router.get("/single/:linkid", (req, res) => {
     .catch(err => res.status(400).json({ msg: "Invalid Link", err: err }));
 });
 
+
 // @route DELETE /api/link/:linkid
 // @desc Delete a link with ID
 router.delete("/:linkid", auth, (req, res) => {
@@ -74,16 +77,5 @@ router.delete("/:linkid", auth, (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-// @route POST /api/link/update/:linkid
-// @desc Update link
-router.put("/update/:linkid", (req, res) => {
-  Link.findById(req.params.linkid)
-    .then(link => {
-      link.public_link = !link.public_link;
-      link.save(newLink => {
-        res.status(200).json(newLink)
-      });
-    });
-});
 
 module.exports = router;
