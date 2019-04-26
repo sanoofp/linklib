@@ -20,19 +20,16 @@ const SearchBox = Loadable({
 
 class GlobalSearch extends Component {
   render() {
-    const { globalSearchResult, searchLinkLoading, darkTheme } = this.props;
+    const { globalSearchResult, darkTheme } = this.props;
     return (
     <GobalSearchContainer>
       <ArtUp />
       <div className="container">
         <div className="row">
           <SearchArts darkTheme={darkTheme} />
-          <div className="col-md-6">
-            
+          <div className="col-md-6">  
             <SearchBox />
-
-            <SearchResult searchLinkLoading={searchLinkLoading} globalSearchResult={globalSearchResult} />
-
+            <SearchResult globalSearchResult={globalSearchResult} />
           </div>
         </div>
       </div>
@@ -44,7 +41,6 @@ class GlobalSearch extends Component {
 
 const mapStateToProps = state => ({
   globalSearchResult: state.linkReducer.globalSearchResult,
-  searchLinkLoading: state.linkReducer.searchLinkLoading,
   darkTheme: state.appStateReducer.darkTheme
 })
 

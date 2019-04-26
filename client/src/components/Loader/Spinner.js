@@ -5,10 +5,10 @@ import { SpinnerContainer } from "./styles";
 
 const Spinner = props => {
   const { reqLoading } = props.appState;
-  const { linkLoading } = props.linkReducer;
+  const { linkLoading, searchLinkLoading } = props.linkReducer;
   return (
-    (reqLoading || linkLoading) && (
-      <SpinnerContainer reqLoading={reqLoading}>
+    (reqLoading || linkLoading || searchLinkLoading) && (
+      <SpinnerContainer reqLoading={reqLoading || searchLinkLoading}>
         <CircularProgress
           size={60}
           thickness={4}

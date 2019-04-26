@@ -9,7 +9,7 @@ import { snackbarToggle } from "../../../actions/appStateAction";
 const Input = styled.input`
   box-sizing: border-box;
   width: 100%;
-  margin: 0 12px;
+  margin: 12px 0;
   background: ${props => props.theme.bodybg};
   outline: none;
   border: none;
@@ -40,6 +40,9 @@ class SearchBox extends Component {
   onSubmit = () => {
     const val = this.state.search;
     if(val !== "") {
+      if(this.props.isMain) {
+        return this.props.searchGlobal(val, 50);
+      }
       this.props.searchGlobal(val);
     } else {
       this.props.snackbarToggle(true, "Please enter a search query", "error")

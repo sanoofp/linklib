@@ -1,9 +1,8 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { ResultContainer } from "../../style"
-import ResultItem from "./ResultItem";
+import ResultItem from "../../../HelperComponent/search/ResultItem";
 import SearchInfo from "./SearchInfo";
 
 const SearchResult = props => {
@@ -21,11 +20,7 @@ const SearchResult = props => {
   }
   return(
     <ResultContainer>
-      {
-        props.searchLinkLoading ? <div className="search-loader"><CircularProgress color="secondary" /></div> : null
-      }
       {list_view}
-
     </ResultContainer>
   );
 }

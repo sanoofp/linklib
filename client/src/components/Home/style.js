@@ -106,10 +106,10 @@ export const GobalSearchContainer = styled.div`
     bottom: -80px;
   }
  
-  h2, p {
+  h3, p {
     margin: 0;
   }
-  h2 {
+  h3 {
     margin-bottom: 8px;
     font-size: 1.7em;
     font-family: ${props => props.theme.secondaryFont};
@@ -137,27 +137,11 @@ export const ResultContainer = styled.div`
   box-shadow: 3px 4px 22px rgba(0,0,0,0.3);  
   border-radius: 12px;
   background: ${props => props.theme.bodybg};  
-  margin: 8px 12px 0 12px;
+  margin: 8px 0 0 0;
   scrollbar-width: none;
   ::-webkit-scrollbar {
     width: 0;
     display: none;
-  }
-  .result-item {
-    padding: 36px 20px;
-    width: 100%;
-    position: relative;
-    h2 {
-      font-size: 1.05em;
-      word-break: break-all;
-    }
-    p {
-      font-size: 0.7em;
-      margin: 10px 0 4px 0;
-    }
-    small {
-      font-size: 0.7em;
-    }
   }
   
   .search-info {
@@ -174,21 +158,6 @@ export const ResultContainer = styled.div`
     p {
       margin: 10px 0;
     }
-  }
-
-  .search-loader {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.3);
-    border-radius: 12px;
   }
 
   .show-more--btn {

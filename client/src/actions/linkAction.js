@@ -154,8 +154,10 @@ export const searchLink = keyword => {
 
 export const searchGlobal = (keyword, maxLength = 5) => dispatch => {
   dispatch({ type: SEARCH_LINK_LOAD });
+  // dispatch(toggleLoading(true))
   axios.get(`/api/search?q=${keyword}&max=${maxLength}`)
   .then(searchResult => {
+    // dispatch(toggleLoading(false))
     dispatch({
       type: SET_GLOBAL_SEARCH_RESULT,
       payload: {
