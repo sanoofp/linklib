@@ -22,10 +22,6 @@ class EditLinkModel extends Component {
     } 
   });
 
-  handleClose() {
-    this.props.setEditLink({})
-  }
-
   handleSubmit = event => {
     event.preventDefault();
     this.props.editLink(this.state.editLink)
@@ -33,7 +29,7 @@ class EditLinkModel extends Component {
 
   render() {
     const { editLink } = this.state;
-    const { clearErrors, appState, dialogAction } = this.props;
+    const { clearErrors, appState, dialogAction, setEditLink } = this.props;
 
     return (
       <Modal
@@ -42,7 +38,7 @@ class EditLinkModel extends Component {
         open={appState.editLinkDialogOpen}
         onClose={() => {
           clearErrors()
-          this.handleClose()
+          setEditLink({})    
           dialogAction("editLinkDialogOpen", false)
         }}
       >

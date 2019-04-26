@@ -51,7 +51,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { auth, link, getUserLink } = this.props;
+    const { auth, link } = this.props;
 
     window.onfocus = e => getClipboard(url => this.props.clipboardState(true, url));
 

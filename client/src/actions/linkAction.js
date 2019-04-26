@@ -123,17 +123,23 @@ export const editLink = newLink => (dispatch, getState) => {
     .then(link => {
       dispatch(toggleLoading(false));
       dispatch(getUserLink());
+      dispatch(setEditLink({}))
       dispatch(snackbarToggle(true, "Link Updated", "success"));            
       dispatch(dialogAction("editLinkDialogOpen", false));
     })
     .catch(err => {
       console.log(err);
+      dispatch(
+        getErrors(err.response.data, err.response.status)
+      );
+      dispatch(
+        snackbarToggle(true, returnParaStringOnly(err.response.data), "error")
+      );
     });
 }
 
 export const setEditLink = link => dispatch => {
   dispatch({ type: SET_EDIT_LINK, payload: link })
-  dispatch(dialogAction("editLinkDialogOpen", true));
 } 
 
 // Dashboard Search component - user link search

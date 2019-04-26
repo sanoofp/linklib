@@ -8,7 +8,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded } from "./Icons"; 
 import { ShowLinkMenuItems } from "./styles";
 import { deleteSingleLink, socketEmit, setEditLink } from "../../actions/linkAction";
-import { snackbarToggle } from "../../actions/appStateAction";
+import { snackbarToggle, dialogAction } from "../../actions/appStateAction";
 import androidShare from "../../functions/androidShare";
 
 class MenuComponent extends Component {
@@ -35,7 +35,7 @@ class MenuComponent extends Component {
 
   render() {
     const { anchorEl, redirect } = this.state;
-    const { link, socketEmit, setEditLink } = this.props;
+    const { link, socketEmit, setEditLink, dialogAction } = this.props;
 
     const menuItems = [
       {
@@ -61,7 +61,7 @@ class MenuComponent extends Component {
 
     if(window.location.pathname === "/dashboard") {
       menuItems.splice(2, 0, {
-        onClick: () => { setEditLink(link); this.handleClose();},
+        onClick: () => { setEditLink(link); dialogAction("editLinkDialogOpen", true); this.handleClose();},
         icon: <EditRounded />,
         text: "Edit"
       })
@@ -98,5 +98,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteSingleLink, socketEmit, snackbarToggle, setEditLink }
+  { deleteSingleLink, socketEmit, snackbarToggle, setEditLink, dialogAction }
 )(MenuComponent);
