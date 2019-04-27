@@ -17,7 +17,7 @@ class SearchMain extends Component {
       list_view = <div className="no-result">
         <img src={darkTheme ? ArtDark : ArtLight} alt="Search Art" />
         <p>No Link Found</p>
-      </div>;
+        </div>;
     }
     return <SearchMainContainer>
       <div className="container">

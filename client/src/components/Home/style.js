@@ -134,7 +134,7 @@ export const ResultContainer = styled.div`
   height: 340px;
   overflow: hidden;
   overflow-y: auto;
-  box-shadow: 3px 4px 22px rgba(0,0,0,0.3);  
+  box-shadow: 0px 5px 18px rgba(0,0,0,0.3);  
   border-radius: 12px;
   background: ${props => props.theme.bodybg};  
   margin: 8px 0 0 0;
