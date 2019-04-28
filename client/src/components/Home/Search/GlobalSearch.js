@@ -29,7 +29,7 @@ class GlobalSearch extends Component {
         <div className="row">
           <SearchArts darkTheme={darkTheme} />
           <div className="col-md-6">
-            <Fade right distance="20px">
+            <Fade bottom distance="30px">
               <SearchBox />
               <SearchResult globalSearchResult={globalSearchResult} />
             </Fade>

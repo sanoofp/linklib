@@ -9,6 +9,7 @@ import {
   SET_GLOBAL_SEARCH_RESULT,
   SEARCH_LINK_LOAD,
   SET_EDIT_LINK,
+  SET_SINGLE_LINK_DETAILS
 } from "../actions/types";
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
@@ -71,8 +72,11 @@ export const getSingleLink = id => (dispatch, getState) => {
     .then(res => {
       dispatch({
         type: SET_SINGLE_LINKS,
-        payload: res.data
+        payload: res.data,
       });
+
+      axios.post("/api/search/title", { url: res.data.url })
+        .then(res => dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: res.data }));
     })
     .catch(err => {
       dispatch({ type: CLEAR_SINGLE_LINKS });

@@ -40,14 +40,12 @@ router.put("/:linkid", auth, (req, res) => {
   
   Link.findById(req.params.linkid)
     .then(link => {
-      console.log("OLD", link);
       link.linkTitle = linkTitle;
       link.url = url;
       link.public_link = public_link;
       link.tags = tags ? link.tags.push(tags) : link.tags;
 
       link.save().then(link => {
-        console.log("NEW", link);
         res.status(200).json(link)
       })
       .catch(err => console.log(err));

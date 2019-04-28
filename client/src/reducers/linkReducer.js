@@ -10,7 +10,8 @@ import {
   SET_GLOBAL_SEARCH_RESULT,
   SEARCH_LINK_LOAD,
   SET_EDIT_LINK,
-  CLEAR_EDIT_LINK
+  CLEAR_EDIT_LINK,
+  SET_SINGLE_LINK_DETAILS
 } from "../actions/types";
 
 const initialState = {
@@ -18,6 +19,7 @@ const initialState = {
   userLinks: [],
   userLinksLoaded: false,
   singleLink: [],
+  singleLinkDetails: {},
   searchKeyword: "",
   globalSearchResult: [],
   searchLinkLoading: false,
@@ -57,6 +59,12 @@ export default function(state = initialState, action) {
         linkLoading: false,
         singleLink: action.payload,
       };
+    }
+    case SET_SINGLE_LINK_DETAILS: {
+      return {
+        ...state,
+        singleLinkDetails: action.payload
+      }
     }
     case CLEAR_SINGLE_LINKS: {
       return {

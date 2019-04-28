@@ -97,6 +97,34 @@ export const SingleLinkContainer = styled.div`
       border: none;
     }
   }
+  .screenshot {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 12px 30px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    &:after {
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4), rgba(0,0,0,0.8));
+    }
+    img {
+      width: 100%;
+    }
+    p {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      left: 50%;
+      z-index:1;
+      color: rgba(255,255,255,0.9);
+      transform: translateX(-50%);
+    }
+  }
 
   .link-btn {
     border-radius: 6px;
@@ -122,6 +150,11 @@ export const SingleLinkContainer = styled.div`
   @media (max-width: 768px) {
     h1 {
       font-size: 1.4em;
+    }
+  }
+  @media (max-width: 485px) {
+    .screenshot {
+      margin: 12px 0;
     }
   }
   

@@ -29,7 +29,7 @@ class SingleLink extends Component {
   _timeout = () => this.setState({ copied: false })
 
   componentDidMount() {
-    this.props.getSingleLink(this.props.match.params.id)
+    this.props.getSingleLink(this.props.match.params.id);
   }
 
   componentWillUnmount() {
@@ -49,7 +49,7 @@ class SingleLink extends Component {
   };
 
   render() {
-    const { singleLink } = this.props.linkReducer;
+    const { singleLink, singleLinkDetails } = this.props.linkReducer;
     const { user } = this.props.authReducer;
     const { id } = this.props.errorReducer;
     const { copied } = this.state;
@@ -82,7 +82,7 @@ class SingleLink extends Component {
             <div className="col-md-10 mx-auto">
               
               <SingleLinkMain singleLink={singleLink} copied={copied} userOfLink={userOfLink} copyLink={() => this.copyLink()} />
-              <Details singleLink={singleLink} avatar={avatar} username={username} share={() => this.share()} />
+              <Details singleLink={singleLink} singleLinkDetails={singleLinkDetails} avatar={avatar} username={username} share={() => this.share()} />
 
              </div>
           </div>
