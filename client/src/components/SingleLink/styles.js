@@ -54,11 +54,8 @@ export const SingleLinkContainer = styled.div`
   position: relative;
   width: 100%;
   margin-top: 16px;
-  &:nth-of-type(2) {
-    margin: 34px 0;
-  }
-  padding: 18px 22px;
-  box-shadow: 0px 4px 20px rgba(0,0,0,0.16);
+  padding: 60px 22px;
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.14);
   ${dFlexCenter}
   flex-direction: column;
   border-radius: 12px;
@@ -66,10 +63,14 @@ export const SingleLinkContainer = styled.div`
   color: ${props => props.theme.font};
   text-align: center;
   overflow: hidden;
+  &:nth-of-type(2) {
+    padding: 30px 22px;
+    margin: 34px 0;
+  }
   h1 {
     font-family: ${props => props.theme.secondaryFont};
-    font-size: 2.5em;
-    margin-bottom: 5px;
+    font-size: 2.15em;
+    margin: 5px 0px;
   }
   h2 {
     font-size: 0.7em;
@@ -81,11 +82,12 @@ export const SingleLinkContainer = styled.div`
   }
   input[type="text"] {
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 16px;
     padding: 6px 10px;
     font-size: 0.8em;
-    width: 280px;
+    width: 360px;
     max-height: 110px;
+    text-align: center;
     background-color: ${props => props.theme.bodybg};
     color: ${props => props.theme.font};
     border: none;
@@ -95,22 +97,12 @@ export const SingleLinkContainer = styled.div`
       border: none;
     }
   }
-  
-  .links-btn {
-    font-size: 0.9em;
-    padding: 9px 24px;
-    margin: 0 8px;
-    color: ${props => props.theme.font};
-    font-family: ${props => props.theme.primaryFont};
-    border: 1px solid ${props => props.theme.font};
-    border-radius: 8px;
-    background-color: transparent;
-    transition: all 0.2s ease-in-out;
-    &:hover {
-      color: ${props => props.theme.bodybg};
-      background-color: ${props => props.theme.font};
-    }
+
+  .link-btn {
+    border-radius: 6px;
+    margin: 3px 6px;
   }
+  
   .details {
     padding: 4px 0 14px 0;
     span {
@@ -121,6 +113,7 @@ export const SingleLinkContainer = styled.div`
       font-size: 0.87em;
     }
   }
+
   .actions {
     p {
       font-size: 0.7em;

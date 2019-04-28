@@ -81,8 +81,8 @@ class SingleLink extends Component {
           <div className="row">
             <div className="col-md-10 mx-auto">
               
-              <SingleLinkMain singleLink={singleLink} copied={copied} userOfLink={userOfLink} copyLink={() => this.copyLink()} share={() => this.share()} />
-              <Details singleLink={singleLink} avatar={avatar} username={username} />
+              <SingleLinkMain singleLink={singleLink} copied={copied} userOfLink={userOfLink} copyLink={() => this.copyLink()} />
+              <Details singleLink={singleLink} avatar={avatar} username={username} share={() => this.share()} />
 
              </div>
           </div>

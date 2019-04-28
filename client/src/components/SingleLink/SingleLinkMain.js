@@ -1,7 +1,8 @@
 import React from "react";
-import { SingleLinkContainer, CopiedMsg, ShareContainer } from "./styles";
+import Button from "@material-ui/core/Button";
+import { SingleLinkContainer, CopiedMsg } from "./styles";
 import A from "../Button/A";
-import FontAwesomeIconSet from "./icons/social";
+// import FontAwesomeIconSet from "./icons/social";
 import MenuComponent from "../Menu/MenuComponent";
 
 const SingleLinkMain = props => {
@@ -20,24 +21,15 @@ const SingleLinkMain = props => {
     </CopiedMsg>
   </div>
   <div>
+    <Button color="secondary" variant="outlined" size="medium" className="link-btn">
     <A className="links-btn" href={singleLink.url}>
       Open Link
     </A>
-    <input
-      className="links-btn"
-      type="button"
-      value="Copy link"
-      onClick={() => props.copyLink()}
-    />
+    </Button>
+    <Button onClick={() => props.copyLink()} color="secondary" variant="outlined" size="medium" className="link-btn">
+      Copy Link 
+    </Button>
   </div>
-  <ShareContainer>
-    <h2>SHARE LINK</h2>
-    <FontAwesomeIconSet
-      title={singleLink.linkTitle}
-      link={singleLink.url}
-      ll={() => props.share()}
-    />
-  </ShareContainer>
 
   { props.userOfLink ?
     <MenuComponent link={singleLink} />

@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import CodeRounded from "@material-ui/icons/CodeRounded";
+import MobileScreenShareRounded from "@material-ui/icons/MobileScreenShareRounded";
 import { Icons } from "../styles";
 import A from "../../Button/A";
 
@@ -18,7 +18,7 @@ export default function FontAwesomeIconSet(props) {
     <A href={links.wa}><FontAwesomeIcon icon={faWhatsapp} size="2x" /></A> 
     <A href={links.fb}><FontAwesomeIcon icon={faFacebook} size="2x" /></A>
     <A href={links.tt}><FontAwesomeIcon icon={faTwitter} size="2x" /></A> 
-    <A onClick={props.ll}><CodeRounded /></A> 
+    <A onClick={props.ll}><MobileScreenShareRounded /></A> 
   </Icons>
 }
 

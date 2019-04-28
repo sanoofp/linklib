@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import AddToHomeScreenRounded from "@material-ui/icons/AddToHomeScreenRounded";
 import LinkRounded from "@material-ui/icons/LinkRounded";
+import Fade from 'react-reveal/Fade';
 import { Link } from "react-router-dom";
 import { ShowLinkItem } from "../styles";
 import A from "../../Button/A";
@@ -14,7 +15,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 const Items = props => {
     const { linkTitle, url, _id, public_link } = props.link;
-    return (
+    return <Fade bottom distance="20px">
       <div className="col-md-6 p--2">
       <ShowLinkItem>
         <h4>{linkTitle}</h4>
@@ -45,7 +46,7 @@ const Items = props => {
         <MenuComponent link={props.link} />
       </ShowLinkItem>
       </div>      
-    );
+    </Fade>;
 }
 
 export default Items;
