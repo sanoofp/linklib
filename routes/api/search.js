@@ -24,7 +24,6 @@ router.post("/title", (req, res) => {
     return res.status(400).json({ message: "Invalid URL" })
   }
   request(url, (err, response, html) => {
-    // const title = getTitle(html);
     getDetails(url, data => {
       console.log(data);
       res.status(200).json(data);    
