@@ -89,10 +89,9 @@ export const getSingleLink = id => (dispatch, getState) => {
     });
 };
 
-export const clearSingleLink = () => {
-  return {
-    type: CLEAR_SINGLE_LINKS
-  };
+export const clearSingleLink = () => dispatch => {
+  dispatch({ type: CLEAR_SINGLE_LINKS });
+  dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: {} })
 };
 
 export const clearUserLinks = () => {

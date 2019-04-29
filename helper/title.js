@@ -1,22 +1,14 @@
-// const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
+// const cheerio = require("cheerio");
 
 module.exports = async function getDetails(url, cb) {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
   const page = await browser.newPage();
   await page.goto(url, {waitUntil: 'domcontentloaded'});
   let title = await page.title();  
-  let shot = await page.screenshot({ fullPage: false });
+  let shot = await page.screenshot({ fullPage: false, encoding: "base64" });
   await browser.close();
-  // if(shot) {
-    // cb({
-      // shot: shot,
-  //     title: title
-  //   })
-  // } else {
-  //   return null;
-  // }
-  cb({ title: title, shot: shot.toString("base64") })
+  cb({ title: title, shot: shot })
 }
 
 // module.exports = function getTitle(html) {
