@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const request = require("request");
 const Link = require("../../models/Link");
-const getDetails = require("../../helper/title");
+const getDetails = require("../../helper/screenshot");
 const isURL = require("validator/lib/isURL");
 
 // @route GET /api/search?q=keyword
