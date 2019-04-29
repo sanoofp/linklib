@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 });
 
 // @route GET /api/search/title
-// @desc Search for title of page from URL
+// @desc Search for title and screenshot of page from URL
 router.post("/title", (req, res) => {
   const url = req.body.url;
   if(!isURL(url, { require_protocol: true })) {
