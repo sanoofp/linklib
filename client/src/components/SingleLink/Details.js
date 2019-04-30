@@ -29,7 +29,7 @@ const Details = props => {
     </div> : <div><p>Loading webpage</p><CircularProgress size={20}/></div>}
 
     <div className="details">
-      <blockquote>{props.singleLink.public_link ? <p>This is a public link</p> : <p>This is a private link, this linklib ID is only availble to {props.username} and when shared by the direct <a href={`/link/${props.singleLink._id}`}>linklib url</a></p>}
+      <blockquote>{props.singleLink.public_link ? <p>This is a public link</p> : <p>This is a private link, this linklib ID is only availble to {props.username} and when shared by the direct <a href={`/link/${props.singleLink._id}`}><u>linklib url</u></a></p>}
       </blockquote>
       <span>Uploaded by <Chip
           avatar={<Avatar src={props.avatar} />}

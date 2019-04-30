@@ -3,21 +3,24 @@ import { connect } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { GobalSearchContainer } from "../style";
 import { ArtUp, ArtDown } from "../../svg/SearchArt"
-import LoadableLoader from "../../Loader/LoadableLoader";
-import Loadable from "react-loadable";
+import SearchResult from "./sub-component/SearchResult";
+import SearchArts from "./sub-component/SearchArts";
+import SearchBox from "../../HelperComponent/search/SearchBox";
+// import LoadableLoader from "../../Loader/LoadableLoader";
+// import Loadable from "react-loadable";
 
-const SearchResult = Loadable({
-  loader: () => import("./sub-component/SearchResult"),
-  loading: LoadableLoader
-});
-const SearchArts = Loadable({
-  loader: () => import("./sub-component/SearchArts"),
-  loading: LoadableLoader
-});
-const SearchBox = Loadable({
-  loader: () => import("../../HelperComponent/search/SearchBox"),
-  loading: LoadableLoader
-});
+// const SearchResult = Loadable({
+//   loader: () => import("./sub-component/SearchResult"),
+//   loading: LoadableLoader
+// });
+// const SearchArts = Loadable({
+//   loader: () => import("./sub-component/SearchArts"),
+//   loading: LoadableLoader
+// });
+// const SearchBox = Loadable({
+//   loader: () => import("../../HelperComponent/search/SearchBox"),
+//   loading: LoadableLoader
+// });
 
 class GlobalSearch extends Component {
   render() {

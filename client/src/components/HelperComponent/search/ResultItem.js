@@ -42,12 +42,6 @@ const ResultItem = props => {
       <p>{truncateStringTo(props.result.url, 50)}</p>
       <small>
         Uploaded by <img src={props.result.userID.avatar} alt="Uploaded by"/> {props.result.userID.username}
-        {/* Uploaded by <Chip 
-          avatar={<Avatar src={props.result.userID.avatar} />} 
-          label={props.result.userID.username} 
-          color="default" 
-          variant="outlined" 
-        /> */}
       </small>
     </div>
     <div>

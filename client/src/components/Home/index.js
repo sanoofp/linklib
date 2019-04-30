@@ -7,11 +7,12 @@ import { withStyles } from "@material-ui/core/styles";
 import { HomeContainer, MuiButtonStyles } from "./style";
 import LoadableLoader from "../Loader/LoadableLoader";
 import Loadable from "react-loadable";
+import Intro from "./Intro";
 
-const Intro = Loadable({
-  loader: () => import("./Intro"),
-  loading: LoadableLoader
-});
+// const Intro = Loadable({
+//   loader: () => import("./Intro"),
+//   loading: LoadableLoader
+// });
 
 const GlobalSearch = Loadable({
   loader: () => import("./Search/GlobalSearch"),
