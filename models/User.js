@@ -41,8 +41,6 @@ userSchema.pre("save", function(next) {
 });
 
 userSchema.methods.comparePassword = function(userPassword, cb) {
-  console.log("REC: ", userPassword, " - OG:", this.password);
-  console.log(bcrypt.getSalt(this.password))
   bcrypt.compare(userPassword, this.password).then(isMatch => cb(isMatch));
 };
 

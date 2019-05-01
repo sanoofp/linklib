@@ -97,11 +97,12 @@ export const signupUser = ({ username, email, password }) => dispatch => {
 
 export const signOut = () => (dispatch, getState) => {
   dispatch(toggleLoading(true))
-  
+  const userid = getState().authReducer.user._id;
+
   axios.get("/api/user/logout", axiosHeader(getState))
   .then(() => {
+    pushUnsubscribe(userid);
     dispatch(clearUserLinks());
-    pushUnsubscribe();
     dispatch(toggleLoading(false));
     dispatch(snackbarToggle(true, "Signed out of Linklib", "success"))
     dispatch({

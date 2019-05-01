@@ -24,14 +24,12 @@ router.post("/sub/:userid", (req, res) => {
 router.get("/trigger/:linkid", auth, (req, res) => {
   const userID = req.user.id;
   const linkID = req.params.linkid;
-  console.log(userID, linkID);
   User.findById(userID)
   .then(user => {
     Link.findById(linkID)
       .then(link => {
         const subscriptions = user.subscriptions;
         for(let i = 0; i < subscriptions.length; i++){
-          console.log(subscriptions[i]);
           const payload = JSON.stringify({
             title: `${link.linkTitle}`,
             icon: user.avatar,
@@ -46,5 +44,22 @@ router.get("/trigger/:linkid", auth, (req, res) => {
     })
     .catch(err => res.status(400).json(err));
 })
+
+router.post("/unsub/:userid", (req, res) => {
+  const oldsub = req.body;
+  User.findById(req.params.userid).then(user => {
+    console.log(user.subscriptions.length);    
+    user.subscriptions = user.subscriptions.filter(sub => {
+      if(sub.endpoint != oldsub.endpoint) {
+        // console.log("UNSUBING::::", sub);
+        return true;
+      }
+    });
+    user.save().then((user) => {
+      console.log(user.subscriptions.length);
+      res.status(200).json({})
+    })
+  });
+});
 
 module.exports = router;

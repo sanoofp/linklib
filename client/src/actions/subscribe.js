@@ -40,12 +40,17 @@ export const pushSubscribe = userid => {
   });
 }
 
-export const pushUnsubscribe = () => {
+export const pushUnsubscribe = userid => {
   navigator.serviceWorker.getRegistration().then(reg => {
-    reg.pushManager.getSubscription().then(sub => {
-      sub.unsubscribe().then(successful => {
-        console.log("PUSH unsubscribe", successful);
-      });
+    reg.pushManager.getSubscription().then(oldsub => {
+      const config = { headers: { "Content-Type": "application/json" } };
+      const body = JSON.stringify(oldsub);
+      axios.post(`/api/notify/unsub/${userid}`, body, config)
+        .then(() => {
+          oldsub.unsubscribe().then(successful => {
+            console.log("PUSH unsubscribe", successful);
+          });
+        })
     });
   });
 }
