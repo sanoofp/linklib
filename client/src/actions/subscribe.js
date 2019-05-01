@@ -19,10 +19,9 @@ const publicKey = urlBase64ToUint8Array("BIgY6Sy6EogQK984Oxqy9mSi8qwa2KoojiDi1Wa
 export const pushSubscribe = userid => {
   navigator.serviceWorker.getRegistration().then(reg => {
     if(reg) {
-      console.log("NEW SUBCRIPTION");
       reg.pushManager.getSubscription().then(sub => {
         if(sub !== null) {
-          console.log("PUSH ALREADY SUB'ED", sub);
+          console.log("PUSH ALREADY SUB-ED", sub);
         } else {
           console.log("PUSH NEW SUB");
           reg.pushManager.subscribe({
@@ -33,10 +32,20 @@ export const pushSubscribe = userid => {
             const config = { headers: { "Content-Type": "application/json" } };
             const body = JSON.stringify(newsub);
             axios.post(`/api/notify/sub/${userid}`, body, config)
-              .then(() => console.log("PUSH SENT"))
+              .then(() => console.log("NEW PUSH SUB-ED"))
           })
         }
       })
     }
+  });
+}
+
+export const pushUnsubscribe = () => {
+  navigator.serviceWorker.getRegistration().then(reg => {
+    reg.pushManager.getSubscription().then(sub => {
+      sub.unsubscribe().then(successful => {
+        console.log("PUSH unsubscribe", successful);
+      });
+    });
   });
 }

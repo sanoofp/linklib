@@ -10,7 +10,7 @@ import {
   SIGNOUT_SUCCESS
 } from "../actions/types";
 import { axiosHeader } from '../functions/helper'
-import { pushSubscribe } from "./subscribe";
+import { pushSubscribe, pushUnsubscribe } from "./subscribe";
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
@@ -26,7 +26,6 @@ export const loadUser = () => (dispatch, getState) => {
         }
       })
       pushSubscribe(res.data._id)
-      // listenSocket(res.data._id);      
     })
     .catch(err => {
       dispatch({
@@ -54,7 +53,6 @@ export const signinUser = ({ username, password }) => dispatch => {
       }
     });
     pushSubscribe(res.data.user._id)    
-    // listenSocket(res.data.user._id)         
     dispatch(dialogAction("signInDialogOpen", false))
     dispatch(toggleLoading(false));
     dispatch(clearErrors());  
@@ -84,7 +82,6 @@ export const signupUser = ({ username, email, password }) => dispatch => {
       } 
     });
     pushSubscribe(res.data.user._id)
-    // listenSocket(res.data.user._id);     
     dispatch(toggleLoading(false));
     dispatch(clearErrors());
     dispatch(dialogAction("signUpDialogOpen", false));
@@ -104,6 +101,7 @@ export const signOut = () => (dispatch, getState) => {
   axios.get("/api/user/logout", axiosHeader(getState))
   .then(() => {
     dispatch(clearUserLinks());
+    pushUnsubscribe();
     dispatch(toggleLoading(false));
     dispatch(snackbarToggle(true, "Signed out of Linklib", "success"))
     dispatch({

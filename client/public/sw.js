@@ -18,7 +18,7 @@ self.addEventListener("push", e => {
     body: data.body,
     icon: data.icon
   }
-  if(data.link !== null) {
+  if(data.link) {
     options["requireInteraction"] = true;
     options["vibration"] = [100,200,100];
     options["data"] = { url: {

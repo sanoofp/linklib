@@ -27,6 +27,9 @@ const userSchema = new Scheme({
 });
 
 userSchema.pre("save", function(next) {
+  if(!this.isModified("password")) {
+    return next();
+  }
   bcrypt.genSalt(10, (err, salt) => {
     if (err) return next(err);
     bcrypt.hash(this.password, salt, (err, hash) => {
@@ -38,6 +41,8 @@ userSchema.pre("save", function(next) {
 });
 
 userSchema.methods.comparePassword = function(userPassword, cb) {
+  console.log("REC: ", userPassword, " - OG:", this.password);
+  console.log(bcrypt.getSalt(this.password))
   bcrypt.compare(userPassword, this.password).then(isMatch => cb(isMatch));
 };
 
