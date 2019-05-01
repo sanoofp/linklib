@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./Store";
 import Loadable from "react-loadable";
 import LoadableLoader from './components/Loader/LoadableLoader';
+// import loadSW from "./reg";
 
 const App = Loadable({
   loader: () => import("./App"),
@@ -16,5 +17,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-
-// serviceWorker.register();

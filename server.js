@@ -3,18 +3,15 @@ const compression = require("compression");
 const path = require("path");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const webpush = require("web-push");
 const cors = require("cors");
 const sslRedirect = require('heroku-ssl-redirect');
 
-const { mongoURI } = require("./config/keys");
+const { mongoURI, vapidPublic, vapidPrivate } = require("./config/keys");
 
 const app = express();
-const http = require("http").Server(app);
-const io = require("socket.io")(http);
-
 
 app.set("port", process.env.PORT || 5000);
-app.set("socketio", io);
 
 app.use(sslRedirect());
 app.use(morgan("dev"));
@@ -27,13 +24,11 @@ mongoose
   .then(() => console.log("Connected to Database"))
   .catch(err => console.log("Database connection failed ", err));
 
-io.on("connection", socket => {
-  console.log("New client connected");
-  socket.on("disconnect", () => {
-    socket.disconnect(true);
-    console.log("Client disconnected.");
-  });
-});
+webpush.setVapidDetails(
+  "mailto:sanoofpb24@gmail.com",
+  vapidPublic,
+  vapidPrivate
+)
 
 // Routes
 app.use("/api/user", require("./routes/api/user"));
@@ -48,4 +43,4 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-http.listen(process.env.PORT || 5000, () => console.log("Server Started"));
+app.listen(process.env.PORT || 5000, () => console.log("Server Started"));

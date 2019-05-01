@@ -176,13 +176,19 @@ export const clearGlobalSearch = () => dispatch => {
 
 
 export const socketEmit = linkID => (dispatch, getState) => {
-  dispatch(toggleLoading(true));  
-  axios
-    .get(`/api/notify/${linkID}`, axiosHeader(getState))
-    .then(done => {
-      dispatch(snackbarToggle(true, "Notification sent to all current active devices", "success"))
-      dispatch(toggleLoading(false));  
-    })
-    .catch(err => console.log(err));
+  dispatch(toggleLoading(true)); 
+  axios.get(`/api/notify/trigger/${linkID}`, axiosHeader(getState))
+  .then(done => {
+    dispatch(snackbarToggle(true, "Notification sent to all current active devices", "success"))
+    dispatch(toggleLoading(false));  
+  })
+  .catch(err => console.log(err));
+  // axios
+  //   .get(`/api/notify/${linkID}`, axiosHeader(getState))
+  //   .then(done => {
+  //     dispatch(snackbarToggle(true, "Notification sent to all current active devices", "success"))
+  //     dispatch(toggleLoading(false));  
+  //   })
+  //   .catch(err => console.log(err));
 };
 

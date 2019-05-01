@@ -9,7 +9,8 @@ const Details = props => {
   let src = "";
   const isLoaded = Object.keys(props.singleLinkDetails).length !== 0;
   if(isLoaded) {
-    src = "data:image/png;base64,"+props.singleLinkDetails.shot;
+    // src = "data:image/png;base64,"+props.singleLinkDetails.shot;
+    src = props.singleLinkDetails.shot;
   }
   return <SingleLinkContainer>
     <ShareContainer>

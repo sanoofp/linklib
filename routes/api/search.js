@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const request = require("request");
 const Link = require("../../models/Link");
-const getDetails = require("../../helper/screenshot");
+// const getDetails = require("../../helper/screenshot");
+const cheerio = require("cheerio");
 const isURL = require("validator/lib/isURL");
 
 // @route GET /api/search?q=keyword
@@ -24,10 +25,13 @@ router.post("/title", (req, res) => {
     return res.status(400).json({ message: "Invalid URL" })
   }
   request(url, (err, response, html) => {
-    getDetails(url, data => {
-      console.log(data);
-      res.status(200).json(data);    
-    });
+    const $ = cheerio.load(html);
+    const title = $("title").text();
+    res.status(200).json({ title: title, shot: "https://media.istockphoto.com/photos/error-picture-id463187437" })
+    // getDetails(url, data => {
+    //   console.log(data);
+    //   res.status(200).json(data);    
+    // });
   });
 })
 
