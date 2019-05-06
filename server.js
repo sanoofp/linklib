@@ -5,15 +5,15 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const webpush = require("web-push");
 const cors = require("cors");
-const sslRedirect = require('heroku-ssl-redirect');
 
+const httpsRedirect = require("./helper/https-redirect");
 const { mongoURI, vapidPublic, vapidPrivate } = require("./config/keys");
 
 const app = express();
 
 app.set("port", process.env.PORT || 5000);
 
-app.use(sslRedirect());
+app.use(httpsRedirect());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(compression());

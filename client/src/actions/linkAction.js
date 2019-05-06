@@ -75,8 +75,18 @@ export const getSingleLink = id => (dispatch, getState) => {
         payload: res.data,
       });
 
-      axios.post("/api/search/title", { url: res.data.url })
-        .then(res => dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: res.data }));
+      // fetch("https://utilsio.herokuapp.com/api/all", {
+      //   method: "POST",
+      //   body: {
+      //     url: res.data.url
+      //   },
+      //   headers: {
+      //     "Content-Type": "application/json"
+      //   }
+      // })
+      axios.post("https://utilsio.herokuapp.com/api/all", { url: res.data.url })
+      .then(res => dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: res.data }));
+      // axios.post("/api/search/title", { url: res.data.url })
     })
     .catch(err => {
       dispatch({ type: CLEAR_SINGLE_LINKS });

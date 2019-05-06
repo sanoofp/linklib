@@ -9,8 +9,8 @@ const Details = props => {
   let src = "";
   const isLoaded = Object.keys(props.singleLinkDetails).length !== 0;
   if(isLoaded) {
-    // src = "data:image/png;base64,"+props.singleLinkDetails.shot;
-    src = props.singleLinkDetails.shot;
+    src = "data:image/png;base64,"+props.singleLinkDetails.screenshot;
+    // src = props.singleLinkDetails.shot;
   }
   return <SingleLinkContainer>
     <ShareContainer>
@@ -26,7 +26,7 @@ const Details = props => {
 
     {isLoaded ? <div className="screenshot">
       <img src={src} alt="Screenshot"/>    
-      <p>{props.singleLinkDetails.title}</p>
+      <p>{props.singleLinkDetails.info.title}</p>
     </div> : <div><p>Loading webpage</p><CircularProgress size={20}/></div>}
 
     <div className="details">
