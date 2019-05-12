@@ -1,12 +1,12 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
+// import { library } from '@fortawesome/fontawesome-svg-core';
 import MobileScreenShareRounded from "@material-ui/icons/MobileScreenShareRounded";
 import { Icons } from "../styles";
 import A from "../../Button/A";
 
-library.add(faWhatsapp, faFacebook, faTwitter);
+// library.add(faWhatsapp, faFacebook, faTwitter);
 
 export default function FontAwesomeIconSet(props) {
   const links = {
