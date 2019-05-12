@@ -65,6 +65,23 @@ const ListItems = props => {
         }
       );
 
+    menu.push(
+      {
+        text: "privacy and Policy",
+        to: "/privacypolicy",
+        Link: Link,
+        onClick: () => toggleDrawer(false), 
+        icon: <DashboardRounded /> 
+      },
+      {
+        text: "Terms and Conditions",
+        to: "/termsandconditions",
+        Link: Link,
+        onClick: () => toggleDrawer(false), 
+        icon: <DashboardRounded /> 
+      }
+    )
+
   return (
     <List component="nav">
       {menu.map((item, index) => {

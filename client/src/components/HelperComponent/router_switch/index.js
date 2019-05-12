@@ -19,6 +19,14 @@ const SearchMain = Loadable({
   loader: () => import("../../SearchMain"),
   loading: LoadableLoader
 });
+const Privacy = Loadable({
+  loader: () => import("../../PrivacyPolicy/Privacy"),
+  loading: LoadableLoader
+});
+const Terms = Loadable({
+  loader: () => import("../../PrivacyPolicy/Terms"),
+  loading: LoadableLoader
+});
 const PageNotFound = Loadable({
   loader: () => import("../../PageNotFound"),
   loading: LoadableLoader
@@ -29,6 +37,8 @@ const RouterSwitch = props => <Switch>
 <Route exact path="/" component={Home} />
 <Route path="/dashboard" component={Dashboard} />
 <Route path="/search" component={SearchMain} />
+<Route path="/privacypolicy" component={Privacy} />
+<Route path="/termsandconditions" component={Terms} />
 <Route path="/link/:id" component={SingleLink} />
 <Route path="*" exact component={PageNotFound} />
 </Switch>

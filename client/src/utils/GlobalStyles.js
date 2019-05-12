@@ -1,17 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-const utils = `
-  .h-100{ 
-    height: 100% !important;
-  }
-  .p--2 {
-    padding: 10px !important;
-  }
-  .position-relative {
-    position: relative;
-  }
-`;
-
 export const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
@@ -54,8 +42,15 @@ export const GlobalStyles = createGlobalStyle`
     color: ${props => props.theme.font};
   }
 
-  ${utils}
-
+  .h-100{ 
+    height: 100% !important;
+  }
+  .p--2 {
+    padding: 10px !important;
+  }
+  .position-relative {
+    position: relative;
+  }
 
   /* cyrillic-ext */
   @font-face {

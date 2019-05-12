@@ -102,7 +102,8 @@ export const SingleLinkContainer = styled.div`
     border-radius: 12px;
     overflow: hidden;
     margin: 12px 30px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    height: 300px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
     &:after {
       position: absolute;
       content: "";
