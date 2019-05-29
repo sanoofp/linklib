@@ -8,33 +8,33 @@ import { SearchContainerForm } from "../styles";
 import { searchLink } from "../../../actions/linkAction";
 
 class Search extends Component {
-  state = {
-    cardPositionFixed: false,
-    headerHeight: 100
-  };
-  _isMounted = false;
+  // state = {
+  //   cardPositionFixed: false,
+  //   headerHeight: 100
+  // };
+  // _isMounted = false;
 
-  componentDidMount() {
-    this._isMounted = true;
-    const headerHeight = document.querySelector("#header").clientHeight;
-    document.addEventListener("scroll", event => {
-      if (this._isMounted) {
-        if (window.scrollY > headerHeight) {
-          this.setState({
-            cardPositionFixed: true,
-            headerHeight
-          });
-        } else {
-          this.setState({ cardPositionFixed: false, headerHeight });
-        }
-      }
-    });
-  }
+  // componentDidMount() {
+  //   this._isMounted = true;
+  //   const headerHeight = document.querySelector("#header").clientHeight;
+  //   document.addEventListener("scroll", event => {
+  //     if (this._isMounted) {
+  //       if (window.scrollY > headerHeight) {
+  //         this.setState({
+  //           cardPositionFixed: true,
+  //           headerHeight
+  //         });
+  //       } else {
+  //         this.setState({ cardPositionFixed: false, headerHeight });
+  //       }
+  //     }
+  //   });
+  // }
 
   handleChange = event => this.props.searchLink(event.target.value);
 
   componentWillUnmount() {
-    this._isMounted = false;
+    // this._isMounted = false;
     this.props.searchLink("")
   }
 
@@ -42,10 +42,10 @@ class Search extends Component {
     return (
       <div className="container position-relative">
         <div className="row">
-          <div className="col">
+          <div className="col-md-12">
             <SearchContainerForm
-              cardPositionFixed={this.state.cardPositionFixed}
-              headerHeight={this.state.headerHeight}
+              // cardPositionFixed={this.state.cardPositionFixed}
+              // headerHeight={this.state.headerHeight}
             >
               <TextField
                 variant="outlined"

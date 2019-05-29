@@ -6,7 +6,7 @@ export const DashboardContainer = styled.div`
   position: relative;
   padding-bottom: 100px;
   .show-items-container {
-    margin-top: 80px;
+    // margin-top: 80px;
     .no-result {
       padding: 20px 0;
       text-align: center;
@@ -45,7 +45,8 @@ export const SearchContainerForm = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  margin-top:12px;
+
   input {
     width: 400px;
     color: ${props => props.theme.font};
