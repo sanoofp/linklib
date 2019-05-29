@@ -63,6 +63,7 @@ class SearchBox extends Component {
         placeholder="Search for link's"
       />
       <IconButton 
+        aria-label="Search link"
         onClick={this.onSubmit} 
         style={{ position: "absolute", right: 18, top: "50%", transform: "translateY(-50%)" }}>
         <SearchRounded />

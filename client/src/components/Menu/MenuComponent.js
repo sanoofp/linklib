@@ -73,7 +73,7 @@ class MenuComponent extends Component {
 
     return (
       <ShowLinkMenuItems>
-        <IconButton onClick={this.handleClick}>
+        <IconButton aria-label="More" onClick={this.handleClick}>
           <MoreVertRounded />
         </IconButton>
         <Menu

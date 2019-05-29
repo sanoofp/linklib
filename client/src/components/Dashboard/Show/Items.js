@@ -20,7 +20,12 @@ const Items = props => {
       <ShowLinkItem>
         <h4>{linkTitle}</h4>
         <p>{truncateStringTo(url, 100)} </p>
-        {!public_link && <div className="private"><IconButton><LockRounded /></IconButton> <p>Private Link</p></div>}
+        {
+          !public_link && <div className="private">
+            <IconButton aria-label="Private link"><LockRounded /></IconButton> 
+            <p>Private Link</p>
+          </div>
+        }
         <div className="show-link-item-btn">
           <A href={url}>
             <Button aria-label="Open link" color="secondary" variant="outlined" size="medium">
