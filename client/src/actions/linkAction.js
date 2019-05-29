@@ -193,12 +193,5 @@ export const socketEmit = linkID => (dispatch, getState) => {
     dispatch(toggleLoading(false));  
   })
   .catch(err => console.log(err));
-  // axios
-  //   .get(`/api/notify/${linkID}`, axiosHeader(getState))
-  //   .then(done => {
-  //     dispatch(snackbarToggle(true, "Notification sent to all current active devices", "success"))
-  //     dispatch(toggleLoading(false));  
-  //   })
-  //   .catch(err => console.log(err));
 };
 

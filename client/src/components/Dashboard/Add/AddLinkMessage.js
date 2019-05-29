@@ -17,15 +17,20 @@ const AddLinkMessage = props => {
         <h6>{clipboard.urlFromClipboard}</h6>
         <p>Do you want to save it ?</p>
         <div>
-          <Button variant="outlined" color="primary" onClick={() => {
-            props.dialogAction("addLinkDialogOpen", true);
-            props.clipboardState(false, clipboard.urlFromClipboard);
+          <Button 
+            variant="outlined" 
+            color="primary"
+            aria-label="Yes, Add link" 
+            onClick={() => {
+              props.dialogAction("addLinkDialogOpen", true);
+              props.clipboardState(false, clipboard.urlFromClipboard);
           }}>
             <DoneRounded style={{ marginRight: 6 }} /> Yes
           </Button>
           <Button
             style={{ marginLeft: 6 }}
             color="secondary"
+            aria-label="Nope, dont do it"
             onClick={() => props.clipboardState(false, "", true)}
           >
             <ClearRounded style={{ marginRight: 6 }} /> Nope

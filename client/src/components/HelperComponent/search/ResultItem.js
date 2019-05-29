@@ -51,6 +51,7 @@ const ResultItem = props => {
           variant="outlined"
           size="small"
           fullWidth
+          aria-label="Details"
           style={{marginTop: 16}}
         >
           <LinkRounded style={{ marginRight: 5, fontSize: 16 }} />

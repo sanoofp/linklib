@@ -10,7 +10,6 @@ self.addEventListener("notificationclick", event => {
   }
 });
 
-console.log("SWLOAADED");
 self.addEventListener("push", e => {
   const data = e.data.json();
   console.log("PUSH RECIVED");

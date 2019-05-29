@@ -12,7 +12,7 @@ const SearchResult = props => {
     list_view = list.map((result, i) => <ResultItem result={result} key={i} />);
     list_view.push(
       <div className="show-more--btn" key={list.length+1}>
-        <Link to="/search"><Button variant="contained" color="secondary" fullWidth>Show More</Button></Link>
+        <Link to="/search"><Button aria-label="Show more" variant="contained" color="secondary" fullWidth>Show More</Button></Link>
       </div>
     );
   } else {

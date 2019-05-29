@@ -37,14 +37,10 @@ export const DashboardContainer = styled.div`
   
 export const SearchContainerForm = styled.div`
   box-shadow: 0px 3px 16px rgba(0,0,0,0.1);
-  position: ${props => props.cardPositionFixed ? "fixed" : "absolute"};
-  top: ${props => props.cardPositionFixed ? 0 : props.headerHeight};
-  left: 0;
   width: 100%;
   z-index: 2;
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
   padding: 9px 0;
-  margin-top: ${props => props.cardPositionFixed ? "0px" : "6px"};
   border-radius: 12px;
   display: flex;
   align-items: center;

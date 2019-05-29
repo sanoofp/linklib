@@ -18,15 +18,15 @@ const Intro = props => <IntroContainer><div className="container">
             <HomeCircle />
             <IntroText>
               <h1>Linklib</h1>
-              <p>Save. Share and Manage link</p>
+              <p>Save, Share and Manage link</p>
             </IntroText>
         </HomeIntro>
       </Fade>
     </div>
     <div className="col-lg-5 d-flex flex-column align-items-start justify-content-center">
       <Fade bottom distance="20px">
-        <p>Linklib helps to manage your link with more ease. You can save your link to the dashboard and can be accessed from all your devices.</p>
-        <p>The URL's can be shared through multiple social media platforms. Linklib is an efficient way of saving, sharing, and management of Link and URLs.</p>
+          <p>Linklib helps to manage your link with more ease. You can save your link to the dashboard and can be accessed from all your devices.</p>
+          <p>The URL's can be shared through multiple social media platforms. Linklib is an efficient way of saving, sharing, and management of Link and URLs.</p>
       </Fade>
         <ButtonContainer>
           {props.isAuthenticated ? 

@@ -33,7 +33,7 @@ const ModelContainer = props => {
                   variant="outlined"
                   onChange={event => props.onChange("url", event.target.value)}
                 />
-                <Button fullWidth type="submit" style={{padding: "14px 0", borderRadius: 12, marginTop: 8}} color="secondary" variant="outlined"><AddIcon /> Add Link</Button>
+                <Button aria-label="Add link" fullWidth type="submit" style={{padding: "14px 0", borderRadius: 12, marginTop: 8}} color="secondary" variant="outlined"><AddIcon /> Add Link</Button>
               </form>
             </Form>
           </div>

@@ -21,12 +21,12 @@ const SingleLinkMain = props => {
     </CopiedMsg>
   </div>
   <div>
-    <Button color="secondary" variant="outlined" size="medium" className="link-btn">
+    <Button aria-label="Open link" color="secondary" variant="outlined" size="medium" className="link-btn">
     <A className="links-btn" href={singleLink.url}>
       Open Link
     </A>
     </Button>
-    <Button onClick={() => props.copyLink()} color="secondary" variant="outlined" size="medium" className="link-btn">
+    <Button aria-label="Copy link" onClick={() => props.copyLink()} color="secondary" variant="outlined" size="medium" className="link-btn">
       Copy Link 
     </Button>
   </div>

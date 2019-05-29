@@ -26,6 +26,7 @@ export const SigninButtonComponent = withStyles(styles)(props => <Button
     color="primary"
     type={props.type}
     className={props.classes.signInBtn}
+    aria-label="Signin"
   > 
     <ExitToAppRounded style={{ marginRight: 6 }} />
     Signin
@@ -39,6 +40,7 @@ export const DashboardButtonComponent = withStyles(styles)(props => <Button
     style={{ margin: props.margin, color: colors.white }}
     variant="contained"
     color="primary"
+    aria-label="Go to dashboard"
     className={props.classes.signInBtn}
   > 
     <DashboardRounded style={{ marginRight: 6 }} />
@@ -54,6 +56,7 @@ export const SignupButtonComponent = withStyles(styles)(props => <Button
     variant={props.variant}
     color="secondary"
     type={props.type}
+    aria-label="Signup"
     className={props.classes.signUpBtn}    
   >
     <PersonAddRounded style={{ marginRight: 6 }} />

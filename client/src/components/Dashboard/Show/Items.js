@@ -23,7 +23,7 @@ const Items = props => {
         {!public_link && <div className="private"><IconButton><LockRounded /></IconButton> <p>Private Link</p></div>}
         <div className="show-link-item-btn">
           <A href={url}>
-            <Button color="secondary" variant="outlined" size="medium">
+            <Button aria-label="Open link" color="secondary" variant="outlined" size="medium">
               <AddToHomeScreenRounded
                 style={{ marginRight: 5, fontSize: 16 }}
               />
@@ -36,6 +36,7 @@ const Items = props => {
               color="secondary"
               variant="outlined"
               size="medium"
+              aria-label="Link details"
             >
               <LinkRounded style={{ marginRight: 5, fontSize: 16 }} />
               Details

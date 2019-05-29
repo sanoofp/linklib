@@ -21,9 +21,9 @@ export const pushSubscribe = userid => {
     if(reg) {
       reg.pushManager.getSubscription().then(sub => {
         if(sub !== null) {
-          console.log("PUSH ALREADY SUB-ED", sub);
+          // console.log("PUSH ALREADY SUB-ED", sub);
         } else {
-          console.log("PUSH NEW SUB");
+          // console.log("PUSH NEW SUB");
           reg.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: publicKey
