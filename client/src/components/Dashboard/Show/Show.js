@@ -8,18 +8,27 @@ const ShowLinks = props => {
   let searchData = null;
 
   if (searchKeyword.text) {
-    const searchedLinks = userLinks.filter((item) => {
-      if(searchKeyword.type === "Tags") {
-        for(let i = 0; i < item.tags.length; i++) {
-          return item.tags[i].toLowerCase().indexOf(searchKeyword.text.toLowerCase()) >= 0 ? true : false;
-        }
-        return null;
-      } else {
+    let searchedLinks = [];
+      
+    if(searchKeyword.type === "Tags") {
+      // for(let i = 0; i < item.tags.length; i++) {
+      //   if(item.tags[i] === searchKeyword.text){
+      //     console.log(item.tags[i]);
+      //     return true
+      //   }
+      //   return false;
+      // }
+      // return null;
+      for(let i=0;i<userLinks.length;i++) {
+        userLinks[i].tags.map(tag => tag.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1 ?searchedLinks.push(userLinks[i]) : null)
+      }
+    } else {
+      searchedLinks = userLinks.filter((item) => {
         return (
           item.linkTitle.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1
         );
-      }
-    });
+      });
+    }
 
     searchData = searchedLinks.map((item, idx) => (
       <Items
