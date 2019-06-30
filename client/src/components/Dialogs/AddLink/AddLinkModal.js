@@ -11,7 +11,8 @@ class AddLinkModal extends Component {
 
   state = {
     linkTitle: "",
-    url: ""
+    url: "",
+    tags: []
   }
 
   handleOnChange = (name, value) => {
@@ -51,7 +52,7 @@ class AddLinkModal extends Component {
         <ModelContainer
           state={this.state}
           handleSubmit={this.handleSubmit}
-          onChange={(name, value) => this.handleOnChange(name, value)}        
+          onChange={(name, value) => this.handleOnChange(name, value)}
         />
       </Modal>
     );

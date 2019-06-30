@@ -20,7 +20,7 @@ const initialState = {
   userLinksLoaded: false,
   singleLink: [],
   singleLinkDetails: {},
-  searchKeyword: "",
+  searchKeyword: { text: "", type: "Title" },
   globalSearchResult: [],
   searchLinkLoading: false,
   editLink: {},

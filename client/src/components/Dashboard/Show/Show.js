@@ -6,11 +6,19 @@ import Items from "./Items";
 const ShowLinks = props => {
   const { userLinks, searchKeyword } = props.link;
   let searchData = null;
-  if (searchKeyword) {
-    const searchedLinks = userLinks.filter(item => {
-      return (
-        item.linkTitle.toLowerCase().indexOf(searchKeyword.toLowerCase()) !== -1
-      );
+
+  if (searchKeyword.text) {
+    const searchedLinks = userLinks.filter((item) => {
+      if(searchKeyword.type === "Tags") {
+        for(let i = 0; i < item.tags.length; i++) {
+          return item.tags[i].toLowerCase().indexOf(searchKeyword.text.toLowerCase()) >= 0 ? true : false;
+        }
+        return null;
+      } else {
+        return (
+          item.linkTitle.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1
+        );
+      }
     });
 
     searchData = searchedLinks.map((item, idx) => (
@@ -29,10 +37,10 @@ const ShowLinks = props => {
     <div className="container show-items-container">
       <div className="row">
         <div className="col-md-12">
-          {searchKeyword !== "" && (
+          {searchKeyword.text !== "" && (
             <div className="is-searching">
               <p>
-                Showing Result for <strong>{searchKeyword}</strong>
+                Showing Result for <strong>{searchKeyword.text}</strong>
               </p>
               {searchData.length !== 0 && Array.isArray(searchData) && (
                 <small>Found {searchData.length} results</small>
@@ -43,7 +51,7 @@ const ShowLinks = props => {
       </div>
       <div className="row">
         {userLinks.length === 0 && <h3 className="py-5 mx-auto">No links found.</h3>}
-        {searchKeyword === ""
+        {searchKeyword.text === ""
           ? userLinks.map((item, idx) => (
               <Items
                 key={idx}

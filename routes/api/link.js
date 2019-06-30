@@ -21,6 +21,7 @@ router.post("/", auth, (req, res) => {
   const newLink = {
     linkTitle: req.body.linkTitle,
     url: req.body.url,
+    tags: req.body.tags,
     userID: req.user.id
   };
 
@@ -37,13 +38,14 @@ router.put("/:linkid", auth, (req, res) => {
   if(!isValid) return res.status(400).json(err);
 
   const { linkTitle, url, tags, public_link } = req.body;
-  
+
+
   Link.findById(req.params.linkid)
     .then(link => {
       link.linkTitle = linkTitle;
       link.url = url;
       link.public_link = public_link;
-      link.tags = tags ? link.tags.push(tags) : link.tags;
+      link.tags = tags;
 
       link.save().then(link => {
         res.status(200).json(link)

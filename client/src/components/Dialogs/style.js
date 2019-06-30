@@ -62,6 +62,39 @@ export const LinkFormMini = styled.div`
     margin: 0 0 10px 0;
     font-family: ${props => props.theme.secondaryFont};
   }
+  h3 {
+    margin: 12px 0 0 0;
+  }
+  .tag-container {
+    width: 100%;
+    padding: 8px 0px;
+    
+    .applied-tag {
+      margin-left: 6px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      jutify-content: center;
+    }
+    .tag {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      background-color: ${props => props.theme.primary};
+      box-shadow: 4px 4px 9px rgba(0,0,0,0.14);
+      border: 1px solid ${props => props.theme.primary};
+      border-radius: 12px;
+      padding: 3px 3px 3px 18px;
+      margin: 8px 9px;
+      p {
+        margin: 0 6px 0 0;
+      }
+    }
+    .tag-input {
+      margin: 0 !important;
+    }
+  }
 `;
 
 

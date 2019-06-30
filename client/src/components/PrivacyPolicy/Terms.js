@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 
 const Terms = () => <React.Fragment>
 	<Helmet>
-		<title>Linklib - Terms and Conditions</title>
+		<title>Linklib - Terms and Conditions </title>
 	</Helmet>
   <div className="container">
     <div className="row">

@@ -14,7 +14,7 @@ import IconButton from "@material-ui/core/IconButton";
 
 
 const Items = props => {
-    const { linkTitle, url, _id, public_link } = props.link;
+    const { linkTitle, url, _id, public_link, tags } = props.link;
     return <Fade bottom distance="20px">
       <div className="col-md-6 p--2">
       <ShowLinkItem>
@@ -23,9 +23,19 @@ const Items = props => {
         {
           !public_link && <div className="private">
             <IconButton aria-label="Private link"><LockRounded /></IconButton> 
-            <p>Private Link</p>
+            <small>Private Link</small>
           </div>
         }
+        {tags &&
+          <div className="tag-container--show">
+            {tags.map((tag, i) => {
+              return <div key={i} className="tag--show">
+                <small>{tag}</small>
+              </div>
+            })}
+          </div>
+        }
+
         <div className="show-link-item-btn">
           <A href={url}>
             <Button aria-label="Open link" color="secondary" variant="outlined" size="medium">

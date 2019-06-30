@@ -42,8 +42,10 @@ class EditLinkModel extends Component {
           dialogAction("editLinkDialogOpen", false)
         }}
       >
-        <ModelContainer editLink={editLink}
+        <ModelContainer 
+          editLink={editLink}
           onChange={(name, value) => this.handleOnChange(name, value)}
+          // handleTagChange={(tag, tagState) => this.handleTagChange(tag, tagState)}
           handleSubmit={this.handleSubmit}
         />
       </Modal>

@@ -1,8 +1,8 @@
 const config = require("config");
 
-if (process.env.NODE_ENV === "production") {
-  module.exports = require("./keys_prod");
-} else {
+// if (process.env.NODE_ENV === "production") {
+  // module.exports = require("./keys_prod");
+// } else {
   module.exports = {
     mongoURI: config.get("mongoURI"),
     jwtSecret: config.get("jwtSecret"),
@@ -11,4 +11,4 @@ if (process.env.NODE_ENV === "production") {
     sendGridUser: config.get("sgUser"),
     sendGridPass: config.get("sgPass"),
   };
-}
+// }

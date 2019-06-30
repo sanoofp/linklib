@@ -30,7 +30,7 @@ export const DashboardContainer = styled.div`
   
   @media (max-width: 485px) {
     .show-items-container {
-      margin-top: 80px;
+      margin-top: 10px;
     }
   }  
 `;
@@ -45,7 +45,13 @@ export const SearchContainerForm = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top:12px;
+  margin-top: 12px;
+
+  .select {
+    margin-right: 12px;
+    margin-left: 12px;
+    min-width: 140px;
+  }
 
   input {
     width: 400px;
@@ -115,6 +121,26 @@ export const ShowLinkItem = styled.div`
       margin: 8px 0 0 0;
     }
   }
+
+  .tag-container--show {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    .tag--show {
+      background-color: ${props => props.theme.primary};
+      box-shadow: 4px 4px 9px rgba(0,0,0,0.14);
+      border: 1px solid ${props => props.theme.primary};
+      border-radius: 12px;
+      padding: 4px 12px;
+      margin: 8px 9px;
+    }
+    small {
+      font-size: 0.8em;
+    }
+  }
+
   .actions {
     margin-top: 10px;
     p {
@@ -122,6 +148,7 @@ export const ShowLinkItem = styled.div`
       margin-left: 6px;
     }
   }
+  
   
   @media (max-width: 485px) {
     padding: 44px 10px !important;

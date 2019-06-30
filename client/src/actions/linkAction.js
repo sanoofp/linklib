@@ -21,8 +21,8 @@ import {
 import { getErrors } from "../actions/errorAction";
 import { returnParaStringOnly } from "../functions/helper";
 
-export const addLink = ({ linkTitle, url }) => (dispatch, getState) => {
-  const body = JSON.stringify({ linkTitle, url });
+export const addLink = ({ linkTitle, url, tags }) => (dispatch, getState) => {
+  const body = JSON.stringify({ linkTitle, url, tags });
   // dispatch({ type: LOAD_LINK });
   dispatch(toggleLoading(true));
   axios

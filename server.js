@@ -6,14 +6,11 @@ const morgan = require("morgan");
 const webpush = require("web-push");
 const cors = require("cors");
 
-const httpsRedirect = require("./helper/https-redirect");
 const { mongoURI, vapidPublic, vapidPrivate } = require("./config/keys");
 
 const app = express();
 
-app.set("port", process.env.PORT || 5000);
-
-app.use(httpsRedirect());
+// app.use(httpsRedirect());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(compression());
