@@ -19,9 +19,11 @@ const ShowLinks = props => {
       //   return false;
       // }
       // return null;
-      for(let i=0;i<userLinks.length;i++) {
-        userLinks[i].tags.map(tag => tag.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1 ?searchedLinks.push(userLinks[i]) : null)
-      }
+      userLinks.map(link => {
+        link.tags.map(tag => tag.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1 ?searchedLinks.push(link) : null)
+        return true;
+      })
+    
     } else {
       searchedLinks = userLinks.filter((item) => {
         return (
