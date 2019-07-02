@@ -3,8 +3,8 @@ import { ModelContainerStyled, LinkFormMini, Form } from "../style";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import EditRounded from "@material-ui/icons/EditRounded";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
 import Tags from "../AddLink/Tags";
 
 const ModelContainer = props => {
@@ -26,14 +26,16 @@ const ModelContainer = props => {
                   />
                   <FormControlLabel
                     control={
-                      <Checkbox 
-                        value="public_link" 
+                      <Checkbox
+                        value="public_link"
                         checked={props.editLink.public_link}
-                        onChange={event => props.onChange("public_link", event.target.checked)}
+                        onChange={event =>
+                          props.onChange("public_link", event.target.checked)
+                        }
                       />
                     }
                     label="Public Link"
-                    />
+                  />
                 </div>
                 <TextField
                   id="addlink-title"
@@ -43,7 +45,9 @@ const ModelContainer = props => {
                   value={props.editLink.linkTitle}
                   fullWidth
                   variant="outlined"
-                  onChange={event => props.onChange("linkTitle", event.target.value)}
+                  onChange={event =>
+                    props.onChange("linkTitle", event.target.value)
+                  }
                 />
                 <TextField
                   margin="normal"
@@ -58,9 +62,21 @@ const ModelContainer = props => {
 
                 <h3>Tags</h3>
 
-                <Tags tagsView={props.editLink.tags} onTagInputChange={tags => props.onChange("tags", tags)} />
+                <Tags
+                  tagsView={props.editLink.tags}
+                  onTagInputChange={tags => props.onChange("tags", tags)}
+                />
 
-                <Button aria-label="Save changes" fullWidth type="submit" style={{padding: "14px 0", borderRadius: 12, marginTop: 8}} color="secondary" variant="outlined"><EditRounded /> Save Changes</Button>
+                <Button
+                  aria-label="Save changes"
+                  fullWidth
+                  type="submit"
+                  style={{ padding: "14px 0", borderRadius: 12, marginTop: 8 }}
+                  color="secondary"
+                  variant="outlined"
+                >
+                  <EditRounded /> Save Changes
+                </Button>
               </form>
             </Form>
           </div>

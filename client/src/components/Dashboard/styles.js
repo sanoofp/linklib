@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { modifyColor } from "../../functions/helper";
-import { generateBGColor } from "../../functions/util";
 
 export const DashboardContainer = styled.div`
   width: 100%;
@@ -13,7 +12,7 @@ export const DashboardContainer = styled.div`
       text-align: center;
     }
     .is-searching {
-      border: 1px solid rgba(0,0,0,0.1);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 12px;
       margin-top: 30px;
       padding: 8px 12px;
@@ -28,16 +27,16 @@ export const DashboardContainer = styled.div`
       }
     }
   }
-  
+
   @media (max-width: 485px) {
     .show-items-container {
       margin-top: 10px;
     }
-  }  
+  }
 `;
-  
+
 export const SearchContainerForm = styled.div`
-  box-shadow: 0px 3px 16px rgba(0,0,0,0.1);
+  box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.1);
   width: 100%;
   z-index: 2;
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
@@ -51,7 +50,7 @@ export const SearchContainerForm = styled.div`
   .select {
     margin-right: 12px;
     margin-left: 12px;
-    min-width: 140px;
+    min-width: 100px;
   }
 
   input {
@@ -62,23 +61,23 @@ export const SearchContainerForm = styled.div`
     font-family: ${props => props.theme.primaryFont} !important;
   }
   fieldset {
-    margin-right: 8px !important; 
+    margin-right: 8px !important;
   }
-  
+
   @media (max-width: 485px) {
     padding: 6px 0;
     justify-content: center;
-    
+
     input {
       width: 240px;
     }
   }
 `;
 
-
 export const ShowLinkItem = styled.div`
-  border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
+  // border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
   border-radius: 12px;
   margin: 30px 0px !important;
   padding: 30px 18px !important;
@@ -109,7 +108,7 @@ export const ShowLinkItem = styled.div`
     transform: translateX(-50%);
     padding: 0 14px 0 0;
     border-radius: 12px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
     color: ${props => props.theme.font};
     background-color: ${props => props.theme.primary};
     p {
@@ -130,8 +129,8 @@ export const ShowLinkItem = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     .tag--show {
-      background-color: ${generateBGColor()};
-      box-shadow: 4px 4px 9px rgba(0,0,0,0.14);
+      backgorund-color: ${props => props.theme.whiteAlpha};
+      box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.11);
       border-radius: 12px;
       padding: 4px 12px;
       margin: 8px 9px;
@@ -148,11 +147,10 @@ export const ShowLinkItem = styled.div`
       margin-left: 6px;
     }
   }
-  
-  
+
   @media (max-width: 485px) {
     padding: 44px 10px !important;
-    margin: 20px 2px !important;    
+    margin: 20px 2px !important;
     p {
       font-size: 0.67em;
     }
@@ -165,7 +163,7 @@ export const AddLinkMessageContainer = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 4px 5px 24px rgba(0,0,0,0.2);
+  box-shadow: 4px 5px 24px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   background-color: ${props => props.theme.bodybg};
   text-align: center;
@@ -184,7 +182,8 @@ export const AddLinkMessageContainer = styled.div`
     margin: 8px 0;
   }
   button {
-    ${props => props.theme.primary === "#212121" ? `color: ${props.theme.font}` : null}
+    ${props =>
+      props.theme.primary === "#212121" ? `color: ${props.theme.font}` : null}
   }
 
   div {

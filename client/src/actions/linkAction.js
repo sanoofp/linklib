@@ -72,7 +72,7 @@ export const getSingleLink = id => (dispatch, getState) => {
     .then(res => {
       dispatch({
         type: SET_SINGLE_LINKS,
-        payload: res.data,
+        payload: res.data
       });
 
       // fetch("https://utilsio.herokuapp.com/api/all", {
@@ -84,8 +84,11 @@ export const getSingleLink = id => (dispatch, getState) => {
       //     "Content-Type": "application/json"
       //   }
       // })
-      axios.post("https://utilsio.herokuapp.com/api/all", { url: res.data.url })
-      .then(res => dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: res.data }));
+      axios
+        .post("https://utilsio.herokuapp.com/api/all", { url: res.data.url })
+        .then(res =>
+          dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: res.data })
+        );
       // axios.post("/api/search/title", { url: res.data.url })
     })
     .catch(err => {
@@ -101,7 +104,7 @@ export const getSingleLink = id => (dispatch, getState) => {
 
 export const clearSingleLink = () => dispatch => {
   dispatch({ type: CLEAR_SINGLE_LINKS });
-  dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: {} })
+  dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: {} });
 };
 
 export const clearUserLinks = () => {
@@ -132,28 +135,27 @@ export const editLink = newLink => (dispatch, getState) => {
 
   const body = JSON.stringify(newLink);
 
-  axios.put(`/api/link/${newLink._id}`, body, axiosHeader(getState))
+  axios
+    .put(`/api/link/${newLink._id}`, body, axiosHeader(getState))
     .then(link => {
       dispatch(toggleLoading(false));
       dispatch(getUserLink());
-      dispatch(setEditLink({}))
-      dispatch(snackbarToggle(true, "Link Updated", "success"));            
+      dispatch(setEditLink({}));
+      dispatch(snackbarToggle(true, "Link Updated", "success"));
       dispatch(dialogAction("editLinkDialogOpen", false));
     })
     .catch(err => {
-      dispatch(toggleLoading(false));      
-      dispatch(
-        getErrors(err.response.data, err.response.status)
-      );
+      dispatch(toggleLoading(false));
+      dispatch(getErrors(err.response.data, err.response.status));
       dispatch(
         snackbarToggle(true, returnParaStringOnly(err.response.data), "error")
       );
     });
-}
+};
 
 export const setEditLink = link => dispatch => {
-  dispatch({ type: SET_EDIT_LINK, payload: link })
-} 
+  dispatch({ type: SET_EDIT_LINK, payload: link });
+};
 
 // Dashboard Search component - user link search
 export const searchLink = keyword => {
@@ -168,8 +170,7 @@ export const searchLink = keyword => {
 export const searchGlobal = (keyword, maxLength = 5) => dispatch => {
   dispatch({ type: SEARCH_LINK_LOAD });
   // dispatch(toggleLoading(true))
-  axios.get(`/api/search?q=${keyword}&max=${maxLength}`)
-  .then(searchResult => {
+  axios.get(`/api/search?q=${keyword}&max=${maxLength}`).then(searchResult => {
     // dispatch(toggleLoading(false))
     dispatch({
       type: SET_GLOBAL_SEARCH_RESULT,
@@ -178,20 +179,28 @@ export const searchGlobal = (keyword, maxLength = 5) => dispatch => {
       }
     });
   });
-}
-
-export const clearGlobalSearch = () => dispatch => {
-  dispatch({ type: SET_GLOBAL_SEARCH_RESULT, payload: { globalSearchResult: [] } })
-}
-
-
-export const socketEmit = linkID => (dispatch, getState) => {
-  dispatch(toggleLoading(true)); 
-  axios.get(`/api/notify/trigger/${linkID}`, axiosHeader(getState))
-  .then(done => {
-    dispatch(snackbarToggle(true, "Notification sent to all current active devices", "success"))
-    dispatch(toggleLoading(false));  
-  })
-  .catch(err => console.log(err));
 };
 
+export const clearGlobalSearch = () => dispatch => {
+  dispatch({
+    type: SET_GLOBAL_SEARCH_RESULT,
+    payload: { globalSearchResult: [] }
+  });
+};
+
+export const socketEmit = linkID => (dispatch, getState) => {
+  dispatch(toggleLoading(true));
+  axios
+    .get(`/api/notify/trigger/${linkID}`, axiosHeader(getState))
+    .then(done => {
+      dispatch(
+        snackbarToggle(
+          true,
+          "Notification sent to all current active devices",
+          "success"
+        )
+      );
+      dispatch(toggleLoading(false));
+    })
+    .catch(err => console.log(err));
+};

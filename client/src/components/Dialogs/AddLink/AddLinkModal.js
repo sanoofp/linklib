@@ -3,34 +3,37 @@ import Modal from "@material-ui/core/Modal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import ModelContainer from "./ModelContainer";
-import { dialogAction, snackbarToggle, clipboardState } from "../../../actions/appStateAction";
+import {
+  dialogAction,
+  snackbarToggle,
+  clipboardState
+} from "../../../actions/appStateAction";
 import { clearErrors } from "../../../actions/errorAction";
 import { addLink } from "../../../actions/linkAction";
 
 class AddLinkModal extends Component {
-
   state = {
     linkTitle: "",
     url: "",
     tags: []
-  }
+  };
 
   handleOnChange = (name, value) => {
     this.setState({
       [name]: value
     });
-  }; 
-  
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     const { url, linkTitle } = this.state;
-    if(url === "" || linkTitle === "") {
+    if (url === "" || linkTitle === "") {
       this.props.snackbarToggle(true, "Please Enter complete data", "error");
     } else {
       this.props.addLink(this.state);
-      this.props.clipboardState(false, "", true)
+      this.props.clipboardState(false, "", true);
     }
-  }
+  };
 
   componentWillReceiveProps() {
     const { clipboard } = this.props.appState;
@@ -45,8 +48,8 @@ class AddLinkModal extends Component {
         BackdropProps={{ transitionDuration: 300 }}
         open={appState.addLinkDialogOpen}
         onClose={() => {
-          clearErrors()
-          dialogAction("addLinkDialogOpen", false)
+          clearErrors();
+          dialogAction("addLinkDialogOpen", false);
         }}
       >
         <ModelContainer
@@ -57,7 +60,7 @@ class AddLinkModal extends Component {
       </Modal>
     );
   }
-};
+}
 
 AddLinkModal.propTypes = {
   appState: PropTypes.object.isRequired,
@@ -65,11 +68,11 @@ AddLinkModal.propTypes = {
   addLink: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   clipboardState: PropTypes.func.isRequired,
-  snackbarToggle: PropTypes.func.isRequired,
+  snackbarToggle: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  appState: state.appStateReducer,
+  appState: state.appStateReducer
 });
 
 export default connect(

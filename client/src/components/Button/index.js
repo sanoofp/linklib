@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const styles = theme => ({
   signInBtn: {
     padding: "14px 36px",
-    borderRadius: 25,
+    borderRadius: 25
   },
   signUpBtn: {
     padding: "14px 36px",
@@ -18,7 +18,8 @@ const styles = theme => ({
   }
 });
 
-export const SigninButtonComponent = withStyles(styles)(props => <Button
+export const SigninButtonComponent = withStyles(styles)(props => (
+  <Button
     fullWidth={props.fullWidth ? true : false}
     onClick={props.onClick}
     style={{ margin: props.margin, color: colors.white }}
@@ -27,13 +28,14 @@ export const SigninButtonComponent = withStyles(styles)(props => <Button
     type={props.type}
     className={props.classes.signInBtn}
     aria-label="Signin"
-  > 
+  >
     <ExitToAppRounded style={{ marginRight: 6 }} />
     Signin
   </Button>
-);
+));
 
-export const DashboardButtonComponent = withStyles(styles)(props => <Button
+export const DashboardButtonComponent = withStyles(styles)(props => (
+  <Button
     fullWidth={true}
     component={Link}
     to="/dashboard"
@@ -42,14 +44,14 @@ export const DashboardButtonComponent = withStyles(styles)(props => <Button
     color="primary"
     aria-label="Go to dashboard"
     className={props.classes.signInBtn}
-  > 
+  >
     <DashboardRounded style={{ marginRight: 6 }} />
     Go to Dashboard
   </Button>
-);
+));
 
-
-export const SignupButtonComponent = withStyles(styles)(props => <Button
+export const SignupButtonComponent = withStyles(styles)(props => (
+  <Button
     fullWidth={props.fullWidth ? true : false}
     onClick={props.onClick}
     style={{ margin: props.margin }}
@@ -57,10 +59,9 @@ export const SignupButtonComponent = withStyles(styles)(props => <Button
     color="secondary"
     type={props.type}
     aria-label="Signup"
-    className={props.classes.signUpBtn}    
+    className={props.classes.signUpBtn}
   >
     <PersonAddRounded style={{ marginRight: 6 }} />
     Create account
-  </Button>)
-;
-
+  </Button>
+));

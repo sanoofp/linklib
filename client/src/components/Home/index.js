@@ -20,22 +20,23 @@ const GlobalSearch = Loadable({
 });
 
 class Home extends Component {
-
   render() {
+    const { isAuthenticated, dialogAction } = this.props;
 
-  const { isAuthenticated, dialogAction } = this.props;
-    
-  return (
+    return (
       <HomeContainer>
         <Helmet>
           <title>{`Linklib - Home`}</title>
         </Helmet>
-        <Intro isAuthenticated={isAuthenticated} dialogAction={(type, isOpen) => dialogAction(type, isOpen)} />
+        <Intro
+          isAuthenticated={isAuthenticated}
+          dialogAction={(type, isOpen) => dialogAction(type, isOpen)}
+        />
         <GlobalSearch />
       </HomeContainer>
-  );
+    );
   }
-};
+}
 
 Home.propTypes = {
   dialogAction: PropTypes.func.isRequired,
@@ -43,7 +44,7 @@ Home.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.authReducer.isAuthenticated,
+  isAuthenticated: state.authReducer.isAuthenticated
 });
 
 export default connect(

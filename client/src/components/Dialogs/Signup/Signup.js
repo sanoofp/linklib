@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { dialogAction, snackbarToggle } from "../../../actions/appStateAction";
 import { signupUser } from "../../../actions/authAction";
-import { clearErrors } from '../../../actions/errorAction'
+import { clearErrors } from "../../../actions/errorAction";
 import ModelContainer from "./ModelContainer";
 
 class SignupModel extends Component {
@@ -23,42 +23,51 @@ class SignupModel extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.setState({ validate: true })
+    this.setState({ validate: true });
     const { username, email, password } = this.state;
 
-    if(username.length !== 0 && email.length !== 0 && password.length !== 0) {
+    if (username.length !== 0 && email.length !== 0 && password.length !== 0) {
       // Signup User action
       this.props.signupUser(this.state);
     } else {
-      this.props.snackbarToggle(true, "Please fill complete field's.", "error")
+      this.props.snackbarToggle(true, "Please fill complete field's.", "error");
     }
   };
 
   render() {
     const { validate, username, password, email } = this.state;
     const { appState, dialogAction, clearErrors } = this.props;
-    const validateEmpty = validate ? { 
-      email: email.length === 0,
-      username: username.length === 0,
-      password: password.length === 0
-     } : {};
+    const validateEmpty = validate
+      ? {
+          email: email.length === 0,
+          username: username.length === 0,
+          password: password.length === 0
+        }
+      : {};
 
-    return <Modal
+    return (
+      <Modal
         closeAfterTransition={true}
         BackdropProps={{ transitionDuration: 400 }}
         open={appState.signUpDialogOpen}
         onClose={() => {
-          clearErrors()
-          dialogAction("signUpDialogOpen", false)
-          this.setState({ username: "", password: "", email: "", validate: false })
+          clearErrors();
+          dialogAction("signUpDialogOpen", false);
+          this.setState({
+            username: "",
+            password: "",
+            email: "",
+            validate: false
+          });
         }}
-    >
-      <ModelContainer
-        emptyField={validateEmpty}
-        handleSubmit={this.handleSubmit}
-        onChange={(name, value) => this.handleOnChange(name, value)}
-      />
-    </Modal>
+      >
+        <ModelContainer
+          emptyField={validateEmpty}
+          handleSubmit={this.handleSubmit}
+          onChange={(name, value) => this.handleOnChange(name, value)}
+        />
+      </Modal>
+    );
   }
 }
 

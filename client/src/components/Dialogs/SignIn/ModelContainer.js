@@ -19,7 +19,9 @@ const ModelContainer = props => {
                   margin="normal"
                   fullWidth
                   variant="outlined"
-                  onChange={event => props.onChange("username", event.target.value)}
+                  onChange={event =>
+                    props.onChange("username", event.target.value)
+                  }
                 />
                 <TextField
                   id="password-input"
@@ -29,9 +31,15 @@ const ModelContainer = props => {
                   margin="normal"
                   fullWidth
                   variant="outlined"
-                  onChange={event => props.onChange("password", event.target.value)}
+                  onChange={event =>
+                    props.onChange("password", event.target.value)
+                  }
                 />
-                <SigninButtonComponent type="submit" fullWidth margin="30px 0 0 0" />
+                <SigninButtonComponent
+                  type="submit"
+                  fullWidth
+                  margin="30px 0 0 0"
+                />
               </form>
             </Form>
           </div>

@@ -6,6 +6,7 @@ import ShareRounded from "@material-ui/icons/ShareRounded";
 import EditRounded from "@material-ui/icons/EditRounded";
 import LockRounded from "@material-ui/icons/LockRounded";
 import LockOpenRounded from "@material-ui/icons/LockOpenRounded";
+import PresentToAllRounded from "@material-ui/icons/PresentToAllRounded";
 
 export {
   DeleteRounded,
@@ -15,5 +16,6 @@ export {
   ShareRounded,
   EditRounded,
   LockRounded,
-  LockOpenRounded
-}
+  LockOpenRounded,
+  PresentToAllRounded
+};

@@ -23,7 +23,7 @@ const initialState = {
   searchKeyword: { text: "", type: "Title" },
   globalSearchResult: [],
   searchLinkLoading: false,
-  editLink: {},
+  editLink: {}
 };
 
 export default function(state = initialState, action) {
@@ -43,7 +43,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         linkLoading: false
-      }
+      };
     }
     case GET_USER_LINKS: {
       return {
@@ -57,60 +57,60 @@ export default function(state = initialState, action) {
       return {
         ...state,
         linkLoading: false,
-        singleLink: action.payload,
+        singleLink: action.payload
       };
     }
     case SET_SINGLE_LINK_DETAILS: {
       return {
         ...state,
         singleLinkDetails: action.payload
-      }
+      };
     }
     case CLEAR_SINGLE_LINKS: {
       return {
         ...state,
         linkLoading: false,
-        singleLink: [],
+        singleLink: []
       };
     }
     case CLEAR_USER_LINKS: {
       return {
         ...state,
         linkLoading: false,
-        userLinksLoaded: false,        
-        userLinks: [],
-      }
+        userLinksLoaded: false,
+        userLinks: []
+      };
     }
     case SET_SEARCH_KEYWORD: {
       return {
         ...state,
         searchKeyword: action.payload.searchKeyword
-      }
+      };
     }
     case SEARCH_LINK_LOAD: {
       return {
         ...state,
         searchLinkLoading: true
-      }
+      };
     }
     case SET_GLOBAL_SEARCH_RESULT: {
       return {
         ...state,
         searchLinkLoading: false,
         globalSearchResult: action.payload.globalSearchResult
-      }
+      };
     }
     case SET_EDIT_LINK: {
       return {
         ...state,
         editLink: action.payload
-      }
+      };
     }
     case CLEAR_EDIT_LINK: {
       return {
         ...state,
         editLink: {}
-      }
+      };
     }
     default:
       return {

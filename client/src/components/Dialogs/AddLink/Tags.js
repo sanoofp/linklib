@@ -1,51 +1,58 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import AddCircleRounded from "@material-ui/icons/AddCircleRounded"
-import CloseRounded from "@material-ui/icons/CloseRounded"
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import AddCircleRounded from "@material-ui/icons/AddCircleRounded";
+import CloseRounded from "@material-ui/icons/CloseRounded";
 import { Tag } from "../style";
 
 class Tags extends Component {
   state = {
     tags: [],
     tag: ""
-  }
+  };
 
   handleChange = e => this.setState({ tag: e.target.value });
 
   handleClick = () => {
     const { tag } = this.state;
-    if(tag) {
-      this.setState({
-        tags: [...this.state.tags, tag],
-      }, () => {
-        this.props.onTagInputChange(this.state.tags);
-        this.setState({ tag: "" })
-      });
+    if (tag) {
+      this.setState(
+        {
+          tags: [...this.state.tags, tag]
+        },
+        () => {
+          this.props.onTagInputChange(this.state.tags);
+          this.setState({ tag: "" });
+        }
+      );
     }
-  }
+  };
 
   deleteTag = unWantedTag => {
     const newTagArr = this.state.tags.filter(tag => tag !== unWantedTag);
-    this.setState({
-      tags: newTagArr
-    }, () => {
-      this.props.onTagInputChange(this.state.tags);
-    })
-  }
+    this.setState(
+      {
+        tags: newTagArr
+      },
+      () => {
+        this.props.onTagInputChange(this.state.tags);
+      }
+    );
+  };
 
   componentDidMount() {
     const { tagsView } = this.props;
     this.setState({
       tags: tagsView
-    })
+    });
   }
 
   componentWillUnmount() {
     this.setState({
-      tags: [], tag: ""
-    })
+      tags: [],
+      tag: ""
+    });
   }
 
   render() {
@@ -64,32 +71,29 @@ class Tags extends Component {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end" onClick={this.handleClick}>
-                <IconButton
-                  edge="end"
-                  aria-label="Add Tag"
-                >
+                <IconButton edge="end" aria-label="Add Tag">
                   <AddCircleRounded color="primary" />
                 </IconButton>
               </InputAdornment>
-            ),
-          }}    
+            )
+          }}
         />
 
         <div className="applied-tag">
-          { tags.length > 0 && tags ? tags.map((tag, index) => <Tag key={index}>
-              <p>{tag}</p>
-              <IconButton onClick={() => this.deleteTag(tag)}>
-                <CloseRounded style={{fontSize: 12}}/>
-              </IconButton>
-            </Tag>) 
-          : null
-          }
+          {tags.length > 0 && tags
+            ? tags.map((tag, index) => (
+                <Tag key={index}>
+                  <p>{tag}</p>
+                  <IconButton onClick={() => this.deleteTag(tag)}>
+                    <CloseRounded style={{ fontSize: 12 }} />
+                  </IconButton>
+                </Tag>
+              ))
+            : null}
         </div>
-        
       </div>
-    )
+    );
   }
-  
 }
 
 export default Tags;

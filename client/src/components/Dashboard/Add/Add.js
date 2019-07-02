@@ -14,7 +14,12 @@ const AddLink = props => {
         color="secondary"
         aria-label="Add"
         onClick={() => dialogAction("addLinkDialogOpen", true)}
-        style={{ position: "fixed", left: "50%", bottom: 24, transform: "translateX(-50%)" }}
+        style={{
+          position: "fixed",
+          left: "50%",
+          bottom: 24,
+          transform: "translateX(-50%)"
+        }}
       >
         <AddIcon />
       </Fab>

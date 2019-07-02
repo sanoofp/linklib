@@ -28,7 +28,7 @@ const ModelContainer = props => {
                 />
                 <TextField
                   required
-                  error={email ? email : false}                  
+                  error={email ? email : false}
                   name="email"
                   label="Email"
                   type="email"
@@ -42,7 +42,7 @@ const ModelContainer = props => {
                 />
                 <TextField
                   required
-                  error={password ? password : false}                           
+                  error={password ? password : false}
                   name="password"
                   label="Password"
                   type="password"

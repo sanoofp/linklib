@@ -12,13 +12,12 @@ import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import { snackbarToggle } from "../../actions/appStateAction";
 
 const SnackbarComponent = props => {
-
   const { snackbar } = props.appState;
 
   const defaultIconStyle = { fontSize: 20, opacity: 0.9, marginRight: 12 };
   const bgColor = snackbar.type === "error" ? red.A400 : green.A400;
   const icon =
-  snackbar.type === "error" ? (
+    snackbar.type === "error" ? (
       <ErrorIcon style={defaultIconStyle} />
     ) : (
       <CheckCircleIcon style={defaultIconStyle} />

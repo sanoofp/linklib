@@ -1,12 +1,12 @@
 function select(element) {
   let text = "";
   let isReadOnly = element.hasAttribute("readonly");
-  if(!isReadOnly) {
+  if (!isReadOnly) {
     element.setAttribute("readonly", "");
   }
   element.select();
   element.setSelectionRange(0, element.value.length);
-  if(!isReadOnly) {
+  if (!isReadOnly) {
     element.removeAttribute("readonly");
   }
   text = element.value;
@@ -21,10 +21,10 @@ export default function copy(id, callback) {
   } catch (err) {
     _OK = false;
   }
-  if(_OK && callback) {
+  if (_OK && callback) {
     callback();
     return _OK;
-  } 
+  }
 
   return _OK;
 }

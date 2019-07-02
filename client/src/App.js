@@ -10,7 +10,7 @@ import { GlobalStyles } from "./utils/GlobalStyles";
 import MainThemeProvider from "./components/HelperComponent/theme_provider";
 import { dark, main } from "./utils/Theme";
 import Header from "./components/Header";
-import LoadableLoader from './components/Loader/LoadableLoader';
+import LoadableLoader from "./components/Loader/LoadableLoader";
 import Loadable from "react-loadable";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 
@@ -28,7 +28,6 @@ const RouterSwitch = Loadable({
 });
 
 class App extends Component {
-
   componentDidMount() {
     this.props.loadUser();
   }
@@ -54,10 +53,9 @@ class App extends Component {
             isOpen={appState.drawerIsOpen}
             onCloseDrawer={this.handleDrawerClick}
           />
-        
+
           <RouterSwitch />
           <Utility />
-        
         </BrowserRouter>
       </MainThemeProvider>
     );
@@ -67,11 +65,11 @@ class App extends Component {
 App.propTypes = {
   appState: PropTypes.object.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
-  loadUser: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  appState: state.appStateReducer,
+  appState: state.appStateReducer
 });
 
 export default connect(

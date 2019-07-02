@@ -78,7 +78,7 @@ exports.sendConfirmationEmail = user => {
     html: emailHTML
   };
   transporter.sendMail(email).then(info => {
-    console.log(info)
+    console.log(info);
     return true;
   });
 };

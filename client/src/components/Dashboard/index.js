@@ -34,16 +34,20 @@ const AddLinkMessage = Loadable({
 });
 
 class Dashboard extends Component {
-
   componentDidMount() {
     const { clearErrors, error, link, auth, getUserLink } = this.props;
 
-    if(error.id !== null) {
+    if (error.id !== null) {
       clearErrors();
     }
 
     // Throws Warning - "render" should be pure function of props and state
-    if(link.userLinks.length === 0 && link.linkLoading === false && link.userLinksLoaded === false && auth.user !== null) {
+    if (
+      link.userLinks.length === 0 &&
+      link.linkLoading === false &&
+      link.userLinksLoaded === false &&
+      auth.user !== null
+    ) {
       getUserLink();
     }
 
@@ -53,7 +57,8 @@ class Dashboard extends Component {
   render() {
     const { auth, link } = this.props;
 
-    window.onfocus = e => getClipboard(url => this.props.clipboardState(true, url));
+    window.onfocus = e =>
+      getClipboard(url => this.props.clipboardState(true, url));
 
     if (auth.isLoading) {
       return <LoadableLoader />;
@@ -62,24 +67,20 @@ class Dashboard extends Component {
       return <Redirect to="/" />;
     }
 
-    
-
     return (
       <React.Fragment>
         <Helmet>
           <title>Linklib - {auth.user.username}</title>
         </Helmet>
         <DashboardContainer>
-
           <ScrollToTop />
-          
+
           <Search />
           <ShowLinks />
           <AddLink />
-          {Object.keys(link.editLink).length > 0 && <EditLinkModel /> }
+          {Object.keys(link.editLink).length > 0 && <EditLinkModel />}
 
           <AddLinkMessage />
-
         </DashboardContainer>
       </React.Fragment>
     );
@@ -90,7 +91,7 @@ Dashboard.propTypes = {
   getUserLink: PropTypes.func.isRequired,
   clipboardState: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired,
+  error: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

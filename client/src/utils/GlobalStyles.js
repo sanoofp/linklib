@@ -46,7 +46,7 @@ export const GlobalStyles = createGlobalStyle`
     height: 100% !important;
   }
   .p--2 {
-    padding: 10px !important;
+    padding: 14px !important;
   }
   .position-relative {
     position: relative;

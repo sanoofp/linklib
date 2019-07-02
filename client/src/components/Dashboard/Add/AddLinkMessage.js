@@ -11,20 +11,24 @@ import { dialogAction, clipboardState } from "../../../actions/appStateAction";
 const AddLinkMessage = props => {
   const { clipboard } = props.appState;
   return (
-    <Modal open={clipboard.foundUrl} onClose={() => props.clipboardState(false, "", true)}>
+    <Modal
+      open={clipboard.foundUrl}
+      onClose={() => props.clipboardState(false, "", true)}
+    >
       <AddLinkMessageContainer>
         <h4>Found a url in your clipboard</h4>
         <h6>{clipboard.urlFromClipboard}</h6>
         <p>Do you want to save it ?</p>
         <div>
-          <Button 
-            variant="outlined" 
+          <Button
+            variant="outlined"
             color="primary"
-            aria-label="Yes, Add link" 
+            aria-label="Yes, Add link"
             onClick={() => {
               props.dialogAction("addLinkDialogOpen", true);
               props.clipboardState(false, clipboard.urlFromClipboard);
-          }}>
+            }}
+          >
             <DoneRounded style={{ marginRight: 6 }} /> Yes
           </Button>
           <Button
@@ -49,7 +53,7 @@ AddLinkMessage.propTypes = {
 
 const mapStateToProps = state => ({
   appState: state.appStateReducer
-})
+});
 
 export default connect(
   mapStateToProps,

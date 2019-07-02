@@ -22,7 +22,9 @@ const ModelContainer = props => {
                   fullWidth
                   value={props.state.linkTitle}
                   variant="outlined"
-                  onChange={event => props.onChange("linkTitle", event.target.value)}
+                  onChange={event =>
+                    props.onChange("linkTitle", event.target.value)
+                  }
                 />
                 <TextField
                   id="addlink-url"
@@ -35,9 +37,21 @@ const ModelContainer = props => {
                   onChange={event => props.onChange("url", event.target.value)}
                 />
                 <h3>Tags</h3>
-                <Tags tagsView={props.state.tags} onTagInputChange={tags => props.onChange("tags", tags)} />
+                <Tags
+                  tagsView={props.state.tags}
+                  onTagInputChange={tags => props.onChange("tags", tags)}
+                />
 
-                <Button aria-label="Add link" fullWidth type="submit" style={{padding: "14px 0", borderRadius: 12, marginTop: 8}} color="secondary" variant="outlined"><AddIcon /> Add Link</Button>
+                <Button
+                  aria-label="Add link"
+                  fullWidth
+                  type="submit"
+                  style={{ padding: "14px 0", borderRadius: 12, marginTop: 8 }}
+                  color="secondary"
+                  variant="outlined"
+                >
+                  <AddIcon /> Add Link
+                </Button>
               </form>
             </Form>
           </div>

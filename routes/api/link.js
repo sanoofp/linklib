@@ -35,23 +35,23 @@ router.post("/", auth, (req, res) => {
 // @desc Update a link
 router.put("/:linkid", auth, (req, res) => {
   const { err, isValid } = urlpost(req.body);
-  if(!isValid) return res.status(400).json(err);
+  if (!isValid) return res.status(400).json(err);
 
   const { linkTitle, url, tags, public_link } = req.body;
 
+  Link.findById(req.params.linkid).then(link => {
+    link.linkTitle = linkTitle;
+    link.url = url;
+    link.public_link = public_link;
+    link.tags = tags;
 
-  Link.findById(req.params.linkid)
-    .then(link => {
-      link.linkTitle = linkTitle;
-      link.url = url;
-      link.public_link = public_link;
-      link.tags = tags;
-
-      link.save().then(link => {
-        res.status(200).json(link)
+    link
+      .save()
+      .then(link => {
+        res.status(200).json(link);
       })
       .catch(err => console.log(err));
-    });
+  });
 });
 
 // @route GET /api/link/single/:linkid
@@ -68,7 +68,6 @@ router.get("/single/:linkid", (req, res) => {
     .catch(err => res.status(400).json({ msg: "Invalid Link", err: err }));
 });
 
-
 // @route DELETE /api/link/:linkid
 // @desc Delete a link with ID
 router.delete("/:linkid", auth, (req, res) => {
@@ -76,6 +75,5 @@ router.delete("/:linkid", auth, (req, res) => {
     .then(data => res.send(data))
     .catch(err => res.status(400).json(err));
 });
-
 
 module.exports = router;

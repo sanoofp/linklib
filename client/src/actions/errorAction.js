@@ -8,11 +8,11 @@ export const getErrors = (msg = "", status, id = null) => {
       status,
       id
     }
-  }
-}
+  };
+};
 
 export const clearErrors = () => {
   return {
-    type: CLEAR_ERROR,
-  }
-}
+    type: CLEAR_ERROR
+  };
+};

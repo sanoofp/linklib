@@ -13,7 +13,9 @@ const Header = props => {
           <div className="col-md-12 d-flex align-items-center justify-content-between">
             <Logo color={colors.white}>
               <h1>
-                <Link to="/">Linklib<small>beta</small></Link>
+                <Link to="/">
+                  Linklib<small>beta</small>
+                </Link>
               </h1>
             </Logo>
             <div className="header--floating-btn">

@@ -92,8 +92,9 @@ export const GobalSearchContainer = styled.div`
   padding: 80px 0;
   position: relative;
   background-color: ${props => props.theme.primary};
-  
-  #curveUpColor path,#curveDownColor path {
+
+  #curveUpColor path,
+  #curveDownColor path {
     fill: ${props => props.theme.primary};
     stroke: ${props => props.theme.primary};
   }
@@ -105,8 +106,9 @@ export const GobalSearchContainer = styled.div`
     position: absolute;
     bottom: -80px;
   }
- 
-  h3, p {
+
+  h3,
+  p {
     margin: 0;
   }
   h3 {
@@ -134,16 +136,16 @@ export const ResultContainer = styled.div`
   height: 340px;
   overflow: hidden;
   overflow-y: auto;
-  box-shadow: 0px 5px 18px rgba(0,0,0,0.3);  
+  box-shadow: 0px 5px 18px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
-  background: ${props => props.theme.bodybg};  
+  background: ${props => props.theme.bodybg};
   margin: 8px 0 0 0;
   scrollbar-width: none;
   ::-webkit-scrollbar {
     width: 0;
     display: none;
   }
-  
+
   .search-info {
     width: 100%;
     height: 100%;

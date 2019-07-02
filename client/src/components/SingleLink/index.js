@@ -7,7 +7,7 @@ import { snackbarToggle } from "../../actions/appStateAction";
 import { getSingleLink, clearSingleLink } from "../../actions/linkAction";
 import copy from "../../functions/copy";
 import androidShare from "../../functions/androidShare";
-import LoadableLoader from '../Loader/LoadableLoader';
+import LoadableLoader from "../Loader/LoadableLoader";
 import Loadable from "react-loadable";
 
 const SingleLinkMain = Loadable({
@@ -20,13 +20,12 @@ const Details = Loadable({
   loading: LoadableLoader
 });
 
-
 class SingleLink extends Component {
   state = {
     copied: false
   };
-  
-  _timeout = () => this.setState({ copied: false })
+
+  _timeout = () => this.setState({ copied: false });
 
   componentDidMount() {
     this.props.getSingleLink(this.props.match.params.id);
@@ -45,7 +44,9 @@ class SingleLink extends Component {
 
   share = () => {
     const { singleLink } = this.props.linkReducer;
-    androidShare(singleLink, () => this.props.snackbarToggle(true, "Web Share API not Supported", "error"));
+    androidShare(singleLink, () =>
+      this.props.snackbarToggle(true, "Web Share API not Supported", "error")
+    );
   };
 
   render() {
@@ -55,21 +56,22 @@ class SingleLink extends Component {
     const { copied } = this.state;
 
     let userOfLink = false;
-    let avatar = "", username = "";
+    let avatar = "",
+      username = "";
 
-    if(singleLink._id) {
+    if (singleLink._id) {
       avatar = singleLink.userID.avatar;
       username = singleLink.userID.username;
-      if(user) {
-        if(user._id === singleLink.userID._id) {
+      if (user) {
+        if (user._id === singleLink.userID._id) {
           userOfLink = true;
         }
       }
     }
 
-    if(id === "SINGLE_LINK_ERR") {
-      return <Redirect to="/dashboard" />
-    } 
+    if (id === "SINGLE_LINK_ERR") {
+      return <Redirect to="/dashboard" />;
+    }
     return (
       <React.Fragment>
         <Helmet>
@@ -80,11 +82,20 @@ class SingleLink extends Component {
         <div className="container my-3">
           <div className="row">
             <div className="col-md-10 mx-auto">
-              
-              <SingleLinkMain singleLink={singleLink} copied={copied} userOfLink={userOfLink} copyLink={() => this.copyLink()} />
-              <Details singleLink={singleLink} singleLinkDetails={singleLinkDetails} avatar={avatar} username={username} share={() => this.share()} />
-
-             </div>
+              <SingleLinkMain
+                singleLink={singleLink}
+                copied={copied}
+                userOfLink={userOfLink}
+                copyLink={() => this.copyLink()}
+              />
+              <Details
+                singleLink={singleLink}
+                singleLinkDetails={singleLinkDetails}
+                avatar={avatar}
+                username={username}
+                share={() => this.share()}
+              />
+            </div>
           </div>
         </div>
       </React.Fragment>
@@ -96,13 +107,13 @@ SingleLink.propTypes = {
   getSingleLink: PropTypes.func.isRequired,
   snackbarToggle: PropTypes.func.isRequired,
   errorReducer: PropTypes.object.isRequired,
-  authReducer: PropTypes.object.isRequired,
+  authReducer: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   linkReducer: state.linkReducer,
   errorReducer: state.errorReducer,
-  authReducer: state.authReducer,
+  authReducer: state.authReducer
 });
 
 export default connect(

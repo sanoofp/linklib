@@ -5,7 +5,7 @@ const dFlexCenter = `
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const CopiedMsg = styled.div`
   width: 200px;
@@ -14,20 +14,25 @@ export const CopiedMsg = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 12px 23px;
-  box-shadow: 0px 4px 18px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   transition: all 0.2s ease-in-out;
   background-color: ${props => props.theme.bodybg};
-  p { margin : 0; }
-  ${props => props.copied ? `
+  p {
+    margin: 0;
+  }
+  ${props =>
+    props.copied
+      ? `
     opacity: 1;
     z-index: 2;
     
-  ` : `
+  `
+      : `
     opacity: 0;
     z-index: -1;
     
-  ` }
+  `}
 `;
 
 export const ShareContainer = styled.div`
@@ -46,7 +51,6 @@ export const Icons = styled.div`
     margin: 0 6px;
     padding: 14px;
     box-sizing: content-box;
-  
   }
 `;
 
@@ -55,7 +59,7 @@ export const SingleLinkContainer = styled.div`
   width: 100%;
   margin-top: 16px;
   padding: 60px 22px;
-  box-shadow: 0px 3px 10px rgba(0,0,0,0.14);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.14);
   ${dFlexCenter}
   flex-direction: column;
   border-radius: 12px;
@@ -74,8 +78,8 @@ export const SingleLinkContainer = styled.div`
   }
   h2 {
     font-size: 0.7em;
-    font-family: ${props => props.theme.secondaryFont};    
-    text-transform: uppercase;   
+    font-family: ${props => props.theme.secondaryFont};
+    text-transform: uppercase;
   }
   a {
     color: ${props => props.theme.font};
@@ -92,7 +96,9 @@ export const SingleLinkContainer = styled.div`
     color: ${props => props.theme.font};
     border: none;
     font-family: ${props => props.theme.primaryFont};
-    &:active, &:focus, &:hover {
+    &:active,
+    &:focus,
+    &:hover {
       outline: none;
       border: none;
     }
@@ -103,7 +109,7 @@ export const SingleLinkContainer = styled.div`
     overflow: hidden;
     margin: 12px 30px;
     height: 300px;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
     &:after {
       position: absolute;
       content: "";
@@ -111,7 +117,12 @@ export const SingleLinkContainer = styled.div`
       right: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.4), rgba(0,0,0,0.8));
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.8)
+      );
     }
     img {
       width: 100%;
@@ -121,8 +132,8 @@ export const SingleLinkContainer = styled.div`
       bottom: 10px;
       width: 100%;
       left: 50%;
-      z-index:1;
-      color: rgba(255,255,255,0.9);
+      z-index: 1;
+      color: rgba(255, 255, 255, 0.9);
       transform: translateX(-50%);
     }
   }
@@ -131,7 +142,7 @@ export const SingleLinkContainer = styled.div`
     border-radius: 6px;
     margin: 3px 6px;
   }
-  
+
   .details {
     padding: 4px 0 14px 0;
     span {
@@ -158,5 +169,4 @@ export const SingleLinkContainer = styled.div`
       margin: 12px 0;
     }
   }
-  
 `;

@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom"
 import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 
-import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded } from "./Icons"; 
+import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded, PresentToAllRounded } from "./Icons"; 
 import { ShowLinkMenuItems } from "./styles";
 import { deleteSingleLink, socketEmit, setEditLink } from "../../actions/linkAction";
 import { snackbarToggle, dialogAction } from "../../actions/appStateAction";
@@ -38,6 +38,11 @@ class MenuComponent extends Component {
     const { link, socketEmit, setEditLink, dialogAction } = this.props;
 
     const menuItems = [
+      {
+        onClick: () => {this.handleClose();},
+        icon: <PresentToAllRounded />,
+        text: "Sent to Linklib user"
+      },
       {
         onClick: () => {socketEmit(link._id);this.handleClose();},
         icon: <MobileScreenShareRounded />,

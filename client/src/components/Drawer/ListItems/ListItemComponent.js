@@ -4,7 +4,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
 const ListItemComponent = props => {
- 
   return (
     <ListItem
       button
@@ -17,6 +16,5 @@ const ListItemComponent = props => {
     </ListItem>
   );
 };
-
 
 export default ListItemComponent;

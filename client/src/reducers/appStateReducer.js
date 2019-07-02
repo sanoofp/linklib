@@ -23,7 +23,7 @@ const initalState = {
   clipboard: {
     foundUrl: false,
     urlFromClipboard: ""
-  },
+  }
 };
 
 export default function(state = initalState, action) {
@@ -51,15 +51,15 @@ export default function(state = initalState, action) {
         snackbar: {
           open: action.payload.open,
           msg: action.payload.msg,
-          type: action.payload.type    
+          type: action.payload.type
         }
-      }
+      };
     }
     case REQUEST_LOADING: {
       return {
         ...state,
         reqLoading: action.payload.loading
-      }
+      };
     }
     case CLIPBOARD_STATE: {
       return {
@@ -68,7 +68,7 @@ export default function(state = initalState, action) {
           foundUrl: action.payload.foundUrl,
           urlFromClipboard: action.payload.urlFromClipboard
         }
-      }
+      };
     }
     default:
       return state;

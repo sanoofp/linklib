@@ -45,9 +45,8 @@ router.post("/signup", (req, res) => {
             sendConfirmationEmail(user);
             res.json({ user: user, token: token });
             // transporter.sendMail(email).then(info => {
-              // console.log(info);
+            // console.log(info);
             // });
-            
           });
         })
         .catch(err => console.log(err));

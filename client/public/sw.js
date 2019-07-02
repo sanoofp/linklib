@@ -16,11 +16,12 @@ self.addEventListener("push", e => {
   const options = {
     body: data.body,
     icon: data.icon
-  }
-  if(data.link) {
+  };
+  if (data.link) {
     options["requireInteraction"] = true;
-    options["vibration"] = [100,200,100];
-    options["data"] = { url: {
+    options["vibration"] = [100, 200, 100];
+    options["data"] = {
+      url: {
         main: data.link.url,
         linklib: `/link/${data.link._id}`
       }
@@ -29,16 +30,14 @@ self.addEventListener("push", e => {
       {
         action: `open`,
         title: "Open Link",
-        icon: "assets/img/launch.png",
+        icon: "assets/img/launch.png"
       },
       {
         action: `linklib`,
         title: "Open in Linklib",
-        icon: "assets/img/help.png",        
-      },
-    ]
+        icon: "assets/img/help.png"
+      }
+    ];
   }
   self.registration.showNotification(data.title, options);
 });
-
-

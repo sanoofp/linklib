@@ -9,10 +9,16 @@ const SearchInfo = props => {
       <SearchRounded style={{ fontSize: 50 }} />
       <p>Search for Link's.</p>
       <Link to={`/search`}>
-      <Button aria-label="Search for more links" color="secondary" variant="outlined">Search for More from Linklib</Button> 
+        <Button
+          aria-label="Search for more links"
+          color="secondary"
+          variant="outlined"
+        >
+          Search for More from Linklib
+        </Button>
       </Link>
     </div>
-  )
-}
+  );
+};
 
 export default SearchInfo;

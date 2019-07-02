@@ -4,7 +4,7 @@ import { main, dark } from "../Theme";
 const commonMuiTheme = {
   typography: {
     useNextVariants: true,
-    fontFamily: ["Montserrat", "sans-serif"].join(","),
+    fontFamily: ["Montserrat", "sans-serif"].join(",")
   }
 };
 
@@ -17,7 +17,7 @@ const commonOverrides = {
       }
     }
   }
-}
+};
 
 export const muiTheme = createMuiTheme({
   palette: {
@@ -26,7 +26,7 @@ export const muiTheme = createMuiTheme({
     },
     secondary: {
       main: main.secondary,
-      font: main.font,
+      font: main.font
     }
   },
   overrides: {
@@ -43,11 +43,11 @@ export const darkMuiTheme = createMuiTheme({
     },
     secondary: {
       main: dark.secondary,
-      font: dark.font,      
+      font: dark.font
     }
   },
   overrides: {
-    ...commonOverrides.menu,    
+    ...commonOverrides.menu,
     MuiDrawer: {
       paper: {
         backgroundColor: dark.primary
@@ -87,7 +87,7 @@ export const darkMuiTheme = createMuiTheme({
     },
     MuiFormControl: {
       marginNormal: {
-        color: dark.font,
+        color: dark.font
       }
     },
     MuiIconButton: {
@@ -97,12 +97,12 @@ export const darkMuiTheme = createMuiTheme({
     },
     MuiPaper: {
       root: {
-        backgroundColor: dark.bodybg,
+        backgroundColor: dark.bodybg
       }
     },
     MuiMenuItem: {
       root: {
-        color: dark.font        
+        color: dark.font
       }
     }
   },

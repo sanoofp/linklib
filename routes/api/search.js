@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   const max = Number(req.query.max);
   const regex = new RegExp(q, "gi");
   Link.find({ linkTitle: regex, public_link: true })
-    .populate("userID", "avatar id username")      
+    .populate("userID", "avatar id username")
     .limit(max)
     .then(searchResult => res.status(200).json(searchResult));
 });

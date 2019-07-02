@@ -20,6 +20,7 @@ const userSchema = new Scheme({
     required: true
   },
   subscriptions: [],
+  incoming_links: [],
   registered_date: {
     type: Date,
     default: Date.now
@@ -27,7 +28,7 @@ const userSchema = new Scheme({
 });
 
 userSchema.pre("save", function(next) {
-  if(!this.isModified("password")) {
+  if (!this.isModified("password")) {
     return next();
   }
   bcrypt.genSalt(10, (err, salt) => {

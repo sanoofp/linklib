@@ -40,8 +40,8 @@ export const snackbarToggle = (open, msg = "", type = "") => {
       msg,
       type
     }
-  }
-}
+  };
+};
 
 export const toggleLoading = loading => {
   return {
@@ -49,15 +49,19 @@ export const toggleLoading = loading => {
     payload: {
       loading
     }
-  }
+  };
 };
 
-export const clipboardState = (foundUrl, urlFromClipboard, clearClipboard = false) => {
-  if(clearClipboard) {
-    if(navigator.clipboard) {
+export const clipboardState = (
+  foundUrl,
+  urlFromClipboard,
+  clearClipboard = false
+) => {
+  if (clearClipboard) {
+    if (navigator.clipboard) {
       navigator.clipboard.writeText("");
     }
-  } 
+  }
 
   return {
     type: CLIPBOARD_STATE,
@@ -65,5 +69,5 @@ export const clipboardState = (foundUrl, urlFromClipboard, clearClipboard = fals
       foundUrl: foundUrl,
       urlFromClipboard: urlFromClipboard
     }
-  }
-}
+  };
+};

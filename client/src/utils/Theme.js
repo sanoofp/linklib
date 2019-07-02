@@ -1,6 +1,6 @@
 const fonts = {
   primaryFont: "Raleway",
-  secondaryFont: "Montserrat",
+  secondaryFont: "Montserrat"
 };
 
 export const colors = {
@@ -11,7 +11,7 @@ export const colors = {
   whiteAlpha5: "rgba(255,255,255,0.5)",
   black: "#111",
   darkbg: "#121212",
-  darkbg2: "#333",
+  darkbg2: "#333"
 };
 
 export const main = {
@@ -19,7 +19,7 @@ export const main = {
   secondary: colors.primaryDark,
   font: colors.black,
   bodybg: colors.white,
-  bodybgdark: colors.white,  
+  bodybgdark: colors.white,
   ...fonts
 };
 
@@ -28,6 +28,6 @@ export const dark = {
   secondary: colors.whiteAlpha,
   font: colors.whiteAlpha,
   bodybg: colors.darkbg,
-  bodybgdark: colors.primaryDark,  
+  bodybgdark: colors.primaryDark,
   ...fonts
 };

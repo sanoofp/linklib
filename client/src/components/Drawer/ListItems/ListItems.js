@@ -12,77 +12,79 @@ import DashboardRounded from "@material-ui/icons/DashboardRounded";
 import FlagRounded from "@material-ui/icons/FlagRounded";
 import PollRounded from "@material-ui/icons/PollRounded";
 import EventBusyRounded from "@material-ui/icons/EventBusyRounded";
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from "@material-ui/core/Avatar";
 import ListItemComponent from "./ListItemComponent";
 
 const ListItems = props => {
   const { isAuthenticated, dialogAction, toggleDrawer, signOut, user } = props;
-  let menu = [{ 
-    text: "Home", 
-    to: "/",
-    Link: Link,
-    onClick: () => toggleDrawer(false), 
-    icon: <HomeRounded /> 
-  }];
+  let menu = [
+    {
+      text: "Home",
+      to: "/",
+      Link: Link,
+      onClick: () => toggleDrawer(false),
+      icon: <HomeRounded />
+    }
+  ];
   isAuthenticated
-    // User links
-    ? menu = [
+    ? // User links
+      (menu = [
         {
           text: user.username,
           icon: <Avatar src={user.avatar} />
         },
-        { 
-          text: "Dashboard", 
-          to: "/dashboard", 
-          Link: Link,          
-          onClick: () => toggleDrawer(false), 
-          icon: <DashboardRounded /> 
+        {
+          text: "Dashboard",
+          to: "/dashboard",
+          Link: Link,
+          onClick: () => toggleDrawer(false),
+          icon: <DashboardRounded />
         },
-        { text: "Logout", 
+        {
+          text: "Logout",
           onClick: () => {
             signOut();
             toggleDrawer(false);
-          }, 
-          icon: <EventBusyRounded /> 
+          },
+          icon: <EventBusyRounded />
         }
-      ]
-    : 
-      // Guest Links
+      ])
+    : // Guest Links
       menu.push(
         {
           text: "Sign in",
           onClick: () => {
-            dialogAction("signInDialogOpen", true)
-            toggleDrawer(false)
+            dialogAction("signInDialogOpen", true);
+            toggleDrawer(false);
           },
           icon: <ExitToAppRounded />
         },
         {
           text: "Sign up",
           onClick: () => {
-            dialogAction("signUpDialogOpen", true)
-            toggleDrawer(false)
+            dialogAction("signUpDialogOpen", true);
+            toggleDrawer(false);
           },
           icon: <PersonAddRounded />
         }
       );
 
-    menu.push(
-      {
-        text: "privacy Policy",
-        to: "/privacypolicy",
-        Link: Link,
-        onClick: () => toggleDrawer(false), 
-        icon: <PollRounded /> 
-      },
-      {
-        text: "Terms",
-        to: "/termsandconditions",
-        Link: Link,
-        onClick: () => toggleDrawer(false), 
-        icon: <FlagRounded /> 
-      }
-    )
+  menu.push(
+    {
+      text: "privacy Policy",
+      to: "/privacypolicy",
+      Link: Link,
+      onClick: () => toggleDrawer(false),
+      icon: <PollRounded />
+    },
+    {
+      text: "Terms",
+      to: "/termsandconditions",
+      Link: Link,
+      onClick: () => toggleDrawer(false),
+      icon: <FlagRounded />
+    }
+  );
 
   return (
     <List component="nav">
@@ -106,7 +108,7 @@ ListItems.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   dialogAction: PropTypes.func.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
-  user: PropTypes.object,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({

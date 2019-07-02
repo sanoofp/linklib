@@ -11,24 +11,30 @@ class SearchMain extends Component {
     const { darkTheme } = this.props;
     const list = this.props.globalSearchResult;
     let list_view;
-    if(list.length > 0) {
-      list_view = list.map((result, i) => <ResultItem isMain={true} result={result} key={i} />);
+    if (list.length > 0) {
+      list_view = list.map((result, i) => (
+        <ResultItem isMain={true} result={result} key={i} />
+      ));
     } else {
-      list_view = <div className="no-result">
-        <img src={darkTheme ? ArtDark : ArtLight} alt="Search Art" />
-        <p>No Link Found</p>
-        </div>;
+      list_view = (
+        <div className="no-result">
+          <img src={darkTheme ? ArtDark : ArtLight} alt="Search Art" />
+          <p>No Link Found</p>
+        </div>
+      );
     }
-    return <SearchMainContainer>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-10 py-3 mx-auto">
-            <SearchBox isMain={true} />
-            {list_view}
+    return (
+      <SearchMainContainer>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-10 py-3 mx-auto">
+              <SearchBox isMain={true} />
+              {list_view}
+            </div>
           </div>
         </div>
-      </div>
-    </SearchMainContainer>
+      </SearchMainContainer>
+    );
   }
 }
 

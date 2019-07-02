@@ -9,8 +9,8 @@ const ShowLinks = props => {
 
   if (searchKeyword.text) {
     let searchedLinks = [];
-      
-    if(searchKeyword.type === "Tags") {
+
+    if (searchKeyword.type === "Tags") {
       // for(let i = 0; i < item.tags.length; i++) {
       //   if(item.tags[i] === searchKeyword.text){
       //     console.log(item.tags[i]);
@@ -20,23 +20,25 @@ const ShowLinks = props => {
       // }
       // return null;
       userLinks.map(link => {
-        link.tags.map(tag => tag.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1 ?searchedLinks.push(link) : null)
+        link.tags.map(tag =>
+          tag.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1
+            ? searchedLinks.push(link)
+            : null
+        );
         return true;
-      })
-    
+      });
     } else {
-      searchedLinks = userLinks.filter((item) => {
+      searchedLinks = userLinks.filter(item => {
         return (
-          item.linkTitle.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1
+          item.linkTitle
+            .toLowerCase()
+            .indexOf(searchKeyword.text.toLowerCase()) !== -1
         );
       });
     }
 
     searchData = searchedLinks.map((item, idx) => (
-      <Items
-        key={idx}
-        link={item}
-      />
+      <Items key={idx} link={item} />
     ));
 
     if (searchedLinks.length === 0) {
@@ -61,14 +63,11 @@ const ShowLinks = props => {
         </div>
       </div>
       <div className="row">
-        {userLinks.length === 0 && <h3 className="py-5 mx-auto">No links found.</h3>}
+        {userLinks.length === 0 && (
+          <h3 className="py-5 mx-auto">No links found.</h3>
+        )}
         {searchKeyword.text === ""
-          ? userLinks.map((item, idx) => (
-              <Items
-                key={idx}
-                link={item}
-              />
-            ))
+          ? userLinks.map((item, idx) => <Items key={idx} link={item} />)
           : searchData}
       </div>
     </div>
@@ -77,7 +76,7 @@ const ShowLinks = props => {
 
 ShowLinks.propTypes = {
   link: PropTypes.object.isRequired,
-  userID: PropTypes.string.isRequired,
+  userID: PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({

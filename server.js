@@ -25,7 +25,7 @@ webpush.setVapidDetails(
   "mailto:sanoofpb24@gmail.com",
   vapidPublic,
   vapidPrivate
-)
+);
 
 // Routes
 app.use("/api/user", require("./routes/api/user"));

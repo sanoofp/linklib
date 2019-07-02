@@ -27,39 +27,44 @@ const ResultItemContainer = styled.div`
     display: inline-block;
     border-radius: 50%;
   }
-  ${props => props.isMain ? `
+  ${props =>
+    props.isMain
+      ? `
     box-shadow: 0px 4px 12px rgba(0,0,0,0.16);
     margin: 28px 0;
     border-radius: 12px;
-  ` : ""}
+  `
+      : ""}
 `;
 
 const ResultItem = props => {
   return (
-  <ResultItemContainer isMain={props.isMain}>
-    <div>
-      <h2>{props.result.linkTitle}</h2>
-      <p>{truncateStringTo(props.result.url, 50)}</p>
-      <small>
-        Uploaded by <img src={props.result.userID.avatar} alt="Uploaded by"/> {props.result.userID.username}
-      </small>
-    </div>
-    <div>
-      <Link to={`/link/${props.result._id}`}>
-        <Button
-          color="secondary"
-          variant="outlined"
-          size="small"
-          fullWidth
-          aria-label="Details"
-          style={{marginTop: 16}}
-        >
-          <LinkRounded style={{ marginRight: 5, fontSize: 16 }} />
-          Details
-        </Button>
-      </Link>
-    </div>
-  </ResultItemContainer>
-)}
+    <ResultItemContainer isMain={props.isMain}>
+      <div>
+        <h2>{props.result.linkTitle}</h2>
+        <p>{truncateStringTo(props.result.url, 50)}</p>
+        <small>
+          Uploaded by <img src={props.result.userID.avatar} alt="Uploaded by" />{" "}
+          {props.result.userID.username}
+        </small>
+      </div>
+      <div>
+        <Link to={`/link/${props.result._id}`}>
+          <Button
+            color="secondary"
+            variant="outlined"
+            size="small"
+            fullWidth
+            aria-label="Details"
+            style={{ marginTop: 16 }}
+          >
+            <LinkRounded style={{ marginRight: 5, fontSize: 16 }} />
+            Details
+          </Button>
+        </Link>
+      </div>
+    </ResultItemContainer>
+  );
+};
 
 export default ResultItem;

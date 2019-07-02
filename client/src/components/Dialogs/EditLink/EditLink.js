@@ -11,21 +11,22 @@ class EditLinkModel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editLink: this.props.link.editLink,
-    }
+      editLink: this.props.link.editLink
+    };
   }
 
-  handleOnChange = (name, value) => this.setState({ 
-    editLink: {
-      ...this.state.editLink,
-      [name]: value
-    } 
-  });
+  handleOnChange = (name, value) =>
+    this.setState({
+      editLink: {
+        ...this.state.editLink,
+        [name]: value
+      }
+    });
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.editLink(this.state.editLink)
-  }
+    this.props.editLink(this.state.editLink);
+  };
 
   render() {
     const { editLink } = this.state;
@@ -37,12 +38,12 @@ class EditLinkModel extends Component {
         BackdropProps={{ transitionDuration: 300 }}
         open={appState.editLinkDialogOpen}
         onClose={() => {
-          clearErrors()
-          setEditLink({})    
-          dialogAction("editLinkDialogOpen", false)
+          clearErrors();
+          setEditLink({});
+          dialogAction("editLinkDialogOpen", false);
         }}
       >
-        <ModelContainer 
+        <ModelContainer
           editLink={editLink}
           onChange={(name, value) => this.handleOnChange(name, value)}
           // handleTagChange={(tag, tagState) => this.handleTagChange(tag, tagState)}
@@ -57,12 +58,15 @@ EditLinkModel.propTypes = {
   appState: PropTypes.object.isRequired,
   link: PropTypes.object.isRequired,
   dialogAction: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired,
-}
+  clearErrors: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   appState: state.appStateReducer,
   link: state.linkReducer
 });
 
-export default connect(mapStateToProps, { clearErrors, dialogAction, editLink,setEditLink })(EditLinkModel);
+export default connect(
+  mapStateToProps,
+  { clearErrors, dialogAction, editLink, setEditLink }
+)(EditLinkModel);

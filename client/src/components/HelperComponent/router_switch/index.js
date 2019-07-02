@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import LoadableLoader from '../../Loader/LoadableLoader';
+import LoadableLoader from "../../Loader/LoadableLoader";
 import Loadable from "react-loadable";
 
 const Home = Loadable({
@@ -32,15 +32,16 @@ const PageNotFound = Loadable({
   loading: LoadableLoader
 });
 
-
-const RouterSwitch = props => <Switch>
-<Route exact path="/" component={Home} />
-<Route path="/dashboard" component={Dashboard} />
-<Route path="/search" component={SearchMain} />
-<Route path="/privacypolicy" component={Privacy} />
-<Route path="/termsandconditions" component={Terms} />
-<Route path="/link/:id" component={SingleLink} />
-<Route path="*" exact component={PageNotFound} />
-</Switch>
+const RouterSwitch = props => (
+  <Switch>
+    <Route exact path="/" component={Home} />
+    <Route path="/dashboard" component={Dashboard} />
+    <Route path="/search" component={SearchMain} />
+    <Route path="/privacypolicy" component={Privacy} />
+    <Route path="/termsandconditions" component={Terms} />
+    <Route path="/link/:id" component={SingleLink} />
+    <Route path="*" exact component={PageNotFound} />
+  </Switch>
+);
 
 export default RouterSwitch;

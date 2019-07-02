@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import store from "./Store";
 import Loadable from "react-loadable";
-import LoadableLoader from './components/Loader/LoadableLoader';
+import LoadableLoader from "./components/Loader/LoadableLoader";
 // import loadSW from "./reg";
 
 const App = Loadable({

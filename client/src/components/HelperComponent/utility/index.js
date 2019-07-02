@@ -1,8 +1,8 @@
 import React from "react";
 import Loadable from "react-loadable";
-import Spinner from '../../Loader/Spinner';
-import LoadableLoader from '../../Loader/LoadableLoader';
-import LinearLoader from '../../Loader/LinearLoader'
+import Spinner from "../../Loader/Spinner";
+import LoadableLoader from "../../Loader/LoadableLoader";
+import LinearLoader from "../../Loader/LinearLoader";
 
 const SnackbarComponent = Loadable({
   loader: () => import("../../Snackbar"),
@@ -21,14 +21,16 @@ const SigninModel = Loadable({
 //   loading: LoadableLoader
 // });
 
-const Utility = props => <div>
-  <Spinner />
-  <LinearLoader />
-  <SnackbarComponent />
-      
-  <SigninModel />
-  <SignupModel />
-  {/* <EditLinkModel /> */}
-</div>
+const Utility = props => (
+  <div>
+    <Spinner />
+    <LinearLoader />
+    <SnackbarComponent />
+
+    <SigninModel />
+    <SignupModel />
+    {/* <EditLinkModel /> */}
+  </div>
+);
 
 export default Utility;
