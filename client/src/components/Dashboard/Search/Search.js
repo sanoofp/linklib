@@ -11,6 +11,8 @@ import Select from '@material-ui/core/Select';
 import { SearchContainerForm } from "../styles";
 import { searchLink } from "../../../actions/linkAction";
 
+// const inputLabel = React.useRef(null);
+
 class Search extends Component {
   state = {
     select: "Title"
@@ -41,7 +43,7 @@ class Search extends Component {
               // cardPositionFixed={this.state.cardPositionFixed}
               // headerHeight={this.state.headerHeight}
             >
-              <FormControl className="select">
+              <FormControl variant="outlined" className="select">
                 <InputLabel htmlFor="select-simple">Search By</InputLabel>
                 <Select
                   value={select}

@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import AddCircleRounded from "@material-ui/icons/AddCircleRounded"
 import CloseRounded from "@material-ui/icons/CloseRounded"
+import { Tag } from "../style";
 
 class Tags extends Component {
   state = {
@@ -75,9 +76,14 @@ class Tags extends Component {
         />
 
         <div className="applied-tag">
-          {tags.length > 0 && tags ? tags.map((tag, index) => <div key={index} className="tag">
-            <p>{tag}</p> <IconButton onClick={() => this.deleteTag(tag)}><CloseRounded  style={{fontSize: 12}}/></IconButton>
-          </div>) : null}
+          { tags.length > 0 && tags ? tags.map((tag, index) => <Tag key={index}>
+              <p>{tag}</p>
+              <IconButton onClick={() => this.deleteTag(tag)}>
+                <CloseRounded style={{fontSize: 12}}/>
+              </IconButton>
+            </Tag>) 
+          : null
+          }
         </div>
         
       </div>

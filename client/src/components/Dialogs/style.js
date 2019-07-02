@@ -2,6 +2,7 @@ import styled from "styled-components";
 import spacing from "@material-ui/core/styles/spacing";
 import shadows from "@material-ui/core/styles/shadows";
 import { colors } from "../../utils/Theme";
+import { generateBGColor } from "../../functions/util"
 
 export const ModelContainerStyled = styled.div`
   width: ${spacing.unit * 100}px;
@@ -24,7 +25,7 @@ export const ModelContainerStyled = styled.div`
   @media (max-width: 820px) {
     width: 94%;
   }
-`;
+`
 
 export const Form = styled.div`
   background-color: ${props => props.theme.bodybg};
@@ -77,26 +78,26 @@ export const LinkFormMini = styled.div`
       flex-wrap: wrap;
       jutify-content: center;
     }
-    .tag {
-      display: flex;
-      align-items: center;
-      flex-wrap: nowrap;
-      background-color: ${props => props.theme.primary};
-      box-shadow: 4px 4px 9px rgba(0,0,0,0.14);
-      border: 1px solid ${props => props.theme.primary};
-      border-radius: 12px;
-      padding: 3px 3px 3px 18px;
-      margin: 8px 9px;
-      p {
-        margin: 0 6px 0 0;
-      }
-    }
     .tag-input {
       margin: 0 !important;
     }
   }
 `;
 
+
+export const Tag = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  background-color: ${props => generateBGColor(props.index)};
+  box-shadow: 4px 4px 9px rgba(0,0,0,0.14);
+  border-radius: 10px;
+  padding: 3px 3px 3px 18px;
+  margin: 8px 9px;
+  p {
+    margin: 0 6px 0 0;
+  }
+`
 
 export const SigninModel = styled.div`
   width: 100%;

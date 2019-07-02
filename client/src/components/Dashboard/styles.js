@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { modifyColor } from "../../functions/helper";
+import { generateBGColor } from "../../functions/util";
 
 export const DashboardContainer = styled.div`
   width: 100%;
@@ -129,9 +130,8 @@ export const ShowLinkItem = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     .tag--show {
-      background-color: ${props => props.theme.primary};
+      background-color: ${generateBGColor()};
       box-shadow: 4px 4px 9px rgba(0,0,0,0.14);
-      border: 1px solid ${props => props.theme.primary};
       border-radius: 12px;
       padding: 4px 12px;
       margin: 8px 9px;
