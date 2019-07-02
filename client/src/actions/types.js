@@ -31,6 +31,8 @@ export const LOAD_LINK = "LOAD_LINK";
 export const LOAD_LINK_FAIL = "LOAD_LINK_FAIL";
 export const SET_EDIT_LINK = "SET_EDIT_LINK";
 export const CLEAR_EDIT_LINK = "CLEAR_EDIT_LINK";
+export const SET_SENTLINK_DETAILS = "SET_SENTLINK_DETAILS";
+export const SET_LINK_SENT_STATUS = "SET_LINK_SENT_STATUS";
 // Clipboard
 export const CLIPBOARD_STATE = "CLIPBOARD_STATE";
 // Search

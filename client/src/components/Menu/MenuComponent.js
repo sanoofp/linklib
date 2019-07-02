@@ -7,7 +7,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 import { DeleteRounded, MobileScreenShareRounded, MoreVertRounded, IconButton, ShareRounded, EditRounded, PresentToAllRounded } from "./Icons"; 
 import { ShowLinkMenuItems } from "./styles";
-import { deleteSingleLink, socketEmit, setEditLink } from "../../actions/linkAction";
+import { deleteSingleLink, socketEmit, setEditLink, setSentLink } from "../../actions/linkAction";
 import { snackbarToggle, dialogAction } from "../../actions/appStateAction";
 import androidShare from "../../functions/androidShare";
 
@@ -35,11 +35,11 @@ class MenuComponent extends Component {
 
   render() {
     const { anchorEl, redirect } = this.state;
-    const { link, socketEmit, setEditLink, dialogAction } = this.props;
+    const { link, socketEmit, setEditLink, dialogAction, setSentLink } = this.props;
 
     const menuItems = [
       {
-        onClick: () => {this.handleClose();},
+        onClick: () => {this.handleClose();setSentLink(link._id)},
         icon: <PresentToAllRounded />,
         text: "Sent to Linklib user"
       },
@@ -103,5 +103,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { deleteSingleLink, socketEmit, snackbarToggle, setEditLink, dialogAction }
+  { deleteSingleLink, socketEmit, snackbarToggle, setEditLink, dialogAction, setSentLink }
 )(MenuComponent);

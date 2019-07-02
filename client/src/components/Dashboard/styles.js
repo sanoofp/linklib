@@ -61,6 +61,7 @@ export const SearchContainerForm = styled.div`
     font-family: ${props => props.theme.primaryFont} !important;
   }
   fieldset {
+    border-radius: 10px;
     margin-right: 8px !important;
   }
 

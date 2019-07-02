@@ -28,6 +28,11 @@ const EditLinkModel = Loadable({
   loading: LoadableLoader
 });
 
+const SentLink = Loadable({
+  loader: () => import("../Dialogs/SentLink/SentLink"),
+  loading: LoadableLoader
+});
+
 const AddLinkMessage = Loadable({
   loader: () => import("./Add/AddLinkMessage"),
   loading: LoadableLoader
@@ -78,6 +83,7 @@ class Dashboard extends Component {
           <Search />
           <ShowLinks />
           <AddLink />
+          <SentLink />
           {Object.keys(link.editLink).length > 0 && <EditLinkModel />}
 
           <AddLinkMessage />

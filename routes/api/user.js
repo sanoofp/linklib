@@ -13,7 +13,7 @@ const User = require("../../models/User");
 // To verfiy auth
 router.get("/auth", auth, (req, res) => {
   User.findById(req.user.id)
-    .select("-password")
+    .select("-password -subscriptions")
     .then(user => res.json(user))
     .catch(err => res.status(401).json(err));
 });

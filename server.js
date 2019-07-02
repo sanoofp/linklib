@@ -32,6 +32,7 @@ app.use("/api/user", require("./routes/api/user"));
 app.use("/api/link", require("./routes/api/link"));
 app.use("/api/notify", require("./routes/api/notify"));
 app.use("/api/search", require("./routes/api/search"));
+app.use("/api/sent", require("./routes/api/sent"));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

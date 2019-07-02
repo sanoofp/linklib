@@ -11,7 +11,9 @@ import {
   SEARCH_LINK_LOAD,
   SET_EDIT_LINK,
   CLEAR_EDIT_LINK,
-  SET_SINGLE_LINK_DETAILS
+  SET_SINGLE_LINK_DETAILS,
+  SET_SENTLINK_DETAILS,
+  SET_LINK_SENT_STATUS
 } from "../actions/types";
 
 const initialState = {
@@ -23,7 +25,13 @@ const initialState = {
   searchKeyword: { text: "", type: "Title" },
   globalSearchResult: [],
   searchLinkLoading: false,
-  editLink: {}
+  editLink: {},
+  sentLink: { 
+    users: [],
+    selectedUser: "", 
+    linkID: ""
+  },
+  linkSend: false
 };
 
 export default function(state = initialState, action) {
@@ -111,6 +119,21 @@ export default function(state = initialState, action) {
         ...state,
         editLink: {}
       };
+    }
+    case SET_SENTLINK_DETAILS: {
+      return {
+        ...state,
+        sentLink: {
+          users: action.users ? action.users : state.sentLink.users,
+          linkID: action.linkID ? action.linkID : state.sentLink.linkID
+        }
+      }
+    }
+    case SET_LINK_SENT_STATUS: {
+      return {
+        ...state,
+        linkSend: action.payload
+      }
     }
     default:
       return {

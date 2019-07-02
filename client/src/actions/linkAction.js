@@ -9,7 +9,9 @@ import {
   SET_GLOBAL_SEARCH_RESULT,
   SEARCH_LINK_LOAD,
   SET_EDIT_LINK,
-  SET_SINGLE_LINK_DETAILS
+  SET_SINGLE_LINK_DETAILS,
+  SET_SENTLINK_DETAILS,
+  SET_LINK_SENT_STATUS
 } from "../actions/types";
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
@@ -204,3 +206,45 @@ export const socketEmit = linkID => (dispatch, getState) => {
     })
     .catch(err => console.log(err));
 };
+
+
+export const searchLLUsername = username => dispatch => {
+  dispatch(toggleLoading(true));
+  axios.get(`/api/search/user?username=${username}`)
+    .then(res => {
+      dispatch({
+        type: SET_SENTLINK_DETAILS,
+        users: res.data
+      });
+      dispatch(toggleLoading(false))
+    })
+} 
+
+export const setSentLink = id => dispatch => {
+  dispatch(dialogAction("sentLinkDialogOpen", true));
+  dispatch({ type: SET_SENTLINK_DETAILS, linkID: id });
+}
+
+export const sentLinkToUser = toUserId => (dispatch, getState) => {
+  const sentLink = getState().linkReducer.sentLink;
+  const fromUsername = getState().authReducer.user.username;
+  const body = JSON.stringify({
+    linkID: sentLink.linkID,
+    fromUsername: fromUsername
+  });
+  console.log("FROM :", fromUsername, "TO: ", toUserId, "Link: ", sentLink.linkID);
+  
+  dispatch(toggleLoading(true));
+  axios.post(`/api/sent/link/${toUserId}`, body, axiosHeader(getState))
+    .then(res => {
+      dispatch(toggleLoading(false));
+      dispatch({ type: SET_LINK_SENT_STATUS, payload: true });
+      dispatch(
+        snackbarToggle(
+          true,
+          "Link sent success",
+          "success"
+        )
+      );
+    });
+}

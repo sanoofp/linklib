@@ -20,7 +20,13 @@ const userSchema = new Scheme({
     required: true
   },
   subscriptions: [],
-  incoming_links: [],
+  incoming_links: [{
+    linkID: {
+      type: Scheme.Types.ObjectId,
+      ref: "Link"
+    },
+    fromUsername: String
+  }],
   registered_date: {
     type: Date,
     default: Date.now

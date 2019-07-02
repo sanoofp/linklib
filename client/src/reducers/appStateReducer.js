@@ -14,6 +14,7 @@ const initalState = {
   signUpDialogOpen: false,
   addLinkDialogOpen: false,
   editLinkDialogOpen: false,
+  sentLinkDialogOpen: false,
   snackbar: {
     open: false,
     msg: "",
