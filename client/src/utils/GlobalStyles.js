@@ -121,5 +121,8 @@ export const GlobalStyles = createGlobalStyle`
     .dialog-paper--fix {
       margin: 12px !important;
     }
+    .p--2 {
+      padding: 10px !important;
+    }
   }
 `;

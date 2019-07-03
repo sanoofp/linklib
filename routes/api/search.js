@@ -23,6 +23,14 @@ router.get("/user", (req, res) => {
     .select("username avatar")
     .then(users => res.status(200).json(users))
     .catch(err => console.log(err))
+});
+
+// @route GET /api/search/incominglinks?userID=id
+router.get("/incominglinks", (req, res) => {
+  const userID = req.query.userID;
+  User.findById(userID)
+    .populate("incoming_links.linkID", "linkTitle url userID tags")
+    .then(user => res.status(200).json(user.incoming_links));
 })
 
 

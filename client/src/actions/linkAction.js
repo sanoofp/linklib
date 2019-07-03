@@ -11,7 +11,7 @@ import {
   SET_EDIT_LINK,
   SET_SINGLE_LINK_DETAILS,
   SET_SENTLINK_DETAILS,
-  SET_LINK_SENT_STATUS
+  SET_INCOMING_LINKS
 } from "../actions/types";
 import axios from "axios";
 import { axiosHeader } from "../functions/helper";
@@ -214,31 +214,88 @@ export const searchLLUsername = username => dispatch => {
     .then(res => {
       dispatch({
         type: SET_SENTLINK_DETAILS,
-        users: res.data
+        payload: {
+          users: res.data
+        }
       });
       dispatch(toggleLoading(false))
     })
-} 
+  } 
+  
+export const getIncomingLinks = userID => (dispatch, getState) => {
+    // const userID = getState().authReducer.user._id;
+  dispatch(toggleLoading(true))
+  axios.get(`/api/search/incominglinks?userID=${userID}`)
+    .then(res => {
+      dispatch(toggleLoading(false))
+      dispatch({
+        type: SET_INCOMING_LINKS,
+        payload: res.data
+      });
+    })
+}
 
-export const setSentLink = id => dispatch => {
+export const sentLinkToUserAccount = (link, userID, jobId) => (dispatch, getState) => {
+  const newUserLink = {
+    linkTitle: link.linkTitle,
+    url: link.url,
+    tags: link.tags,
+    userID: userID
+  }
+  const body = JSON.stringify(newUserLink);
+  console.log(body);
+  dispatch(toggleLoading(true))
+  axios.post(`/api/sent/transferlink/${jobId}`, body, axiosHeader(getState))
+    .then(() => {
+      dispatch(getIncomingLinks(userID));
+      dispatch(
+        snackbarToggle(
+          true,
+          `${link.linkTitle} has transfered to your dashbooard`,
+          "success"
+        )
+      );
+    })
+    
+}
+  
+export const rejectLinkRecevieJob = jobId => (dispatch, getState) => {
+  const userID = getState().authReducer.user._id;
+  dispatch(toggleLoading(true))
+  axios.delete(`/api/sent/rejectlink/${jobId}`, axiosHeader(getState))
+    .then(() => {
+      dispatch(toggleLoading(false));
+      dispatch(getIncomingLinks(userID));
+      dispatch(
+        snackbarToggle(
+          true,
+          `Link transfer Rejected`,
+          "success"
+        )
+      );
+    })
+
+}
+
+export const setSentLink = link => dispatch => {
   dispatch(dialogAction("sentLinkDialogOpen", true));
-  dispatch({ type: SET_SENTLINK_DETAILS, linkID: id });
+  dispatch({ type: SET_SENTLINK_DETAILS, payload: { link: link } });
 }
 
 export const sentLinkToUser = toUserId => (dispatch, getState) => {
   const sentLink = getState().linkReducer.sentLink;
   const fromUsername = getState().authReducer.user.username;
   const body = JSON.stringify({
-    linkID: sentLink.linkID,
+    linkID: sentLink.link._id,
     fromUsername: fromUsername
   });
-  console.log("FROM :", fromUsername, "TO: ", toUserId, "Link: ", sentLink.linkID);
+  console.log("FROM :", fromUsername, "TO: ", toUserId, "Link: ", sentLink.link);
   
   dispatch(toggleLoading(true));
   axios.post(`/api/sent/link/${toUserId}`, body, axiosHeader(getState))
     .then(res => {
       dispatch(toggleLoading(false));
-      dispatch({ type: SET_LINK_SENT_STATUS, payload: true });
+      dispatch(dialogAction("sentLinkDialogOpen", false))
       dispatch(
         snackbarToggle(
           true,
@@ -246,5 +303,6 @@ export const sentLinkToUser = toUserId => (dispatch, getState) => {
           "success"
         )
       );
+      dispatch({ type: SET_SENTLINK_DETAILS, payload: { users: {}, link: {} } });
     });
 }

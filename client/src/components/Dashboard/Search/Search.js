@@ -68,6 +68,7 @@ class Search extends Component {
                   )
                 }}
               />
+
             </SearchContainerForm>
           </div>
         </div>

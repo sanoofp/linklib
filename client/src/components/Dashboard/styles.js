@@ -43,6 +43,7 @@ export const SearchContainerForm = styled.div`
   padding: 9px 0;
   border-radius: 12px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   margin-top: 12px;
@@ -195,3 +196,46 @@ export const AddLinkMessageContainer = styled.div`
     width: 94%;
   }
 `;
+
+export const ReceviedLinkContainer = styled.div`
+  padding: 40px 0;
+`
+
+export const ReceviedLinkItem = styled.div`
+  margin: 14px 0;
+  padding: 18px 12px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.14);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    font-size: 0.8em;
+    margin: 3px 0 8px 0;
+  }
+  div:nth-of-type(1) {
+    word-wrap: break-word;
+  }
+  div:nth-of-type(2) {
+    button {
+      font-size: 1.2em;
+    }
+    h6 {
+      margin: 0 4px;
+    } 
+  }
+  
+  @media (max-width: 485px) {
+    justify-content: center;
+    div:nth-of-type(1) {
+      width: 100%;      
+      text-align: center;
+    }
+    div:nth-of-type(2) {
+      margin: 18px 0;
+      text-align: center
+    }
+
+  }
+`

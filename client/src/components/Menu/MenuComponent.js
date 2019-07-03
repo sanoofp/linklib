@@ -39,7 +39,7 @@ class MenuComponent extends Component {
 
     const menuItems = [
       {
-        onClick: () => {this.handleClose();setSentLink(link._id)},
+        onClick: () => {this.handleClose();setSentLink(link)},
         icon: <PresentToAllRounded />,
         text: "Sent to Linklib user"
       },

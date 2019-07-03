@@ -13,7 +13,7 @@ const User = require("../../models/User");
 // To verfiy auth
 router.get("/auth", auth, (req, res) => {
   User.findById(req.user.id)
-    .select("-password -subscriptions")
+    .select("-password -subscriptions -incoming_links")
     .then(user => res.json(user))
     .catch(err => res.status(401).json(err));
 });
@@ -44,9 +44,6 @@ router.post("/signup", (req, res) => {
             if (err) throw err;
             sendConfirmationEmail(user);
             res.json({ user: user, token: token });
-            // transporter.sendMail(email).then(info => {
-            // console.log(info);
-            // });
           });
         })
         .catch(err => console.log(err));
@@ -80,7 +77,7 @@ router.post("/signin", (req, res) => {
             _id: user._id,
             username: user.username,
             email: user.email,
-            avatar: user.avatar
+            avatar: user.avatar,
           },
           token: token
         });

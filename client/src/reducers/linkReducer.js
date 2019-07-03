@@ -13,7 +13,7 @@ import {
   CLEAR_EDIT_LINK,
   SET_SINGLE_LINK_DETAILS,
   SET_SENTLINK_DETAILS,
-  SET_LINK_SENT_STATUS
+  SET_INCOMING_LINKS
 } from "../actions/types";
 
 const initialState = {
@@ -28,10 +28,9 @@ const initialState = {
   editLink: {},
   sentLink: { 
     users: [],
-    selectedUser: "", 
-    linkID: ""
+    link: {}
   },
-  linkSend: false
+  incomingLinks: []
 };
 
 export default function(state = initialState, action) {
@@ -124,15 +123,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         sentLink: {
-          users: action.users ? action.users : state.sentLink.users,
-          linkID: action.linkID ? action.linkID : state.sentLink.linkID
+          users: action.payload.users ? action.payload.users : state.sentLink.users,
+          link: action.payload.link ? action.payload.link : state.sentLink.link
         }
       }
     }
-    case SET_LINK_SENT_STATUS: {
+    case SET_INCOMING_LINKS: {
       return {
         ...state,
-        linkSend: action.payload
+        incomingLinks: action.payload
       }
     }
     default:

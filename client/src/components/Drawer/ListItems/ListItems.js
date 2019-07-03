@@ -9,8 +9,8 @@ import HomeRounded from "@material-ui/icons/HomeRounded";
 import PersonAddRounded from "@material-ui/icons/PersonAddRounded";
 import ExitToAppRounded from "@material-ui/icons/ExitToAppRounded";
 import DashboardRounded from "@material-ui/icons/DashboardRounded";
-import FlagRounded from "@material-ui/icons/FlagRounded";
-import PollRounded from "@material-ui/icons/PollRounded";
+import MoveToInboxRounded from "@material-ui/icons/MoveToInboxRounded";
+// import PollRounded from "@material-ui/icons/PollRounded";
 import EventBusyRounded from "@material-ui/icons/EventBusyRounded";
 import Avatar from "@material-ui/core/Avatar";
 import ListItemComponent from "./ListItemComponent";
@@ -41,6 +41,13 @@ const ListItems = props => {
           icon: <DashboardRounded />
         },
         {
+          text: "Recevied Links",
+          to: "/dashboard/recevied",
+          Link: Link,
+          onClick: () => toggleDrawer(false),
+          icon: <MoveToInboxRounded />
+        },
+        {
           text: "Logout",
           onClick: () => {
             signOut();
@@ -69,22 +76,22 @@ const ListItems = props => {
         }
       );
 
-  menu.push(
-    {
-      text: "privacy Policy",
-      to: "/privacypolicy",
-      Link: Link,
-      onClick: () => toggleDrawer(false),
-      icon: <PollRounded />
-    },
-    {
-      text: "Terms",
-      to: "/termsandconditions",
-      Link: Link,
-      onClick: () => toggleDrawer(false),
-      icon: <FlagRounded />
-    }
-  );
+  // menu.push(
+  //   {
+  //     text: "privacy Policy",
+  //     to: "/privacypolicy",
+  //     Link: Link,
+  //     onClick: () => toggleDrawer(false),
+  //     icon: <PollRounded />
+  //   },
+  //   {
+  //     text: "Terms",
+  //     to: "/termsandconditions",
+  //     Link: Link,
+  //     onClick: () => toggleDrawer(false),
+  //     icon: <FlagRounded />
+  //   }
+  // );
 
   return (
     <List component="nav">

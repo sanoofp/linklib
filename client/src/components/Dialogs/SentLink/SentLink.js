@@ -25,6 +25,7 @@ class SentLink extends Component {
 
   sentToUser = toUserId => {
     this.props.sentLinkToUser(toUserId);
+    this.cancelConfirmation()
   }
 
   render() {
@@ -39,6 +40,7 @@ class SentLink extends Component {
         open={appState.sentLinkDialogOpen}
         onClose={() => {
           clearErrors();
+          this.cancelConfirmation()
           dialogAction("sentLinkDialogOpen", false);
         }}
       >
@@ -48,7 +50,7 @@ class SentLink extends Component {
 
               <div className="co-md-10 mx-auto">
                 {confirm ?
-                  <Confirm sendConfirm={link.linkSend} toUser={toUser} sendToUser={toUserId => this.sentToUser(toUserId)} cancelConfirmation={() => this.cancelConfirmation()} />
+                  <Confirm toUser={toUser} sendToUser={toUserId => this.sentToUser(toUserId)} cancelConfirmation={() => this.cancelConfirmation()} />
                 :
                   <SentLinkMainView handleOnChange={val => this.setState({ username: val })} users={users} searchUsername={this.searchUsername}  confirmSent={(user) => this.confirmSent(user)} />
                 }
@@ -64,7 +66,7 @@ class SentLink extends Component {
 SentLink.propTypes = {
   appState: PropTypes.object.isRequired,
   link: PropTypes.object.isRequired,
-  dialogAction: PropTypes.func.isRequired
+  dialogAction: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

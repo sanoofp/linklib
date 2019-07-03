@@ -11,14 +11,6 @@ const ShowLinks = props => {
     let searchedLinks = [];
 
     if (searchKeyword.type === "Tags") {
-      // for(let i = 0; i < item.tags.length; i++) {
-      //   if(item.tags[i] === searchKeyword.text){
-      //     console.log(item.tags[i]);
-      //     return true
-      //   }
-      //   return false;
-      // }
-      // return null;
       userLinks.map(link => {
         link.tags.map(tag =>
           tag.toLowerCase().indexOf(searchKeyword.text.toLowerCase()) !== -1
@@ -42,7 +34,7 @@ const ShowLinks = props => {
     ));
 
     if (searchedLinks.length === 0) {
-      searchData = <p className="no-result">No result found</p>;
+      searchData = <p className="no-result p-4">No result found</p>;
     }
   }
   // console.log(searchData, searchKeyword, Boolean(searchKeyword));
@@ -64,7 +56,7 @@ const ShowLinks = props => {
       </div>
       <div className="row">
         {userLinks.length === 0 && (
-          <h3 className="py-5 mx-auto">No links found.</h3>
+          <h3 className="py-5 px-3 mx-auto">No links found.</h3>
         )}
         {searchKeyword.text === ""
           ? userLinks.map((item, idx) => <Items key={idx} link={item} />)

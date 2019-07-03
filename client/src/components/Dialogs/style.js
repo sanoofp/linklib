@@ -118,9 +118,12 @@ export const SignupModel = styled.div`
 
 export const SentLinkContainer = styled.div`
   width: 100%;
-  padding: 34px 0;
+  padding: 34px 16px;
+  text-align: center;
   h1 {
-    margin: 0 14px 0 0; 
+    font-family: ${props => props.theme.secondaryFont};
+    font-size: 1.4em;
+    margin: 0 0 18px 0; 
   }
   fieldset {
     border-radius: 10px;
