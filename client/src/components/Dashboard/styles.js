@@ -203,39 +203,35 @@ export const ReceviedLinkContainer = styled.div`
 
 export const ReceviedLinkItem = styled.div`
   margin: 14px 0;
-  padding: 18px 12px;
+  padding: 22px 16px;
   border-radius: 12px;
   box-shadow: 2px 2px 10px rgba(0,0,0,0.14);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   p {
     font-size: 0.8em;
     margin: 3px 0 8px 0;
   }
+  .align-center {
+    width: 100%;
+    font-family: ${props => props.theme.secondaryFont} !important;
+    text-align: center !important;
+  }
   div:nth-of-type(1) {
+    width:100%;
+    text-align: center;
     word-wrap: break-word;
   }
   div:nth-of-type(2) {
+    text-align: center;
+    margin: 16px 0;
     button {
       font-size: 1.2em;
     }
     h6 {
       margin: 0 4px;
     } 
-  }
-  
-  @media (max-width: 485px) {
-    justify-content: center;
-    div:nth-of-type(1) {
-      width: 100%;      
-      text-align: center;
-    }
-    div:nth-of-type(2) {
-      margin: 18px 0;
-      text-align: center
-    }
-
   }
 `

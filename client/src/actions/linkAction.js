@@ -248,6 +248,7 @@ export const sentLinkToUserAccount = (link, userID, jobId) => (dispatch, getStat
   axios.post(`/api/sent/transferlink/${jobId}`, body, axiosHeader(getState))
     .then(() => {
       dispatch(getIncomingLinks(userID));
+      dispatch(clearUserLinks());
       dispatch(
         snackbarToggle(
           true,

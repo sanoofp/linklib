@@ -39,9 +39,12 @@ class Recevied extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-10 mx-auto">
+          <div className="col-md-8 mx-auto">
           
             <ReceviedLinkContainer>
+              {links.incomingLinks.length === 0 &&
+                <p className="align-center py-4 px-2">No Recevied links found</p>
+              }
               {links.incomingLinks.map((link,i) => {
                 return <ReceviedLinkItem key={i}>
                   <div>
@@ -63,7 +66,7 @@ class Recevied extends Component {
                   </div>
 
                   <div>
-                    <small className="my-2">From {link.fromUsername}</small><br />   
+                    <p className="my-2">From {link.fromUsername}</p>  
                     <IconButton color="primary" onClick={() => this.acceptLink(link)}>
                       <FontAwesomeIcon icon={faVoteYea} />
                       <h6>Accept</h6>
