@@ -10,7 +10,6 @@
     "dev": "concurrently \"yarn server\" \"yarn client\"",
     "lint": "eslint ./",
     "format": "prettier ./**/*.js --write",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "gcp-build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {

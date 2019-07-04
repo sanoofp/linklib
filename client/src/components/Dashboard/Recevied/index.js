@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux"
 import { Redirect } from "react-router-dom";
-import A from "../../Button/A";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVoteYea, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import AddToHomeScreenRounded from "@material-ui/icons/AddToHomeScreenRounded";
-import { ReceviedLinkContainer, ReceviedLinkItem } from "../styles";
-import { truncateStringTo } from "../../../functions/helper";
+import { ReceviedLinkContainer } from "../styles";
 import { getIncomingLinks, sentLinkToUserAccount, rejectLinkRecevieJob } from "../../../actions/linkAction";
+import ReceviedLink from "./ReceviedLink";
+import ReceviedLinkEmpty from "./ReceviedLinkEmpty";
 
 class Recevied extends Component {
 
@@ -42,43 +37,12 @@ class Recevied extends Component {
           <div className="col-md-8 mx-auto">
           
             <ReceviedLinkContainer>
-              {links.incomingLinks.length === 0 &&
-                <p className="align-center py-4 px-2">No Recevied links found</p>
-              }
-              {links.incomingLinks.map((link,i) => {
-                return <ReceviedLinkItem key={i}>
-                  <div>
-                    <strong>{link.linkID.linkTitle}</strong>
-                    <p>{truncateStringTo(link.linkID.url, 80)}</p>
-                    <A href={link.linkID.url}>
-                      <Button
-                        aria-label="Open link"
-                        color="secondary"
-                        variant="outlined"
-                        size="medium"
-                      >
-                        <AddToHomeScreenRounded
-                          style={{ marginRight: 5, fontSize: 16 }}
-                        />
-                        Open link
-                      </Button>
-                    </A>
-                  </div>
+              {links.incomingLinks.length === 0 && <ReceviedLinkEmpty />}
 
-                  <div>
-                    <p className="my-2">From {link.fromUsername}</p>  
-                    <IconButton color="primary" onClick={() => this.acceptLink(link)}>
-                      <FontAwesomeIcon icon={faVoteYea} />
-                      <h6>Accept</h6>
-                    </IconButton>
-                    <IconButton color="secondary" onClick={() => this.rejectLink(link)}>
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                      <h6>Remove Request</h6>
-                    </IconButton>
-                  </div>
-                      
-                </ReceviedLinkItem>
+              {links.incomingLinks.map((link,i) => {
+                return <ReceviedLink link={link} key={i} acceptLink={link => this.acceptLink(link)} rejectLink={link => this.rejectLink(link)} />
               })}
+              
             </ReceviedLinkContainer>
           
           </div>

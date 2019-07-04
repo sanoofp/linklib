@@ -17,7 +17,7 @@ const AddLink = props => {
         style={{
           position: "fixed",
           left: "50%",
-          bottom: 24,
+          bottom: 25,
           transform: "translateX(-50%)"
         }}
       >

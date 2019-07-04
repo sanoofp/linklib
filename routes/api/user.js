@@ -9,7 +9,7 @@ const { sendConfirmationEmail } = require("../../helper/mail");
 
 const User = require("../../models/User");
 
-// @route GET api/user/auth
+// @route GET /api/user/auth
 // To verfiy auth
 router.get("/auth", auth, (req, res) => {
   User.findById(req.user.id)

@@ -78,8 +78,7 @@ export const SearchContainerForm = styled.div`
 
 export const ShowLinkItem = styled.div`
   background-color: ${props => modifyColor(props.theme.bodybg, 16)};
-  // border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   margin: 30px 0px !important;
   padding: 30px 18px !important;
@@ -199,6 +198,24 @@ export const AddLinkMessageContainer = styled.div`
 
 export const ReceviedLinkContainer = styled.div`
   padding: 40px 0;
+  
+  .align-center {
+    padding: 40px 12px;
+    width: 100%;
+    font-family: ${props => props.theme.secondaryFont} !important;
+    text-align: center !important;
+    p {
+      font-size: 1.4em;
+      margin: 0 0 12px 0;
+    }
+    h6 {
+      margin: 4px 0;
+    }
+    img {
+      max-width: 360px;
+      margin: 12px auto;
+    }
+  }
 `
 
 export const ReceviedLinkItem = styled.div`
@@ -213,11 +230,6 @@ export const ReceviedLinkItem = styled.div`
   p {
     font-size: 0.8em;
     margin: 3px 0 8px 0;
-  }
-  .align-center {
-    width: 100%;
-    font-family: ${props => props.theme.secondaryFont} !important;
-    text-align: center !important;
   }
   div:nth-of-type(1) {
     width:100%;
