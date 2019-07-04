@@ -2,11 +2,12 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import LoadableLoader from "../../Loader/LoadableLoader";
 import Loadable from "react-loadable";
+import Home from "../../Home";
 
-const Home = Loadable({
-  loader: () => import("../../Home"),
-  loading: LoadableLoader
-});
+// const Home = Loadable({
+//   loader: () => import("../../Home"),
+//   loading: LoadableLoader
+// });
 const Dashboard = Loadable({
   loader: () => import("../../Dashboard"),
   loading: LoadableLoader

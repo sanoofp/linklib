@@ -5,19 +5,8 @@ import { Helmet } from "react-helmet";
 import { dialogAction } from "../../actions/appStateAction";
 import { withStyles } from "@material-ui/core/styles";
 import { HomeContainer, MuiButtonStyles } from "./style";
-import LoadableLoader from "../Loader/LoadableLoader";
-import Loadable from "react-loadable";
 import Intro from "./Intro";
-
-// const Intro = Loadable({
-//   loader: () => import("./Intro"),
-//   loading: LoadableLoader
-// });
-
-const GlobalSearch = Loadable({
-  loader: () => import("./Search/GlobalSearch"),
-  loading: LoadableLoader
-});
+import GlobalSearch from "./Search/GlobalSearch";
 
 class Home extends Component {
   render() {

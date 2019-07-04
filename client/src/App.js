@@ -10,22 +10,25 @@ import { GlobalStyles } from "./utils/GlobalStyles";
 import MainThemeProvider from "./components/HelperComponent/theme_provider";
 import { dark, main } from "./utils/Theme";
 import Header from "./components/Header";
-import LoadableLoader from "./components/Loader/LoadableLoader";
-import Loadable from "react-loadable";
+import DrawerComponent from "./components/Drawer";
+import Utility from "./components/HelperComponent/utility";
+import RouterSwitch from "./components/HelperComponent/router_switch";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 
-const DrawerComponent = Loadable({
-  loader: () => import("./components/Drawer"),
-  loading: LoadableLoader
-});
-const Utility = Loadable({
-  loader: () => import("./components/HelperComponent/utility"),
-  loading: LoadableLoader
-});
-const RouterSwitch = Loadable({
-  loader: () => import("./components/HelperComponent/router_switch"),
-  loading: LoadableLoader
-});
+// import LoadableLoader from "./components/Loader/LoadableLoader";
+// import Loadable from "react-loadable";
+// const DrawerComponent = Loadable({
+//   loader: () => import("./components/Drawer"),
+//   loading: LoadableLoader
+// });
+// const Utility = Loadable({
+//   loader: () => import("./components/HelperComponent/utility"),
+//   loading: LoadableLoader
+// });
+// const RouterSwitch = Loadable({
+//   loader: () => import("./components/HelperComponent/router_switch"),
+//   loading: LoadableLoader
+// });
 
 class App extends Component {
   componentDidMount() {
