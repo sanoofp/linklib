@@ -38,6 +38,19 @@ self.addEventListener("push", e => {
         icon: "assets/img/help.png"
       }
     ];
+  } else if(data.openll) {
+    options["data"] = {
+      url: {
+        main: "/"
+      }
+    };
+    options["actions"] = [
+      {
+        action: `open`,
+        title: "Open Linklib",
+        icon: "assets/img/launch.png"
+      },
+    ]
   }
   self.registration.showNotification(data.title, options);
 });

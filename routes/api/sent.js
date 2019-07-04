@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../../models/User");
 const Link = require("../../models/Link");
+const webpush = require("web-push")
 const sentLinkPost = require("../../validation/sentLinkPost")
 const urlpost = require("../../validation/urlpost");
 const { auth } = require("../../helper/auth");
@@ -18,7 +19,19 @@ router.post("/link/:toUserID", auth, (req, res) => {
         linkID: linkID,
         fromUsername: fromUsername
       });
-      user.save().then(() => res.status(200).json({ success: true }));
+      
+      user.save().then(() => {
+        user.subscriptions.map(sub => {
+          const payload = JSON.stringify({
+            title: "New Link recevied",
+            icon: user.avatar,
+            body: `A new link request has recevied from ${fromUsername}`,
+            openll: true
+          });
+          webpush.sendNotification(sub, payload).catch(err => console.error(err))
+        });
+        res.status(200).json({ success: true })
+      });
     })
 });
 

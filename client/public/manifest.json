@@ -1,6 +1,6 @@
 {
   "short_name": "Linklib",
-  "name": "Linklib - save and share link",
+  "name": "Linklib",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +8,8 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "index.html",
-  "display": "fullscreen",
-  "theme_color": "#2ECC71",
-  "background_color": "#ffffff"
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2ECC71", 
+  "background_color": "#2ECC71"
 }
