@@ -77,8 +77,9 @@ export const SearchContainerForm = styled.div`
 `;
 
 export const ShowLinkItem = styled.div`
-  background-color: ${props => modifyColor(props.theme.bodybg, 16)};
-  box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.1);
+  background-image: ${props => props.theme.bodybg === "#ffffff" ? "linear-gradient(140deg, #fdfbfb 0%, #ebedee 100%)" : "linear-gradient(120deg, #323232 0%, #1C1C1C 150%)"};
+  // background-color: ${props => modifyColor(props.theme.bodybg, 16)};
+  box-shadow: 4px 4px 20px 0px rgba(46, 61, 73, 0.1);
   border-radius: 12px;
   margin: 30px 0px !important;
   padding: 30px 18px !important;
@@ -89,7 +90,10 @@ export const ShowLinkItem = styled.div`
   justify-content: center;
   flex-direction: column;
   text-align: center;
-
+  transition: all 0.28s ease-in-out;
+  &:hover {
+    box-shadow: 0px 0px 6px 0px rgba(46, 61, 73, 0.1);
+  }
   h4 {
     font-size: 1.4em;
     margin: 0;

@@ -37,9 +37,9 @@ class Recevied extends Component {
           <div className="col-md-8 mx-auto">
           
             <ReceviedLinkContainer>
-              {links.incomingLinks.length === 0 && <ReceviedLinkEmpty />}
-
-              {links.incomingLinks.map((link,i) => {
+              {links.incomingLinks.length === 0 ?
+                <ReceviedLinkEmpty /> :
+                links.incomingLinks.map((link,i) => {
                 return <ReceviedLink link={link} key={i} acceptLink={link => this.acceptLink(link)} rejectLink={link => this.rejectLink(link)} />
               })}
               
