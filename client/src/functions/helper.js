@@ -56,7 +56,7 @@ export const validateURL = url => {
 };
 
 
-export const addHttp = url => {
+export const addHttps = url => {
   if(String(url).indexOf("http") === -1) {
     return `https://${url}`
   }
