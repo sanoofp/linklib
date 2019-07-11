@@ -8,6 +8,7 @@ import SearchInfo from "./SearchInfo";
 const SearchResult = props => {
   const list = props.globalSearchResult;
   let list_view;
+  console.log(list);
   if (list.length > 0) {
     list_view = list.map((result, i) => <ResultItem result={result} key={i} />);
     list_view.push(

@@ -87,7 +87,7 @@ export const getSingleLink = id => (dispatch, getState) => {
       //   }
       // })
       axios
-        .post("https://utilsio.herokuapp.com/api/all", { url: res.data.url })
+        .post("https://utils-dot-linklibapp.appspot.com/api/all", { url: res.data.url })
         .then(res =>
           dispatch({ type: SET_SINGLE_LINK_DETAILS, payload: res.data })
         );
