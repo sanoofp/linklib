@@ -2,11 +2,13 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { SingleLinkContainer, CopiedMsg } from "./styles";
 import A from "../Button/A";
+import { addHttp } from "../../functions/helper";
 // import FontAwesomeIconSet from "./icons/social";
 import MenuComponent from "../Menu/MenuComponent";
 
 const SingleLinkMain = props => {
   const { singleLink } = props;
+  console.log(addHttp(singleLink.url));
   return (
     <SingleLinkContainer>
       <h1>{singleLink.linkTitle}</h1>

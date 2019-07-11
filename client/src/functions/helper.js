@@ -54,3 +54,11 @@ export const validateURL = url => {
   const regex = new RegExp(regexQuery, "i");
   return regex.test(url);
 };
+
+
+export const addHttp = url => {
+  if(String(url).indexOf("http") === -1) {
+    return `https://${url}`
+  }
+  return url
+}
