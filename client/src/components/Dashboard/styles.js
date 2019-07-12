@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { modifyColor } from "../../functions/helper";
+import { gradients } from "../../utils/Theme";
 
 export const DashboardContainer = styled.div`
   width: 100%;
@@ -77,9 +78,11 @@ export const SearchContainerForm = styled.div`
 `;
 
 export const ShowLinkItem = styled.div`
-  background-image: ${props => props.theme.bodybg === "#ffffff" ? "linear-gradient(140deg, #fdfbfb 0%, #ebedee 100%)" : "linear-gradient(120deg, #323232 0%, #1C1C1C 150%)"};
-  // background-color: ${props => modifyColor(props.theme.bodybg, 16)};
-  box-shadow: 4px 4px 20px 0px rgba(46, 61, 73, 0.1);
+  ${props => {
+    const rand = Math.floor(Math.random() * gradients.length)
+    return `background-image: ${gradients[rand].gradient};
+      box-shadow: 2px 2px 10px 0px ${gradients[rand].shadow};`
+  }};
   border-radius: 12px;
   margin: 30px 0px !important;
   padding: 30px 18px !important;

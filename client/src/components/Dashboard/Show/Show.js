@@ -30,7 +30,7 @@ const ShowLinks = props => {
     }
 
     searchData = searchedLinks.map((item, idx) => (
-      <Items key={idx} link={item} />
+      <Items index={idx} key={idx} link={item} />
     ));
 
     if (searchedLinks.length === 0) {
@@ -59,7 +59,7 @@ const ShowLinks = props => {
           <h3 className="py-5 px-3 mx-auto">No links found.</h3>
         )}
         {searchKeyword.text === ""
-          ? userLinks.map((item, idx) => <Items key={idx} link={item} />)
+          ? userLinks.map((item, idx) => <Items index={idx} key={idx} link={item} />)
           : searchData}
       </div>
     </div>

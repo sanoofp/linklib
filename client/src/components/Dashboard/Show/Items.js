@@ -17,7 +17,7 @@ const Items = props => {
   return (
     <Fade bottom distance="20px">
       <div className="col-md-6 p--2">
-        <ShowLinkItem>
+        <ShowLinkItem index={props.index}>
           <h4>{linkTitle}</h4>
           <p>{truncateStringTo(url, 100)} </p>
           {!public_link && (
