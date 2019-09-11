@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { modifyColor } from "../../functions/helper";
-import { gradients } from "../../utils/Theme";
 
 export const DashboardContainer = styled.div`
   width: 100%;
@@ -76,13 +75,16 @@ export const SearchContainerForm = styled.div`
     }
   }
 `;
-
+// ${props => {
+//   const rand = Math.floor(Math.random() * gradients.length)
+//   return `background-image: ${gradients[rand].gradient};
+//     box-shadow: 1px 1px 8px 0px ${gradients[rand].shadow};`
+// }};
 export const ShowLinkItem = styled.div`
-  ${props => {
-    const rand = Math.floor(Math.random() * gradients.length)
-    return `background-image: ${gradients[rand].gradient};
-      box-shadow: 2px 2px 10px 0px ${gradients[rand].shadow};`
-  }};
+
+  background-image: ${props => props.theme.bodybg === "#ffffff" ? "linear-gradient(140deg, #fdfbfb 0%, #ebedee 100%)" : "linear-gradient(120deg, #323232 0%, #1C1C1C 150%)"};
+  box-shadow: 4px 4px 18px 0px rgba(0, 0, 0, 0.12);
+
   border-radius: 12px;
   margin: 30px 0px !important;
   padding: 30px 18px !important;
@@ -219,7 +221,7 @@ export const ReceviedLinkContainer = styled.div`
       margin: 4px 0;
     }
     img {
-      max-width: 360px;
+      max-width: 330px;
       margin: 12px auto;
     }
   }

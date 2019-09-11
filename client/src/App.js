@@ -10,6 +10,7 @@ import { GlobalStyles } from "./utils/GlobalStyles";
 import MainThemeProvider from "./components/HelperComponent/theme_provider";
 import { dark, main } from "./utils/Theme";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import DrawerComponent from "./components/Drawer";
 import Utility from "./components/HelperComponent/utility";
 import RouterSwitch from "./components/HelperComponent/router_switch";
@@ -59,6 +60,8 @@ class App extends Component {
 
           <RouterSwitch />
           <Utility />
+
+          <Footer />
         </BrowserRouter>
       </MainThemeProvider>
     );

@@ -169,4 +169,22 @@ export const ResultContainer = styled.div`
   @media (max-width: 580px) {
     margin: 0;
   }
-`;
+  `;
+  
+  export const ContributeContainer = styled.div`
+  padding: 5em 0;
+  text-align: center;
+  h1{
+    font-family: ${props => props.theme.secondaryFont};
+    font-size: 2.2em;
+  }
+  span svg {
+    margin-right: 12px;
+  }
+  img {
+    width: 100%;
+  }
+  @media (max-width: 580px) {
+    padding: 4em;
+  }
+`

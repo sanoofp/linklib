@@ -7,10 +7,11 @@ import { withStyles } from "@material-ui/core/styles";
 import { HomeContainer, MuiButtonStyles } from "./style";
 import Intro from "./Intro";
 import GlobalSearch from "./Search/GlobalSearch";
+import Contribute from "./Contribute";
 
 class Home extends Component {
   render() {
-    const { isAuthenticated, dialogAction } = this.props;
+    const { isAuthenticated, dialogAction, darkTheme } = this.props;
 
     return (
       <HomeContainer>
@@ -22,6 +23,7 @@ class Home extends Component {
           dialogAction={(type, isOpen) => dialogAction(type, isOpen)}
         />
         <GlobalSearch />
+        <Contribute darkTheme={darkTheme} />
       </HomeContainer>
     );
   }
@@ -29,11 +31,13 @@ class Home extends Component {
 
 Home.propTypes = {
   dialogAction: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired
+  darkTheme: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.authReducer.isAuthenticated
+  isAuthenticated: state.authReducer.isAuthenticated,
+  darkTheme: state.appStateReducer.darkTheme
 });
 
 export default connect(

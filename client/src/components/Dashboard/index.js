@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
@@ -38,7 +38,7 @@ const AddLinkMessage = Loadable({
   loading: LoadableLoader
 });
 
-class Dashboard extends Component {
+class Dashboard extends PureComponent {
   componentDidMount() {
     const { clearErrors, error, link, auth, getUserLink } = this.props;
 
