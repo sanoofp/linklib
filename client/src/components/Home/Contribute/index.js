@@ -13,7 +13,7 @@ const Contribute = props => {
       <div className="row">
         <div className="col-md-6 py-4">
           <h1>Contribution</h1>
-          <p>All contribution are welcome. Feel free to add new features, report a bug or redesign. 😊</p>
+          <p>All contribution are welcome. Feel free to add new features or report a bug.  <span role="img" aria-label="smile">😊</span></p>
           <Button variant="contained" color="primary" component={A} href="https://github.com/sanoofp/linklib" aria-label="github">
             <FontAwesomeIcon icon={faGithub} size="1x" /> Github
           </Button>

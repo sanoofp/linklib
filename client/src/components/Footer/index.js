@@ -6,8 +6,8 @@ import A from "../Button/A";
 const FooterContainer = styled.div`
   background-color: ${props => props.theme.primary};
   padding: 1.4em 0;
-  border-top-right-radius: 40% 60%;
-  border-top-left-radius: 20% 60%;
+  border-top-right-radius: 40% 40%;
+  border-top-left-radius: 20% 40%;
   color: ${props => props.theme.bodybg};
   h1 {
     font-family: ${props => props.theme.secondaryFont};
@@ -27,6 +27,10 @@ const FooterContainer = styled.div`
   .margin {
     width: 100%;
     margin: 12px 0;
+  }
+  @media (max-width: 485px) {
+    border-top-right-radius: 40% 10%;
+    border-top-left-radius: 20% 10%;
   }
 `
 
