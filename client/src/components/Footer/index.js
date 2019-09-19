@@ -6,6 +6,8 @@ import A from "../Button/A";
 const FooterContainer = styled.div`
   background-color: ${props => props.theme.primary};
   padding: 1.4em 0;
+  border-top-right-radius: 40% 60%;
+  border-top-left-radius: 20% 60%;
   color: ${props => props.theme.bodybg};
   h1 {
     font-family: ${props => props.theme.secondaryFont};

@@ -1,5 +1,4 @@
 import React from "react";
-import Fade from "react-reveal";
 import artPrimary from "./art_light.svg";
 import artSecondary from "./art_dark.svg";
 
@@ -9,18 +8,16 @@ import artSecondary from "./art_dark.svg";
 
 const SearchArts = props => (
   <div className="col-md-6">
-    <Fade bottom distance="30px">
-      <h3>SEARCH FOR LINKS</h3>
-      <p>
-        Search for links from the linklib database which are flaged as public by
-        the owner
-      </p>
-      <img
-        src={!props.darkTheme ? artPrimary : artSecondary}
-        className="search-home-art"
-        alt="Search linklib"
-      />
-    </Fade>
+    <h3>SEARCH FOR LINKS</h3>
+    <p>
+      Search for links from the linklib database which are flaged as public by
+      the owner
+    </p>
+    <img
+      src={!props.darkTheme ? artPrimary : artSecondary}
+      className="search-home-art"
+      alt="Search linklib"
+    />
   </div>
 );
 

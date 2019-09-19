@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Fade from "react-reveal/Fade";
 import { GobalSearchContainer } from "../style";
 import { ArtUp, ArtDown } from "../../svg/SearchArt";
 import SearchResult from "./sub-component/SearchResult";
@@ -32,10 +31,8 @@ class GlobalSearch extends Component {
           <div className="row">
             <SearchArts darkTheme={darkTheme} />
             <div className="col-md-6">
-              <Fade bottom distance="30px">
-                <SearchBox />
-                <SearchResult globalSearchResult={globalSearchResult} />
-              </Fade>
+              <SearchBox />
+              <SearchResult globalSearchResult={globalSearchResult} />
             </div>
           </div>
         </div>

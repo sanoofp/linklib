@@ -172,11 +172,11 @@ export const ResultContainer = styled.div`
   `;
   
   export const ContributeContainer = styled.div`
-  padding: 5em 0;
+  padding: 5.2em 0;
   text-align: center;
   h1{
     font-family: ${props => props.theme.secondaryFont};
-    font-size: 2.2em;
+    font-size: 2.3em;
   }
   span svg {
     margin-right: 12px;
