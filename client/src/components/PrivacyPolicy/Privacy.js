@@ -10,11 +10,7 @@ const Privacy = () => (
       <div className="row">
         <div className="col-md-10 mx-auto">
           <h2>Privacy Policy</h2>
-          <p>
-            Sanoof Pandikkadan built the Linklib app as an Open Source app. This
-            SERVICE is provided by Sanoof Pandikkadan at no cost and is intended
-            for use as is.
-          </p>
+     
           <p>
             This page is used to inform visitors regarding my policies with the
             collection, use, and disclosure of Personal Information if anyone
