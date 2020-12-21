@@ -14,7 +14,7 @@
     "bootstrap": "^4.3.1",
     "classnames": "^2.2.6",
     "fg-loadcss": "^2.1.0",
-    "npm": "^6.9.0",
+    "npm": "^6.14.6",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0",
